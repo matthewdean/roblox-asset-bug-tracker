@@ -1,0 +1,360 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>-0.200000018</X>
+				<Y>-0.5</Y>
+				<Z>0.100000001</Z>
+				<R00>0</R00>
+				<R01>4.37113883e-008</R01>
+				<R02>-0.99999994</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>4.37113883e-008</R12>
+				<R20>0.99999994</R20>
+				<R21>0</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<string name="Name">Liquid Shadow</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=94747897</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalScript</string>
+				<ProtectedString name="Source">--Made by Stickmasterluke
+
+
+sp=script.Parent
+
+
+check=true
+local debris=game:GetService(&quot;Debris&quot;)
+
+walkspeed=20
+maxhealth=200
+local pale=BrickColor.new(&quot;Pastel yellow&quot;)
+local clothes=BrickColor.new(&quot;Black&quot;)
+
+function waitfor(a,b)
+&#9;while a:FindFirstChild(b)==nil do
+&#9;&#9;a.ChildAdded:wait()
+&#9;end
+&#9;return a:FindFirstChild(b)
+end
+
+local drink=waitfor(sp,&quot;Drink&quot;)
+
+function clicked()
+&#9;local plr=game.Players.LocalPlayer
+&#9;if plr~=nil and check then
+&#9;&#9;local chr=plr.Character
+&#9;&#9;if chr~=nil and check then
+&#9;&#9;&#9;check=false
+&#9;&#9;&#9;local humanoid=chr:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;&#9;if humanoid~=nil then
+&#9;&#9;&#9;&#9;local anim=humanoid:LoadAnimation(drink)
+&#9;&#9;&#9;&#9;anim:Play()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;sp.Grip=CFrame.new(-0.121022046, 0.255111873, 0.101348981, -0.0794940218, 0.363020837, -0.928383887, -0.0413999408, 0.929325461, 0.366933852, 0.995975196, 0.0676040649, -0.0588467717)
+&#9;&#9;&#9;wait(.5)
+&#9;&#9;&#9;local bodycolors=chr:FindFirstChild(&quot;Body Colors&quot;)
+&#9;&#9;&#9;if bodycolors~=nil then
+&#9;&#9;&#9;&#9;bodycolors.HeadColor=pale
+&#9;&#9;&#9;&#9;bodycolors.TorsoColor=clothes
+&#9;&#9;&#9;&#9;bodycolors.LeftArmColor=pale
+&#9;&#9;&#9;&#9;bodycolors.LeftLegColor=clothes
+&#9;&#9;&#9;&#9;bodycolors.RightArmColor=pale
+&#9;&#9;&#9;&#9;bodycolors.RightLegColor=clothes
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;local bodycolors=Instance.new(&quot;BodyColors&quot;)
+&#9;&#9;&#9;&#9;bodycolors.Name=&quot;Body Colors&quot;
+&#9;&#9;&#9;&#9;bodycolors.HeadColor=pale
+&#9;&#9;&#9;&#9;bodycolors.TorsoColor=clothes
+&#9;&#9;&#9;&#9;bodycolors.LeftArmColor=pale
+&#9;&#9;&#9;&#9;bodycolors.LeftLegColor=clothes
+&#9;&#9;&#9;&#9;bodycolors.RightArmColor=pale
+&#9;&#9;&#9;&#9;bodycolors.RightLegColor=clothes
+&#9;&#9;&#9;&#9;bodycolors.Parent=chr
+&#9;&#9;&#9;end
+&#9;&#9;&#9;local torso=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;if torso~=nil then
+&#9;&#9;&#9;&#9;if torso:FindFirstChild(&quot;Sparkles&quot;)==nil then
+&#9;&#9;&#9;&#9;&#9;local sparkles=Instance.new(&quot;Sparkles&quot;)
+&#9;&#9;&#9;&#9;&#9;sparkles.SparkleColor=Color3.new(1,1,1)
+&#9;&#9;&#9;&#9;&#9;sparkles.Parent=torso
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;local humanoid=chr:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;&#9;if humanoid~=nil then
+&#9;&#9;&#9;&#9;humanoid.WalkSpeed=walkspeed
+&#9;&#9;&#9;&#9;local percent=humanoid.Health/humanoid.MaxHealth
+&#9;&#9;&#9;&#9;humanoid.MaxHealth=maxhealth
+&#9;&#9;&#9;&#9;humanoid.Health=maxhealth*percent
+&#9;&#9;&#9;end
+&#9;&#9;&#9;local slurp=sp.Handle:FindFirstChild(&quot;Slurp&quot;)
+&#9;&#9;&#9;if slurp~=nil then
+&#9;&#9;&#9;&#9;slurp:Play()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;wait(1.5)
+&#9;&#9;&#9;breakable=sp.Handle:clone()
+&#9;&#9;&#9;local torso=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;if torso~=nil then
+&#9;&#9;&#9;&#9;local rightshoulder=torso:FindFirstChild(&quot;Right Shoulder&quot;)
+&#9;&#9;&#9;&#9;if rightshoulder then
+&#9;&#9;&#9;&#9;&#9;rightshoulder.CurrentAngle=math.pi
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;if torso:FindFirstChild(&quot;VampireSoundScript&quot;)==nil then
+&#9;&#9;&#9;&#9;&#9;local vss=sp.VampireSoundScript:clone()
+&#9;&#9;&#9;&#9;&#9;vss.Parent=torso
+&#9;&#9;&#9;&#9;&#9;vss.Disabled=false
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;breakable=sp.Handle:clone()
+&#9;&#9;&#9;&#9;breakable.Velocity=(torso.CFrame.lookVector*(-40))+(Vector3.new((math.random()-.5)*2,3,(math.random()-.5)*2)*15)
+&#9;&#9;&#9;end
+&#9;&#9;&#9;breakable.RotVelocity=Vector3.new(math.random()-.5,math.random()-.5,math.random()-.5)*2*10
+&#9;&#9;&#9;breakable.Name=&quot;Effect&quot;
+&#9;&#9;&#9;breakable.ThrowScript.Disabled=false
+&#9;&#9;&#9;debris:AddItem(breakable,6)
+&#9;&#9;&#9;breakable.Parent=game.Workspace
+&#9;&#9;&#9;sp:remove()
+&#9;&#9;end
+&#9;end
+end
+
+function Equipped(mouse)
+&#9;if mouse~=nil then
+&#9;&#9;mouse.Button1Down:connect(clicked)
+&#9;end
+end
+
+sp.Equipped:connect(Equipped)
+
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX2">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">VampireSoundScript</string>
+				<ProtectedString name="Source">--Made by Stickmasterluke
+--Surrounds you with serendipity
+
+
+sp=script.Parent
+
+
+local sound=Instance.new(&quot;Sound&quot;)
+sound.SoundId=&quot;http://www.roblox.com/asset/?id=94688738&quot;
+sound.Parent=sp
+
+while sound do
+&#9;sound.Pitch=(math.random()*.2)+.9
+&#9;sound:Play()
+&#9;wait((math.random()*2)+9)
+end
+
+script:remove()
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX3">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=94700140</url></Content>
+				<string name="Name">Drink</string>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX4">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>5</Y>
+					<Z>0</Z>
+					<R00>0.999999881</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>0.999999881</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.600000024</X>
+					<Y>1.25999999</Y>
+					<Z>0.600000024</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX5">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=94747828</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.300000012</X>
+						<Y>0.300000012</Y>
+						<Z>0.300000012</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=94747950</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX6">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">GlassBreak</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=11415738</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+			<Item class="Script" referent="RBX7">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">ThrowScript</string>
+					<ProtectedString name="Source">--Made by Stickmasterluke
+
+
+sp=script.Parent
+
+
+sp.Touched:connect(function(hit)
+&#9;if hit and hit.Parent~=nil then
+&#9;&#9;if hit.Parent:FindFirstChild(&quot;Humanoid&quot;)==nil and string.lower(hit.Name)~=&quot;water&quot; and string.lower(string.sub(hit.Name,1,6))~=&quot;effect&quot; and hit.Name~=&quot;Handle&quot; then
+&#9;&#9;&#9;local sound=sp:FindFirstChild(&quot;GlassBreak&quot;)
+&#9;&#9;&#9;if sound~=nil then
+&#9;&#9;&#9;&#9;sound:Play()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;sp.Anchored=true
+&#9;&#9;&#9;sp.CanCollide=false
+&#9;&#9;&#9;sp.Transparency=1
+&#9;&#9;&#9;wait(1)
+&#9;&#9;&#9;sp:remove()
+&#9;&#9;end
+&#9;end
+end)
+
+wait(5)
+
+sp:remove()
+
+</ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX8">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Slurp</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=94692027</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX9">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>0.231040344</X>
+					<Y>5.27986145</Y>
+					<Z>-1.295434</Z>
+					<R00>-0.984465361</R00>
+					<R01>-0.0365253724</R01>
+					<R02>0.171737999</R02>
+					<R10>-3.7252903e-009</R10>
+					<R11>0.97812295</R11>
+					<R12>0.208027929</R12>
+					<R20>-0.17557916</R20>
+					<R21>0.204796284</R21>
+					<R22>-0.962928057</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>0</X>
+					<Y>5</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

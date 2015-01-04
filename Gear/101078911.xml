@@ -1,0 +1,306 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>-0.329237193</X>
+				<Y>-0.576264262</Y>
+				<Z>0.157275885</Z>
+				<R00>-0.29237175</R00>
+				<R01>0</R01>
+				<R02>-0.956304729</R02>
+				<R10>0.0999610648</R10>
+				<R11>0.994521916</R11>
+				<R12>-0.0305611696</R12>
+				<R20>0.951066017</R20>
+				<R21>-0.104528464</R21>
+				<R22>-0.290770113</R22>
+			</CoordinateFrame>
+			<string name="Name">TouchdownFootball</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=101921733</url></Content>
+			<string name="ToolTip">Touchdowwwwwn!</string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-1.3117646</X>
+					<Y>20.8388767</Y>
+					<Z>-9.36177635</Z>
+					<R00>-0.0114739882</R00>
+					<R01>-0.308774769</R01>
+					<R02>-0.951066017</R02>
+					<R10>-0.304825485</R10>
+					<R11>0.906936646</R11>
+					<R12>-0.290770113</R12>
+					<R20>0.952340186</R20>
+					<R21>0.286573082</R21>
+					<R22>-0.104528464</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0.349999994</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">0</token>
+				<token name="shape">0</token>
+				<Vector3 name="size">
+					<X>1.05999994</X>
+					<Y>1.05999994</Y>
+					<Z>1.05999994</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=101921920</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.5</X>
+						<Y>0.5</Y>
+						<Z>0.5</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=101921823</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">TouchdownSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=101929051</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">FootballScript</string>
+				<ProtectedString name="Source">function WaitForChild(parent, child)
+&#9;while not parent:FindFirstChild(child) do parent.ChildAdded:wait() end
+&#9;return parent[child]
+end
+
+
+local Tool = script.Parent
+local Handle = WaitForChild(Tool, &quot;Handle&quot;)
+local Spike = WaitForChild(Tool, &quot;spike&quot;)
+local Dance = WaitForChild(Tool, &quot;dance&quot;)
+local TouchdownSound = WaitForChild(Handle, &quot;TouchdownSound&quot;)
+local Humanoid, Torso
+
+local SpikeAnimation
+local DanceAnimation
+
+function onEquipped()
+&#9;local Character = Tool.Parent
+&#9;if not Character then return end
+
+&#9;Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+&#9;Torso = Character:FindFirstChild(&quot;Torso&quot;)
+&#9;if not Humanoid or not Torso then return end
+
+&#9;SpikeAnimation = Humanoid:LoadAnimation(Spike)
+&#9;DanceAnimation = Humanoid:LoadAnimation(Dance)
+end
+
+function ThrowBall()
+&#9;local newBall = Handle:Clone()
+&#9;newBall.CanCollide = true
+&#9;newBall.Name = &quot;Football&quot;
+&#9;newBall.Transparency = 0
+&#9;newBall.CFrame = Handle.CFrame + Torso.CFrame.lookVector * 3
+&#9;newBall.Velocity = Handle.Velocity + Vector3.new(0, -100, 0) + Torso.CFrame.lookVector * 20
+&#9;newBall.Parent = workspace
+
+&#9;game:GetService(&quot;Debris&quot;):AddItem(newBall, 5)
+
+&#9;Handle.Transparency = 1
+end
+
+function ReturnBall()
+&#9;Handle.Transparency = 0
+end
+
+function onUnequipped()
+&#9;if DanceAnimation then DanceAnimation:Stop() end
+&#9;ReturnBall()
+end
+
+
+Tool.Enabled = true
+function onActivated()
+&#9;if (not Tool.Enabled) or (not SpikeAnimation) or not Humanoid then return end
+&#9;Tool.Enabled = false
+
+&#9;TouchdownSound:Play()
+&#9;SpikeAnimation:Play() 
+&#9;wait(.4) 
+&#9;Humanoid.Jump = true
+&#9;wait(.1)
+&#9;ThrowBall()
+
+&#9;wait(.7)
+&#9;-- do dance here
+&#9;if DanceAnimation then DanceAnimation:Play() end
+&#9;wait(1.25)
+
+&#9;ReturnBall()
+
+&#9;wait(1)
+
+&#9;Tool.Enabled = true
+end
+
+
+Tool.Equipped:connect(onEquipped)
+Tool.Activated:connect(onActivated)
+Tool.Unequipped:connect(onUnequipped)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX5">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/asset/?id=101851767</url></Content>
+				<string name="Name">spike</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX6">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/asset/?id=101862746</url></Content>
+				<string name="Name">dance</string>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX7">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">Tool = script.Parent 
+
+local stillEquipped = false 
+
+function onEquippedLocal(mouse) 
+     stillEquipped = true 
+     if mouse == nil then 
+          print(&quot;Mouse not found&quot;) 
+          return 
+     end 
+     while stillEquipped do 
+          print(&quot;Setting Mouse to go&quot;) 
+          mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot; 
+          while Tool.Enabled and stillEquipped do 
+               wait(0.01) 
+          end 
+          print(&quot;Setting Mouse to wait&quot;) 
+          mouse.Icon = &quot;rbxasset://textures\\GunWaitCursor.png&quot; 
+          while not Tool.Enabled and stillEquipped do 
+               wait(0.01) 
+          end      
+     end 
+end 
+
+
+function onUnequippedLocal() 
+     stillEquipped = false 
+end 
+
+Tool.Equipped:connect(onEquippedLocal) 
+Tool.Unequipped:connect(onUnequippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX8">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-1.18404555</X>
+					<Y>20.325861</Y>
+					<Z>-6.82356358</Z>
+					<R00>0.998736501</R00>
+					<R01>0.00994395744</R01>
+					<R02>0.0492612943</R02>
+					<R10>-9.31322686e-010</R10>
+					<R11>0.980228245</R11>
+					<R12>-0.197870255</R12>
+					<R20>-0.0502549335</R20>
+					<R21>0.197620243</R21>
+					<R22>0.978989601</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-1.33182943</X>
+					<Y>20.9194717</Y>
+					<Z>-9.76053238</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,0 +1,726 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>1.60000002</X>
+				<Y>-18</Y>
+				<Z>-2.0999999</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">AirBalloon</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=115983479</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">AirBalloon_Main</string>
+				<ProtectedString name="Source">print(&quot;Run&quot;)
+
+--imports
+local RbxUtility = LoadLibrary(&apos;RbxUtility&apos;)
+local Create = RbxUtility.Create
+
+--main vars
+local Tool = script.Parent
+local Handle = Tool:WaitForChild(&apos;Handle&apos;)
+local NextBalloonAt = Tool:WaitForChild(&apos;NextBalloonAt&apos;)
+local DeploySound = Handle:WaitForChild(&apos;SOUND_Deploy&apos;)
+DeploySound.SoundId = &apos;SOUND_Deploy&apos;
+local Equipped = false
+
+--character stuff
+local Character, Player, Humanoid, Torso, HumanoidRootPart;
+
+--anim tracks
+local GliderHold, GliderFly, GliderBomb;
+
+
+---========================== main code ==========================--
+
+local MIN_TIME_BETWEEN_BALLOONS = 15
+
+local Flying = false
+local CurrentBalloon;
+local FlyingGyro;
+local FlyingForce;
+local Fire1, Fire2;
+local CurrentVelocity;
+
+local DesiredFlightCFrame;
+
+local Gui;
+
+local function CreateBalloon()
+&#9;model = Create&apos;Model&apos;{
+&#9;&#9;Name = &apos;BalloonGear_AirBalloon&apos;;
+&#9;&#9;--
+&#9;&#9;Create&apos;ObjectValue&apos;{
+&#9;&#9;&#9;Name = &apos;AirBalloonGearTag&apos;;
+&#9;&#9;};
+&#9;&#9;Create&apos;CFrameValue&apos;{
+&#9;&#9;&#9;Name = &apos;CurrentHeading&apos;;
+&#9;&#9;&#9;Value = CFrame.new();
+&#9;&#9;};
+&#9;&#9;Create&apos;NumberValue&apos;{
+&#9;&#9;&#9;Name = &apos;CurrentVelocity&apos;;
+&#9;&#9;&#9;Value = 0;
+&#9;&#9;};
+&#9;&#9;Create&apos;Part&apos;{
+&#9;&#9;&#9;Name = &apos;MainPart&apos;;
+&#9;&#9;&#9;FormFactor = &apos;Custom&apos;;
+&#9;&#9;&#9;Size = Vector3.new(6,1,6);
+&#9;&#9;&#9;Create&apos;Weld&apos;{Name = &apos;RightWeld&apos;; };
+&#9;&#9;&#9;Create&apos;Weld&apos;{Name = &apos;LeftWeld&apos;;  };
+&#9;&#9;&#9;Create&apos;Weld&apos;{Name = &apos;TopWeld&apos;;   };
+&#9;&#9;&#9;Create&apos;Weld&apos;{Name = &apos;Fire1&apos;;     };
+&#9;&#9;&#9;Create&apos;Weld&apos;{Name = &apos;Fire2&apos;;     };
+&#9;&#9;&#9;Create&apos;BodyGyro&apos;{
+&#9;&#9;&#9;&#9;Name = &apos;FlyingGyro&apos;;
+&#9;&#9;&#9;&#9;maxTorque = Vector3.new(100,10000,100);
+&#9;&#9;&#9;&#9;cframe = CFrame.new();
+&#9;&#9;&#9;};
+&#9;&#9;&#9;Create&apos;BodyVelocity&apos;{
+&#9;&#9;&#9;&#9;Name = &apos;FlyingForce&apos;;
+&#9;&#9;&#9;&#9;velocity = Vector3.new();
+&#9;&#9;&#9;&#9;maxForce = Vector3.new(10000,10000,10000)
+&#9;&#9;&#9;};
+&#9;&#9;};
+&#9;&#9;Create&apos;Seat&apos;{
+&#9;&#9;&#9;Name = &apos;RightSeat&apos;;
+&#9;&#9;&#9;FormFactor = &apos;Custom&apos;;
+&#9;&#9;&#9;Size = Vector3.new(3, 0.6, 2);
+&#9;&#9;&#9;BrickColor = BrickColor.new(&apos;Really black&apos;);
+&#9;&#9;&#9;TopSurface = &apos;Weld&apos;;
+&#9;&#9;};
+&#9;&#9;Create&apos;Seat&apos;{
+&#9;&#9;&#9;Name = &apos;LeftSeat&apos;;
+&#9;&#9;&#9;FormFactor = &apos;Custom&apos;;
+&#9;&#9;&#9;Size = Vector3.new(3, 0.6, 2);
+&#9;&#9;&#9;BrickColor = BrickColor.new(&apos;Really black&apos;);
+&#9;&#9;&#9;TopSurface = &apos;Weld&apos;;
+&#9;&#9;};
+&#9;&#9;Create&apos;Part&apos;{
+&#9;&#9;&#9;Name = &apos;FirePart1&apos;;
+&#9;&#9;&#9;Transparency = 1;
+&#9;&#9;&#9;Create&apos;Fire&apos;{
+&#9;&#9;&#9;&#9;Name = &apos;Fire&apos;;
+&#9;&#9;&#9;};
+&#9;&#9;&#9;Create&apos;Sound&apos;{
+&#9;&#9;&#9;&#9;Name = &apos;FireSound&apos;;
+&#9;&#9;&#9;&#9;SoundId = &apos;http://www.roblox.com/asset/?id=30624426&apos;;
+&#9;&#9;&#9;};
+&#9;&#9;};
+&#9;&#9;Create&apos;Part&apos;{
+&#9;&#9;&#9;Name = &apos;FirePart2&apos;;
+&#9;&#9;&#9;Transparency = 1;
+&#9;&#9;&#9;Create&apos;Fire&apos;{
+&#9;&#9;&#9;&#9;Name = &apos;Fire&apos;;
+&#9;&#9;&#9;};
+&#9;&#9;};
+&#9;&#9;Create&apos;Part&apos;{
+&#9;&#9;&#9;Name = &apos;Balloon&apos;;
+&#9;&#9;&#9;Size = Vector3.new(1,1,1);
+&#9;&#9;&#9;Create&apos;SpecialMesh&apos;{
+&#9;&#9;&#9;&#9;Name = &apos;Mesh&apos;;
+&#9;&#9;&#9;&#9;MeshType = &apos;FileMesh&apos;;
+&#9;&#9;&#9;&#9;MeshId = &apos;http://www.roblox.com/asset/?id=116077800&apos;, --115983648&apos;;
+&#9;&#9;&#9;&#9;TextureId = &apos;http://www.roblox.com/asset/?id=115983592&apos;;
+&#9;&#9;&#9;&#9;Scale = Vector3.new(2.1, 1.8, 2.1);
+&#9;&#9;&#9;};
+&#9;&#9;};
+&#9;}
+&#9;--
+&#9;local rightw = model.MainPart.RightWeld
+&#9;rightw.Part0 = rightw.Parent
+&#9;rightw.Part1 = model.RightSeat
+&#9;rightw.C0 = CFrame.new(2,0.6,0)
+&#9;--
+&#9;local leftw = model.MainPart.LeftWeld
+&#9;leftw.Part0 = leftw.Parent
+&#9;leftw.Part1 = model.LeftSeat
+&#9;leftw.C0 = CFrame.new(-2,0.6,0)
+&#9;--
+&#9;local topw = model.MainPart.TopWeld
+&#9;topw.Part0 = topw.Parent
+&#9;topw.Part1 = model.Balloon
+&#9;topw.C0 = CFrame.new(0, 26, 0)
+&#9;--
+&#9;local fire1 = model.MainPart.Fire1
+&#9;fire1.Part0 = fire1.Parent
+&#9;fire1.Part1 = model.FirePart1
+&#9;fire1.C0 = CFrame.new(-1.5, 14, 0)
+&#9;--
+&#9;local fire2 = model.MainPart.Fire2
+&#9;fire2.Part0 = fire2.Parent
+&#9;fire2.Part1 = model.FirePart2
+&#9;fire2.C0 = CFrame.new(1.5, 14, 0)
+&#9;--
+&#9;local sc = script.AirBalloon_Script:Clone()
+&#9;sc.Parent = model
+&#9;sc.Disabled = false
+&#9;--
+&#9;return model
+end
+
+local function BeginFlight(balloon)
+&#9;if Flying then return end
+&#9;--
+&#9;Handle.Transparency = 1
+&#9;--
+&#9;MainPart = balloon:FindFirstChild(&apos;MainPart&apos;)
+&#9;if not MainPart then return end
+&#9;FlyingGyro = MainPart:FindFirstChild(&apos;FlyingGyro&apos;)
+&#9;FlyingForce = MainPart:FindFirstChild(&apos;FlyingForce&apos;)
+&#9;if not FlyingForce or not FlyingGyro then return end
+&#9;Fire1 = balloon:FindFirstChild(&apos;FirePart1&apos;):FindFirstChild(&apos;Fire&apos;)
+&#9;Fire2 = balloon:FindFirstChild(&apos;FirePart2&apos;):FindFirstChild(&apos;Fire&apos;)
+
+&#9;--
+&#9;game.Workspace.CurrentCamera.CameraSubject = balloon.MainPart
+&#9;game.Workspace.CurrentCamera.CameraType = &apos;Track&apos;
+&#9;--
+&#9;CurrentBalloon = balloon
+&#9;Flying = true
+&#9;CurrentVelocity = math.min(15, FlyingForce.velocity.magnitude)
+&#9;--
+&#9;DesiredFlightCFrame = balloon.MainPart.CFrame
+&#9;--
+&#9;Gui.Frame.Message.Text = 
+&#9;&#9;&quot;Click and Hold to direct the balloon in the\n&quot;..
+&#9;&#9;&quot;direction you are looking. Holding with both\n&quot;..
+&#9;&#9;&quot;mouse buttons gives easy free flight.&quot;
+end
+
+local function EndFlight()
+&#9;if not Flying then return end
+&#9;--
+&#9;Handle.Transparency = 0
+&#9;--
+&#9;game.Workspace.CurrentCamera.CameraSubject = Character
+&#9;game.Workspace.CurrentCamera.CameraType = &apos;Custom&apos;
+&#9;--
+&#9;if Fire1.Parent then
+&#9;&#9;Fire1.Parent.FireSound:Stop()
+&#9;end
+&#9;Fire1.Enabled = false
+&#9;Fire2.Enabled = false
+&#9;--
+&#9;Flying = false
+&#9;--
+&#9;Gui.Frame.Message.Text = &quot;Click to place a balloon.\n&quot;..
+&#9;                         &quot;Get into a balloon to fly it.&quot;
+end
+
+local function GetMassOf(model)
+&#9;if model:IsA(&apos;BasePart&apos;) then
+&#9;&#9;return model:GetMass()
+&#9;else
+&#9;&#9;local mass = 0
+&#9;&#9;for _, ch in pairs(model:GetChildren()) do
+&#9;&#9;&#9;mass = mass + GetMassOf(ch)
+&#9;&#9;end
+&#9;&#9;return mass
+&#9;end
+end
+
+
+
+local function Slerp(t, a, b)
+&#9;local om = math.acos(math.min(1, a:Dot(b)))
+&#9;if om &lt; 0.01 then
+&#9;&#9;return (1-t)*a +
+&#9;&#9;          t *b
+&#9;else
+&#9;&#9;return (math.sin((1-t)*om)/math.sin(om))*a +
+&#9;&#9;       (math.sin(   t *om)/math.sin(om))*b
+&#9;end
+end
+
+
+local ConnectionList = {}
+
+
+Tool.Equipped:connect(function(mouse)
+&#9;Character = Tool.Parent
+&#9;Player = game.Players:GetPlayerFromCharacter(Character)
+&#9;Humanoid = Character:WaitForChild(&apos;Humanoid&apos;)
+&#9;Torso = Character:WaitForChild(&apos;Torso&apos;)
+&#9;HumanoidRootPart = Character:WaitForChild(&apos;HumanoidRootPart&apos;)
+&#9;--
+&#9;Equipped = true
+
+&#9;-- set up the GUI
+&#9;Gui = Create&apos;ScreenGui&apos;{
+&#9;&#9;Parent = Player.PlayerGui;
+&#9;&#9;Create&apos;Frame&apos;{
+&#9;&#9;&#9;Name = &apos;Frame&apos;;
+&#9;&#9;&#9;Style = &apos;RobloxRound&apos;;
+&#9;&#9;&#9;Position = UDim2.new(0.5, -135, 1, -180);
+&#9;&#9;&#9;Size = UDim2.new(0, 270, 0, 80);
+&#9;&#9;&#9;Create&apos;TextLabel&apos;{
+&#9;&#9;&#9;&#9;Name = &apos;Message&apos;;
+&#9;&#9;&#9;&#9;TextWrapped = true;
+&#9;&#9;&#9;&#9;BackgroundTransparency = 1;
+&#9;&#9;&#9;&#9;Font = &apos;Arial&apos;;
+&#9;&#9;&#9;&#9;FontSize = &apos;Size14&apos;;
+&#9;&#9;&#9;&#9;TextColor3 = Color3.new(0.9, 0.9, 0.9);
+&#9;&#9;&#9;&#9;Text = &quot;Click to create a balloon.\n&quot;..
+&#9;&#9;&#9;&#9;       &quot;Get into a balloon to fly it.&quot;;
+&#9;&#9;&#9;&#9;Size = UDim2.new(1,0,1,0);
+&#9;&#9;&#9;};
+&#9;&#9;};
+&#9;}
+
+&#9;
+&#9;-- set up tracking of balloons
+&#9;TrackedBalloons = {}
+&#9;local function trackBalloon(o)
+&#9;&#9;-- make sure it&apos;s actually a balloon
+&#9;&#9;if not o:FindFirstChild(&apos;RightSeat&apos;) or 
+&#9;&#9;   not o:FindFirstChild(&apos;LeftSeat&apos;) then return end
+
+&#9;&#9;-- track it
+&#9;&#9;TrackedBalloons[o] = {}
+&#9;&#9;TrackedBalloons[o][1] = o.RightSeat.ChildAdded:connect(function(ch)
+&#9;&#9;&#9;if ch.Name == &apos;SeatWeld&apos; and ch.Part1 == HumanoidRootPart then
+&#9;&#9;&#9;&#9;BeginFlight(o)
+&#9;&#9;&#9;end
+&#9;&#9;end)
+&#9;&#9;ConnectionList[TrackedBalloons[o][1]] = true
+&#9;&#9;TrackedBalloons[o][2] = o.LeftSeat.ChildAdded:connect(function(ch)
+&#9;&#9;&#9;if ch.Name == &apos;SeatWeld&apos; and ch.Part1 == HumanoidRootPart then
+&#9;&#9;&#9;&#9;BeginFlight(o)
+&#9;&#9;&#9;end
+&#9;&#9;end)
+&#9;&#9;ConnectionList[TrackedBalloons[o][2]] = true
+
+&#9;&#9;-- also begin flight if we&apos;re already in a balloon when we select
+&#9;&#9;-- the tool.
+&#9;&#9;for _, ch in pairs(o.RightSeat:GetChildren()) do
+&#9;&#9;&#9;if ch.Name == &apos;SeatWeld&apos; and ch.Part1 == HumanoidRootPart then
+&#9;&#9;&#9;&#9;BeginFlight(o)
+&#9;&#9;&#9;end&#9;&#9;
+&#9;&#9;end
+&#9;&#9;for _, ch in pairs(o.LeftSeat:GetChildren()) do
+&#9;&#9;&#9;if ch.Name == &apos;SeatWeld&apos; and ch.Part1 == HumanoidRootPart then
+&#9;&#9;&#9;&#9;BeginFlight(o)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;local function untrackBalloon(o)
+&#9;&#9;if TrackedBalloons[o] then
+&#9;&#9;&#9;TrackedBalloons[o][1]:disconnect()
+&#9;&#9;&#9;TrackedBalloons[o][2]:disconnect()
+&#9;&#9;&#9;TrackedBalloons[o] = nil
+&#9;&#9;end
+&#9;end
+&#9;for _, o in pairs(game.Workspace:GetChildren()) do
+&#9;&#9;if o.Name == &apos;BalloonGear_AirBalloon&apos; then
+&#9;&#9;&#9;trackBalloon(o)
+&#9;&#9;end
+&#9;end
+&#9;ConnectionList[game.Workspace.ChildAdded:connect(function(o)
+&#9;&#9;if o.Name == &apos;BalloonGear_AirBalloon&apos; then
+&#9;&#9;&#9;trackBalloon(o)
+&#9;&#9;end
+&#9;end)] = true
+&#9;ConnectionList[game.Workspace.ChildRemoved:connect(function(o)
+&#9;&#9;if o.Name == &apos;BalloonGear_AirBalloon&apos; then
+&#9;&#9;&#9;untrackBalloon(o)
+&#9;&#9;end
+&#9;end)] = true
+
+
+&#9;-- end flight on jump out of seat
+&#9;ConnectionList[Humanoid.Jumping:connect(function()
+&#9;&#9;EndFlight()
+&#9;end)] = true
+
+
+&#9;-- setup mousedown tracking
+&#9;local MouseDown = false
+&#9;mouse.Button1Down:connect(function()
+&#9;&#9;MouseDown = true
+
+&#9;&#9;-- see if we recently made a balloon
+&#9;&#9;if game.Workspace.DistributedGameTime &lt; NextBalloonAt.Value then return end
+
+&#9;&#9;-- see if there are any balloons nearby
+&#9;&#9;for balloon, _ in pairs(TrackedBalloons) do
+&#9;&#9;&#9;if balloon:FindFirstChild(&apos;MainPart&apos;) and
+&#9;&#9;&#9;&#9;(balloon.MainPart.Position - Torso.Position).magnitude &lt; 30 then
+&#9;&#9;&#9;&#9;return
+&#9;&#9;&#9;end 
+&#9;&#9;end
+
+&#9;&#9;-- no balloons nearby, create one in the direction we clicked
+&#9;&#9;local balloon = CreateBalloon()
+&#9;&#9;local dir = (mouse.Hit.p - Torso.Position)
+&#9;&#9;      dir = Vector3.new(dir.x, 0, dir.z).unit
+&#9;&#9;balloon.Parent = game.Workspace
+&#9;&#9;balloon:MoveTo(Torso.Position + dir*10)
+
+&#9;&#9;-- play sound
+&#9;&#9;DeploySound:Play()
+
+&#9;&#9;-- set when we can make the next balloon
+&#9;&#9;NextBalloonAt.Value = game.Workspace.DistributedGameTime + MIN_TIME_BETWEEN_BALLOONS
+&#9;end)
+&#9;mouse.Button1Up:connect(function()
+&#9;&#9;MouseDown = false
+&#9;end)
+
+
+&#9;-- main loop
+&#9;local LastTime = tick()
+&#9;while Equipped do
+&#9;&#9;local Now = tick()
+&#9;&#9;local dt = Now - LastTime
+&#9;&#9;LastTime = Now
+&#9;&#9;--
+&#9;&#9;if Flying then
+&#9;&#9;&#9;--make me fly
+&#9;&#9;&#9;local moveDir = game.Workspace.CurrentCamera.CoordinateFrame*CFrame.Angles(0.6, 0, 0)
+&#9;&#9;&#9;if MouseDown then
+&#9;&#9;&#9;&#9;local theta = math.acos(DesiredFlightCFrame.lookVector:Dot(moveDir.lookVector))
+&#9;&#9;&#9;&#9;local frac = math.min(0.7, 0.7*dt/theta)
+&#9;&#9;&#9;&#9;local unit = Slerp(frac, DesiredFlightCFrame.lookVector, moveDir.lookVector)
+&#9;&#9;&#9;&#9;DesiredFlightCFrame = CFrame.new(Vector3.new(0,0,0), unit)
+&#9;&#9;&#9;end
+&#9;&#9;&#9;--
+&#9;&#9;&#9;local dir = DesiredFlightCFrame.lookVector
+&#9;&#9;&#9;local dirXZ = Vector3.new(dir.x, 0, dir.z).unit
+&#9;&#9;&#9;--
+&#9;&#9;&#9;FlyingGyro.cframe = CFrame.new(Vector3.new(), dirXZ)*
+&#9;&#9;&#9;                    CFrame.Angles(0, 0, CurrentBalloon.MainPart.RotVelocity.y/3 * (1-math.abs(dir.y)^2))
+&#9;&#9;&#9;FlyingGyro.maxTorque = Vector3.new(100,10000,100)
+&#9;&#9;&#9;FlyingGyro.P = 5000
+&#9;&#9;&#9;FlyingGyro.D = 500
+&#9;&#9;&#9;--
+&#9;&#9;&#9;if MouseDown then
+&#9;&#9;&#9;&#9;if CurrentVelocity &lt; 15 then
+&#9;&#9;&#9;&#9;&#9;CurrentVelocity = math.min(CurrentVelocity + 8*dt, 15)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;--
+&#9;&#9;&#9;&#9;--show / hide thrust
+&#9;&#9;&#9;&#9;if dir.y &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;if not Fire1.Parent.FireSound.IsPlaying then
+&#9;&#9;&#9;&#9;&#9;&#9;Fire1.Parent.FireSound:Play()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;Fire1.Enabled = true
+&#9;&#9;&#9;&#9;&#9;Fire2.Enabled = true
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;Fire1.Parent.FireSound:Stop()
+&#9;&#9;&#9;&#9;&#9;Fire1.Enabled = false
+&#9;&#9;&#9;&#9;&#9;Fire2.Enabled = false
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;if CurrentVelocity &gt; 2 then
+&#9;&#9;&#9;&#9;&#9;CurrentVelocity = math.max(0, CurrentVelocity - 3*dt)
+&#9;&#9;&#9;&#9;&#9;--
+&#9;&#9;&#9;&#9;&#9;--show / hide thrust
+&#9;&#9;&#9;&#9;&#9;if dir.y &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;&#9;if not Fire1.Parent.FireSound.IsPlaying then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;Fire1.Parent.FireSound:Play()
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;Fire1.Enabled = true
+&#9;&#9;&#9;&#9;&#9;&#9;Fire2.Enabled = true
+&#9;&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;&#9;Fire1.Parent.FireSound:Stop()
+&#9;&#9;&#9;&#9;&#9;&#9;Fire1.Enabled = false
+&#9;&#9;&#9;&#9;&#9;&#9;Fire2.Enabled = false
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;-- hide the thrust
+&#9;&#9;&#9;&#9;&#9;Fire1.Parent.FireSound:Stop()
+&#9;&#9;&#9;&#9;&#9;Fire1.Enabled = false
+&#9;&#9;&#9;&#9;&#9;Fire2.Enabled = false
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;local slowdownFactor = math.abs(CurrentBalloon.MainPart.RotVelocity.y/3)
+&#9;&#9;&#9;FlyingForce.velocity = dir.unit*(CurrentVelocity - slowdownFactor)*(1-dir.y^2)
+&#9;&#9;&#9;FlyingForce.maxForce = Vector3.new(50000,50000,50000)
+&#9;&#9;&#9;FlyingForce.P = 1000
+&#9;&#9;end
+&#9;&#9;wait()
+&#9;end
+end)
+
+Tool.Unequipped:connect(function()
+&#9;if Flying then EndFlight() end
+&#9;Equipped = false
+&#9;--
+&#9;-- kill connections
+&#9;for cn, _ in pairs(ConnectionList) do
+&#9;&#9;cn:disconnect()
+&#9;end
+&#9;ConnectionList = {}
+&#9;--
+&#9;if Gui then
+&#9;&#9;Gui:Destroy()
+&#9;end
+end)
+
+
+script.Parent:WaitForChild(&apos;Handle&apos;):WaitForChild(&apos;Mesh&apos;).MeshId = &apos;http://www.roblox.com/asset/?id=115990730&apos;
+script.Parent.Handle.Mesh.Scale = Vector3.new(0.7,0.7,0.7)
+script.Parent.Grip = CFrame.new(1.2,0.8,0.2)*CFrame.Angles(0.1,0.1,-0.2)</ProtectedString>
+			</Properties>
+			<Item class="Script" referent="RBX2">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">AirBalloon_Script</string>
+					<ProtectedString name="Source">local DESPAWN_DELAY = 20
+
+-- failsafe
+local Initialized = false
+Delay(1, function()
+&#9;if not Initialized then
+&#9;&#9;script.Parent:Destroy()
+&#9;end
+end)
+
+-- setup
+local Balloon = script.Parent
+local MainPart = Balloon:WaitForChild(&apos;MainPart&apos;)
+local RightSeat = Balloon:WaitForChild(&apos;RightSeat&apos;)
+local LeftSeat = Balloon:WaitForChild(&apos;LeftSeat&apos;)
+local FlyingForce = MainPart:WaitForChild(&apos;FlyingForce&apos;)
+local Fire1 = Balloon:WaitForChild(&apos;FirePart1&apos;):WaitForChild(&apos;Fire&apos;)
+local Fire2 = Balloon:WaitForChild(&apos;FirePart2&apos;):WaitForChild(&apos;Fire&apos;)
+local FireSound = Balloon:WaitForChild(&apos;FirePart1&apos;):WaitForChild(&apos;FireSound&apos;)
+
+
+-- despawner task
+Spawn(function()
+&#9;local LastSeatedAt = tick()
+
+&#9;while true do
+&#9;&#9;wait(1)
+&#9;&#9;if tick() - LastSeatedAt &gt; DESPAWN_DELAY then
+&#9;&#9;&#9;if RightSeat:FindFirstChild(&apos;SeatWeld&apos;) or
+&#9;&#9;&#9;   LeftSeat:FindFirstChild(&apos;SeatWeld&apos;) 
+&#9;&#9;&#9;then
+&#9;&#9;&#9;&#9;LastSeatedAt = tick()
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;-- despawn
+&#9;&#9;&#9;&#9;if script.Parent then
+&#9;&#9;&#9;&#9;&#9;script.Parent:Destroy()
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end)
+
+
+-- we&apos;ve initialized to the point where we can clean up, kill the failsafe
+Initialized = true
+
+
+local function GetMassOf(model)
+&#9;if model:IsA(&apos;BasePart&apos;) then
+&#9;&#9;return model:GetMass()
+&#9;else
+&#9;&#9;local mass = 0
+&#9;&#9;for _, ch in pairs(model:GetChildren()) do
+&#9;&#9;&#9;mass = mass + GetMassOf(ch)
+&#9;&#9;end
+&#9;&#9;return mass
+&#9;end
+end
+
+
+local BalloonMass = GetMassOf(script.Parent)
+
+
+-- floating task
+Spawn(function()
+&#9;local LastTime = tick()
+&#9;while true do
+&#9;&#9;local t = tick()
+&#9;&#9;local dt = t - LastTime
+&#9;&#9;LastTime = t
+&#9;&#9;--
+&#9;&#9;local RightWeld = RightSeat:FindFirstChild(&apos;SeatWeld&apos;)
+&#9;&#9;local LeftWeld = LeftSeat:FindFirstChild(&apos;SeatWeld&apos;)
+&#9;&#9;if not RightWeld and not LeftWeld then
+&#9;&#9;&#9;local velo = FlyingForce.velocity.magnitude
+&#9;&#9;&#9;if velo &gt; 2 then
+&#9;&#9;&#9;&#9;velo = math.max(0, velo - 3*dt)
+&#9;&#9;&#9;&#9;FlyingForce.velocity = FlyingForce.velocity.unit * velo
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;FireSound:Stop()
+&#9;&#9;&#9;&#9;Fire1.Enabled = false
+&#9;&#9;&#9;&#9;Fire2.Enabled = false
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;--
+&#9;&#9;wait(0.2)
+&#9;end
+end)</ProtectedString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Part" referent="RBX3">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>1.70000005</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX4">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=115983648</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.5</X>
+						<Y>1.5</Y>
+						<Z>1.5</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=115983592</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SOUND_Deploy</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=116048470 </url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="NumberValue" referent="RBX6">
+			<Properties>
+				<string name="Name">NextBalloonAt</string>
+				<double name="Value">0</double>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX7">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-9.61213684</X>
+					<Y>-18.3012524</Y>
+					<Z>35.0836754</Z>
+					<R00>0.946649253</R00>
+					<R01>-0.138739124</R01>
+					<R02>-0.290872186</R02>
+					<R10>-0</R10>
+					<R11>0.90258503</R11>
+					<R12>-0.430511624</R12>
+					<R20>0.322265685</R20>
+					<R21>0.40754351</R21>
+					<R22>0.85443145</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-9.03039265</X>
+					<Y>-17.4402294</Y>
+					<Z>33.3748131</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

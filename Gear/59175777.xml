@@ -1,0 +1,444 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="Archivable">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>-0.75</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>0</R11>
+				<R12>-1</R12>
+				<R20>-0</R20>
+				<R21>1</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<string name="Name">SpikePotion</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=59004552 </url></Content>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<bool name="Archivable">true</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.369999588</X>
+					<Y>2.06500006</Y>
+					<Z>1.00499988</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>0</R11>
+					<R12>1</R12>
+					<R20>0</R20>
+					<R21>-1</R21>
+					<R22>0</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<token name="FormFactor">3</token>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1.26000071</X>
+					<Y>0.990000248</Y>
+					<Z>1.62999964</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<bool name="Archivable">true</bool>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=59004325 </url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.29999995</X>
+						<Y>1.29999995</Y>
+						<Z>1.29999995</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=59004396 </url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX3">
+			<Properties>
+				<bool name="Archivable">true</bool>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">ActionScript</string>
+				<ProtectedString name="Source">local Tool = script.Parent
+local Potion = Tool.Handle
+
+local vCharacter
+local myHumanoid
+local myTorso
+local vPlayer
+
+local spikeyCD
+local spikeCo 
+
+Tool.Enabled = true
+
+local drinkAnim
+
+local instructionGui
+local activated = false
+
+function activateAbility(key)
+	key = key:lower()
+	if (key == &quot;q&quot; or key == &quot;e&quot; or key == &quot;c&quot; or key == &quot;z&quot;) and activated then	
+		spikeScript = vCharacter:FindFirstChild(&quot;SpikeScript&quot;)
+		if spikeScript == nil then 
+			spikeScript = Tool:FindFirstChild(&quot;SpikeScript&quot;):Clone()
+			spikeScript.Parent = vCharacter			
+			keyValue = spikeScript:FindFirstChild(&quot;Key&quot;)
+		end
+		if keyValue then 
+			keyValue.Value = key
+		end	
+		if spikeScript then spikeScript.Disabled = false end 			
+	else 
+		-- do nothing 
+	end
+end
+
+function onActivated()
+	if (Tool.Enabled == false) or activated then 
+		return
+	end
+
+	Tool.Enabled = false
+	
+	
+ 	vCharacter = Tool.Parent
+	myHumanoid = vCharacter:FindFirstChild(&quot;Humanoid&quot;)
+	vPlayer = game.Players:GetPlayerFromCharacter(vCharacter)
+	if myHumanoid == nil or vPlayer == nil then 
+		return
+	end	
+
+	drinkAnim = myHumanoid:LoadAnimation(Tool.DrinkAnim)
+	if drinkAnim then drinkAnim:Play() end
+	wait(0.5)
+
+	Potion.Transparency = 1.0
+
+	instructionGui = Instance.new(&quot;ScreenGui&quot;)
+	instructionGui.Parent = vPlayer.PlayerGui
+
+	local frame = Instance.new(&quot;Frame&quot;)
+	frame.Size = UDim2.new(0, 200, 0, 100)
+	frame.Position = UDim2.new(0.02, 0, 0.5, 0)
+	frame.Parent = instructionGui
+	frame.BackgroundTransparency = 1.0
+
+	local image = Instance.new(&quot;ImageLabel&quot;)
+	image.Position = UDim2.new(0, 0, 0, 0)
+	image.Parent = frame
+	image.Image = &quot;http://www.roblox.com/asset/?id=59123068&quot;
+	image.Size = UDim2.new(1, 0, 1, 0)
+	image.BackgroundTransparency = 1.0
+	activated = true	
+
+	wait(30.0)
+	if instructionGui then instructionGui:Remove() end
+	activated = false
+	Potion.Transparency = 0.0
+	Tool.Enabled = true
+end
+
+function onEquipped(mouse)
+	vCharacter = Tool.Parent
+	if mouse then 
+		mouse.KeyDown:connect(activateAbility)
+	end
+end
+
+function onUnequipped()
+	if instructionGui then instructionGui:Remove() end
+	if drinkAnim then drinkAnim:Stop() end
+	Potion.Transparency = 0.0
+end
+
+Tool.Activated:connect(onActivated)
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+
+
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="NumberValue" referent="RBX4">
+			<Properties>
+				<bool name="Archivable">true</bool>
+				<string name="Name">SpikeyCooldown</string>
+				<double name="Value">0</double>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX5">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=56510834</url></Content>
+				<bool name="Archivable">true</bool>
+				<string name="Name">DrinkAnim</string>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX6">
+			<Properties>
+				<bool name="Archivable">true</bool>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SpikeScript</string>
+				<ProtectedString name="Source">function waitForChild(parent, childName)
+	while not parent:FindFirstChild(childName) do
+		parent.ChildAdded:wait()
+	end
+	return parent[childName]
+end
+
+local vCharacter = script.Parent
+local myHumanoid = vCharacter:FindFirstChild(&quot;Humanoid&quot;)
+local myTorso = vCharacter:FindFirstChild(&quot;Torso&quot;)
+local myHead = vCharacter:FindFirstChild(&quot;Head&quot;)
+local myRightArm = vCharacter:FindFirstChild(&quot;Right Arm&quot;)
+local myLeftArm = vCharacter:FindFirstChild(&quot;Left Arm&quot;)
+local myRightLeg = vCharacter:FindFirstChild(&quot;Right Leg&quot;)
+local myLeftLeg = vCharacter:FindFirstChild(&quot;Left Leg&quot;)
+
+local vPlayer = game.Players:GetPlayerFromCharacter(vCharacter)
+
+local key = waitForChild(script, &quot;Key&quot;)
+
+local spikeDamage = 15
+
+local debris = game:GetService(&quot;Debris&quot;)
+
+local spike = Instance.new(&quot;Part&quot;)
+spike.FormFactor = 3
+spike.Size = Vector3.new(0.2, 5.5, 0.2)
+spike.Shape = &quot;Block&quot;
+spike.Name = &quot;Spike&quot;
+spike.CanCollide = false
+
+local spikeMesh = Instance.new(&quot;SpecialMesh&quot;)
+spikeMesh.MeshId = &quot;http://www.roblox.com/asset/?id=59092052&quot;
+spikeMesh.TextureId = &quot;http://www.roblox.com/asset/?id=59091614&quot;
+spikeMesh.Parent = spike
+
+local spikeClones = {}
+
+local LeftSpike
+local RightSpike
+
+local removingSpikes = false
+
+function poke(hit)
+	if hit and hit.Parent then 
+		local humanoid = hit.Parent:FindFirstChild(&quot;Humanoid&quot;)		
+		if humanoid ~= nil and myHumanoid ~= nil and myHumanoid ~= humanoid then
+			tagHumanoid(humanoid, vPlayer)
+			humanoid:TakeDamage(spikeDamage)
+		end
+	end
+end
+
+function tagHumanoid(humanoid, player)
+	if humanoid and player then 
+		creator = Instance.new(&quot;ObjectValue&quot;)
+		creator.Name = &quot;creator&quot;
+		creator.Value = player
+		creator.Parent = humanoid 
+		debris:AddItem(creator, 1)
+	end
+end
+
+function weldSpikes(WeldParts, C1s)
+	local NewSpikes = {}
+	local LeftWeld
+	local RightWeld
+	local Welds = {}
+
+	for i = 1, 2 do
+		if WeldParts[i] then
+			NewSpikes[i] = spike:Clone()
+			NewSpikes[i].Parent = vCharacter
+			table.insert(spikeClones, NewSpikes[i])
+			
+			local NewWeld = Instance.new(&quot;Weld&quot;)
+			NewWeld.Part0 = WeldParts[i]
+			NewWeld.Part1 = NewSpikes[i]
+			NewWeld.C1 = C1s[i]
+			NewWeld.Parent = WeldParts[i]
+			Welds[i] = NewWeld
+
+			NewSpikes[i].Touched:connect(poke)
+		end
+	end
+
+	local LeftMesh
+	local RightMesh
+	local Meshes = {LeftMesh, RightMesh}
+	
+	for j = 1, 10 do
+		for i = 1, 2 do
+			if NewSpikes[i] then 
+				Meshes[i] = NewSpikes[i]:FindFirstChild(&quot;Mesh&quot;)
+				if Meshes[i] then Meshes[i].Scale = Vector3.new(1, 1 + (j * 0.5), 1) end
+				if Welds[i] then Welds[i].C1 = Welds[i].C1 - Vector3.new(0, 0.3, 0) end
+			end
+		end
+		wait(0.15)
+	end
+end
+	
+
+	
+
+function spikeyDestruction()
+	if removingSpikes then return end
+	if myHumanoid then
+		if key then 
+			if #spikeClones &gt;= 4 then 
+				removingSpikes = true
+				for i = 1, #spikeClones do
+					if spikeClones[i] then
+						spikeClones[i]:Remove()
+					end
+					wait(0.1)
+				end
+				removingSpikes = false
+				spikeClones = {}
+			end			
+			if key.Value == &quot;q&quot; then
+				weldSpikes({myLeftArm, myRightArm}, {CFrame.Angles(0, 0, -math.pi/2), CFrame.Angles(0, 0, math.pi/2)})
+			elseif key.Value == &quot;e&quot; then
+				weldSpikes({myLeftLeg, myRightLeg}, {CFrame.Angles(math.pi/2, -math.pi/6, 0), CFrame.Angles(math.pi/2, math.pi/6, 0)})
+			elseif key.Value == &quot;z&quot; then
+				weldSpikes({myTorso, myTorso}, {CFrame.new(0.5, 0, 0.3) * CFrame.Angles(math.pi/2, -math.pi/6, 0), CFrame.new(-0.5, 0, 0.3) * CFrame.Angles(math.pi/2, math.pi/6, 0)})
+			elseif key.Value == &quot;c&quot; then
+				weldSpikes({myTorso, myTorso}, {CFrame.new(0.5, 0, 0.3) * CFrame.Angles(-math.pi/2, math.pi/6, 0), CFrame.new(-0.5, 0, 0.3) * CFrame.Angles(-math.pi/2, -math.pi/6, 0)})
+			else 
+				-- do nothing 
+			end		
+		end
+	end
+end
+
+if key then local connection = key.Changed:connect(spikeyDestruction) end
+
+spikeyDestruction()
+
+
+wait(30.0)
+if connection then connection:disconnect() end
+for i = 1, #spikeClones do
+	if spikeClones[i] then
+		spikeClones[i]:Remove()
+	end
+end
+script:Remove() </ProtectedString>
+			</Properties>
+			<Item class="StringValue" referent="RBX7">
+				<Properties>
+					<bool name="Archivable">true</bool>
+					<string name="Name">Key</string>
+					<string name="Value"></string>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX8">
+			<Properties>
+				<bool name="Archivable">true</bool>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-0.73458457</X>
+					<Y>2.47165155</Y>
+					<Z>5.92214966</Z>
+					<R00>0.995227456</R00>
+					<R01>0.0099715516</R01>
+					<R02>-0.09707205</R02>
+					<R10>-0</R10>
+					<R11>0.994765401</R11>
+					<R12>0.102185473</R12>
+					<R20>0.0975828692</R20>
+					<R21>-0.101697788</R21>
+					<R22>0.990017772</R22>
+				</CoordinateFrame>
+				<CoordinateFrame name="Focus">
+					<X>1.20685554</X>
+					<Y>0.427942932</Y>
+					<Z>-13.8781967</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

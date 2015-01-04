@@ -1,0 +1,1251 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="Archivable">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>-0.150000006</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>-0</R02>
+				<R10>0</R10>
+				<R11>-1</R11>
+				<R12>-0</R12>
+				<R20>-0</R20>
+				<R21>0</R21>
+				<R22>-1</R22>
+			</CoordinateFrame>
+			<string name="Name">RPG</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=58267562 </url></Content>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<bool name="Archivable">true</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-1.25999963</X>
+					<Y>14.1850004</Y>
+					<Z>0.874999762</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<token name="FormFactor">3</token>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1.48000062</X>
+					<Y>0.770000339</Y>
+					<Z>0.249999747</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<bool name="Archivable">true</bool>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=58266976 </url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=58267240 </url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Archivable">true</bool>
+					<bool name="Looped">false</bool>
+					<string name="Name">ProjectileSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset?id=58479648</url></Content>
+					<float name="Volume">0.400000006</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX4">
+				<Properties>
+					<bool name="Archivable">true</bool>
+					<bool name="Looped">false</bool>
+					<string name="Name">BossSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset?id=58479849</url></Content>
+					<float name="Volume">0.75</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Archivable">true</bool>
+					<bool name="Looped">false</bool>
+					<string name="Name">ScreamSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset?id=58520081 </url></Content>
+					<float name="Volume">0.200000003</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX6">
+				<Properties>
+					<bool name="Archivable">true</bool>
+					<bool name="Looped">true</bool>
+					<string name="Name">GameSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset?id=58479849</url></Content>
+					<float name="Volume">0.300000012</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX7">
+			<Properties>
+				<bool name="Archivable">true</bool>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Game Script</string>
+				<ProtectedString name="Source">-- UMAD? --  
+-- TODO: Merge the movement and physics code together  -- DONE -- 
+
+-- Need to decide the inherent velocity of game objects -- DONE -- 
+
+-- World Size is always 640x480 -- DONE -- 
+-- Place it at the center of the screen regardless of screen resolution -- DONE -- 
+
+--- PRELOAD ASSETS OYUS -- 
+
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58449099&quot;) -- Background
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58344744&quot;) -- ??
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58461425&quot;) -- Character
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58462272&quot;) -- Character inverse
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58512337&quot;) -- Projectile
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58449256&quot;) -- Water, I think, 02.png
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58449411&quot;) -- Weed
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58450141&quot;) -- Water layer 
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58450165&quot;) -- Water layer 2
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58484376&quot;) -- Wave
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58484457&quot;) -- Wave 2
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58458224&quot;) -- Frame 
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58463565&quot;) -- ??
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58518986&quot;) -- Sea Monster
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58520924&quot;) -- Enemy
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58525251&quot;) -- Enemy Projectile
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58541175&quot;) -- Boss
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58541632&quot;) -- Boss
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58541721&quot;) -- Boss
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58541762&quot;) -- Boss
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58541780&quot;) -- Boss
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58546354&quot;) -- Fireball
+Game:GetService(&quot;ContentProvider&quot;):Preload(&quot;http://www.roblox.com/asset/?id=58556170&quot;) -- Fireball 2 
+-- 
+
+local Tool = script.Parent
+local RPG = Tool.Handle
+
+Tool.Enabled = true 
+
+local vCharacter
+local myTorso 
+local myHumanoid
+
+-- Game Toggle
+local gameStillOn
+local gameDuration = 480 -- 8 minutes to finish the game
+
+-- Coroutines
+local co
+local respawnCo 
+local accelerateCo -- for gravity
+
+-- I like 3, old school
+local numberOfLives = 3
+
+-- Gui Stuff
+local gameGui
+local gameFrame
+local gameChar
+local RPGFrame
+local RPGImage
+local lifeLayer
+local gameTimeText
+local cloudsLeft = {}
+local cloudsRight = {}
+local cloudAssets = {58482096, 58482106, 58482119, 58482126}
+
+-- Sounds
+local projectileSound
+local bossSound
+local screamSound 
+
+-- Platforms
+local maxPlatforms = 7 -- lets cap it at 7, since that&apos;s my favorite number
+local minPlatforms = 3 -- 3 sounds fine to me
+local screenCount = 0
+
+local numPlatforms -- How many were actually created?
+
+local spawnPlatform -- to keep account of where to spawn our character
+local spawnPoint = 1.0 -- Left most spawn platform&apos;s location 
+-- Need to know when to pan the camera to the right to make more platforms  
+-- NOTE: This becomes the spawnPlatform for the next screen 
+local endScreenPlatform 
+local standingOnPlatform = true
+local basePlatform
+
+-- Have a table of physics objects, for ease in collision detection and st00f 
+local physicsObjects = {} 
+local movableObjects = {}
+local AIObjects  = {} -- WUT? Easiest thing to classify thingies as living, store &apos;em!!
+local gravity = 0.00384 -- LOL, what a small value eh?
+local velocity = Vector2.new(0, 0)
+local jumpTimer = 0.0
+
+-- TODO: Pan Camera to generate the world 
+
+-- For GameChar movement
+local forwards = false
+local backwards = false
+local falling = false
+local jumping = false
+local firing = false
+local forcefield  -- To stop spawnKill
+local stopFall
+
+-- Projectile
+local gameProjectile
+local enemyProjectiles = {}
+local gameProjectileClones = {}
+
+-- Boolean Toggles 
+local accelerateBool = false
+local worldScrolling = false
+local killCharacter = false
+-- 
+
+-- Tentative
+local platforms = {}
+
+-- AI
+local boss
+local seaMonster
+local enemies = {}
+
+--------------------------------------------------- OOP STUFF(NOT COMPLETE) ----------------------------------
+
+local World = {} -- Ideally, I want all of the code to be a part of the World class i.e. table
+function World:Update() -- Updating the world&#9;
+&#9;setCharacterVelocity()
+&#9;--projectileCharMovement()
+&#9;simulateCharacterPhysics()
+&#9;-- Animation
+&#9;-- AI&#9;
+&#9;moveCharacter()
+end 
+--------------------------------------------------- PHYSICS ---------------------------------------------------
+
+-- Box Collision Detection
+-- Returns if collision can occur
+function checkForCollision(worldObject, currentObject, offset)&#9;-- OMG -- 
+&#9;local leftMostCurrentObjectX = currentObject.Position.X.Scale + offset.X
+&#9;local rightMostCurrentObjectX = currentObject.Position.X.Scale + (5 * currentObject.Size.X.Scale/7) + offset.X
+&#9;local topMostCurrentObjectY = currentObject.Position.Y.Scale --[[]] + (2 * currentObject.Size.Y.Scale/7)  + offset.Y
+&#9;local bottomMostCurrentObjectY = currentObject.Position.Y.Scale + (5 * currentObject.Size.Y.Scale/7) + offset.Y
+&#9;local leftMostWorldObjectX = worldObject.Position.X.Scale
+&#9;local rightMostWorldObjectX = worldObject.Position.X.Scale + worldObject.Size.X.Scale
+&#9;local topMostWorldObjectY = worldObject.Position.Y.Scale
+&#9;local bottomMostWorldObjectY = worldObject.Position.Y.Scale + worldObject.Size.Y.Scale
+
+&#9;if (rightMostCurrentObjectX &gt; leftMostWorldObjectX) and (bottomMostCurrentObjectY &gt; topMostWorldObjectY) 
+&#9;&#9;and (rightMostWorldObjectX &gt; leftMostCurrentObjectX) and (bottomMostWorldObjectY &gt; topMostCurrentObjectY) then&#9;&#9;
+&#9;&#9;return true
+&#9;else 
+&#9;&#9;return false
+&#9;end&#9;
+end
+
+-- Steps through the array of physics objects, and computes necessary collision
+-- Very basic at the moment
+-- Add a space partition perhaps? buckets? 
+function simulateCharacterPhysics()&#9;
+&#9;stopFall = false
+&#9;if #physicsObjects &gt; 0 then 
+&#9;&#9;if #movableObjects &gt; 0 then 
+&#9;&#9;&#9;for i = 1, #movableObjects do 
+&#9;&#9;&#9;&#9;for j = 1, #physicsObjects do 
+&#9;&#9;&#9;&#9;&#9;if physicsObjects[j] ~= movableObjects[i] then&#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;&#9;collidedX = checkForCollision(physicsObjects[j], movableObjects[i], Vector2.new(velocity.X, 0))&#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;&#9;collidedY = checkForCollision(physicsObjects[j], movableObjects[i], Vector2.new(0, velocity.Y))
+&#9;&#9;&#9;&#9;&#9;&#9;if collidedX then velocity = Vector2.new(0, velocity.Y) end
+&#9;&#9;&#9;&#9;&#9;&#9;if collidedY then 
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if velocity.Y &lt; 0 then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;velocity = Vector2.new(velocity.X, 0)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;elseif velocity.Y &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;velocity = Vector2.new(velocity.X, 0)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;stopFall = true
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;basePlatform = physicsObjects[j]
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;if basePlatform == endScreenPlatform then &#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;if worldScrolling == false then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;worldScrolling = true 
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;coroutine.resume(coroutine.create(scrollWorld))
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;falling = false
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;if not stopFall then 
+&#9;&#9;&#9;&#9;&#9;falling  = true &#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;end&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;end&#9;&#9;&#9;
+&#9;&#9;end
+&#9;end
+&#9;collided = false
+end  
+
+function fallAcceleration()&#9;
+&#9;while falling do
+&#9;&#9;gravity = gravity + 2 * gravity * wait()&#9;&#9;
+&#9;&#9;wait()
+&#9;end
+&#9;gravity = 0.00384
+&#9;accelerateBool = false
+end  
+
+------------------------------------------------------------------------------------------------------ 
+
+-- To reset the RPG back to its original state and to enable the tool
+function waitUntilDone()
+&#9;while gameStillOn do
+&#9;&#9;wait(1)
+&#9;end
+&#9;destroyGameInterface()
+&#9;RPG.Transparency = 0.0
+&#9;Tool.Enabled = true
+end
+
+----------------------------------------------- ANIMATIONS --------------------------------------------
+
+function linearAnimate(layer, sign)
+&#9;local defaultPos = layer.Position 
+&#9;while layer do &#9;&#9;
+&#9;&#9;layer.Position = UDim2.new(layer.Position.X.Scale + sign * 0.005, 0, layer.Position.Y.Scale, 0)
+&#9;&#9;sign = sign * -1
+&#9;&#9;wait()
+&#9;end
+end
+
+function animateClouds()&#9;
+&#9;while #cloudsLeft &gt; 0 and #cloudsRight &gt; 0 do &#9;&#9;
+&#9;&#9;for i = 1, #cloudsLeft do &#9;&#9;&#9;
+&#9;&#9;&#9;tick()
+&#9;&#9;&#9;if cloudsLeft[i].Position.X.Scale &gt; 0.94 then&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;cloudsLeft[i].Position = UDim2.new(0.04, 0, math.random(5, 15)/100, 0)
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;cloudsLeft[i].Position = cloudsLeft[i].Position + UDim2.new(math.random(3, 5)/1000, 0, 0, 0)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;for i = 1, #cloudsRight do &#9;&#9;&#9;
+&#9;&#9;&#9;tick()
+&#9;&#9;&#9;if cloudsRight[i].Position.X.Scale &lt; 0.02 then&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;cloudsRight[i].Position = UDim2.new(0.98, 0, math.random(5, 15)/100, 0)
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;cloudsRight[i].Position = cloudsRight[i].Position + UDim2.new(-math.random(4, 6)/1000, 0, 0, 0)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;wait(0.25) 
+&#9;end
+end
+
+function waveAnimate(waveLayer, waveLayer2)
+&#9;local offset = 0.025 
+&#9;local sign = 1 
+&#9;while waveLayer and waveLayer2 do
+&#9;&#9;waveLayer.Position = waveLayer.Position +UDim2.new(0, 0, offset * sign, 0)
+&#9;&#9;--waveLayer2.Position = waveLayer2.Position + UDim2.new(0, 0, offset * - sign, 0)
+&#9;&#9;sign = sign * - 1
+&#9;&#9;wait(0.25)
+&#9;end
+end
+
+--------------------------------------------------- SCROLL WORLD ---------------------------------------
+function scrollWorld()&#9;
+&#9;for i = 1, #enemies do enemies[i]:Remove() enemies[i] = nil end
+&#9;enemies = {}
+&#9;while endScreenPlatform.Position.X.Scale &gt; 0.07 do &#9;&#9;
+&#9;&#9;for i = 1, #platforms do
+&#9;&#9;&#9;if platforms[i] then
+&#9;&#9;&#9;&#9;platforms[i].Position = platforms[i].Position - UDim2.new(0.01, 0, 0, 0)
+&#9;&#9;&#9;end
+&#9;&#9;&#9;if platforms[i] == endScreenPlatform then
+&#9;&#9;&#9;&#9;gameChar.Position = gameChar.Position - UDim2.new(0.01, 0, 0, 0)
+&#9;&#9;&#9;end
+&#9;&#9;&#9;if platforms[i] and platforms[i] ~= endScreenPlatform and platforms[i].Position.X.Scale &lt;= 0 then &#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;platforms[i]:Remove()&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;table.remove(platforms, i)
+&#9;&#9;&#9;end&#9;&#9;&#9;
+&#9;&#9;end&#9;
+&#9;&#9;wait(0.1)
+&#9;end
+&#9;if seaMonster then seaMonster:Remove() seaMonster = nil end
+&#9;spawnPlatform = endScreenPlatform
+&#9;spawnPlatform.Name = &quot;Spawn Platform&quot;
+&#9;endScreenPlatform = nil 
+&#9;worldScrolling = false&#9;&#9;&#9;
+&#9;createPlatforms()&#9;&#9;
+end
+
+----------------------------------------------- AI(OYUS!) ----------------------------------------------
+
+function followChar(seaMonster)&#9;&#9;&#9;
+&#9;while seaMonster and gameChar do&#9;&#9;
+&#9;&#9;local direction = Vector2.new(gameChar.Position.X.Scale - seaMonster.Position.X.Scale + (gameChar.Size.X.Scale/2.0 - seaMonster.Size.X.Scale/2.0), 0).unit
+&#9;&#9;seaMonster.Position = seaMonster.Position + UDim2.new(direction.X * 0.03, 0, 0, 0)
+&#9;&#9;wait(0.25)
+&#9;end
+end
+
+function shoot(direction, ball)&#9;
+&#9;local collision
+&#9;while ball do &#9;&#9;&#9;
+&#9;&#9;ball.Position = ball.Position + UDim2.new((direction.X * 0.035) , 0, (direction.Y * 0.035) ,0) &#9;&#9;
+&#9;&#9;if ball.Position.X.Scale &gt;= 1 or ball.Position.X.Scale &lt;= 0 or ball.Position.Y.Scale &gt;= 1 or ball.Position.Y.Scale &lt;= 0 then
+&#9;&#9;&#9;ball:Remove() 
+&#9;&#9;&#9;ball = nil
+&#9;&#9;end
+&#9;&#9;if ball then
+&#9;&#9;&#9;for i = 1, #physicsObjects do 
+&#9;&#9;&#9;&#9;if ball then
+&#9;&#9;&#9;&#9;&#9;local collision = checkForCollision(physicsObjects[i], ball, Vector2.new(0, 0))
+&#9;&#9;&#9;&#9;&#9;if collision then ball:Remove() ball = nil end 
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end&#9;&#9;
+&#9;&#9;&#9;if ball and gameChar then collision = checkForCollision(gameChar, ball, Vector2.new(0, 0)) end
+&#9;&#9;&#9;if collision and gameChar and not forcefield then &#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;killCharacter = true
+&#9;&#9;&#9;&#9;if ball then 
+&#9;&#9;&#9;&#9;&#9;ball:Remove() 
+&#9;&#9;&#9;&#9;&#9;ball = nil
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end&#9;&#9;
+&#9;&#9;end
+&#9;&#9;wait(0.125)&#9;&#9;
+&#9;end&#9;
+end
+
+function shootChar(i)&#9;&#9;
+&#9;while enemies[i] and enemies[i].Parent and gameChar do &#9;&#9;&#9;
+&#9;&#9;local direction = Vector2.new(gameChar.Position.X.Scale - enemies[i].Position.X.Scale, gameChar.Position.Y.Scale - enemies[i].Position.Y.Scale).unit&#9;&#9;
+&#9;&#9;local ball = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;ball.Size = UDim2.new(0.03, 0, 0.03, 0)
+&#9;&#9;ball.Image = &quot;http://www.roblox.com/asset/?id=58525251&quot;
+&#9;&#9;ball.Parent = gameFrame
+&#9;&#9;ball.Name = &quot;Ball&quot;
+&#9;&#9;ball.Position = enemies[i].Position - UDim2.new(0.04, 0, 0, 0)
+&#9;&#9;ball.BackgroundTransparency = 1.0&#9;&#9;
+&#9;&#9;table.insert(enemyProjectiles, ball)&#9;&#9;&#9;&#9;
+&#9;&#9;coroutine.resume(coroutine.create(function() shoot(direction, ball) end))
+&#9;&#9;wait(3.0)&#9;&#9;&#9;&#9;
+&#9;end
+end
+
+function rainFire(fireball)&#9;
+&#9;local collision
+&#9;while fireball and boss do&#9;&#9;
+&#9;&#9;fireball.Position = fireball.Position + UDim2.new(0, 0, 0.01, 0)
+&#9;&#9;if gameChar then 
+&#9;&#9;&#9;collision = checkForCollision(gameChar, fireball, Vector2.new(0, 0)) 
+&#9;&#9;end
+&#9;&#9;if collision and gameChar and not forcefield then&#9;&#9;&#9;
+&#9;&#9;&#9;killCharacter = true 
+&#9;&#9;&#9;if fireball then 
+&#9;&#9;&#9;&#9;fireball:Remove() 
+&#9;&#9;&#9;&#9;fireball = nil 
+&#9;&#9;&#9;end
+&#9;&#9;end&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;if fireball and fireball.Position.Y.Scale &gt; 1.0 then fireball:Remove() fireball = nil end
+&#9;&#9;wait()&#9;&#9;
+&#9;end&#9;
+end
+
+function spawnFireball()
+&#9;wait(3.0)
+&#9;while gameChar and boss do
+&#9;&#9;pos = gameChar.Position.X.Scale 
+&#9;&#9;local fireball = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;fireball.Name = &quot;FireBall&quot;
+&#9;&#9;fireball.Parent = gameFrame
+&#9;&#9;fireball.Image = &quot;http://www.roblox.com/asset/?id=58546354&quot;
+&#9;&#9;fireball.BackgroundTransparency = 1.0
+&#9;&#9;fireball.Size = UDim2.new(0.05, 0, 0.1, 0)
+&#9;&#9;fireball.Position = UDim2.new(pos, 0, 0, 0)
+&#9;&#9;coroutine.resume(coroutine.create(function() rainFire(fireball) end))
+&#9;&#9;wait(math.random(2, 3))
+&#9;end
+end
+
+function laserify(laser, direction)&#9;
+&#9;print(&quot;Laserifying&quot;)
+&#9;local collision
+&#9;while laser and boss do&#9;&#9;
+&#9;&#9;laser.Position = laser.Position + UDim2.new(direction.X * 0.02, 0, direction.Y * 0.02, 0)
+&#9;&#9;if gameChar then 
+&#9;&#9;&#9;collision = checkForCollision(gameChar, laser, Vector2.new(0, 0)) 
+&#9;&#9;end
+&#9;&#9;if collision and gameChar and not forcefield then&#9;&#9;&#9;
+&#9;&#9;&#9;killCharacter = true 
+&#9;&#9;&#9;if laser then 
+&#9;&#9;&#9;&#9;laser:Remove() 
+&#9;&#9;&#9;&#9;laser = nil 
+&#9;&#9;&#9;end
+&#9;&#9;end&#9;
+&#9;&#9;for i = 1, #physicsObjects do 
+&#9;&#9;&#9;if laser then
+&#9;&#9;&#9;&#9;local collision = checkForCollision(physicsObjects[i], laser, Vector2.new(0, 0))
+&#9;&#9;&#9;&#9;if collision then 
+&#9;&#9;&#9;&#9;&#9;laser:Remove() 
+&#9;&#9;&#9;&#9;&#9;laser = nil 
+&#9;&#9;&#9;&#9;end 
+&#9;&#9;&#9;end
+&#9;&#9;end&#9;&#9;
+&#9;&#9;if laser and laser.Position.X.Scale &lt; 0.0 then laser:Remove() laser = nil end
+&#9;&#9;wait()&#9;&#9;
+&#9;end&#9;
+end
+
+function fireLaser()
+&#9;print(&quot;Firing Laser&quot;)
+&#9;wait(4.0)
+&#9;while gameChar and boss do
+&#9;&#9;direction = Vector2.new(gameChar.Position.X.Scale - boss.Position.X.Scale, gameChar.Position.Y.Scale - boss.Position.Y.Scale)
+&#9;&#9;local laser = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;laser.Name = &quot;Laser&quot;
+&#9;&#9;laser.Parent = gameFrame
+&#9;&#9;laser.Image = &quot;http://www.roblox.com/asset/?id=58556170&quot;
+&#9;&#9;laser.BackgroundTransparency = 1.0
+&#9;&#9;laser.Size = UDim2.new(0.05, 0, 0.05, 0)
+&#9;&#9;laser.Position = boss.Position + UDim2.new(-0.1, 0, 0, 0)
+&#9;&#9;print(&quot;Starting laserify&quot;)
+&#9;&#9;coroutine.resume(coroutine.create(function() laserify(laser, direction) end))
+&#9;&#9;print(&quot;Coroutine spawned&quot;)
+&#9;&#9;wait(math.random(2, 3))
+&#9;end
+end
+
+function bossBattle()
+&#9;local perpY = 0.02 
+&#9;if boss then
+&#9;&#9;print(&quot;Found boss&quot;)
+&#9;&#9;coroutine.resume(coroutine.create(spawnFireball))&#9;&#9;&#9;
+&#9;&#9;while boss do 
+&#9;&#9;&#9;if boss.Position.Y.Scale &gt; 0.50 then 
+&#9;&#9;&#9;&#9;perpY = -0.02 
+&#9;&#9;&#9;elseif boss.Position.Y.Scale &lt; 0.25 then 
+&#9;&#9;&#9;&#9;perpY = 0.02 
+&#9;&#9;&#9;end
+&#9;&#9;&#9;boss.Position = boss.Position + UDim2.new(0, 0, perpY, 0)
+&#9;&#9;&#9;wait(0.25)
+&#9;&#9;end
+&#9;end
+end
+
+function updateBoss()
+&#9;if boss then
+&#9;&#9;health = boss:FindFirstChild(&quot;Health&quot;)
+&#9;&#9;if health then
+&#9;&#9;&#9;if health.Value &gt;= 300 and health.Value &lt; 400 then
+&#9;&#9;&#9;&#9;boss.Image = &quot;http://www.roblox.com/asset/?id=58541632&quot;
+&#9;&#9;&#9;elseif health.Value &gt; 200 and health.Value &lt; 300 then 
+&#9;&#9;&#9;&#9;boss.Image = &quot;http://www.roblox.com/asset/?id=58541721&quot;
+&#9;&#9;&#9;elseif health.Value &gt; 100 and health.Value &lt; 200 then
+&#9;&#9;&#9;&#9;boss.Image = &quot;http://www.roblox.com/asset/?id=58541762&quot;
+&#9;&#9;&#9;elseif health.Value &gt; 0 and health.Value &lt; 100 then
+&#9;&#9;&#9;&#9;boss.Image = &quot;http://www.roblox.com/asset/?id=58541780&quot;
+&#9;&#9;&#9;end
+&#9;&#9;&#9;-- FIRING MAH LASER 
+&#9;&#9;&#9;if health.Value &lt; 200 then 
+&#9;&#9;&#9;&#9;coroutine.resume(coroutine.create(fireLaser))&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+function spawnAI()&#9;
+&#9;print(&quot;Spawning AI&quot;)
+&#9;if screenCount == 7 then 
+&#9;&#9;if endScreenPlatform then 
+&#9;&#9;&#9;endScreenPlatform:Remove() 
+&#9;&#9;&#9;endScreenPlatform = nil 
+&#9;&#9;end
+&#9;&#9;for i = 1, #platforms do
+&#9;&#9;&#9;if platforms[i].Position.X.Scale &gt; 0.50 then 
+&#9;&#9;&#9;&#9;for j = 1, #physicsObjects do 
+&#9;&#9;&#9;&#9;&#9;if platforms[i] == physicsObjects[j] then 
+&#9;&#9;&#9;&#9;&#9;&#9;table.remove(physicsObjects, j)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;platforms[i]:Remove()&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;if spawnPlatform then 
+&#9;&#9;&#9;spawnPlatform.Position = spawnPlatform.Position + UDim2.new(0, 0, 0.25, 0)
+&#9;&#9;&#9;if gameChar then 
+&#9;&#9;&#9;&#9;gameChar.Position = gameChar.Position + UDim2.new(0, 0, 0.25, 0)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;boss = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;boss.Name = &quot;Boss&quot;
+&#9;&#9;boss.Image = &quot;http://www.roblox.com/asset/?id=58541175&quot;
+&#9;&#9;boss.Size = UDim2.new(0.3, 0, 0.3, 0)
+&#9;&#9;boss.Position = UDim2.new(0.70, 0, 0.35, 0)
+&#9;&#9;boss.BackgroundTransparency = 1.0
+&#9;&#9;boss.ZIndex = 2.0 
+&#9;&#9;boss.Parent = gameFrame
+
+&#9;&#9;health = Instance.new(&quot;NumberValue&quot;)
+&#9;&#9;health.Name = &quot;Health&quot;
+&#9;&#9;health.Parent = boss
+&#9;&#9;health.Value = 500
+&#9;&#9;health.Changed:connect(updateBoss)
+
+&#9;&#9;coroutine.resume(coroutine.create(function() bossBattle() end))
+&#9;&#9;elseif screenCount &lt; 7 and screenCount &gt; 0 then &#9;&#9;
+&#9;&#9;seaMonster = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;seaMonster.Name = &quot;Sea Monster&quot;
+&#9;&#9;seaMonster.Image = &quot;http://www.roblox.com/asset/?id=58518986&quot;
+&#9;&#9;seaMonster.Size = UDim2.new(0.2, 0, 0.2, 0)
+&#9;&#9;seaMonster.Position = UDim2.new(math.random(25, 75)/100, 0, 0.79, 0)
+&#9;&#9;seaMonster.Parent = gameFrame
+&#9;&#9;seaMonster.BackgroundTransparency = 1.0
+&#9;&#9;seaMonster.ZIndex = 4.0
+&#9;&#9;table.insert(AIObjects , seaMonster)&#9;
+
+&#9;&#9;coroutine.resume(coroutine.create(function() followChar(seaMonster) end))&#9;&#9;
+&#9;&#9;
+&#9;&#9;tick()&#9;&#9;&#9; 
+&#9;&#9;for i = 1, 2 do 
+&#9;&#9;&#9;enemies[i] = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;&#9;enemies[i].Name = &quot;Enemy&quot;
+&#9;&#9;&#9;enemies[i].Image = &quot;http://www.roblox.com/asset/?id=58520924&quot;
+&#9;&#9;&#9;enemies[i].Size = UDim2.new(0.1, 0, 0.1, 0)
+&#9;&#9;&#9;enemies[i].Parent = gameFrame
+&#9;&#9;&#9;enemies[i].BackgroundTransparency = 1.0
+&#9;&#9;&#9;enemies[i].Position = platforms[(i+1) + (i-1) * math.random(1, 2)].Position + UDim2.new(0, 0, -0.075, 0)&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;coroutine.resume(coroutine.create(function() wait(3.0) shootChar(i) end))
+
+&#9;&#9;&#9;health = Instance.new(&quot;NumberValue&quot;)
+&#9;&#9;&#9;health.Name = &quot;Health&quot;
+&#9;&#9;&#9;health.Value = 35
+&#9;&#9;&#9;health.Parent = enemies[i]
+&#9;&#9;end&#9;&#9;
+&#9;else
+&#9;&#9;-- do nothing
+&#9;end
+end
+
+----------------------------------------------- GUI CODE -----------------------------------------------
+
+function createPlatforms()
+&#9;tick()
+&#9;local posX = {math.random(18, 20)/100, math.random(34, 40)/100, math.random(52, 60)/100, math.random(72, 76)/100}
+&#9;local posY = {math.random(28, 40)/100, math.random(30, 46)/100, math.random(30, 32)/100, math.random(24, 28)/100}&#9;&#9;
+&#9;screenCount = screenCount + 1&#9;
+&#9;endScreenPlatform = Instance.new(&quot;ImageLabel&quot;)
+&#9;endScreenPlatform.Name = &quot;EndScreenPlatform&quot;
+&#9;endScreenPlatform.Image = &quot;http://www.roblox.com/asset/?id=58344744&quot;
+&#9;endScreenPlatform.Size = UDim2.new(0.10, 0, 0.025, 0)&#9;
+&#9;endScreenPlatform.Position = UDim2.new(math.random(85, 92)/100,  0, math.random(15, 24)/100, 0)
+&#9;endScreenPlatform.Parent = gameFrame
+&#9;table.insert(platforms, endScreenPlatform)
+&#9;table.insert(physicsObjects, endScreenPlatform)
+&#9;
+&#9;-- initialize the world with 5 platforms? maybe?
+&#9;tick()
+&#9;--numPlatforms = math.random(minPlatforms, maxPlatforms - 2)
+&#9;numPlatforms = 4&#9;
+&#9;for i = 1, numPlatforms do
+&#9;&#9;tick() -- seed that random!
+&#9;&#9;-- The platforms can never be lower than 60, unless you want to get eaten by the shark
+&#9;&#9;-- Or higher than 15 since we need to accomodate our character&#9;&#9;
+&#9;&#9;local pf = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;pf.Name = &quot;Platform&quot;
+&#9;&#9;pf.Image = &quot;http://www.roblox.com/asset/?id=58344744&quot;
+&#9;&#9;pf.Size = UDim2.new(0.1, 0, 0.025, 0)
+&#9;&#9;-- Another criteria to consider, can the platforms never be right on top of each other? Maybe?
+&#9;&#9;pf.Position = UDim2.new(posX[i],  0, posY[i], 0)
+&#9;&#9;pf.Parent = gameFrame
+&#9;&#9;table.insert(platforms, pf)
+&#9;&#9;table.insert(physicsObjects, pf)&#9;&#9;&#9;&#9;
+&#9;end
+&#9;-- Create Character to control
+&#9;createLocalCharacter()
+
+&#9;-- Spawn a bunch of enemies
+&#9;spawnAI()
+end
+
+function createGameInterface()
+&#9;gameGui = Instance.new(&quot;ScreenGui&quot;)
+&#9;gameGui.Parent = game.Players.LocalPlayer.PlayerGui
+&#9;gameGui.Name = &quot;Game Gui&quot;
+
+&#9;gameFrame = Instance.new(&quot;Frame&quot;)
+&#9;gameFrame.Parent = gameGui&#9;
+&#9;while gameGui.AbsoluteSize.X == 0 do wait() end -- WUT?
+&#9;local screenMidPoint = Vector2.new(gameGui.AbsoluteSize.x/2.0, gameGui.AbsoluteSize.y/2.0)&#9;
+&#9;gameFrame.Position = UDim2.new(0, screenMidPoint.X - 320, 0, screenMidPoint.Y - 240)
+&#9;gameFrame.Size = UDim2.new(0, 640, 0, 480)
+&#9;gameFrame.BackgroundTransparency = 1.0
+&#9;gameFrame.Name = &quot;Game Frame&quot;
+
+&#9;local gameBackground = Instance.new(&quot;ImageLabel&quot;)
+&#9;gameBackground.Image = &quot;http://www.roblox.com/asset/?id=58449099&quot;
+&#9;gameBackground.Size = UDim2.new(1, 0, 1, 0)
+&#9;gameBackground.Parent = gameFrame
+&#9;gameBackground.BackgroundTransparency = 1.0
+&#9;gameBackground.Name = &quot;Background&quot;
+
+&#9;RPGImage = Instance.new(&quot;ImageLabel&quot;)
+&#9;RPGImage.Parent = gameFrame
+&#9;RPGImage.Name = &quot;RPG Image&quot;
+&#9;RPGImage.Image = &quot;http://www.roblox.com/asset/?id=58458224&quot;
+&#9;RPGImage.Position = UDim2.new(-0.3378, 0, -0.2, 0)
+&#9;RPGImage.Size = UDim2.new(1.669, 0, 1.38, 0)
+&#9;RPGImage.BackgroundTransparency = 1.0
+&#9;RPGImage.ZIndex = 10.0
+
+&#9;local gameWater
+
+&#9;local gameWeed = Instance.new(&quot;ImageLabel&quot;)
+&#9;gameWeed.Image = &quot;http://www.roblox.com/asset/?id=58449411&quot;
+&#9;gameWeed.Name = &quot;SeaWeed&quot;
+&#9;gameWeed.Size = UDim2.new(1, 0, 1, 0)
+&#9;gameWeed.Parent = gameFrame
+&#9;gameWeed.BackgroundTransparency = 1.0
+&#9;gameWeed.Position = UDim2.new(0, 0, 0, 0)
+
+&#9;local waterLayer = Instance.new(&quot;ImageLabel&quot;)
+&#9;waterLayer.Image = &quot;http://www.roblox.com/asset/?id=58450141&quot;
+&#9;waterLayer.Name = &quot;WaterLayer2&quot;
+&#9;waterLayer.Size = UDim2.new(1, 0, 1, 0)
+&#9;waterLayer.Parent = gameFrame
+&#9;waterLayer.BackgroundTransparency = 1.0
+&#9;waterLayer.Position = UDim2.new(0, 0, 0, 0)
+
+&#9;coroutine.resume(coroutine.create(function() linearAnimate(waterLayer, 1) end))
+
+&#9;local waterLayer2 = Instance.new(&quot;ImageLabel&quot;)
+&#9;waterLayer2.Image = &quot;http://www.roblox.com/asset/?id=58450165&quot;
+&#9;waterLayer2.Name = &quot;WaterLayer2&quot;
+&#9;waterLayer2.Size = UDim2.new(1, 0, 1, 0)
+&#9;waterLayer2.Parent = gameFrame
+&#9;waterLayer2.BackgroundTransparency = 1.0
+&#9;waterLayer2.Position = UDim2.new(0, 0, 0, 0)
+&#9;coroutine.resume(coroutine.create(function() linearAnimate(waterLayer2, -1) end))
+
+&#9;local waveLayer = Instance.new(&quot;ImageLabel&quot;)
+&#9;waveLayer.Name = &quot;Wave&quot;
+&#9;waveLayer.Image = &quot;http://www.roblox.com/asset/?id=58484376&quot;
+&#9;waveLayer.Size = UDim2.new(1, 0, 1, 0)
+&#9;waveLayer.Parent = gameFrame
+&#9;waveLayer.BackgroundTransparency = 1.0
+&#9;waveLayer.Position = UDim2.new(0, 0, 0, 0) &#9;
+&#9;
+&#9;local waveLayer2 = Instance.new(&quot;ImageLabel&quot;)
+&#9;waveLayer2.Name = &quot;Wave2&quot;
+&#9;waveLayer2.Image = &quot;http://www.roblox.com/asset/?id=58484457&quot;
+&#9;waveLayer2.Size = UDim2.new(1, 0, 1, 0)
+&#9;waveLayer2.Parent = gameFrame
+&#9;waveLayer2.BackgroundTransparency = 1.0
+&#9;waveLayer2.Position = UDim2.new(0, 0, 0, 0) 
+&#9;
+&#9;coroutine.resume(coroutine.create(function() waveAnimate(waveLayer, waveLayer2) end))
+
+&#9;lifeLayer = Instance.new(&quot;ImageLabel&quot;)
+&#9;lifeLayer.Image = &quot;http://www.roblox.com/asset/?id=58463565&quot;
+&#9;lifeLayer.Name = &quot;Lives&quot;
+&#9;lifeLayer.Size = UDim2.new(0.13, 0, 0.05, 0)
+&#9;lifeLayer.Position = UDim2.new(0.03, 0, 0.01, 0)
+&#9;lifeLayer.BackgroundTransparency = 1.0
+&#9;lifeLayer.Parent = gameFrame
+&#9;lifeLayer.ZIndex = 2.0&#9;
+
+&#9;gameTimeText = Instance.new(&quot;TextLabel&quot;)
+&#9;gameTimeText.Text = tostring(gameDuration)
+&#9;gameTimeText.Parent = gameFrame
+&#9;gameTimeText.Position = UDim2.new(0.96, 0, 0.01, 0)
+
+&#9;-- Clouds, 7 of em
+&#9;for i = 1, 7 do 
+&#9;&#9;tick()
+&#9;&#9;cloud = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;cloud.Name = &quot;Cloud&quot;
+&#9;&#9;cloud.Image = &quot;http://www.roblox.com/asset/?id=&quot; .. cloudAssets[math.random(1, 4)]
+&#9;&#9;cloud.ZIndex = 1.0
+&#9;&#9;cloud.Parent = gameFrame 
+&#9;&#9;cloud.Size = UDim2.new(0.1, 0, 0.04, 0)
+&#9;&#9;cloud.BackgroundTransparency = 1.0
+&#9;&#9;leftRight = math.random(1, 2)
+&#9;&#9;if leftRight == 1 then 
+&#9;&#9;&#9;table.insert(cloudsLeft, cloud)&#9;&#9;&#9;
+&#9;&#9;else
+&#9;&#9;&#9;table.insert(cloudsRight, cloud)
+&#9;&#9;end&#9;&#9;
+&#9;&#9;cloud.Position = UDim2.new(math.random(10, 90)/100, 0, math.random(5, 15)/100, 0)
+&#9;end
+
+&#9;coroutine.resume(coroutine.create(animateClouds))
+&#9;-- PLATFORMS -- 
+&#9;-- Special case, since when the world scrolls, the end platform becomes the spawning one
+&#9;spawnPlatform = Instance.new(&quot;ImageLabel&quot;)
+&#9;spawnPlatform.Name = &quot;SpawnPlatform&quot;
+&#9;spawnPlatform.Image = &quot;http://www.roblox.com/asset/?id=58344744&quot;
+&#9;spawnPlatform.Size = UDim2.new(0.1, 0, 0.025, 0)&#9;
+&#9;spawnPlatform.Position = UDim2.new(0.05,  0, 0.19, 0)
+&#9;spawnPlatform.Parent = gameFrame
+&#9;table.insert(platforms, spawnPlatform)
+&#9;table.insert(physicsObjects, spawnPlatform)&#9;
+&#9;
+&#9;print(&quot;Creating platforms&quot;)
+&#9;----------------------
+&#9;createPlatforms()
+&#9;----------------------
+
+&#9;-- Create the default projectile, can&apos;t think of a better place to put this
+&#9;gameProjectile = Instance.new(&quot;ImageLabel&quot;)
+&#9;gameProjectile.Image = &quot;http://www.roblox.com/asset/?id=58512337&quot;
+&#9;gameProjectile.Size = UDim2.new(0.020, 0, 0.020, 0)
+&#9;gameProjectile.BackgroundTransparency = 1.0
+&#9;gameProjectile.Name = &quot;CharProjectile&quot;&#9;&#9;
+end
+
+function createLocalCharacter()
+&#9;if not gameChar then
+&#9;&#9;forcefield = true
+&#9;&#9;gameChar = Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;gameChar.BackgroundTransparency = 1.0
+&#9;&#9;gameChar.Image = &quot;http://www.roblox.com/asset/?id=58461425&quot;
+&#9;&#9;gameChar.Size = UDim2.new(0.03, 0, 0.1, 0) -- Wut? 
+&#9;&#9;gameChar.Name = &quot;Hero&quot;
+&#9;&#9;gameChar.ZIndex = 1.0
+&#9;&#9;-- Need to spawn the character on one of the platforms always 
+&#9;&#9;-- Ideally the leftmost platform in which case it&apos;s width value is the lowest
+&#9;&#9;--table.insert(physicsObjects, gameChar)
+&#9;&#9;movableObjects = {}
+&#9;&#9;table.insert(movableObjects, gameChar)
+&#9;&#9;if  #platforms &gt; 0 then 
+&#9;&#9;&#9;gameChar.Position = spawnPlatform.Position - UDim2.new(0, 0, 0.075, 0)
+&#9;&#9;end
+&#9;&#9;if gameFrame then gameChar.Parent = gameFrame end&#9;
+&#9;&#9;coroutine.resume(coroutine.create(function() wait(1.5) forcefield = false end))
+&#9;end
+end
+
+----------------------------------------------------------------------------------------------
+
+function destroyGameInterface()
+&#9;if gameGui then gameGui:Remove() gameGui = nil end
+&#9;movableObjects = {}
+&#9;physicsObjects = {}
+&#9;platforms = {}
+&#9;if spawnPoint then spawnPoint = 1.0 end
+end
+
+----------------------------------------------- MOVEMENT --------------------------------------
+function moveCharacter()&#9;
+&#9;if not worldScrolling then&#9;-- freeze character, if the world is scrolling 
+&#9;&#9;pos = Vector2.new(gameChar.Position.X.Scale, gameChar.Position.Y.Scale)&#9;
+&#9;&#9;if velocity then&#9;&#9;
+&#9;&#9;&#9;if pos.Y + velocity.Y &lt; 0 then
+&#9;&#9;&#9;&#9;gameChar.Position = gameChar.Position + UDim2.new(velocity.X, 0, 0, 0)&#9;&#9;
+&#9;&#9;&#9;else &#9;&#9;
+&#9;&#9;&#9;&#9;gameChar.Position = gameChar.Position + UDim2.new(velocity.X, 0, velocity.Y, 0)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+function setCharacterVelocity()&#9;
+&#9;if gameChar then&#9;&#9;
+&#9;&#9;velocity = Vector2.new(0, 0)
+&#9;&#9;if forwards then 
+&#9;&#9;&#9;gameChar.Image = &quot;http://www.roblox.com/asset/?id=58461425&quot;&#9;&#9;&#9;
+&#9;&#9;&#9;velocity = velocity + Vector2.new(0.005, 0)
+&#9;&#9;elseif backwards then 
+&#9;&#9;&#9;gameChar.Image = &quot;http://www.roblox.com/asset/?id=58462272&quot;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;velocity = velocity - Vector2.new(0.005, 0)
+&#9;&#9;end
+&#9;&#9;if falling then 
+&#9;&#9;&#9;if accelerateBool == false then 
+&#9;&#9;&#9;&#9;accelerateBool = true
+&#9;&#9;&#9;&#9;accelerateCo = coroutine.create(fallAcceleration)
+&#9;&#9;&#9;&#9;coroutine.resume(accelerateCo) 
+&#9;&#9;&#9;end&#9;&#9;&#9;
+&#9;&#9;&#9;velocity = velocity + Vector2.new(0, gravity)
+&#9;&#9;end
+&#9;&#9;if jumping then &#9;&#9;&#9;
+&#9;&#9;&#9;velocity = velocity - Vector2.new(0, 0.020)
+&#9;&#9;end
+&#9;end
+end
+
+function gameCharMovementStop(key)&#9;
+&#9;if gameChar then
+&#9;&#9;key = key:lower()&#9;&#9;
+&#9;&#9;if key == &quot;w&quot; then
+&#9;&#9;&#9;jumping = false
+&#9;&#9;elseif key ==&quot;a&quot; then 
+&#9;&#9;&#9;backwards = false
+&#9;&#9;elseif key == &quot;d&quot; then
+&#9;&#9;&#9;forwards = false&#9;&#9;
+&#9;&#9;end
+&#9;end
+end
+
+function gameCharMovementStart(key)&#9;
+&#9;local timeNow
+&#9;if gameChar then&#9;&#9;
+&#9;&#9;key = key:lower()&#9;&#9;&#9;
+&#9;&#9;if key == &quot;w&quot; then 
+&#9;&#9;&#9;timeNow = tick()
+&#9;&#9;&#9;if timeNow - jumpTimer &gt; 1.0 then&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;jumpTimer = timeNow
+&#9;&#9;&#9;&#9;jumping = true&#9;&#9;&#9;
+&#9;&#9;&#9;end&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;elseif key == &quot;a&quot; then&#9;&#9;
+&#9;&#9;&#9;backwards = true&#9;&#9;
+&#9;&#9;elseif key == &quot;d&quot; then &#9;&#9;
+&#9;&#9;&#9;forwards = true&#9;&#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;end
+&#9;end
+end
+
+----------------------------------------------- CHARACTER FIRING -----------------------------------------------
+
+function transferToWorldCoordinates(mouse)
+&#9;if gameFrame then 
+&#9;&#9;local xPos = mouse.X - gameFrame.Position.X.Offset 
+&#9;&#9;local yPos = mouse.Y - gameFrame.Position.Y.Offset
+&#9;&#9;return Vector2.new(xPos, yPos)
+&#9;end
+end
+
+function fire(projectileClone, direction)&#9;
+&#9;local collision
+&#9;-- Lets set the velocity to be 2 units 
+&#9;while projectileClone do &#9;&#9;
+&#9;&#9;projectileClone.Position = projectileClone.Position + UDim2.new((direction.X * 0.02), 0, (direction.Y * 0.02), 0)&#9;&#9;
+&#9;&#9;if projectileClone.Position.X.Scale &gt;= 1 or projectileClone.Position.X.Scale &lt;= 0 or projectileClone.Position.Y.Scale &gt;= 1 or projectileClone.Position.Y.Scale &lt;= 0 then
+&#9;&#9;&#9;projectileClone:Remove() 
+&#9;&#9;&#9;projectileClone = nil
+&#9;&#9;end
+&#9;&#9;for i = 1, #physicsObjects do 
+&#9;&#9;&#9;if projectileClone then collision = checkForCollision(physicsObjects[i], projectileClone, Vector2.new(0, 0)) end
+&#9;&#9;&#9;if collision then if projectileClone then projectileClone:Remove() projectileClone = nil end end 
+&#9;&#9;end
+&#9;&#9;for i = 1, #enemies do &#9;&#9;&#9;
+&#9;&#9;&#9;if projectileClone then collision = checkForCollision(enemies[i], projectileClone, Vector2.new(0, 0)) end
+&#9;&#9;&#9;if collision and projectileClone then 
+&#9;&#9;&#9;&#9;projectileClone:Remove()
+&#9;&#9;&#9;&#9;projectileClone = nil
+&#9;&#9;&#9;&#9;health = enemies[i]:FindFirstChild(&quot;Health&quot;)&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;if health and health.Value &gt; 0 then &#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;health.Value = health.Value - 17
+&#9;&#9;&#9;&#9;else 
+&#9;&#9;&#9;&#9;&#9;enemies[i]:Remove() 
+&#9;&#9;&#9;&#9;&#9;--enemies[i] = nil
+&#9;&#9;&#9;&#9;end&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;end 
+&#9;&#9;end
+&#9;&#9;if projectileClone and boss then
+&#9;&#9;&#9;collision = checkForCollision(boss, projectileClone, Vector2.new(0, 0))
+&#9;&#9;&#9;if collision and projectileClone then 
+&#9;&#9;&#9;&#9;projectileClone:Remove()
+&#9;&#9;&#9;&#9;projectileClone = nil
+&#9;&#9;&#9;&#9;health = boss:FindFirstChild(&quot;Health&quot;)
+&#9;&#9;&#9;&#9;if health and health.Value &gt; 0 then 
+&#9;&#9;&#9;&#9;&#9;health.Value = health.Value - 17
+&#9;&#9;&#9;&#9;else 
+&#9;&#9;&#9;&#9;&#9;boss:Remove()&#9;
+&#9;&#9;&#9;&#9;&#9;boss = nil
+&#9;&#9;&#9;&#9;&#9;-- End the Game
+&#9;&#9;&#9;&#9;&#9;worldScrolling = true 
+&#9;&#9;&#9;&#9;&#9;win = Instance.new(&quot;TextLabel&quot;)
+&#9;&#9;&#9;&#9;&#9;win.Parent = gameFrame
+&#9;&#9;&#9;&#9;&#9;win.Text = &quot;YOU WON&quot;
+&#9;&#9;&#9;&#9;&#9;win.TextColor3 = Color3.new(1.0, 0.0, 0.0)
+&#9;&#9;&#9;&#9;&#9;win.Position = UDim2.new(0.5, 0, 0.5, 0)
+&#9;&#9;&#9;&#9;&#9;win.ZIndex = 10.0
+&#9;&#9;&#9;&#9;&#9;win.FontSize = Enum.FontSize.Size24
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;wait()&#9;&#9;
+&#9;end
+end
+
+function gameCharFire(mouse)
+&#9;if mouse and gameProjectile and firing == false and gameChar then 
+&#9;&#9;firing = true
+&#9;&#9;local projectileClone = gameProjectile:Clone()
+&#9;&#9;local mouseInWorld = transferToWorldCoordinates(mouse)
+&#9;&#9;local gameCharPos = transferToWorldCoordinates(gameChar.AbsolutePosition)
+&#9;&#9;if mouseInWorld and mouseInWorld.X &gt; gameCharPos.X then
+&#9;&#9;&#9;gameChar.Image = &quot;http://www.roblox.com/asset/?id=58461425&quot;
+&#9;&#9;&#9;projectileClone.Position = gameChar.Position + UDim2.new(0.03, 0, 0.025, 0)
+&#9;&#9;else 
+&#9;&#9;&#9;gameChar.Image = &quot;http://www.roblox.com/asset/?id=58462272&quot;
+&#9;&#9;&#9;projectileClone.Position = gameChar.Position + UDim2.new(-0.03, 0, 0.025, 0)
+&#9;&#9;end
+&#9;&#9;projectileClone.Parent = gameFrame
+&#9;&#9;table.insert(gameProjectileClones, projectileClone)
+&#9;&#9;-- GROSS
+&#9;&#9;-- Need to plug stuff into a generic physics engine
+&#9;&#9;-- Next on the plate, hopefully 
+&#9;&#9;local direction = (mouseInWorld - gameCharPos).unit
+&#9;&#9;if projectileSound then projectileSound:Play() end
+&#9;&#9;coroutine.resume(coroutine.create(function() fire(projectileClone, direction) end))&#9;&#9;&#9;
+&#9;&#9;wait(0.75)
+&#9;&#9;firing = false
+&#9;end
+end
+
+----------------------------------------------- TOOL EVENTS -----------------------------------------------
+
+function onActivated()
+&#9;if Tool.Enabled == false then 
+&#9;&#9;return
+&#9;end
+&#9;
+&#9;Tool.Enabled = false 
+&#9;
+&#9;vCharacter = Tool.Parent
+&#9;myTorso = vCharacter:FindFirstChild(&quot;Torso&quot;)
+&#9;myHumanoid = vCharacter:FindFirstChild(&quot;Humanoid&quot;)&#9;
+&#9;if myTorso and myHumanoid then 
+&#9;&#9;wait(0.2)
+&#9;&#9;myTorso.Anchored = true
+&#9;&#9;myHumanoid.WalkSpeed = 0.0
+&#9;end
+&#9;projectileSound = RPG:FindFirstChild(&quot;ProjectileSound&quot;)
+&#9;bossSound = RPG:FindFirstChild(&quot;BossSound&quot;)
+&#9;screamSound = RPG:FindFirstChild(&quot;ScreamSound&quot;)
+&#9;gameSound = RPG:FindFirstChild(&quot;GameSound&quot;)
+&#9;numberOfLives = 3
+&#9;RPG.Transparency = 1.0
+&#9;if gameSound then gameSound:Play() end&#9;
+&#9;gameStillOn = true&#9;
+&#9;createGameInterface()&#9;
+&#9;co = coroutine.create(waitUntilDone)
+&#9;coroutine.resume(co)
+&#9;gameUpdate()&#9;
+end
+
+function onEquipped(mouse)
+&#9;if mouse then &#9;&#9;
+&#9;&#9;mouse.KeyDown:connect(gameCharMovementStart)
+&#9;&#9;mouse.KeyUp:connect(gameCharMovementStop)
+&#9;&#9;mouse.Button1Down:connect(function () gameCharFire(mouse) end)
+&#9;end
+end
+
+function onUnequipped()
+&#9;gameStillOn = false 
+&#9;if myTorso then myTorso.Anchored = false end&#9;
+&#9;if myHumanoid then myHumanoid.WalkSpeed = 16.0 end
+&#9;RPG.Transparency = 0.0
+&#9;forwards = false
+&#9;backwards = false
+&#9;falling = false
+&#9;jumping = false
+&#9;firing = false&#9;
+&#9;stopFall = false
+&#9;killCharacter = false
+&#9;worldScrolling = false
+&#9;screenCount = 0
+&#9;velocity = Vector2.new(0, 0)
+&#9;gravity = 0.0384
+&#9;gameDuration = 240
+&#9;jumpTimer = 0.0
+&#9;boss = nil
+&#9;enemies = {}
+&#9;destroyGameInterface() 
+&#9;if bossSound then bossSound:Stop() end
+&#9;if gameSound then gameSound:Stop() end
+end 
+
+-- Event Listeners 
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+Tool.Activated:connect(onActivated)
+
+----------------------------------------------- GAME UPDATE FUNCTION --------------------------------------------
+
+function gameUpdate()&#9;
+&#9;while gameStillOn and gameDuration &gt; 0 do
+&#9;&#9;World:Update()&#9;&#9;
+&#9;&#9;gameDuration = gameDuration - wait()
+&#9;&#9;gameTimeText.Text = tostring(math.floor(gameDuration))
+&#9;&#9;if gameDuration &lt; 60 then 
+&#9;&#9;&#9;gameTimeText.TextColor3 = Color3.new(255, 0, 0)
+&#9;&#9;end
+&#9;&#9;if gameChar.Position.Y.Scale &gt; 0.7 then
+&#9;&#9;&#9;if screamSound then screamSound:Play() end
+&#9;&#9;end
+&#9;&#9;if gameChar.Position.Y.Scale &gt; 0.85 or killCharacter == true then &#9;&#9;&#9;
+&#9;&#9;&#9;killCharacter = false&#9;&#9;&#9;
+&#9;&#9;&#9;gameChar.Image = &quot;http://www.roblox.com/asset/?id=58551023&quot;&#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;wait(1.0)
+&#9;&#9;&#9;gameChar:Remove()
+&#9;&#9;&#9;gameChar = nil
+&#9;&#9;&#9;if numberOfLives &gt; 0 then 
+&#9;&#9;&#9;&#9;numberOfLives = numberOfLives - 1 
+&#9;&#9;&#9;&#9;if numberOfLives == 2 then 
+&#9;&#9;&#9;&#9;&#9;lifeLayer.Image = &quot;http://www.roblox.com/asset/?id=58463962&quot;
+&#9;&#9;&#9;&#9;elseif numberOfLives == 1 then 
+&#9;&#9;&#9;&#9;&#9;lifeLayer.Image = &quot;http://www.roblox.com/asset/?id=58463982&quot;
+&#9;&#9;&#9;&#9;else 
+&#9;&#9;&#9;&#9;&#9;lifeLayer.Image = &quot;&quot; 
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;createLocalCharacter()&#9;
+&#9;&#9;&#9;else 
+&#9;&#9;&#9;&#9;lose = Instance.new(&quot;TextLabel&quot;)
+&#9;&#9;&#9;&#9;lose.Parent = gameFrame
+&#9;&#9;&#9;&#9;lose.Text = &quot;YOU LOSE&quot;
+&#9;&#9;&#9;&#9;lose.Position = UDim2.new(0.5, 0, 0.5, 0)
+&#9;&#9;&#9;&#9;lose.TextColor3 = Color3.new(0, 0, 1.0)
+&#9;&#9;&#9;&#9;lose.ZIndex = 10.0
+&#9;&#9;&#9;&#9;lose.FontSize = Enum.FontSize.Size24
+&#9;&#9;&#9;&#9;wait(3.0)
+&#9;&#9;&#9;&#9;gameStillOn = false 
+&#9;&#9;&#9;end&#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;falling = false
+&#9;&#9;&#9;stopFall = true
+&#9;&#9;end
+&#9;&#9;wait() -- NO CRASH 
+&#9;end
+&#9;jumpTimer = 0.0
+&#9;screenCount = 0
+&#9;killCharacter = false
+&#9;forwards = false
+&#9;backwards = false
+&#9;falling = false
+&#9;jumping = false
+&#9;firing = false
+&#9;stopFall = false
+&#9;worldScrolling = false
+&#9;boss = nil
+&#9;enemies = {}
+&#9;gameDuration = 480
+&#9;velocity = Vector2.new(0, 0)
+&#9;gravity = 0.0384
+&#9;if bossSound then bossSound:Stop() end
+&#9;if gameSound then gameSound:Stop() end
+end
+
+----------------------------------------------- THE END(PEACE!!) -----------------------------------------------
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX8">
+			<Properties>
+				<bool name="Archivable">true</bool>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-0.365231991</X>
+					<Y>13.7654839</Y>
+					<Z>3.94933224</Z>
+					<R00>0.980953515</R00>
+					<R01>0.019747233</R01>
+					<R02>0.193236351</R02>
+					<R10>-1.86264515e-009</R10>
+					<R11>0.994818985</R11>
+					<R12>-0.101662651</R12>
+					<R20>-0.194242731</R20>
+					<R21>0.0997263342</R21>
+					<R22>0.975871146</R22>
+				</CoordinateFrame>
+				<CoordinateFrame name="Focus">
+					<X>-4.22996044</X>
+					<Y>15.7987375</Y>
+					<Z>-15.5680971</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

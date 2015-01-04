@@ -1,0 +1,461 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0.300000012</X>
+				<Y>-0.5</Y>
+				<Z>0.649999976</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">PortalGun</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=34312296</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">local Tool = script.Parent;
+
+enabled = true
+function onButton1Down(mouse)
+&#9;if not enabled then
+&#9;&#9;return
+&#9;end
+
+&#9;enabled = false
+&#9;mouse.Icon = &quot;rbxasset://textures\\GunWaitCursor.png&quot;
+
+&#9;wait(1)
+&#9;mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;enabled = true
+
+end
+
+function onEquippedLocal(mouse)
+
+&#9;if mouse == nil then
+&#9;&#9;print(&quot;Mouse not found&quot;)
+&#9;&#9;return 
+&#9;end
+
+&#9;mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;mouse.Button1Down:connect(function() onButton1Down(mouse) end)
+end
+
+
+Tool.Equipped:connect(onEquippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX2">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">PortalShoot</string>
+				<ProtectedString name="Source">Tool = script.Parent
+local workPortals = nil
+
+function fire(v)
+
+&#9;Tool.Handle.Fire:play()
+&#9;local touched = false
+
+&#9;local vCharacter = Tool.Parent
+&#9;local vPlayer = game.Players:playerFromCharacter(vCharacter)
+
+&#9;Tool.Parent.Torso[&quot;Right Shoulder&quot;].DesiredAngle = 3.6
+&#9;Tool.Parent.Torso[&quot;Right Shoulder&quot;].MaxVelocity = 0.5
+
+&#9;local missile = Instance.new(&quot;Part&quot;)
+
+&#9;local m = Tool.Mesh:Clone()&#9;
+&#9;m.Parent = missile
+
+&#9;local spawnPos = vCharacter.PrimaryPart.Position
+
+&#9;spawnPos  = spawnPos + (v * 8)
+
+&#9;missile.CFrame = CFrame.new(spawnPos, spawnPos + v)
+&#9;missile.Position = spawnPos
+&#9;missile.Size = Vector3.new(1,1,1)
+&#9;missile.Velocity = v * 80
+&#9;missile.BrickColor = BrickColor.new(23)
+&#9;missile.Shape = 0
+&#9;missile.BottomSurface = 0
+&#9;missile.TopSurface = 0
+&#9;missile.Name = &quot;Portal&quot;
+&#9;missile.Elasticity = 0
+&#9;missile.Reflectance = 0
+&#9;missile.Friction = .4
+
+&#9;local force = Instance.new(&quot;BodyForce&quot;)
+&#9;force.force = Vector3.new(0,102,0)
+&#9;force.Parent = missile
+
+&#9;local script = Tool.PortalScript:clone()
+&#9;script.Parent = missile
+&#9;script.Disabled = false
+
+&#9;local creator_tag = Instance.new(&quot;ObjectValue&quot;)
+&#9;creator_tag.Value = vPlayer
+&#9;creator_tag.Name = &quot;creator&quot;
+&#9;creator_tag.Parent = missile
+
+&#9;local portalSound = Instance.new(&quot;Sound&quot;)
+&#9;portalSound.SoundId = &quot;http://www.roblox.com/asset/?id=34320976&quot;
+&#9;portalSound.Parent = missile
+
+&#9;missile.Parent = workPortals
+
+&#9;local con = missile.Touched:connect(function(part)
+&#9;&#9;if part and part.Parent then
+&#9;&#9;&#9;if part.Parent:FindFirstChild(&quot;Humanoid&quot;) == nil and not touched then
+&#9;&#9;&#9;&#9;updatePortals(missile)
+&#9;&#9;&#9;&#9;touched = true
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end)
+&#9;wait(3)
+&#9;con:disconnect()
+&#9;if not touched then
+&#9;&#9;print(&quot;removed&quot;)
+&#9;&#9;missile:Destroy()
+&#9;end
+
+end
+
+function updatePortals(missile) --Fix implemented by Luckymaxer
+&#9;local portals = {}
+&#9;for i, v in pairs(workPortals:GetChildren()) do
+&#9;&#9;if v:IsA(&quot;BasePart&quot;) then
+&#9;&#9;&#9;table.insert(portals, v)
+&#9;&#9;end
+&#9;end
+&#9;if #portals &gt; 2 then
+&#9;&#9;for i, v in pairs(portals) do
+&#9;&#9;&#9;if #portals &gt; 2 and i &lt; (#portals - 1) then
+&#9;&#9;&#9;&#9;v:Destroy()
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+
+Tool.Enabled = true
+function onActivated()
+
+&#9;--[[if not Tool.Enabled then
+&#9;&#9;return
+&#9;end
+
+&#9;Tool.Enabled = false]]
+
+&#9;local character = Tool.Parent;
+&#9;local humanoid = character.Humanoid
+&#9;if humanoid == nil then
+&#9;&#9;print(&quot;Humanoid not found&quot;)
+&#9;&#9;return 
+&#9;end
+
+&#9;local targetPos = humanoid.TargetPoint
+&#9;local lookAt = (targetPos - character.Head.Position).unit
+
+&#9;fire(lookAt)
+
+&#9;--Tool.Enabled = true
+end
+
+
+script.Parent.Activated:connect(onActivated)
+
+function onEquipped()
+
+&#9;workPortals = Instance.new(&quot;Model&quot;)
+&#9;workPortals.Name = Tool.Parent.Name ..&quot;Portals&quot;
+&#9;workPortals.Parent = game.Workspace
+
+&#9;local portalValue = Instance.new(&quot;BoolValue&quot;)
+&#9;portalValue.Name = &quot;Portaling&quot;
+&#9;portalValue.Parent = workPortals
+
+end
+
+function onUnequipped()
+&#9;workPortals:Destroy()
+end
+
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX3">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-37.6875343</X>
+					<Y>7.94019747</Y>
+					<Z>65.023613</Z>
+					<R00>0.699960649</R00>
+					<R01>0.0169276334</R01>
+					<R02>-0.713980794</R02>
+					<R10>-1.5620199e-014</R10>
+					<R11>0.999719083</R11>
+					<R12>0.0237021465</R12>
+					<R20>0.714181423</R20>
+					<R21>-0.0165905692</R21>
+					<R22>0.699764013</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">1</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1.20000005</Y>
+					<Z>2</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX4">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=34312118</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.800000012</X>
+						<Y>0.800000012</Y>
+						<Z>0.800000012</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=34312142</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Fire</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=34320952</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="SpecialMesh" referent="RBX6">
+			<Properties>
+				<token name="LODX">2</token>
+				<token name="LODY">2</token>
+				<Content name="MeshId"><url>http://www.roblox.com/asset/?id=20518365</url></Content>
+				<token name="MeshType">5</token>
+				<string name="Name">Mesh</string>
+				<Vector3 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<Vector3 name="Scale">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+				<Content name="TextureId"><url>http://www.roblox.com/asset/?id=19287687</url></Content>
+				<Vector3 name="VertexColor">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX7">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">PortalScript</string>
+				<ProtectedString name="Source">local beam = script.Parent
+local first = true
+
+function setUpPortal(part)
+
+&#9;if part.Parent:FindFirstChild(&quot;Humanoid&quot;) then
+&#9;&#9;beam:Destroy()
+&#9;end
+
+&#9;beam.Mesh.MeshId = &quot;http://www.roblox.com/asset/?id=3270017&quot;
+&#9;beam.Mesh.TextureId = &quot;http://www.roblox.com/asset/?id=3270066&quot;
+&#9;beam.Mesh.Scale = Vector3.new(10,10,10)
+&#9;beam.Anchored = true
+&#9;beam.CanCollide = false
+
+&#9;for i = 1, 3 do
+&#9;&#9;local fireOne = Instance.new(&quot;Fire&quot;)
+&#9;&#9;fireOne.Color = Color3.new(0,0,0)
+&#9;&#9;if i == 1 then
+&#9;&#9;&#9;fireOne.SecondaryColor = Color3.new(100/255,0,0)
+&#9;&#9;elseif i == 2 then
+&#9;&#9;&#9;fireOne.SecondaryColor = Color3.new(0,100/255,0)
+&#9;&#9;else
+&#9;&#9;&#9;fireOne.SecondaryColor = Color3.new(0,0,100/255)
+&#9;&#9;end
+&#9;&#9;fireOne.Heat = 0
+&#9;&#9;fireOne.Size = 15
+&#9;&#9;fireOne.Parent = beam
+&#9;end
+
+&#9;local xFactor = part.Position.x/math.abs(part.Position.x + part.Position.z)
+&#9;local zFactor = part.Position.z/math.abs(part.Position.x + part.Position.z)
+
+&#9;local weld = Instance.new(&quot;Weld&quot;)
+&#9;weld.Part0 = beam
+&#9;weld.Parent = beam
+&#9;weld.Part1 = game:GetService(&quot;Workspace&quot;).Terrain
+&#9;weld.C0 = CFrame.new(beam.Position - part.Position)
+&#9;weld.C1 = CFrame.new(beam.Position,part.Position)
+end
+
+function findOtherPortal(part)
+&#9;stuff = beam.Parent:GetChildren()
+&#9;for i = 1, #stuff do
+&#9;&#9;if stuff[i].className == &quot;Part&quot; and stuff[i] ~= beam then
+&#9;&#9;&#9;return stuff[i]
+&#9;&#9;end
+&#9;end
+&#9;return nil
+end
+
+function jumpPortal(part) --Fix implemented by Luckymaxer
+&#9;if part and part.Parent then
+&#9;&#9;local human = part.Parent:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;if human then
+&#9;&#9;&#9;local otherPortal = findOtherPortal(part)
+&#9;&#9;&#9;if otherPortal == nil then return end
+&#9;&#9;&#9;if otherPortal:FindFirstChild(&quot;PortalScript&quot;) == nil then return end
+&#9;&#9;&#9;beam.Parent.Portaling.Value = true
+&#9;&#9;&#9;part.Parent:MoveTo(otherPortal.Position + (beam.CFrame.lookVector.unit * -5))
+&#9;&#9;&#9;otherPortal.Sound:Play()
+&#9;&#9;&#9;wait(1)
+&#9;&#9;&#9;beam.Parent.Portaling.Value = false
+&#9;&#9;end
+&#9;end
+end
+
+function onTouched(part)
+&#9;if part and part.Parent then
+&#9;&#9;if first then
+&#9;&#9;&#9;first = false
+&#9;&#9;&#9;setUpPortal(part)
+&#9;&#9;else
+&#9;&#9;&#9;if beam.Parent.Portaling.Value == false then
+&#9;&#9;&#9;&#9;jumpPortal(part)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+beam.Touched:connect(onTouched)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX8">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-36.5585442</X>
+					<Y>8.06042576</Y>
+					<Z>66.1336212</Z>
+					<R00>0.701086879</R00>
+					<R01>-0.0539932474</R01>
+					<R02>0.711028814</R02>
+					<R10>-3.72529074e-009</R10>
+					<R11>0.997129261</R11>
+					<R12>0.0757187977</R12>
+					<R20>-0.713075936</R20>
+					<R21>-0.0530854575</R21>
+					<R22>0.699074149</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-37.6875343</X>
+					<Y>7.94019747</Y>
+					<Z>65.023613</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

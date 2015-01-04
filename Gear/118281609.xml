@@ -1,0 +1,431 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.5</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">SquidGun</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=118262720</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">199</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.270000011</X>
+					<Y>17.2900009</Y>
+					<Z>22.4800014</Z>
+					<R00>-0</R00>
+					<R01>0</R01>
+					<R02>1</R02>
+					<R10>-0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>-1</R20>
+					<R21>0</R21>
+					<R22>0</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">816</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.939999878</X>
+					<Y>2.22000194</Y>
+					<Z>0.849999905</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=118262597</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>2</X>
+						<Y>2</Y>
+						<Z>2</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=118262690</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SlashSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=62337944 </url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">Tool = script.Parent 
+
+local stillEquipped = true
+
+function onEquippedLocal(mouse)
+&#9;stillEquipped = true
+&#9;if mouse == nil then
+&#9;&#9;print(&quot;Mouse not found&quot;)
+&#9;&#9;return
+&#9;end
+&#9;while stillEquipped do 
+&#9;&#9;print(&quot;Setting Mouse to go&quot;)
+&#9;&#9;mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;&#9;while Tool.Enabled and stillEquipped do
+&#9;&#9;&#9;wait(0.01)
+&#9;&#9;end
+&#9;&#9;print(&quot;Setting Mouse to wait&quot;)
+&#9;&#9;mouse.Icon = &quot;rbxasset://textures\\GunWaitCursor.png&quot;
+&#9;&#9;while not Tool.Enabled and stillEquipped do
+&#9;&#9;&#9;wait(0.01)
+&#9;&#9;end&#9;&#9;
+&#9;end
+end
+
+function onUnequippedLocal()
+&#9;stillEquipped = false
+end
+
+Tool.Equipped:connect(onEquippedLocal)
+Tool.Unequipped:connect(onUnequippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SquidScript</string>
+				<ProtectedString name="Source">local Tool = script.Parent
+local Gun = Tool.Handle
+
+local Player 
+local Character 
+local Humanoid
+local Torso 
+
+Tool.Enabled = true 
+
+local RunService = Game:GetService(&apos;RunService&apos;)
+
+local LastAttack = 0 
+local DashTime = 0 
+local LastKeyDown = 0
+
+local Missile = Instance.new(&apos;Part&apos;)
+Missile.Shape = &apos;Ball&apos;
+Missile.FormFactor = 3 
+Missile.BrickColor = BrickColor.new(&apos;Bright blue&apos;)
+Missile.Size = Vector3.new(0.4, 0.4, 0.4)
+
+local FloatForce = Instance.new(&apos;BodyForce&apos;)
+FloatForce.force = Vector3.new(0, Missile:GetMass() * 196.2, 0)
+FloatForce.Parent = Missile 
+
+local MissileVelocity = 75.0
+
+local Debris = Game:GetService(&apos;Debris&apos;) 
+
+local BodyGyro
+local NumSpinCycles = 168 -- every 42 is 1.05 seconds
+local TorsoCFrames_List = {}
+
+local Mouse 
+
+local function UnleashTheInnerBeast(key)
+&#9;key = key:lower()
+&#9;if key == &apos;w&apos; then 
+&#9;&#9;local wTime = RunService.Stepped:wait()
+&#9;&#9;if (wTime - LastKeyDown &lt; 0.2) then DashTime = wTime end 
+&#9;&#9;LastKeyDown = wTime 
+&#9;end 
+end
+
+local function Shoot(target)
+&#9;local target = target or Mouse.Hit.p 
+
+&#9;local missile = Missile:Clone() 
+
+&#9;local mScript = Tool:WaitForChild(&apos;MissileScript&apos;):Clone()
+&#9;mScript.Parent = missile 
+&#9;mScript:WaitForChild(&apos;Character&apos;).Value = Character 
+
+&#9;missile.Parent = Game.Workspace 
+&#9;mScript.Disabled = false 
+
+&#9;missile.CFrame = Torso.CFrame + Torso.CFrame.lookVector * 2.0 
+&#9;missile.Velocity = (target - missile.Position).unit * MissileVelocity 
+
+&#9;Debris:AddItem(missile, 6.0) 
+end 
+
+local function SpinLikeTheWind()
+&#9;SpinAnim = Humanoid:LoadAnimation(Tool.SpinAnim)
+&#9;if SpinAnim then SpinAnim:Play() end
+
+&#9;BodyGyro = Instance.new(&quot;BodyGyro&quot;) 
+&#9;BodyGyro.P = 100000 
+&#9;BodyGyro.maxTorque = Vector3.new(BodyGyro.P, BodyGyro.P, BodyGyro.P) 
+&#9;BodyGyro.Name = &quot;BG&quot; 
+
+&#9;TorsoCFrames_List[1] = Torso.CFrame * CFrame.Angles(0, 1*math.pi/3, 0) 
+&#9;TorsoCFrames_List[2] = Torso.CFrame * CFrame.Angles(0, 2*math.pi/3, 0) 
+&#9;TorsoCFrames_List[3] = Torso.CFrame * CFrame.Angles(0, math.pi, 0) 
+&#9;TorsoCFrames_List[4] = Torso.CFrame * CFrame.Angles(0, 4*math.pi/3, 0) 
+&#9;TorsoCFrames_List[5] = Torso.CFrame * CFrame.Angles(0, 5*math.pi/3, 0) 
+&#9;TorsoCFrames_List[6] = Torso.CFrame 
+
+&#9;BodyGyro.Parent = Torso 
+
+&#9;Spawn(function()
+&#9;&#9;wait(2.1)
+&#9;&#9;if SpinAnim then SpinAnim:Play() end
+&#9;end)
+
+&#9;for i = 1, NumSpinCycles do 
+&#9;&#9;if math.random() &lt; 0.2 then 
+&#9;&#9;&#9;Shoot(Torso.CFrame.p + Torso.CFrame.lookVector * 60.0)
+&#9;&#9;end 
+&#9;&#9;local c = i%6 + 1 
+&#9;&#9;if BodyGyro then BodyGyro.cframe = TorsoCFrames_List[c] end 
+&#9;&#9;wait(0.025) 
+&#9;end      &#9;
+ &#9;
+&#9;if BodyGyro then BodyGyro:Destroy() end 
+end 
+
+local function OnActivated()
+&#9;if not Tool.Enabled  then 
+&#9;&#9;return 
+&#9;end 
+
+&#9;if not Torso or not Humanoid then 
+&#9;&#9;return 
+&#9;end 
+
+&#9;Tool.Enabled = false 
+
+&#9;local wTime = RunService.Stepped:wait() 
+&#9;if wTime - DashTime &lt; 0.2 then 
+&#9;&#9;SpinLikeTheWind()
+&#9;else 
+&#9;&#9;Shoot() 
+&#9;end
+
+&#9;wait(0.25) 
+
+&#9;Tool.Enabled = true 
+end
+
+local function OnEquipped()
+&#9;Character = Tool.Parent 
+&#9;Player = Game.Players:GetPlayerFromCharacter(Character)
+
+&#9;Torso = Character:WaitForChild(&apos;Torso&apos;)
+&#9;Humanoid = Character:WaitForChild(&apos;Humanoid&apos;)
+
+&#9;Mouse = Player:GetMouse() 
+&#9;Mouse.KeyDown:connect(UnleashTheInnerBeast)
+end 
+
+local function OnUnequipped()
+end 
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Unequipped:connect(OnUnequipped)
+Tool.Activated:connect(OnActivated) </ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX6">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=60816404</url></Content>
+				<string name="Name">SpinAnim</string>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX7">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">MissileScript</string>
+				<ProtectedString name="Source">local NewInstance = LoadLibrary(&apos;RbxUtility&apos;)
+
+local SquidGui = NewInstance.Create&apos;ScreenGui&apos;
+&#9;&#9;&#9;&#9;{
+&#9;&#9;&#9;&#9;&#9;Name = &apos;SquidGui&apos;;
+
+&#9;&#9;&#9;&#9;&#9;NewInstance.Create&apos;Frame&apos;
+&#9;&#9;&#9;&#9;&#9;{
+&#9;&#9;&#9;&#9;&#9;&#9;Name = &apos;SquidFrame&apos;;
+&#9;&#9;&#9;&#9;&#9;&#9;Size = UDim2.new(1, 0, 1, 0);
+&#9;&#9;&#9;&#9;&#9;&#9;BackgroundTransparency = 1.0; 
+&#9;&#9;&#9;&#9;&#9;&#9;Position = UDim2.new(0, 0, 0, 0); 
+&#9;&#9;&#9;&#9;&#9;}
+&#9;&#9;&#9;&#9;}
+&#9;&#9;&#9;&#9;
+
+local Missile = script.Parent 
+
+local Debris = Game:GetService(&apos;Debris&apos;) 
+
+local Images_List = {118259001,  118261268} 
+
+local function FireInk(sGui)
+&#9;if not sGui then return end 
+&#9;local img = NewInstance.Create&apos;ImageLabel&apos; 
+&#9;&#9;&#9;&#9;{
+&#9;&#9;&#9;&#9;&#9;Name = &apos;Ink&apos;;
+&#9;&#9;&#9;&#9;&#9;BackgroundTransparency = 1.0;
+&#9;&#9;&#9;&#9;&#9;Size = UDim2.new(0, math.random(125, 150), 0, math.random(125, 150));
+&#9;&#9;&#9;&#9;&#9;Position = UDim2.new(math.random(), 0, math.random(), 0);
+&#9;&#9;&#9;&#9;&#9;Image = &apos;http://www.roblox.com/asset/?id=&apos; .. Images_List[math.random(1, #Images_List)];
+&#9;&#9;&#9;&#9;&#9;Parent = sGui:WaitForChild(&apos;SquidFrame&apos;);&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;}
+&#9;&#9;&#9;&#9;
+&#9;Debris:AddItem(img, 7.5) 
+end 
+
+Missile.Touched:connect(function(hPart)
+&#9;if hPart and hPart.Parent and Missile then 
+&#9;&#9;local character = hPart.Parent 
+&#9;&#9;local player = Game.Players:GetPlayerFromCharacter(character) 
+&#9;&#9;if script:WaitForChild(&apos;Character&apos;).Value == character then 
+&#9;&#9;&#9;return 
+&#9;&#9;end 
+&#9;&#9;if player then 
+&#9;&#9;&#9;local playerGui = player:FindFirstChild(&apos;PlayerGui&apos;)
+&#9;&#9;&#9;if playerGui then 
+&#9;&#9;&#9;&#9;local sGui = playerGui:FindFirstChild(&apos;SquidGui&apos;) 
+&#9;&#9;&#9;&#9;if not sGui then &#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;local sGui = SquidGui:Clone()
+&#9;&#9;&#9;&#9;&#9;sGui.Parent = playerGui 
+&#9;&#9;&#9;&#9;end 
+&#9;&#9;&#9;&#9;FireInk(sGui) 
+&#9;&#9;&#9;end 
+&#9;&#9;end 
+&#9;&#9;
+&#9;Missile:Destroy() 
+&#9;end 
+end) 
+
+wait(10.0)
+Missile:Destroy() </ProtectedString>
+			</Properties>
+			<Item class="ObjectValue" referent="RBX8">
+				<Properties>
+					<string name="Name">Character</string>
+					<Ref name="Value">null</Ref>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX9">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-2.35014701</X>
+					<Y>17.7856197</Y>
+					<Z>23.0764599</Z>
+					<R00>0.275631338</R00>
+					<R01>0.214603454</R01>
+					<R02>-0.937002003</R02>
+					<R10>3.7252903e-009</R10>
+					<R11>0.97476089</R11>
+					<R12>0.223251447</R12>
+					<R20>0.961263418</R20>
+					<R21>-0.0615350977</R21>
+					<R22>0.268674642</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-0.269999981</X>
+					<Y>17.2900009</Y>
+					<Z>22.4800014</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

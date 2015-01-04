@@ -1,0 +1,312 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0.300000012</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>-0</R02>
+				<R10>-0</R10>
+				<R11>1</R11>
+				<R12>-0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">GoalaCola</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=28501643</url></Content>
+			<bool name="archivable">true</bool>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-11.5</X>
+					<Y>1</Y>
+					<Z>5.5</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="DraggingV1">false</bool>
+				<float name="Elasticity">0.5</float>
+				<token name="FormFactor">1</token>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<bool name="archivable">true</bool>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1.20000005</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=28501599</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=28501623</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<bool name="archivable">true</bool>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Goal</string>
+					<float name="Pitch">1</float>
+					<int name="PlayCount">-1</int>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=28490593</url></Content>
+					<float name="Volume">0.5</float>
+					<bool name="archivable">true</bool>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX4">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Drink</string>
+					<float name="Pitch">1</float>
+					<int name="PlayCount">-1</int>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=28492762</url></Content>
+					<float name="Volume">0.5</float>
+					<bool name="archivable">true</bool>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">PotionScript</string>
+				<ProtectedString name="Source">local Tool = script.Parent;
+local dancer = nil
+local debris = game:GetService(&quot;Debris&quot;)
+local enabled = true
+local drinker = nil
+local humanoid = nil
+
+local equalizingForce = 236 / 1.2 -- amount of force required to levitate a mass
+local gravity = 1.05 -- things float at &gt; 1
+
+function onActivated()
+	if not enabled  then
+		return
+	end
+
+	enabled = false
+
+		humanoid = Tool.Parent:FindFirstChild(&quot;Humanoid&quot;)
+		local bodyPos = Instance.new(&quot;BodyPosition&quot;)
+		
+		drinker = humanoid:LoadAnimation(Tool.drink)
+		drinker:Play()
+		wait(0.35)
+		Tool.Handle.Drink:Play()
+		wait(1)
+		drinker:remove()
+		
+		local hats = {}
+
+		if humanoid.Parent:FindFirstChild(&quot;GoalHat&quot;) == nil then
+				
+			local humanStuff = humanoid.Parent:GetChildren()
+			for i = 1, #humanStuff do
+
+				if humanStuff[i].className == &quot;Hat&quot; then
+					table.insert(hats,humanStuff[i])
+					if humanStuff[i]:FindFirstChild(&quot;Handle&quot;) ~= nil then
+						humanStuff[i].Handle.Transparency = 1
+					end
+				end
+	
+			end
+
+			local hat = Instance.new(&quot;Hat&quot;)
+			hat.AttachmentPos = Vector3.new(0, 0.7, 0.1)
+
+			local handle = Instance.new(&quot;Part&quot;)
+			handle.Name = &quot;Handle&quot;
+			handle.Size = Vector3.new(4,2.4,2)
+			local mesh = Instance.new(&quot;SpecialMesh&quot;)
+
+			mesh.MeshId = &quot;http://www.roblox.com/asset/?id=28663399&quot;
+			mesh.TextureId = &quot;http://www.roblox.com/asset/?id=28663458&quot;
+
+			mesh.Parent = handle
+			handle.Parent = hat
+
+			hat.Parent = humanoid.Parent
+			--[[local hat = Tool.GoalHat:clone()
+			hat.Parent = humanoid.Parent]]
+			debris:AddItem(hat,6.3)
+		end
+
+		Tool.Handle.Goal:Play()
+
+		local mass = recursiveGetLift(Tool.Parent)
+
+		bodyPos.P = mass * 5
+		bodyPos.D = 0
+		bodyPos.maxForce = Vector3.new(bodyPos.P,bodyPos.P,bodyPos.P)
+		bodyPos.position = Vector3.new(0,0,0)
+
+		local torso = humanoid.Parent:FindFirstChild(&quot;Torso&quot;)
+		if torso ~= nil then
+
+			local lookAt = torso.CFrame.lookVector.unit
+			local denom = math.abs(lookAt.x) + math.abs(lookAt.z)
+			local xPos = lookAt.x/denom
+			local zPos = lookAt.z/denom
+			local moveForward = 48
+
+			bodyPos.position  = Vector3.new(torso.Position.x + (xPos * moveForward), torso.Position.y, torso.Position.z + (zPos * moveForward))
+
+		end
+
+		dancer = humanoid:LoadAnimation(Tool.goal)
+		dancer:Play(0.1,1,0.5)
+		wait(0.5)
+		if torso ~= nil then
+			bodyPos.Parent = torso
+		end
+		debris:AddItem(bodyPos,2.25)
+		wait(2.3)
+		humanoid.Jump = true
+		wait(3.5)
+
+		for i = 1, #hats do
+			hats[i].Handle.Transparency = 0
+		end
+
+	enabled = true
+
+end
+
+function onEquipped()
+	Tool.Handle.Goal:Stop()
+end
+
+function onUnequipped()
+	print(&quot;hit it&quot;)
+
+	Tool.Handle.Goal:Stop()
+	if dancer ~= nil then
+		dancer:Stop()
+		dancer:remove()
+	end
+
+end
+
+function recursiveGetLift(node)
+	local m = 0
+	local c = node:GetChildren()
+	if (node:FindFirstChild(&quot;Head&quot;) ~= nil) then head = node:FindFirstChild(&quot;Head&quot;) end -- nasty hack to detect when your parts get blown off
+
+	for i=1,#c do
+		if c[i].className == &quot;Part&quot; then	
+			if (head ~= nil and (c[i].Position - head.Position).magnitude &lt; 10) then -- GROSS
+				if c[i].Name == &quot;Handle&quot; then
+					m = m + (c[i]:GetMass() * equalizingForce * 1) -- hack that makes hats weightless, so different hats don&apos;t change your jump height
+				else
+					m = m + (c[i]:GetMass() * equalizingForce * gravity)
+				end
+			end
+		end
+		m = m + recursiveGetLift(c[i])
+	end
+	return m
+end
+
+Tool.Activated:connect(onActivated)
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(OnUnequipped)
+</ProtectedString>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX6">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=28488254</url></Content>
+				<string name="Name">goal</string>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX7">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=28492456</url></Content>
+				<string name="Name">drink</string>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

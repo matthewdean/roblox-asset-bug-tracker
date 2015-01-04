@@ -1,0 +1,466 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.400000006</Y>
+				<Z>0.300000012</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">TelamonTool</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=105331760</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0.100000001</X>
+					<Y>0</Y>
+					<Z>-0.300000012</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1.80000019</X>
+					<Y>2.20000029</Y>
+					<Z>0.600000024</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=105331774</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.349999994</X>
+						<Y>0.349999994</Y>
+						<Z>0.349999994</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=105331780</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX3">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SummonOnce</string>
+				<ProtectedString name="Source">-----------------
+--| Constants |--
+-----------------
+
+local PET_ID = 105428829
+local AI_SCRIPT_NAME = &apos;TelamonAi&apos;
+
+--------------------
+--| WaitForChild |--
+--------------------
+
+-- Waits for parent.child to exist, then returns it
+local function WaitForChild(parent, childName)
+&#9;assert(parent, &quot;ERROR: WaitForChild: parent is nil&quot;)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+-----------------
+--| Variables |--
+-----------------
+
+local InsertService = Game:GetService(&apos;InsertService&apos;)
+local PlayersService = Game:GetService(&apos;Players&apos;)
+
+local MyPlayer = PlayersService.LocalPlayer
+
+local Tool = script.Parent
+local ToolHandle = Tool.Handle
+
+local AiScript = WaitForChild(script, AI_SCRIPT_NAME)
+local CreatorTag = WaitForChild(AiScript, &apos;creator&apos;)
+
+local Pet = nil
+local MyHumanoid = nil
+
+-----------------
+--| Functions |--
+-----------------
+
+local function OnEquipped()
+&#9;CreatorTag.Value = MyPlayer
+&#9;if MyPlayer.Character then
+&#9;&#9;MyHumanoid = MyPlayer.Character:FindFirstChild(&apos;Humanoid&apos;)
+&#9;end
+end
+
+local function OnActivated()
+&#9;if not Pet then -- LoadAsset failed, try again
+&#9;&#9;Pet = InsertService:LoadAsset(PET_ID):GetChildren()[1]
+&#9;end
+&#9;if Pet and Tool.Enabled and MyHumanoid and MyHumanoid.Health &gt; 0 then
+&#9;&#9;Tool.Enabled = false
+
+&#9;&#9;-- Place the Pet
+&#9;&#9;Pet.Parent = Workspace
+&#9;&#9;Pet:MoveTo(ToolHandle.Position)
+
+&#9;&#9;-- Give Pet the AiScript
+&#9;&#9;AiScript.Parent = Pet
+&#9;&#9;AiScript.Disabled = false
+
+&#9;&#9;Tool:Destroy()
+&#9;end
+end
+
+--------------------
+--| Script Logic |--
+--------------------
+
+Pet = InsertService:LoadAsset(PET_ID):GetChildren()[1]
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Activated:connect(OnActivated)
+</ProtectedString>
+			</Properties>
+			<Item class="Script" referent="RBX4">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">TelamonAi</string>
+					<ProtectedString name="Source">-----------------
+--| Constants |--
+-----------------
+
+local THROWABLE_DAMAGE = 15
+local THROWABLE_CHANCE = 0.05
+local THROWABLE_TIMETOLIVE = 15
+
+local ONE_STEP = 1 / 30
+
+--------------------
+--| WaitForChild |--
+--------------------
+
+-- Waits for parent.child to exist, then returns it
+local function WaitForChild(parent, childName)
+&#9;assert(parent, &quot;ERROR: WaitForChild: parent is nil&quot;)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+-----------------
+--| Variables |--
+-----------------
+
+local DebrisService = Game:GetService(&apos;Debris&apos;)
+local PlayersService = Game:GetService(&apos;Players&apos;)
+
+local ThrowSound = WaitForChild(script, &apos;Throw&apos;)
+local SwooshSound = WaitForChild(script, &apos;Swoosh&apos;)
+local SmackSound = WaitForChild(script, &apos;Smack&apos;)
+
+local Pet = script.Parent
+local PetHumanoid = WaitForChild(Pet, &apos;Humanoid&apos;)
+local Throwable = WaitForChild(Pet, &apos;Throwable&apos;)
+
+local CreatorTag = WaitForChild(script, &apos;creator&apos;)
+
+local MyPlayer = CreatorTag.Value
+local MyModel = MyPlayer.Character
+local MyHumanoid = MyModel.Humanoid
+
+local LastThrowTime = 0
+
+-----------------
+--| Functions |--
+-----------------
+
+-- Returns the closest living Humanoid to position who isn&apos;t in excludeList
+local function FindClosestHumanoid(position, excludeList) -- (Vector3, table)
+&#9;if not position then print(&quot;Need a Vector3 position&quot;) return nil end
+
+&#9;-- Change list values to keys so we can use indexing
+&#9;local excludeSet = {}
+&#9;if excludeList and type(excludeList) == &quot;table&quot; then
+&#9;&#9;for _, l in ipairs(excludeList) do
+&#9;&#9;&#9;excludeSet[l] = true
+&#9;&#9;end
+&#9;end
+
+&#9;-- Search through Workspace children
+&#9;local closestHumanoid = nil
+&#9;for _, child in pairs(Game.Workspace:GetChildren()) do
+&#9;&#9;if (child and child:FindFirstChild(&quot;Humanoid&quot;) and child.Humanoid.Health &gt; 0 and not excludeSet[child.Humanoid])
+&#9;&#9;and (not closestHumanoid or (child.Humanoid.Torso.Position - position).magnitude &lt; (closestHumanoid.Torso.Position - position).magnitude) then
+&#9;&#9;&#9;closestHumanoid = child.Humanoid
+&#9;&#9;end
+&#9;end
+&#9;return closestHumanoid --NOTE: Can be nil
+end
+
+-- Removes any old creator tags and applies new ones to the specified target
+local function ApplyTags(target)
+&#9;while target:FindFirstChild(&apos;creator&apos;) do
+&#9;&#9;target.creator:Destroy()
+&#9;end
+&#9;local creatorTag = CreatorTag:Clone()
+&#9;DebrisService:AddItem(creatorTag, 4)
+&#9;creatorTag.Parent = target
+end
+
+local function OnThrowableReachedTarget(throwable, targetHumanoid)
+&#9;local smackSound = throwable:FindFirstChild(&apos;Smack&apos;)
+&#9;if smackSound then
+&#9;&#9;smackSound:Play()
+&#9;end
+&#9;if targetHumanoid.Health &gt; 0 then
+&#9;&#9;ApplyTags(targetHumanoid)
+&#9;&#9;targetHumanoid:TakeDamage(THROWABLE_DAMAGE)
+&#9;end
+&#9;throwable:Destroy()
+end
+
+local function PickNewTarget(throwable)
+&#9;local homing = throwable:FindFirstChild(&apos;Homing&apos;)
+&#9;if homing then
+&#9;&#9;local targetHumanoid = FindClosestHumanoid(throwable.Position, {MyHumanoid, PetHumanoid})
+&#9;&#9;if targetHumanoid and targetHumanoid.Torso then
+&#9;&#9;&#9;local targetHead = targetHumanoid.Parent:FindFirstChild(&apos;Head&apos;)
+&#9;&#9;&#9;homing.Target = targetHead or targetHumanoid.Torso
+&#9;&#9;&#9;return
+&#9;&#9;end
+&#9;&#9;-- Otherwise, fall
+&#9;&#9;homing:Destroy()
+&#9;end
+&#9;-- Fall to kill plane
+&#9;throwable.CanCollide = false
+end
+
+-- Change target when the old target disappears
+local function OnTargetModelChanged(targetModel, property, throwable)
+&#9;if property == &apos;Parent&apos; and targetModel.Parent == nil then
+&#9;&#9;PickNewTarget(throwable)
+&#9;end
+end
+
+--------------------
+--| Script Logic |--
+--------------------
+
+ThrowSound.Parent = Throwable --NOTE: To be played from hand
+SwooshSound.Parent = Throwable --NOTE: To be played from projectile
+SmackSound.Parent = Throwable --NOTE: To be played from projectile on hit
+
+PetHumanoid.Health = PetHumanoid.MaxHealth -- This never works
+Delay(1, function() PetHumanoid.Health = PetHumanoid.Health + 1 end) -- So at least trigger healing
+
+MyHumanoid.Died:connect(function()
+&#9;MyHumanoid = nil
+end)
+
+PlayersService.PlayerRemoving:connect(function(player)
+&#9;if player == MyPlayer then
+&#9;&#9;MyHumanoid = nil
+&#9;end
+end)
+
+while PetHumanoid and MyHumanoid and MyHumanoid.Health &gt; 0 do
+&#9;local torso = MyHumanoid.Torso
+&#9;PetHumanoid:MoveTo(torso.Position + Vector3.new(4, 0, 4), torso)
+
+&#9;local now = tick()
+&#9;if now - LastThrowTime &gt; 0.5 and math.random() &lt;= THROWABLE_CHANCE then
+&#9;&#9;--print(&quot;Throw&quot;)
+&#9;&#9;LastThrowTime = now
+&#9;&#9;local targetHumanoid = FindClosestHumanoid(torso.Position, {MyHumanoid, PetHumanoid})
+&#9;&#9;if targetHumanoid and targetHumanoid.Torso then
+&#9;&#9;&#9;local targetModel = targetHumanoid.Parent
+&#9;&#9;&#9;local targetHead = targetModel:FindFirstChild(&apos;Head&apos;)
+&#9;&#9;&#9;Spawn(function()
+&#9;&#9;&#9;&#9;ThrowSound:Play()
+&#9;&#9;&#9;&#9;local throwable = Throwable:Clone()
+&#9;&#9;&#9;&#9;throwable.Name = &apos;HomingTurkey&apos;
+&#9;&#9;&#9;&#9;local homing = Instance.new(&apos;RocketPropulsion&apos;)
+&#9;&#9;&#9;&#9;homing.Name = &apos;Homing&apos;
+&#9;&#9;&#9;&#9;homing.Target = targetHead or targetHumanoid.Torso
+&#9;&#9;&#9;&#9;homing.ReachedTarget:connect(function()
+&#9;&#9;&#9;&#9;&#9;OnThrowableReachedTarget(throwable, targetHumanoid)
+&#9;&#9;&#9;&#9;end)
+&#9;&#9;&#9;&#9;targetModel.Changed:connect(function(property)
+&#9;&#9;&#9;&#9;&#9;OnTargetModelChanged(targetModel, property, throwable)
+&#9;&#9;&#9;&#9;end)
+&#9;&#9;&#9;&#9;homing.Parent = throwable
+&#9;&#9;&#9;&#9;DebrisService:AddItem(throwable, THROWABLE_TIMETOLIVE)
+&#9;&#9;&#9;&#9;throwable.Parent = Workspace
+&#9;&#9;&#9;&#9;throwable.Velocity = Vector3.new(0, 100, 0)
+&#9;&#9;&#9;&#9;wait(0.5)
+&#9;&#9;&#9;&#9;if throwable then
+&#9;&#9;&#9;&#9;&#9;local projectileSwoosh = throwable:FindFirstChild(&apos;Swoosh&apos;)
+&#9;&#9;&#9;&#9;&#9;if projectileSwoosh then
+&#9;&#9;&#9;&#9;&#9;&#9;projectileSwoosh:Play()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;throwable.Size = Vector3.new(0.5, 1, 0.5)
+&#9;&#9;&#9;&#9;&#9;throwable.CanCollide = true
+&#9;&#9;&#9;&#9;&#9;homing:Fire()
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end)
+&#9;&#9;end
+&#9;end
+&#9;wait(ONE_STEP)
+end
+
+DebrisService:AddItem(Pet, 0)
+</ProtectedString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX5">
+					<Properties>
+						<string name="Name">creator</string>
+						<Ref name="Value">null</Ref>
+					</Properties>
+				</Item>
+				<Item class="Sound" referent="RBX6">
+					<Properties>
+						<bool name="Looped">false</bool>
+						<string name="Name">Throw</string>
+						<float name="Pitch">2</float>
+						<bool name="PlayOnRemove">false</bool>
+						<Content name="SoundId"><url>http://www.roblox.com/asset/?id=105420672</url></Content>
+						<float name="Volume">0.5</float>
+					</Properties>
+				</Item>
+				<Item class="Sound" referent="RBX7">
+					<Properties>
+						<bool name="Looped">true</bool>
+						<string name="Name">Swoosh</string>
+						<float name="Pitch">2</float>
+						<bool name="PlayOnRemove">false</bool>
+						<Content name="SoundId"><url>rbxasset://sounds/Rocket whoosh 01.wav</url></Content>
+						<float name="Volume">0.200000003</float>
+					</Properties>
+				</Item>
+				<Item class="Sound" referent="RBX8">
+					<Properties>
+						<bool name="Looped">false</bool>
+						<string name="Name">Smack</string>
+						<float name="Pitch">1</float>
+						<bool name="PlayOnRemove">false</bool>
+						<Content name="SoundId"><url>http://www.roblox.com/asset/?id=105424180</url></Content>
+						<float name="Volume">0.5</float>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX9">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-1.31669843</X>
+					<Y>0.354394794</Y>
+					<Z>-2.09183717</Z>
+					<R00>-0.819403827</R00>
+					<R01>0.0809870735</R01>
+					<R02>-0.567466617</R02>
+					<R10>7.45057971e-009</R10>
+					<R11>0.989968896</R11>
+					<R12>0.14128527</R12>
+					<R20>0.573216617</R20>
+					<R21>0.115769684</R21>
+					<R22>-0.811184406</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-0.181765556</X>
+					<Y>0.071824342</Y>
+					<Z>-0.469468951</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,0 +1,510 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">PowerGlove</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=91363152 </url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>0.600000024</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">1</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>2</X>
+					<Y>1.20000005</Y>
+					<Z>2</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=91363051 </url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=91363138 </url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">PowerDown</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=91372614</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX4">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">PowerUp</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=91367668</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Use</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=91372190</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBX6">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">GloveScript</string>
+				<ProtectedString name="Source">-- Miiiinndd the drop!
+local Workspace = game.Workspace
+local Debris = game.Debris
+
+local Radius = 10
+
+local function waitForChild(parent, child)
+&#9;while parent:FindFirstChild(child) == nil do 
+&#9;&#9;wait()
+&#9;end 
+&#9;return parent[child] 
+end 
+
+local Tool = script.Parent
+local Handle = waitForChild(Tool, &apos;Handle&apos;)
+local Character = nil
+local PowerUp = waitForChild(Handle, &quot;PowerUp&quot;)
+local PowerDown = waitForChild(Handle, &quot;PowerDown&quot;)
+local UseSound = waitForChild(Handle, &quot;Use&quot;)
+
+local Lifting = waitForChild(Tool, &apos;Lifting&apos;)
+local otherParts = {}
+local liftingForces = {}
+
+
+local function ParticlePart(PrimaryColor, SecondaryColor)
+&#9;local part = Instance.new(&apos;Part&apos;)
+&#9;part.Transparency = 0
+&#9;part.Size = Vector3.new(1, 1, 1)
+&#9;
+&#9;local effect = Instance.new(&apos;Fire&apos;)
+&#9;effect.Color = PrimaryColor
+&#9;effect.SecondaryColor = SecondaryColor
+&#9;effect.Size = 3
+&#9;effect.Parent = part
+
+&#9;return part
+end
+
+local function RecursiveModelMass(Model)
+&#9;local mass = 0
+&#9;for _, v in pairs(Model:GetChildren()) do
+&#9;&#9;mass = mass + RecursiveModelMass(v)
+&#9;end
+&#9;if Model:IsA(&apos;Part&apos;) then
+&#9;&#9;mass = mass + Model:GetMass()
+&#9;end
+&#9;print(Model, mass)
+&#9;return mass
+end
+
+
+function ThrowToPoint(location)
+&#9;Lifting.Value = false
+
+&#9;for _, v in pairs(otherParts) do
+&#9;&#9;v.CanCollide = true
+&#9;&#9;game.Debris:AddItem(v, 1.5)
+&#9;&#9;v.Touched:connect(function(part) 
+&#9;&#9;&#9;if not part then return end
+&#9;&#9;&#9;local character = part.Parent
+&#9;&#9;&#9;if not character then return end
+&#9;&#9;&#9;if character == Character then return end
+&#9;&#9;&#9;local humanoid = character:FindFirstChild(&apos;Humanoid&apos;)
+&#9;&#9;&#9;if not humanoid then return end
+&#9;&#9;
+&#9;&#9;&#9;humanoid:TakeDamage(2) -- Get hit!
+&#9;&#9;&#9; 
+&#9;&#9;end)
+&#9;end
+&#9;
+&#9;for _, v in pairs(liftingForces) do
+&#9;&#9;if v.Parent and v.Parent.Name == &apos;Torso&apos; then
+&#9;&#9;&#9;game.Debris:AddItem(v, 1.5)
+&#9;&#9;end
+&#9;&#9;v.position = location
+&#9;&#9;
+&#9;end
+&#9;
+end
+
+function LiftArea(location)
+&#9;Lifting.Value = true
+&#9;-- Create the effect
+&#9;otherParts = {}
+&#9;for i = 1, 5 do
+&#9;&#9;otherParts[i] = ParticlePart(BrickColor.new(28).Color, Color3.new(70/255, 69/255, 19/255))
+&#9;&#9;otherParts[i].Position = location + Vector3.new(math.cos(math.rad((i/5) * 360 + math.random(-180, 180))) * Radius, 2, math.sin(math.rad((i/5) * 360 + math.random(-180, 180))) * Radius)
+&#9;&#9;otherParts[i].CanCollide = false
+&#9;&#9;otherParts[i].Parent = Workspace
+&#9;&#9;
+
+&#9;&#9;local target = otherParts[i].Position + Vector3.new(0, 5, 0)
+&#9;&#9;local force = Instance.new(&apos;BodyPosition&apos;)
+&#9;&#9;force.D = .9 + math.random(-.1, .1)
+&#9;&#9;force.P = 100 + math.random(-15, 15)
+&#9;&#9;force.maxForce = Vector3.new(500, 500, 500)
+&#9;&#9;force.position = target
+&#9;&#9;table.insert(liftingForces, force)
+&#9;&#9;force.Parent = otherParts[i]
+&#9;&#9;&#9;
+&#9;
+&#9;&#9;local mesh = Instance.new(&apos;SpecialMesh&apos;)
+&#9;&#9;mesh.MeshId = &apos;http://www.roblox.com/asset/?id=1290033&apos;
+&#9;&#9;mesh.TextureId = &apos;http://www.roblox.com/asset/?id=1290030&apos;
+&#9;&#9;mesh.Parent = otherParts[i]
+
+&#9;end
+
+&#9;-- Find any players unlucky enough to be near the hit
+&#9;local players = game.Players:GetPlayers()
+&#9;for _, v in pairs(players) do
+&#9;&#9;local character = v.Character
+&#9;&#9;if character and character ~= Tool.Parent then
+&#9;&#9;&#9;local torso = character:FindFirstChild(&apos;Torso&apos;)
+&#9;&#9;&#9;if torso then
+&#9;&#9;&#9;&#9;if (torso.Position - location).magnitude &lt;= Radius then
+&#9;&#9;&#9;&#9;&#9;character.Humanoid.Sit = true
+&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;local target = torso.Position + Vector3.new(0, 5, 0)
+&#9;&#9;&#9;&#9;&#9;local force = Instance.new(&apos;BodyPosition&apos;)
+&#9;&#9;&#9;&#9;&#9;force.D = .99 + math.random(-.1, .1)
+&#9;&#9;&#9;&#9;&#9;force.P = 196.2 + math.random(-15, 15) + RecursiveModelMass(character) * 500
+&#9;&#9;&#9;&#9;&#9;force.maxForce = Vector3.new(5000, 10000, 5000)
+&#9;&#9;&#9;&#9;&#9;force.position = target
+&#9;&#9;&#9;&#9;&#9;table.insert(liftingForces, force)
+&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;force.Parent = torso
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+
+&#9;delay(4, function()
+&#9;&#9;if not Lifting.Value then return end
+
+&#9;&#9;Lifting.Value = false
+&#9;&#9;
+&#9;&#9;for _, v in pairs(liftingForces) do
+&#9;&#9;&#9;&#9;if v.Parent and v.Parent:IsA(&apos;Part&apos;) then v.Parent.CanCollide = true end
+&#9;&#9;&#9;&#9;v:Destroy()
+&#9;&#9;&#9;&#9;for _, p in pairs(otherParts) do
+&#9;&#9;&#9;&#9;&#9;game.Debris:AddItem(p, 1.5)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;
+&#9;end)
+
+end
+
+
+function ShootTracer(target)
+&#9;local direction = (target - Handle.Position).unit
+
+&#9;UseSound:Play()&#9;
+
+
+&#9;local fireEffect = ParticlePart(Color3.new(85 / 255, 1, 1), Color3.new(170 / 255, 1, 1))
+&#9;fireEffect.Position = Handle.Position + (direction * 4)
+&#9;fireEffect.Transparency = 1
+&#9;local force = Instance.new(&apos;BodyVelocity&apos;)
+&#9;force.P = 1000
+&#9;force.maxForce = Vector3.new(1000, 1000, 1000)
+&#9;force.velocity = direction * 100
+&#9;
+&#9;force.Parent = fireEffect
+
+&#9;fireEffect.Touched:connect(function(part) 
+&#9;&#9;if Lifting.Value then
+&#9;&#9;&#9;ThrowToPoint(fireEffect.Position)
+&#9;&#9;else&#9;
+&#9;&#9;&#9;LiftArea(fireEffect.Position)
+&#9;&#9;end
+&#9;&#9;fireEffect:Destroy() 
+&#9;end)
+&#9;
+&#9;&#9;
+&#9;fireEffect.Parent = Workspace&#9;
+end
+
+
+
+
+Tool.Enabled = true
+function onActivated()
+&#9;if not Tool.Enabled then return end
+&#9;Tool.Enabled = false&#9;
+
+&#9;
+&#9;wait(2)
+&#9;Tool.Enabled = true&#9;
+end
+Tool.Activated:connect(onActivated)
+&#9;
+
+function onEquipped()
+&#9;Character = Tool.Parent
+&#9;PowerUp:Play()
+end
+Tool.Equipped:connect(onEquipped)
+
+
+function onUnequipped()
+&#9;Character = nil
+&#9;PowerDown:Play()
+end
+
+Tool.Unequipped:connect(onUnequipped)
+
+function onMessageRecieved(message)
+&#9;if message:IsA(&quot;Vector3Value&quot;) and message.Name == &quot;GloveTarget&quot; then
+&#9;&#9;ShootTracer(message.Value)
+&#9;&#9;message:Destroy()
+&#9;end
+end
+Tool.ChildAdded:connect(onMessageRecieved)
+
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX7">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalGloveScript</string>
+				<ProtectedString name="Source">local function waitForChild(parent, child)
+&#9;while parent:FindFirstChild(child) == nil do 
+&#9;&#9;wait()
+&#9;end 
+&#9;return parent[child] 
+end 
+
+local function PlayRandomAnimation(TrackTable)
+&#9;TrackTable[math.random(1, #TrackTable)]:Play()
+end
+
+local function ClearAnimations(TrackTable)
+&#9;for i = 1, #TrackTable do
+&#9;&#9;TrackTable[i]:Stop()
+&#9;end
+end
+
+local Tool = script.Parent
+local Handle = Tool.Handle
+local Character = nil
+
+
+local function LoadAnim(Name)
+&#9;return waitForChild(Tool, Name)
+end
+
+local SlashAnimations = {
+&#9;--LoadAnim(&quot;StaffSlam&quot;),&#9;
+}
+
+local SlashAnimationTracks = {}
+
+local IdleAnimations = {
+&#9;--LoadAnim(&quot;StaffIdle&quot;),
+
+}
+
+local IdleAnimationTracks = {}
+
+local clientMouse = nil
+
+function TagHumanoid(Humanoid, Player)
+&#9;if Humanoid ~= nil then 
+&#9;&#9;creatorTag = Instance.new(&quot;ObjectValue&quot;)
+&#9;&#9;creatorTag.Name = &quot;creator&quot;
+&#9;&#9;creatorTag.Value = Player
+&#9;&#9;creatorTag.Parent = Humanoid 
+&#9;&#9;game.Debris:AddItem(creatorTag, 1)
+&#9;end
+end
+
+local slash = nil
+Tool.Enabled = true
+function onActivated()
+&#9;if not Tool.Enabled then return end
+&#9;Tool.Enabled = false&#9;
+
+
+&#9;local SummonTarget = Instance.new(&quot;Vector3Value&quot;)
+&#9;SummonTarget.Name = &quot;GloveTarget&quot;
+&#9;SummonTarget.Value = clientMouse.Hit.p
+&#9;SummonTarget.Parent = Tool
+
+&#9;wait(2)
+&#9;Tool.Enabled = true&#9;
+end
+Tool.Activated:connect(onActivated)
+
+function onEquipped(mouse)
+&#9;Character = Tool.Parent
+&#9;local Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+
+&#9;
+&#9;
+&#9;clientMouse = mouse
+end
+Tool.Equipped:connect(onEquipped)
+
+function onUnequipped()
+&#9;Character = nil
+&#9;ClearAnimations(IdleAnimationTracks)
+end
+Tool.Unequipped:connect(onUnequipped)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="BoolValue" referent="RBX8">
+			<Properties>
+				<string name="Name">Lifting</string>
+				<bool name="Value">false</bool>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX9">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-2.74782038</X>
+					<Y>1.46768224</Y>
+					<Z>-1.96723843</Z>
+					<R00>-0.582121551</R00>
+					<R01>0.202208832</R01>
+					<R02>-0.787557065</R02>
+					<R10>-0</R10>
+					<R11>0.968583584</R11>
+					<R12>0.248688191</R12>
+					<R20>0.813101888</R20>
+					<R21>0.144766763</R21>
+					<R22>-0.563833296</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>0</X>
+					<Y>0.599998474</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

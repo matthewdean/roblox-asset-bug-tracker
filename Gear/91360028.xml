@@ -1,0 +1,673 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-1</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">Marionette</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=91420869 </url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.100000001</X>
+					<Y>1.5</Y>
+					<Z>-0.5</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.200000033</X>
+					<Y>2.99999976</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=91417566</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=91420785 </url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX3">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">MarionetteScript</string>
+				<ProtectedString name="Source">----------- Marionette --------------
+-- Waits for the child of the specified parent
+function WaitForChild(parent, childName)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+local Tool = script.Parent
+local Handle = WaitForChild(Tool, &apos;Handle&apos;)
+
+local PlayersService = Game:GetService(&apos;Players&apos;)
+local DebrisService = Game:GetService(&apos;Debris&apos;)
+local ContentService = Game:GetService(&quot;ContentProvider&quot;)
+
+local Marionette
+local MarionetteWeld
+
+local MarionetteGui
+
+
+----- Sounds ------
+--[[
+local ShutDown = WaitForChild(Tool, &apos;ShutDown&apos;)
+local PoweringUp = WaitForChild(Tool, &apos;PoweringUp&apos;)
+local Deflect = WaitForChild(Tool, &apos;Deflect&apos;)
+local Pulse = WaitForChild(Tool, &apos;Pulse&apos;)
+--]]
+
+-- Local Character Variables ----
+local MyCharacter
+local MyHumanoid
+local MyTorso
+local MyPlayer
+local MyMouse
+---------------------------------
+
+-- Todo: Make it follow welds
+function calculateMassRecursive(rootPart)
+&#9;local sum = 0
+&#9;if rootPart:IsA(&apos;Part&apos;) or rootPart:IsA(&apos;WedgePart&apos;) or rootPart:IsA(&apos;CornerWedgePart&apos;) or rootPart:IsA(&apos;TrussPart&apos;) then sum = sum + rootPart:GetMass() end
+&#9;for _, v in pairs(rootPart:GetChildren()) do
+&#9;&#9;sum = sum + calculateMassRecursive(v)
+&#9;end
+&#9;return sum
+end
+
+local function  IgnoreCloneCheck( objectToClone )
+&#9;if objectToClone:IsA(&apos;Script&apos;) or objectToClone:IsA(&apos;LocalScript&apos;) or not objectToClone.Archivable then
+&#9;&#9;return true
+&#9;end
+&#9;return false
+end
+
+local function AppearanceItem(item)
+&#9;if item:IsA(&apos;Shirt&apos;) or item:IsA(&apos;Pants&apos;) or item:IsA(&apos;SpecialMesh&apos;) or item:IsA(&apos;Hat&apos;) or item:IsA(&apos;Decal&apos;) or item:IsA(&apos;Face&apos;) or item:IsA(&apos;BodyColors&apos;) or item:IsA(&apos;CharacterMesh&apos;) then
+&#9;&#9;return true
+&#9;end
+&#9;return false
+end
+
+local function CopyCharacterAppearanceRecursive(newParent, oldParent)
+&#9;if #oldParent:GetChildren() == 0 then
+&#9;&#9;return nil
+&#9;end
+&#9;for k, v in pairs(oldParent:GetChildren()) do
+&#9;&#9;if AppearanceItem(v) then
+&#9;&#9;&#9;if newParent:FindFirstChild(v.Name) then
+&#9;&#9;&#9;&#9;CopyCharacterAppearanceRecursive(currClone, v)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+-- For now lets assume this function works
+local function CopyCharacterAppearance(character, mari)
+&#9;if not mari then return end
+&#9;mari.Name = character.Name .. &quot;&apos;s Marionette&quot;
+&#9;--CopyCharacterAppearanceRecursive(Marionette, character)
+&#9;for k, v in pairs(character:GetChildren()) do
+&#9;&#9;print(&quot;checking &quot; .. v.Name)
+&#9;&#9;if AppearanceItem(v) and v.Archivable then
+&#9;&#9;&#9;print(v.Name .. &quot; is an AppearanceItem&quot;)
+&#9;&#9;&#9;local currClone = v:Clone()
+&#9;&#9;&#9;currClone.Parent = mari
+&#9;&#9;&#9;print(&quot;Copying &quot; .. v.Name)
+&#9;&#9;end
+&#9;&#9;for kk, vv in pairs(v:GetChildren()) do
+&#9;&#9;&#9;if AppearanceItem(vv) and vv.Archivable then
+&#9;&#9;&#9;&#9;local nextClone = vv:Clone()
+&#9;&#9;&#9;&#9;nextClone.Parent = mari:FindFirstChild(v.Name)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+local function AnimateMarionette(pickedTarget)
+&#9;print(&quot;Animating Marionette&quot;)
+&#9;if Marionette and Marionette:FindFirstChild(&apos;Right Arm&apos;) and pickedTarget == Marionette:FindFirstChild(&apos;Right Arm&apos;)  then
+&#9;&#9;AnimateRightArm()
+&#9;end
+end
+
+local animating = false
+
+function SlashRightArm()
+&#9;if animating then return end
+&#9;animating = true
+&#9;print(&quot;Right Arm Clicked&quot;)
+&#9;if Marionette and Marionette:FindFirstChild(&apos;LinkedPlayer&apos;) and Marionette:FindFirstChild(&apos;LinkedPlayer&apos;).Value then
+&#9;&#9;local scriptToCopy = WaitForChild(Tool, &apos;AnimateSlashScript&apos;):Clone()
+&#9;&#9;local animationToCopy = WaitForChild(Tool, &quot;SlashAnim&quot;):Clone()
+&#9;&#9;animationToCopy.Parent = scriptToCopy
+&#9;&#9;scriptToCopy.Parent = Marionette:FindFirstChild(&apos;LinkedPlayer&apos;).Value
+&#9;&#9;scriptToCopy.Disabled = false
+
+&#9;&#9;scriptToCopy = scriptToCopy:Clone()
+&#9;&#9;animationToCopy = animationToCopy:Clone()
+&#9;&#9;animationToCopy.Parent = scriptToCopy
+&#9;&#9;scriptToCopy.Parent = Marionette
+&#9;&#9;scriptToCopy.Disabled = false
+&#9;end
+&#9;wait(1)
+&#9;animating = false
+end
+
+function AnimateRightArm()
+&#9;print(&quot;Right Arm Clicked&quot;)
+&#9;if animating then return end
+&#9;animating = true
+&#9;if Marionette and Marionette:FindFirstChild(&apos;LinkedPlayer&apos;) and Marionette:FindFirstChild(&apos;LinkedPlayer&apos;).Value then
+&#9;&#9;local scriptToCopy = WaitForChild(Tool, &apos;AnimateArmScript&apos;):Clone()
+&#9;&#9;local animationToCopy = WaitForChild(Tool, &quot;Recoil&quot;):Clone()
+&#9;&#9;animationToCopy.Parent = scriptToCopy
+&#9;&#9;scriptToCopy.Parent = Marionette:FindFirstChild(&apos;LinkedPlayer&apos;).Value
+&#9;&#9;scriptToCopy.Disabled = false
+
+&#9;&#9;scriptToCopy = scriptToCopy:Clone()
+&#9;&#9;animationToCopy = animationToCopy:Clone()
+&#9;&#9;animationToCopy.Parent = scriptToCopy
+&#9;&#9;scriptToCopy.Parent = Marionette
+&#9;&#9;scriptToCopy.Disabled = false
+&#9;end
+&#9;wait(1)
+&#9;animating = false
+end
+
+local function CopyCharacterSimple(character)
+&#9;local newChar = Game:GetService(&quot;InsertService&quot;):LoadAsset(88117081):GetChildren()[1]
+&#9;for k, parts in pairs(newChar:GetChildren()) do
+&#9;&#9;for j, child in pairs(parts:GetChildren()) do
+&#9;&#9;&#9;if child:IsA(&apos;SpecialMesh&apos;) or child:IsA(&apos;Sound&apos;) then child:Destroy() end
+&#9;&#9;end
+&#9;end
+&#9;newChar.Humanoid.Health = newChar.Humanoid.MaxHealth
+&#9;CopyCharacterAppearance(character, newChar)
+&#9;return newChar
+end
+
+local function FindCharacterAtMouse()
+&#9;if MyMouse then
+&#9;&#9;local target = MyMouse.Target
+&#9;&#9;if target and target.Parent then
+&#9;&#9;&#9;if PlayersService:GetPlayerFromCharacter(target.Parent) then
+&#9;&#9;&#9;&#9;return target.Parent
+&#9;&#9;&#9;end 
+&#9;&#9;end
+&#9;end
+&#9;return nil
+end
+
+local function DestroyMarionette()
+&#9;if Marionette then
+&#9;&#9;Marionette:Destroy()
+&#9;&#9;MarionetteWeld:Destroy()
+&#9;&#9;Marionette = nil
+&#9;&#9;MarionetteWeld = nil
+&#9;end
+end 
+
+local function AddFloatingForce(object, mass)
+&#9;local floatingForce = Instance.new(&apos;BodyForce&apos;)
+&#9;floatingForce.force = Vector3.new(0, 196.2 * mass, 0)
+&#9;floatingForce.Parent = object
+&#9;return floatingForce
+end
+
+local function ActivatePlayerControls()
+&#9;if MarionetteGui then
+&#9;&#9;local marionetteFrame = MarionetteGui:FindFirstChild(&apos;Frame&apos;)
+&#9;&#9;if marionetteFrame then
+&#9;&#9;&#9;marionetteFrame.Instructions.Visible = false
+&#9;&#9;&#9;marionetteFrame.SpinArms.Visible = true
+&#9;&#9;&#9;marionetteFrame.SpinArms.Active = true
+&#9;&#9;&#9;marionetteFrame.Slash.Visible = true
+&#9;&#9;&#9;marionetteFrame.Slash.Active = true
+&#9;&#9;end
+&#9;end
+end
+
+local function OnActivate()
+&#9;--TODO: Debounce check this stuff yo~
+&#9;print(&quot;Activated&quot;)
+&#9;local pickedTarget = FindCharacterAtMouse()
+&#9;if pickedTarget then
+&#9;&#9;print(&quot;picked&quot;)
+
+&#9;&#9;DestroyMarionette()
+&#9;&#9;Marionette = CopyCharacterSimple(pickedTarget)
+&#9;&#9;local otherChar = Instance.new(&apos;ObjectValue&apos;)
+&#9;&#9;otherChar.Value = pickedTarget
+&#9;&#9;otherChar.Name = &quot;LinkedPlayer&quot;
+&#9;&#9;otherChar.Parent = Marionette
+&#9;&#9;if Marionette then
+&#9;&#9;&#9;for k, v in pairs(Marionette:GetChildren()) do
+&#9;&#9;&#9;&#9;if v:IsA(&apos;Part&apos;) then
+&#9;&#9;&#9;&#9;&#9;AddFloatingForce(v, v:GetMass())
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;Marionette.Humanoid.PlatformStand = true
+&#9;&#9;&#9;ActivatePlayerControls()
+&#9;&#9;&#9;--clonedCopy:MoveTo(Handle.CFrame.p + Handle.CFrame.lookVector)
+&#9;&#9;&#9;MarionetteWeld = Instance.new(&apos;Weld&apos;)
+&#9;&#9;&#9;MarionetteWeld.Part0 = Marionette.Torso
+&#9;&#9;&#9;MarionetteWeld.Part1 = Handle
+&#9;&#9;&#9;MarionetteWeld.C0 = CFrame.new(0, 1.3, 0.4)
+&#9;&#9;&#9;MarionetteWeld.Parent = Handle
+&#9;&#9;&#9;Marionette.Parent = Tool
+&#9;&#9;&#9;local mass = calculateMassRecursive(Marionette)
+&#9;&#9;end
+&#9;end
+end
+
+local function AddGui()
+&#9;local theGui = Tool:FindFirstChild(&apos;MarionetteGui&apos;)
+&#9;MarionetteGui = theGui:Clone()
+&#9;MarionetteGui.Parent = MyPlayer.PlayerGui
+&#9;local marionetteFrame = MarionetteGui.Frame
+&#9;-- Add more buttons here
+&#9;marionetteFrame.SpinArms.Visible = false
+&#9;marionetteFrame.SpinArms.Active = false
+&#9;marionetteFrame.SpinArms.MouseButton1Click:connect(AnimateRightArm)
+&#9;marionetteFrame.Slash.Visible = false
+&#9;marionetteFrame.Slash.Active = false
+&#9;marionetteFrame.Slash.MouseButton1Click:connect(SlashRightArm)
+end
+
+local function OnEquip(mouse)
+&#9;MyCharacter = Tool.Parent
+&#9;print(MyCharacter.Name)
+&#9;MyHumanoid = WaitForChild(MyCharacter, &apos;Humanoid&apos;)
+&#9;MyTorso = WaitForChild(MyCharacter, &apos;Torso&apos;)
+&#9;if mouse then
+&#9;&#9;MyMouse = mouse
+&#9;end
+&#9;MyPlayer = PlayersService:GetPlayerFromCharacter(MyCharacter)
+&#9;AddGui()
+end
+
+local function OnUnequip()
+&#9;-- Get rid of this stuff when you unequip otherwise will do painful things when requipped
+&#9;DestroyMarionette()
+&#9;if MarionetteGui then
+&#9;&#9;MarionetteGui:Destroy()
+&#9;&#9;MarionetteGui = nil
+&#9;end
+end
+
+Tool.Equipped:connect(OnEquip)
+Tool.Unequipped:connect(OnUnequip)
+Tool.Activated:connect(OnActivate)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">AnimateArmScript</string>
+				<ProtectedString name="Source">-- Waits for the child of the specified parent
+local function WaitForChild(parent, childName)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+print(&apos;Starting doll&apos;)
+
+
+local MyHumanoid = WaitForChild(script.Parent, &apos;Humanoid&apos;)
+
+local RecoilAnim = WaitForChild(script, &apos;Recoil&apos;)
+local RecoilTrack
+
+print(&apos;Ending doll&apos;)
+
+if RecoilAnim then
+&#9;RecoilTrack = MyHumanoid:LoadAnimation(RecoilAnim)
+end
+
+for i = 1, 3 do
+&#9;RecoilTrack:Play()
+&#9;wait(1)
+end
+
+RecoilTrack:Stop()
+
+script:Destroy()
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX5">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=87684948</url></Content>
+				<string name="Name">Recoil</string>
+			</Properties>
+		</Item>
+		<Item class="ScreenGui" referent="RBX6">
+			<Properties>
+				<string name="Name">MarionetteGui</string>
+			</Properties>
+			<Item class="Frame" referent="RBX7">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Color3 name="BackgroundColor3">4288914085</Color3>
+					<float name="BackgroundTransparency">0</float>
+					<Color3 name="BorderColor3">4279970357</Color3>
+					<int name="BorderSizePixel">1</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<string name="Name">Frame</string>
+					<UDim2 name="Position">
+						<XS>0.5</XS>
+						<XO>-200</XO>
+						<YS>0.800000012</YS>
+						<YO>0</YO>
+					</UDim2>
+					<UDim2 name="Size">
+						<XS>0</XS>
+						<XO>400</XO>
+						<YS>0</YS>
+						<YO>80</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<token name="Style">3</token>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+				<Item class="TextButton" referent="RBX8">
+					<Properties>
+						<bool name="Active">true</bool>
+						<bool name="AutoButtonColor">true</bool>
+						<Color3 name="BackgroundColor3">4288914085</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">2</token>
+						<token name="FontSize">4</token>
+						<bool name="Modal">false</bool>
+						<string name="Name">SpinArms</string>
+						<UDim2 name="Position">
+							<XS>0.25</XS>
+							<XO>-33</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<bool name="Selected">false</bool>
+						<UDim2 name="Size">
+							<XS>0</XS>
+							<XO>65</XO>
+							<YS>0</YS>
+							<YO>65</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">2</token>
+						<string name="Text">Talk on Phone</string>
+						<Color3 name="TextColor3">4294967295</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">true</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">6</int>
+					</Properties>
+				</Item>
+				<Item class="TextLabel" referent="RBX9">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4288914085</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">6</token>
+						<string name="Name">Instructions</string>
+						<UDim2 name="Position">
+							<XS>0.5</XS>
+							<XO>0</XO>
+							<YS>0.5</YS>
+							<YO>0</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">Click on a player to assume control.</string>
+						<Color3 name="TextColor3">4294967295</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">8</int>
+					</Properties>
+				</Item>
+				<Item class="TextButton" referent="RBX10">
+					<Properties>
+						<bool name="Active">true</bool>
+						<bool name="AutoButtonColor">true</bool>
+						<Color3 name="BackgroundColor3">4288914085</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">2</token>
+						<token name="FontSize">4</token>
+						<bool name="Modal">false</bool>
+						<string name="Name">Slash</string>
+						<UDim2 name="Position">
+							<XS>0.75</XS>
+							<XO>-33</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<bool name="Selected">false</bool>
+						<UDim2 name="Size">
+							<XS>0</XS>
+							<XO>65</XO>
+							<YS>0</YS>
+							<YO>65</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">2</token>
+						<string name="Text">Play Drums!</string>
+						<Color3 name="TextColor3">4294967295</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">true</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">6</int>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Animation" referent="RBX11">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=68484538</url></Content>
+				<string name="Name">SlashAnim</string>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX12">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">AnimateSlashScript</string>
+				<ProtectedString name="Source">-- Waits for the child of the specified parent
+local function WaitForChild(parent, childName)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+print(&apos;Starting doll&apos;)
+
+
+local MyHumanoid = WaitForChild(script.Parent, &apos;Humanoid&apos;)
+
+local RecoilAnim = WaitForChild(script, &apos;SlashAnim&apos;)
+local RecoilTrack
+
+print(&apos;Ending doll&apos;)
+
+if RecoilAnim then
+&#9;RecoilTrack = MyHumanoid:LoadAnimation(RecoilAnim)
+end
+if RecoilTrack then
+&#9;RecoilTrack:Play()
+&#9;wait(6)
+&#9;RecoilTrack:Stop()
+end
+
+
+script:Destroy()
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX13">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-2.46183944</X>
+					<Y>1.94981611</Y>
+					<Z>-1.53186357</Z>
+					<R00>-0.400349498</R00>
+					<R01>0.157544807</R01>
+					<R02>-0.902718067</R02>
+					<R10>-0</R10>
+					<R11>0.985110223</R11>
+					<R12>0.171924099</R12>
+					<R20>0.916362584</R20>
+					<R21>0.0688297302</R21>
+					<R22>-0.394388318</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-0.100000001</X>
+					<Y>1.5</Y>
+					<Z>-0.5</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

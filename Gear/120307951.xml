@@ -1,0 +1,552 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>-2.20000005</Z>
+				<R00>0</R00>
+				<R01>0</R01>
+				<R02>-1</R02>
+				<R10>-1</R10>
+				<R11>0</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>1</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<string name="Name">BlackPeriastron</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset?id=120527983</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.370000005</X>
+					<Y>17.3400002</Y>
+					<Z>21.7500019</Z>
+					<R00>-1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>0</R11>
+					<R12>1</R12>
+					<R20>0</R20>
+					<R21>1</R21>
+					<R22>-0</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.780000746</X>
+					<Y>0.519999981</Y>
+					<Z>5.16000032</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset?id=69464145</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=119889819 </url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sparkles" referent="RBX3">
+				<Properties>
+					<bool name="Enabled">true</bool>
+					<string name="Name">Sparkles</string>
+					<Color3 name="SparkleColor">4278190080</Color3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">Tool = script.Parent 
+
+local stillEquipped = false 
+
+function onEquippedLocal(mouse) 
+     stillEquipped = true 
+     if mouse == nil then 
+          print(&quot;Mouse not found&quot;) 
+          return 
+     end 
+     while stillEquipped do 
+          print(&quot;Setting Mouse to go&quot;) 
+          mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot; 
+          while Tool.Enabled and stillEquipped do 
+               wait(0.01) 
+          end 
+          print(&quot;Setting Mouse to wait&quot;) 
+          mouse.Icon = &quot;rbxasset://textures\\GunWaitCursor.png&quot; 
+          while not Tool.Enabled and stillEquipped do 
+               wait(0.01) 
+          end      
+     end 
+end 
+
+
+function onUnequippedLocal() 
+     stillEquipped = false 
+end 
+
+Tool.Equipped:connect(onEquippedLocal) 
+Tool.Unequipped:connect(onUnequippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SwordScript</string>
+				<ProtectedString name="Source">-- Copied from Grimgold Periastron Beta
+
+local Tool = script.Parent
+local Sword = Tool.Handle
+
+local vCharacter
+local myTorso
+local myHumanoid 
+
+local equipped = false
+
+local debris = game:GetService(&quot;Debris&quot;)
+
+function tagHumanoid(humanoid, player)
+&#9;if humanoid then 
+&#9;&#9;local creatorTag = Instance.new(&quot;ObjectValue&quot;)
+&#9;&#9;creatorTag.Value = player
+&#9;&#9;creatorTag.Name = &quot;creator&quot;
+&#9;&#9;creatorTag.Parent = humanoid
+&#9;&#9;debris:AddItem(creatorTag, 1)
+&#9;end
+end
+
+function cut(hit)
+&#9;local humanoid
+&#9;local vPlayer
+&#9;if hit and hit.Parent and myHumanoid then 
+&#9;&#9;if hit.Parent.className == &quot;Hat&quot; then
+&#9;&#9;&#9;humanoid = hit.Parent.Parent:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;humanoid = hit.Parent:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;end
+&#9;&#9;vPlayer = game.Players:GetPlayerFromCharacter(vCharacter)
+&#9;&#9;if humanoid ~= nil and humanoid ~= myHumanoid then 
+&#9;&#9;&#9;tagHumanoid(humanoid, vPlayer)
+&#9;&#9;&#9;humanoid:TakeDamage(27)
+&#9;&#9;end
+&#9;end
+end
+
+function onEquipped()
+&#9;vCharacter = Tool.Parent
+&#9;myTorso = vCharacter:FindFirstChild(&quot;Torso&quot;)
+&#9;myHumanoid = vCharacter:FindFirstChild(&quot;Humanoid&quot;)&#9;
+end
+
+Tool.Equipped:connect(onEquipped)
+
+Sword.Touched:connect(cut)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX6">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalSwordScript</string>
+				<ProtectedString name="Source">-- Copied from Grimgold Periastron Beta
+
+local Tool = script.Parent
+local Handle = Tool.Handle
+
+local vCharacter
+local myTorso
+local myHumanoid
+
+Tool.Enabled = true 
+
+local anims = {Tool:WaitForChild(&quot;RightSlash&quot;), Tool:WaitForChild(&quot;Slash&quot;), Tool:WaitForChild(&quot;SlashAnim&quot;), Tool:WaitForChild(&quot;SlashAnim&quot;), Tool:WaitForChild(&quot;SlashAnim&quot;)}
+local slashAnim
+local holdAnim
+
+local LightsOutSound
+
+local swing 
+
+local lastAttack = 0
+
+local DARKNESS_LOCK_TIME = 30
+local TRANSPARENT_TIME = 15
+local DARKNESS_SPARKLES_TIME = 1
+
+local r = game:service(&quot;RunService&quot;)
+
+function lunge(humanoid, torso) &#9;
+&#9;local holdAnim = humanoid:LoadAnimation(Tool.RightSlash)
+&#9;if holdAnim then 
+&#9;&#9;holdAnim:Play() 
+&#9;else 
+&#9;&#9;Tool.Enabled = true
+&#9;&#9;return 
+&#9;end
+&#9;local target = humanoid.TargetPoint 
+&#9;local direction = (target - torso.Position) * Vector3.new(1, 0, 1) 
+&#9;newBV = nil &#9;
+&#9;if direction.magnitude &gt; .01 then            
+&#9;&#9;direction = direction.unit 
+&#9;&#9;newBV = Instance.new(&quot;BodyVelocity&quot;) 
+&#9;&#9;newBV.P = 100000 
+&#9;&#9;newBV.maxForce = Vector3.new(newBV.P, 0, newBV.P) 
+&#9;&#9;newBV.velocity = direction * 50 
+&#9;&#9;newBV.Parent = torso 
+&#9;&#9;torso.CFrame = CFrame.new(torso.Position, target * Vector3.new(1, 0, 1) + Vector3.new(0, torso.Position.Y, 0)) 
+&#9;end 
+&#9;wait(.75)       
+&#9;if newBV ~= nil then newBV:remove() end 
+&#9;wait(.5) 
+&#9;
+end 
+
+function lightsOut(key)
+&#9;if key:lower() == &quot;q&quot; and not Tool:FindFirstChild(&apos;DarknessDisabled&apos;) and not game.Lighting:FindFirstChild(&quot;BlackPeriastronWasHere&quot;) and vCharacter then
+&#9;&#9;LightsOutSound = Tool:FindFirstChild(&apos;LightsOutSound&apos;)
+&#9;&#9;if LightsOutSound then LightsOutSound:Play() end
+&#9;&#9;-- Create tag in lighting so other players with this gear can&apos;t mess it up
+&#9;&#9;LightingTag = Instance.new(&quot;BoolValue&quot;)
+&#9;&#9;LightingTag.Name = &quot;BlackPeriastronWasHere&quot;
+&#9;&#9;LightingTag.Value = true
+&#9;&#9;LightingTag.Parent = game.Lighting
+&#9;&#9;
+&#9;&#9;-- Remove sparkles, make handle invisible...
+&#9;&#9;local sparkles = Handle:FindFirstChild(&apos;Sparkles&apos;)
+&#9;&#9;if sparkles then sparkles.Parent = nil end
+&#9;&#9;
+&#9;&#9;-- Lock special attack so you can&apos;t use it multiple times in succession.
+&#9;&#9;local lock = Instance.new(&apos;BoolValue&apos;)
+&#9;&#9;lock.Name = &apos;DarknessDisabled&apos;
+&#9;&#9;lock.Value = true
+&#9;&#9;lock.Parent = Tool
+&#9;&#9;game:GetService(&apos;Debris&apos;):AddItem(lock, DARKNESS_LOCK_TIME)
+&#9;&#9;
+&#9;&#9;-- Make sparkles reset when darkness can be used again&#9;&#9;
+&#9;&#9;Tool.ChildRemoved:connect(function(child)
+&#9;&#9;&#9;if child.Name == &apos;DarknessDisabled&apos; then
+&#9;&#9;&#9;&#9;if sparkles then sparkles.Parent = Handle end
+&#9;&#9;&#9;end
+&#9;&#9;end)
+
+&#9;&#9;-- Create a new part to hold the light
+&#9;&#9;local lightHolder = Instance.new(&apos;Part&apos;)
+&#9;&#9;lightHolder.CanCollide = false
+&#9;&#9;lightHolder.Anchored = true
+&#9;&#9;lightHolder.Transparency = 1.0
+&#9;&#9;lightHolder.Position = Handle.Position
+&#9;&#9;lightHolder.Name = &apos;BlackPeriastronLightHolder&apos;
+&#9;&#9;lightHolder.Parent = Workspace
+&#9;&#9;
+&#9;&#9;-- Script to absorb light is in workspace so it can be reset even if 
+&#9;&#9;-- this character dies
+&#9;&#9;local lightsOutScript = Tool:WaitForChild(&apos;LightsOutScript&apos;):Clone()
+&#9;&#9;lightsOutScript.LightHolder.Value = lightHolder
+&#9;&#9;lightsOutScript.Handle.Value = Handle
+&#9;&#9;lightsOutScript.Parent = Workspace
+&#9;&#9;lightsOutScript.Disabled = false
+&#9;&#9;
+&#9;&#9;-- But script to make character invisble just goes under the character.
+&#9;&#9;local ninjafyScript = Tool:WaitForChild(&apos;Ninjafy&apos;):Clone()
+&#9;&#9;ninjafyScript.Parent = vCharacter
+&#9;&#9;ninjafyScript.Disabled = false
+&#9;end 
+end 
+
+function onActivated()
+&#9;if Tool.Enabled == false then 
+&#9;&#9;return 
+&#9;end
+
+&#9;vCharacter = Tool.Parent
+&#9;myTorso = vCharacter:FindFirstChild(&quot;Torso&quot;)
+&#9;myHumanoid = vCharacter:FindFirstChild(&quot;Humanoid&quot;)
+&#9;
+&#9;if myTorso == nil or myHumanoid == nil then 
+&#9;&#9;return 
+&#9;end
+&#9;
+&#9;-- Add sparkles for visibility if it&apos;s dark
+&#9;if Handle.Transparency &gt; 0.5 then
+&#9;&#9;local newSparkles = Instance.new(&quot;Sparkles&quot;)
+&#9;&#9;newSparkles.SparkleColor = Color3.new(0,0,0)
+&#9;&#9;newSparkles.Parent = Handle
+&#9;&#9;game:GetService(&apos;Debris&apos;):AddItem(newSparkles, DARKNESS_SPARKLES_TIME)
+&#9;end
+
+&#9;Tool.Enabled = false
+&#9;tick()
+&#9;local num = anims[math.random(1, #anims)]
+&#9;print(num)
+&#9;local t = r.Stepped:wait()
+&#9;if (t - lastAttack &lt; 0.2) then&#9;&#9;
+&#9;&#9;lunge(myHumanoid, myTorso)
+&#9;else
+&#9;&#9;slashAnim = myHumanoid:LoadAnimation(num)
+&#9;&#9;if slashAnim then slashAnim:Play() end
+&#9;end
+&#9;lastAttack = t&#9;
+&#9;
+&#9;Tool.Enabled = true
+end
+
+function onEquipped(mouse)&#9;
+&#9;if mouse then 
+&#9;&#9;mouse.KeyDown:connect(lightsOut)
+&#9;end
+&#9;vCharacter = Tool.Parent
+end
+
+function onUnequipped()
+&#9;if slashAnim then slashAnim:Stop() end
+&#9;if holdAnim then holdAnim:Play() end 
+&#9;if LightsOutSound then LightsOutSound:Stop() end
+end
+
+Tool.Activated:connect(onActivated)
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX7">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=54432537</url></Content>
+				<string name="Name">Slash</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX8">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=63718551</url></Content>
+				<string name="Name">SlashAnim</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX9">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=54584713</url></Content>
+				<string name="Name">RightSlash</string>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX10">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LightsOutScript</string>
+				<ProtectedString name="Source">local Lighting = game.Lighting
+local Ambient = Lighting.Ambient
+local OutdoorAmbient = Lighting.OutdoorAmbient
+local TimeOfDay = Lighting.TimeOfDay
+local LightHolder = script:WaitForChild(&apos;LightHolder&apos;).Value
+local Handle = script:WaitForChild(&apos;Handle&apos;).Value
+
+local BLACK = Color3.new(0,0,0)
+local MIDNIGHT = &quot;00:00:00&quot;
+local LIGHT_BRIGHTNESS = 5
+local LIGHT_RANGE = 45
+local TIME_OF_DARKNESS = 15
+
+local function AbsorbLight()
+&#9;Lighting.Ambient = BLACK
+&#9;Lighting.OutdoorAmbient = BLACK
+&#9;Lighting.TimeOfDay = MIDNIGHT
+&#9;
+&#9;local light = Instance.new(&quot;PointLight&quot;)
+&#9;light.Brightness = LIGHT_BRIGHTNESS
+&#9;light.Range = LIGHT_RANGE
+&#9;light.Parent = LightHolder
+&#9;
+&#9;Handle.Transparency = 1.0
+end
+
+local function ReturnToNormal()
+&#9;Lighting.Ambient = Ambient
+&#9;Lighting.OutdoorAmbient = OutdoorAmbient
+&#9;Lighting.TimeOfDay = TimeOfDay
+&#9;
+&#9;local tag = Lighting:FindFirstChild(&quot;BlackPeriastronWasHere&quot;)
+&#9;if tag then tag:Remove() end
+&#9;
+&#9;LightHolder:Destroy()
+&#9;
+&#9;Handle.Transparency = 0.0
+end
+
+AbsorbLight()
+wait(TIME_OF_DARKNESS)
+ReturnToNormal()
+script:Remove()
+</ProtectedString>
+			</Properties>
+			<Item class="ObjectValue" referent="RBX11">
+				<Properties>
+					<string name="Name">LightHolder</string>
+					<Ref name="Value">null</Ref>
+				</Properties>
+			</Item>
+			<Item class="ObjectValue" referent="RBX12">
+				<Properties>
+					<string name="Name">Handle</string>
+					<Ref name="Value">null</Ref>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBX13">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Ninjafy</string>
+				<ProtectedString name="Source">local TIME_INVISIBLE = 15
+local DEFAULT_WALK_SPEED = 16
+local NEW_WALK_SPEED = 40
+
+function SetTransparency(instance, transparency)
+&#9;if (instance:IsA(&quot;BasePart&quot;) or instance:IsA(&quot;Decal&quot;)) and instance.Name~=&quot;HumanoidRootPart&quot; then
+&#9;&#9;instance.Transparency = transparency
+&#9;end
+&#9;for _, child in pairs(instance:GetChildren()) do
+&#9;&#9;-- Exception for our case: the tool already makes itself 
+&#9;&#9;-- visible again, so we should avoid touching tool&apos;s transparency
+&#9;&#9;if not child:IsA(&quot;Tool&quot;) then
+&#9;&#9;&#9;SetTransparency(child, transparency)
+&#9;&#9;end
+&#9;end
+end
+
+if script.Parent then
+&#9;SetTransparency(script.Parent, 1.0)
+&#9;script.Parent.Humanoid.WalkSpeed = NEW_WALK_SPEED
+end
+wait(TIME_INVISIBLE)
+if script.Parent then
+&#9;SetTransparency(script.Parent, 0.0)
+&#9;script.Parent.Humanoid.WalkSpeed = DEFAULT_WALK_SPEED
+end
+script:Remove()
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Sound" referent="RBX14">
+			<Properties>
+				<bool name="Looped">false</bool>
+				<string name="Name">LightsOutSound</string>
+				<float name="Pitch">1</float>
+				<bool name="PlayOnRemove">false</bool>
+				<Content name="SoundId"><url>http://www.roblox.com/asset/?id=120550472</url></Content>
+				<float name="Volume">1</float>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX15">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-0.234192804</X>
+					<Y>16.171793</Y>
+					<Z>29.7406807</Z>
+					<R00>0.999855638</R00>
+					<R01>0.0024578704</R01>
+					<R02>0.0168145597</R02>
+					<R10>-0</R10>
+					<R11>0.989484727</R11>
+					<R12>-0.144638047</R12>
+					<R20>-0.0169932488</R20>
+					<R21>0.14461717</R21>
+					<R22>0.989341795</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-0.370000005</X>
+					<Y>17.3400002</Y>
+					<Z>21.7500019</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

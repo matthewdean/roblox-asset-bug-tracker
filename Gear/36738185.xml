@@ -1,0 +1,726 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>-0.5</Z>
+				<R00>0</R00>
+				<R01>0</R01>
+				<R02>1</R02>
+				<R10>1</R10>
+				<R11>0</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>1</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<string name="Name">DeleteTool</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset?id=55212908</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">199</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.0799999237</X>
+					<Y>0.509999871</Y>
+					<Z>-5.02999878</Z>
+					<R00>0</R00>
+					<R01>-1</R01>
+					<R02>0</R02>
+					<R10>0.685675323</R10>
+					<R11>0</R11>
+					<R12>0.727907479</R12>
+					<R20>-0.727907479</R20>
+					<R21>0</R21>
+					<R22>0.685675323</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0.400000006</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">2</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>0.800000012</Y>
+					<Z>3</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=16198309</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.20000005</X>
+						<Y>1.20000005</Y>
+						<Z>1.20000005</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=16198294</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Sound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/Asset/?ID=12135982</url></Content>
+					<float name="Volume">0.699999988</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Model Delete Local</string>
+				<ProtectedString name="Source">function waitForChild(instance, name)
+&#9;while not instance:FindFirstChild(name) do
+&#9;&#9;instance.ChildAdded:wait()
+&#9;end
+end
+
+
+local Tool = script.Parent
+
+enabled = true
+game:GetService(&quot;ContentProvider&quot;):Preload(&quot;rbxasset://icons/delete_sel.png&quot;)
+
+local cluster = nil
+
+local selectionBox
+local currentSelection
+local currentSelectionColors = {}
+local selectionLasso
+
+local deleteDistance = 100
+local player = nil
+--local playerModel = nil
+local playerModel = game.Workspace
+local buildingPlate = nil
+
+local highlight = false
+
+local megaClusterSelectionBox = Instance.new(&quot;Part&quot;)
+megaClusterSelectionBox.FormFactor = &quot;Custom&quot;
+megaClusterSelectionBox.Size = Vector3.new(4, 4, 4) -- a little thicker than 4x4x4 unit clusterpart; just so selection box is more easily seen
+megaClusterSelectionBox.Transparency = 1
+megaClusterSelectionBox.Anchored = true
+megaClusterSelectionBox.CanCollide = false
+megaClusterSelectionBox.Parent = nil
+
+waitForChild(Tool, &quot;IsRestricted&quot;)
+local isRestricted = Tool.IsRestricted.Value
+
+waitForChild(Tool, &quot;AutoWedgeClusterParts&quot;)
+local autoWedgeClusterParts = Tool.AutoWedgeClusterParts.Value
+
+function hint(label)
+
+&#9;-- Pass in a string, it shows a top hint.  (Replaces previous hint, if exists)
+&#9;_player = game.Players:GetPlayerFromCharacter(Tool.Parent)
+&#9;if(_player ~= nil and _player.PlayerGui:FindFirstChild(&quot;topHint&quot;)~=nil) then
+&#9;&#9;local topHint = _player.PlayerGui.topHint
+&#9;&#9;topHint.Add.Label.Value = label
+&#9;&#9;topHint.Add.Width.Value = 3 -- widest width
+&#9;&#9;topHint.Add.Time.Value = 5
+&#9;&#9;topHint.Add.Disabled = true
+&#9;&#9;topHint.Add.Disabled = false
+&#9;end
+
+end
+
+function canDeleteObject(part)
+&#9;-- let them delete anything that they created *or* anything on their baseplate
+&#9;return part and not (part.Locked) and part:IsA(&quot;BasePart&quot;) and (part.Position - Tool.Parent.Head.Position).Magnitude &lt; deleteDistance and (isChildOfMyModel(part) or partInBounds(part))
+end
+
+-- For Restricting Stamper Tool (isRestricted)
+function inBounds(part)
+
+&#9;if part == nil then return false end
+
+&#9;if part:IsA(&quot;Part&quot;) or part:IsA(&quot;WedgePart&quot;) or part:IsA(&quot;TrussPart&quot;) then
+&#9;&#9;if not partInBounds(part) then return false end
+&#9;elseif part:IsA(&quot;Model&quot;) then
+&#9;&#9;local primPart = object.PrimaryPart
+&#9;&#9;if not partInBounds(primPart) then return false end
+&#9;end
+
+&#9;return true
+
+end
+
+function partInBounds(part)
+
+&#9;local xOne = buildingPlate.Position.x + buildingPlate.Size.x/2
+&#9;local xTwo = buildingPlate.Position.x - buildingPlate.Size.x/2
+&#9;local zOne = buildingPlate.Position.z + buildingPlate.Size.z/2
+&#9;local zTwo = buildingPlate.Position.z - buildingPlate.Size.z/2
+
+&#9;if part.Position.x &gt; xOne or part.Position.x &lt; xTwo then return false end
+&#9;if part.Position.z &gt; zOne or part.Position.z &lt; zTwo then return false end
+
+&#9;return true
+
+end
+
+
+function findModel(part)
+&#9;while part ~= nil do
+&#9;&#9;if part.className == &quot;Model&quot; and part.Name ~= playerModel.Name and part.Name ~= &quot;GarbageParts&quot; then
+&#9;&#9;&#9;return part
+&#9;&#9;elseif part.Name == playerModel.Name or part.Name == &quot;GarbageParts&quot; then
+&#9;&#9;&#9;return nil
+&#9;&#9;end
+&#9;&#9;part = part.Parent
+&#9;end
+
+&#9;return nil
+end
+
+function cleanOrphanedModel(parent)
+&#9;if not parent then return end
+&#9;if parent.className == &quot;Model&quot; then
+&#9;&#9;local children = parent:GetChildren()
+&#9;&#9;if #children == 0 and parent.Name ~= &quot;GarbageParts&quot; then
+&#9;&#9;&#9;local oldParent = parent.Parent
+&#9;&#9;&#9;parent:Remove()
+&#9;&#9;&#9;cleanOrphanedModel(oldParent)
+&#9;&#9;end
+&#9;end
+end
+
+function isChildOfMyModel(part)
+&#9;&#9;if not playerModel then return true end
+&#9;&#9;if playerModel:IsAncestorOf(part) then
+&#9;&#9;&#9;return true
+&#9;&#9;else return false end
+end
+
+
+-- Cyrion&apos;s auto-wedge fcn:
+--sets cell x, y, z to default material if parameter is provided, if not sets cell x, y, z to be whatever material it previously was
+--returns true if made a wedge, false if the cell remains a block
+function MakeWedge(x, y, z, defaultmaterial)
+&#9;local c = game.Workspace.Terrain
+&#9;--gather info about all the cells around x, y, z
+&#9;surroundings = {} --surroundings is a 3 x 3 x 3 array of the material of the cells adjacent to x, y, z
+&#9;for i = x - 1, x + 1 do
+&#9;&#9;surroundings[i] = {}
+&#9;&#9;for j = y - 1, y + 1 do
+&#9;&#9;&#9;surroundings[i][j] = {}
+&#9;&#9;&#9;for k = z - 1, z + 1 do
+&#9;&#9;&#9;&#9;local material, wedge, rotation = c:GetCell(i, j, k)
+&#9;&#9;&#9;&#9;surroundings[i][j][k] = material.Value
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;--make some useful arrays and counters
+&#9;local sides = {} --sides is an array of the material of the 4 adjacent sides
+&#9;sides[0] = surroundings[x - 1][y][z]
+&#9;sides[1] = surroundings[x][y][z + 1]
+&#9;sides[2] = surroundings[x + 1][y][z]
+&#9;sides[3] = surroundings[x][y][z - 1]
+&#9;local adjacentSides = 0
+&#9;for n = 0, 3 do
+&#9;&#9;if sides[n] &gt; 0 then
+&#9;&#9;&#9;adjacentSides = adjacentSides + 1
+&#9;&#9;end
+&#9;end
+&#9;local sidesAbove = {} --sides is an array of the material of the 4 adjacent sides 1 height above
+&#9;sidesAbove[0] = surroundings[x - 1][y + 1][z]
+&#9;sidesAbove[1] = surroundings[x][y + 1][z + 1]
+&#9;sidesAbove[2] = surroundings[x + 1][y + 1][z]
+&#9;sidesAbove[3] = surroundings[x][y + 1][z - 1]
+&#9;local adjacentSidesAbove = 0
+&#9;for n = 0, 3 do
+&#9;&#9;if sidesAbove[n] &gt; 0 then
+&#9;&#9;&#9;adjacentSidesAbove = adjacentSidesAbove + 1
+&#9;&#9;end
+&#9;end
+&#9;local corners = {} --corners is an array of the material of the 4 adjacent corners
+&#9;corners[0] = surroundings[x - 1][y][z - 1]
+&#9;corners[1] = surroundings[x - 1][y][z + 1]
+&#9;corners[2] = surroundings[x + 1][y][z + 1]
+&#9;corners[3] = surroundings[x + 1][y][z - 1]
+&#9;local adjacentCorners = 0
+&#9;for n = 0, 3 do
+&#9;&#9;if corners[n] &gt; 0 then
+&#9;&#9;&#9;adjacentCorners = adjacentCorners + 1
+&#9;&#9;end
+&#9;end
+&#9;local cornersAbove = {} --corners is an array of the material of the 4 adjacent corners 1 height above
+&#9;cornersAbove[0] = surroundings[x - 1][y + 1][z - 1]
+&#9;cornersAbove[1] = surroundings[x - 1][y + 1][z + 1]
+&#9;cornersAbove[2] = surroundings[x + 1][y + 1][z + 1]
+&#9;cornersAbove[3] = surroundings[x + 1][y + 1][z - 1]
+&#9;local adjacentCornersAbove = 0
+&#9;for n = 0, 3 do
+&#9;&#9;if cornersAbove[n] &gt; 0 then
+&#9;&#9;&#9;adjacentCornersAbove = adjacentCornersAbove + 1
+&#9;&#9;end
+&#9;end
+&#9;--determine what type of wedge to make
+&#9;local material = nil
+&#9;local wedge = nil
+&#9;local rotation = nil 
+&#9;if defaultmaterial then
+&#9;&#9;material = defaultmaterial
+&#9;else
+&#9;&#9;material, wedge, rotation = c:GetCell(x, y, z) --start with the existing material, wedge, and rotation
+&#9;end
+&#9;wedge = 0 --default wedge is a block
+&#9;rotation = 0 --default rotation is 0
+&#9;--type 1: 45 degree ramp //must not have a block on top and must have a block under, and be surrounded by 1 side; or 3 sides and the 2 corners between them
+&#9;if surroundings[x][y + 1][z] == 0 and surroundings[x][y - 1][z] &gt; 0 then
+&#9;&#9;if adjacentSides == 1 then
+&#9;&#9;&#9;for n = 0, 3 do
+&#9;&#9;&#9;&#9;if sides[n] &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;wedge = 1
+&#9;&#9;&#9;&#9;&#9;rotation = (n + 1) % 4
+&#9;&#9;&#9;&#9;&#9;c:SetCell(x, y, z, material, wedge, rotation)
+&#9;&#9;&#9;&#9;&#9;return true
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;elseif  adjacentSides == 3 then
+&#9;&#9;&#9;for n = 0, 3 do
+&#9;&#9;&#9;&#9;if sides[n] &gt; 0 and corners[(n + 1) % 4] &gt; 0 and sides[(n + 1) % 4] &gt; 0 and corners[(n + 2) % 4] &gt; 0 and sides[(n + 2) % 4] &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;wedge = 1
+&#9;&#9;&#9;&#9;&#9;rotation = (n + 2) % 4
+&#9;&#9;&#9;&#9;&#9;c:SetCell(x, y, z, material, wedge, rotation)
+&#9;&#9;&#9;&#9;&#9;return true
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;--type 2: 45 degree corner //must not have a block on top and must have a block under, and be surrounded by 2 sides and the 1 corner between them; or 3 sides and 1 corner between 2 of them (facing towards that corner)
+&#9;if surroundings[x][y + 1][z] == 0 and surroundings[x][y - 1][z] &gt; 0 then
+&#9;&#9;for n = 0, 3 do
+&#9;&#9;&#9;if sides[n] &gt; 0 and corners[(n + 1) % 4] &gt; 0 and sides[(n + 1) % 4] &gt; 0 and (adjacentSides == 2 or (adjacentSides == 3 and (corners[(n + 3) % 4] &gt; 0 or (sides[(n + 2) % 4] &gt; 0 and corners[(n + 2) % 4] &gt; 0) or (sides[(n + 3) % 4] &gt; 0 and corners[n] &gt; 0)))) then
+&#9;&#9;&#9;&#9;wedge = 2
+&#9;&#9;&#9;&#9;rotation = (n + 2) % 4
+&#9;&#9;&#9;&#9;c:SetCell(x, y, z, material, wedge, rotation)
+&#9;&#9;&#9;&#9;return true
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;--type 3: 45 degree inverse corner //surrounded by three sides or 4 sides and 3 corners, with nothing above or else a block on top surrounded on 2 sides and the corner between them
+&#9;if adjacentSides == 3 and surroundings[x][y + 1][z] &gt; 0 then
+&#9;&#9;if adjacentCorners &gt; 1 then
+&#9;&#9;&#9;for n = 0, 3 do
+&#9;&#9;&#9;&#9;if (corners[n] == 0 or cornersAbove[n] == 0) and (sides[(n - 1) % 4] == 0 or sides[n] == 0) and (sidesAbove[n] == 0 and sidesAbove[(n + 1) % 4] &gt; 0 and sidesAbove[(n + 2) % 4] &gt; 0 and sidesAbove[(n + 3) % 4] == 0) then 
+&#9;&#9;&#9;&#9;&#9;wedge = 3
+&#9;&#9;&#9;&#9;&#9;rotation = (n + 3) % 4
+&#9;&#9;&#9;&#9;&#9;c:SetCell(x, y, z, material, wedge, rotation)
+&#9;&#9;&#9;&#9;&#9;return true
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;elseif adjacentSides == 4 and adjacentCorners == 3 then
+&#9;&#9;for n = 0, 3 do
+&#9;&#9;&#9;if corners[n] == 0 and (surroundings[x][y + 1][z] == 0 or (sidesAbove[n] == 0 and sidesAbove[(n + 1) % 4] &gt; 0 and cornersAbove[(n + 2) % 4] &gt; 0 and sidesAbove[(n + 2) % 4] &gt; 0 and sidesAbove[(n + 3) % 4] == 0)) then
+&#9;&#9;&#9;&#9;wedge = 3
+&#9;&#9;&#9;&#9;rotation = (n + 3) % 4
+&#9;&#9;&#9;&#9;c:SetCell(x, y, z, material, wedge, rotation)
+&#9;&#9;&#9;&#9;return true
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;--type 4: half a cube, as if it were cut diagonally from front to back //surrounded by 2 sides
+&#9;if adjacentSides == 2 and adjacentCorners &lt; 4 then
+&#9;&#9;for n = 0, 3 do
+&#9;&#9;&#9;if sides[n] == 0 and sides[(n + 1) % 4] == 0 and (surroundings[x][y + 1][z] == 0 or (sidesAbove[n] == 0 and sidesAbove[(n + 1) % 4] == 0 and sidesAbove[(n + 2) % 4] &gt; 0 and sidesAbove[(n + 3) % 4] &gt; 0)) then
+&#9;&#9;&#9;&#9;wedge = 4
+&#9;&#9;&#9;&#9;rotation = n
+&#9;&#9;&#9;&#9;c:SetCell(x, y, z, material, wedge, rotation)
+&#9;&#9;&#9;&#9;return true
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;c:SetCell(x, y, z, material, wedge, rotation)
+&#9;return false
+end
+
+function on3dButton1Down(mouse)
+&#9;local part = mouse.Target
+
+&#9;if part == nil then 
+&#9;&#9;return
+&#9;elseif part:IsA(&quot;Terrain&quot;) then
+&#9;&#9;if cluster ~= nil then
+&#9;&#9;&#9;local cellPos = cluster:WorldToCellPreferSolid(Vector3.new(mouse.Hit.x, mouse.Hit.y, mouse.Hit.z))
+&#9;&#9;&#9;local x = cellPos.x
+&#9;&#9;&#9;local y = cellPos.y
+&#9;&#9;&#9;local z = cellPos.z
+
+&#9;&#9;&#9;cluster:SetCell(x, y, z, 0, 0, 0)
+&#9;&#9;&#9;
+&#9;&#9;&#9;if (autoWedgeClusterParts) then
+
+&#9;&#9;&#9;&#9;for i = x - 1, x + 1 do
+&#9;&#9;&#9;&#9;&#9;for j = y - 1, y + 1 do
+&#9;&#9;&#9;&#9;&#9;&#9;for k = z - 1, z + 1 do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;MakeWedge(i, j, k)
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+
+&#9;&#9;&#9;end
+
+&#9;&#9;&#9;clearSelection()
+&#9;&#9;&#9;on3dMouseMove(mouse)
+
+&#9;&#9;end
+&#9;elseif canDeleteObject(part) then
+&#9;&#9;local model = findModel(part)
+&#9;&#9;local oldParent
+&#9;&#9;if model then 
+&#9;&#9;&#9;if currentSelection == model then
+&#9;&#9;&#9;&#9;currentSelection = nil
+&#9;&#9;&#9;&#9;clearSelection()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;oldParent = model.Parent
+&#9;&#9;&#9;model:Remove()
+&#9;&#9;else
+&#9;&#9;&#9;if currentSelection == part then
+&#9;&#9;&#9;&#9;currentSelection = nil
+&#9;&#9;&#9;&#9;clearSelection()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;oldParent = part.Parent
+&#9;&#9;&#9;part:Remove()
+&#9;&#9;end
+&#9;&#9;cleanOrphanedModel(oldParent)
+&#9;end
+end
+
+function saveSelectionColor(instance)
+&#9;if instance:IsA(&quot;BasePart&quot;) then
+&#9;&#9;currentSelectionColors[instance] = instance.BrickColor
+&#9;&#9;if instance.BrickColor == BrickColor.Red() then
+&#9;&#9;&#9;instance.BrickColor = BrickColor.new(&quot;Really red&quot;)
+&#9;&#9;else
+&#9;&#9;&#9;instance.BrickColor = BrickColor.Red()
+&#9;&#9;end
+&#9;end
+end
+&#9;
+function setSelection(partOrModel)
+&#9;if partOrModel ~= currentSelection then
+&#9;&#9;clearSelection()
+&#9;&#9;currentSelection = partOrModel
+&#9;&#9;selectionBox.Adornee = currentSelection
+&#9;end
+end
+
+function clearSelection()
+&#9;if currentSelection ~= nil then
+&#9;&#9;for part, color in pairs(currentSelectionColors) do
+&#9;&#9;&#9;part.BrickColor = color
+&#9;&#9;end
+&#9;&#9;selectionBox.Adornee = nil
+&#9;end
+&#9;currentSelectionColors = {}
+&#9;if currentSelection then currentSelection = nil end
+&#9;if selectionBox then selectionBox.Adornee = nil end
+&#9;megaClusterSelectionBox.Parent = nil
+end
+
+
+function on3dMouseMove(mouse) 
+&#9;if isRestricted then
+&#9;&#9;mouse.TargetFilter = game.Workspace.BaseplateBumpers
+&#9;else
+&#9;&#9;mouse.TargetFilter = megaClusterSelectionBox
+&#9;end
+&#9;local part = mouse.Target
+
+&#9;if not part then
+&#9;&#9;clearSelection() 
+&#9;&#9;return
+&#9;elseif part:IsA(&quot;Terrain&quot;) then
+&#9;&#9;if not cluster then cluster = game.Workspace.Terrain end
+&#9;&#9;local hitCell = cluster:WorldToCellPreferSolid(mouse.Hit.p)
+&#9;&#9;if cluster:GetCell(hitCell.x, hitCell.y, hitCell.z).Value &gt; 0 then
+&#9;&#9;&#9;megaClusterSelectionBox.CFrame = CFrame.new(cluster:CellCenterToWorld(hitCell.x, hitCell.y, hitCell.z))
+
+&#9;&#9;&#9;if isRestricted then megaClusterSelectionBox.Parent = game.Workspace.BaseplateBumpers else megaClusterSelectionBox.Parent = game.Workspace end
+&#9;&#9;&#9;selectionBox.Adornee = megaClusterSelectionBox
+&#9;&#9;else
+&#9;&#9;&#9;clearSelection()
+&#9;&#9;&#9;return
+&#9;&#9;end
+&#9;elseif canDeleteObject(part) then
+&#9;&#9;local model = findModel(part)
+&#9;&#9;if model then &#9;&#9;
+&#9;&#9;&#9;selectionBox.Color = BrickColor.Red()
+&#9;&#9;&#9;setSelection(model)
+&#9;&#9;else
+&#9;&#9;&#9;selectionBox.Color = BrickColor.Red()
+&#9;&#9;&#9;setSelection(part)
+&#9;&#9;end
+&#9;else
+&#9;&#9;clearSelection()
+&#9;end
+end
+
+local equipCount = 0
+function onEquippedLocal(mouse) --Fix implemented by Luckymaxer
+&#9;equipCount = equipCount + 1
+&#9;local val = equipCount
+&#9;
+&#9;if isRestricted then
+&#9;&#9;mouse.TargetFilter = game.Workspace.BaseplateBumpers
+&#9;else
+&#9;&#9;mouse.TargetFilter = megaClusterSelectionBox
+&#9;end
+
+&#9;if isRestricted then
+&#9;&#9;waitForChild(game.Workspace, &quot;BuildingAreas&quot;)
+&#9;&#9;if val ~= equipCount then
+&#9;&#9;&#9;return
+&#9;&#9;end
+&#9;end
+
+&#9;local character = script.Parent.Parent
+&#9;player = game.Players:GetPlayerFromCharacter(character)
+&#9;
+&#9;if not player then return end
+
+&#9;if isRestricted then
+&#9;&#9;local takenAreas = game.Workspace.BuildingAreas:GetChildren()
+&#9;&#9;for i = 1, #takenAreas do
+&#9;&#9;&#9;&#9;if takenAreas[i]:FindFirstChild(&quot;Player&quot;) ~= nil then  -- Test if child exists (to fix current bug: &quot;Player&quot; child is omitted from 1 baseplate at random, when played online.)
+&#9;&#9;&#9;&#9;&#9;if takenAreas[i].Player.Value == Tool.Parent.Name then
+&#9;&#9;&#9;&#9;&#9;&#9;buildingPlate = takenAreas[i].PlayerArea.BasePlate
+&#9;&#9;&#9;&#9;&#9;&#9;break
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+
+   if buildingPlate then
+&#9;&#9;playerModel  = buildingPlate.Parent
+&#9;else
+&#9;&#9;--playerModel  = nil
+&#9;&#9;playerModel = game.Workspace
+&#9;end
+
+&#9;mouse.Button1Down:connect(function() on3dButton1Down(mouse) end)
+&#9;mouse.Move:connect(function() on3dMouseMove(mouse) end)
+&#9;mouse.Icon =&quot;rbxasset://textures\\HammerCursor.png&quot;
+
+&#9;selectionBox = Instance.new(&quot;SelectionBox&quot;)
+&#9;selectionBox.Name = &quot;Model Delete Selection&quot;
+&#9;selectionBox.Color = BrickColor.Red()
+&#9;selectionBox.Adornee = nil
+&#9;selectionBox.Parent = player.PlayerGui
+
+&#9;selectionLasso = Instance.new(&quot;SelectionPartLasso&quot;)
+&#9;selectionLasso.Name = &quot;Model Delete Lasso&quot;
+&#9;selectionLasso.Humanoid = character.Humanoid
+&#9;selectionLasso.archivable = false
+&#9;selectionLasso.Visible = true
+&#9;selectionLasso.Parent = game.workspace
+&#9;selectionLasso.Color = BrickColor.Red()
+
+&#9;highlight = true
+end
+
+function onUnequippedLocal()
+&#9;highlight = false
+&#9;if selectionBox then
+&#9;&#9;clearSelection()
+&#9;&#9;selectionBox:Remove()
+&#9;end
+&#9;if selectionLasso then selectionLasso:Remove() end
+end
+
+
+Tool.Equipped:connect(onEquippedLocal)
+Tool.Unequipped:connect(onUnequippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SwordScript</string>
+				<ProtectedString name="Source">-------- OMG HAX
+
+r = game:service(&quot;RunService&quot;)
+
+
+local damage = 0
+
+
+local slash_damage = 0
+
+
+sword = script.Parent.Handle
+Tool = script.Parent
+
+
+
+function attack()
+&#9;local anim = Instance.new(&quot;StringValue&quot;)
+&#9;anim.Name = &quot;toolanim&quot;
+&#9;anim.Value = &quot;Slash&quot;
+&#9;anim.Parent = Tool
+end
+
+
+function swordUp()
+&#9;Tool.GripForward = Vector3.new(-1,0,0)
+&#9;Tool.GripRight = Vector3.new(0,1,0)
+&#9;Tool.GripUp = Vector3.new(0,0,1)
+end
+
+function swordOut()
+&#9;Tool.GripForward = Vector3.new(0,0,1)
+&#9;Tool.GripRight = Vector3.new(0,-1,0)
+&#9;Tool.GripUp = Vector3.new(-1,0,0)
+end
+
+
+
+Tool.Enabled = true
+
+function onActivated()
+
+&#9;if not Tool.Enabled then
+&#9;&#9;return
+&#9;end
+
+&#9;Tool.Enabled = false
+
+&#9;local character = Tool.Parent;
+&#9;local humanoid = character.Humanoid
+&#9;if humanoid == nil then
+&#9;&#9;return 
+&#9;end
+
+&#9;
+
+&#9;attack()
+
+&#9;wait(1)
+
+&#9;Tool.Enabled = true
+end
+
+
+script.Parent.Activated:connect(onActivated)
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="BoolValue" referent="RBX6">
+			<Properties>
+				<string name="Name">IsRestricted</string>
+				<bool name="Value">false</bool>
+			</Properties>
+		</Item>
+		<Item class="BoolValue" referent="RBX7">
+			<Properties>
+				<string name="Name">AutoWedgeClusterParts</string>
+				<bool name="Value">false</bool>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX8">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>3.12394333</X>
+					<Y>1.09595561</Y>
+					<Z>-5.37479115</Z>
+					<R00>-0.166767851</R00>
+					<R01>-0.184087351</R01>
+					<R02>0.968659043</R02>
+					<R10>-0</R10>
+					<R11>0.98241663</R11>
+					<R12>0.186701879</R12>
+					<R20>-0.985996246</R20>
+					<R21>0.0311358701</R21>
+					<R22>-0.163835511</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>1.186625</X>
+					<Y>0.722551823</Y>
+					<Z>-5.04712009</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

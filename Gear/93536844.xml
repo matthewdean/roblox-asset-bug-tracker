@@ -1,0 +1,414 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.800000012</Y>
+				<Z>0.699999988</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">ZombieLauncher</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=93632438</url></Content>
+			<string name="ToolTip">Launch Zombies!</string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">NpcLauncher_v1</string>
+				<ProtectedString name="Source">-----------------
+--| Constants |--
+-----------------
+
+local NPC_ID = 93601062 -- Asset ID of the NPC to be launched
+
+local COOLDOWN = 6 -- Seconds until tool can be used again
+local TIME_TO_LIVE = 60 -- Seconds until NPC is cleaned up
+
+local LAUNCH_SPEED_MIN = 60 -- Minimum speed NPC will be launched
+local LAUNCH_SPEED_MAX = 300 -- Maximum speed NPC will be launched
+
+local LAUNCH_TIME_MIN = 0 -- Seconds until launch speed starts increasing beyond min
+local LAUNCH_TIME_MAX = 3 -- Seconds to reach max launch speed
+
+local CHANCE_TO_EXPLODE = 10 -- There is a 1 in X chance that the NPC will explode
+
+local Tool = script.Parent
+while Tool:FindFirstChild(&apos;Handle&apos;) == nil do wait() end 
+local ToolHandle = Tool.Handle
+
+local MOUSE_ICON = &apos;rbxasset://textures/GunCursor.png&apos;
+local RELOADING_ICON = &apos;rbxasset://textures/GunWaitCursor.png&apos;
+
+-----------------
+--| Variables |--
+-----------------
+
+local InsertService = Game:GetService(&apos;InsertService&apos;)
+local DebrisService = Game:GetService(&apos;Debris&apos;)
+local PlayersService = Game:GetService(&apos;Players&apos;)
+
+local MyPlayer = PlayersService.LocalPlayer
+
+local Npc = InsertService:LoadAsset(NPC_ID):GetChildren()[1]
+
+do&#9;-- Give NPC a creator tag
+&#9;local creatorTag = Instance.new(&apos;ObjectValue&apos;)
+&#9;creatorTag.Name = &apos;creator&apos;
+&#9;creatorTag.Value = MyPlayer
+&#9;creatorTag.Parent = Npc
+end
+
+local NpcClone = Npc:Clone()
+
+local Mouse = nil
+local ClickTime = 0
+
+local SoundTable = {}
+local Holding = false
+
+-----------------
+--| Functions |--
+-----------------
+
+local function StartInfiniteChargeSound()
+&#9;local chargeSound = ToolHandle:FindFirstChild(&apos;Charge&apos;)
+&#9;local lastPlayTime = 0
+&#9;repeat -- Start a new charge sound every second
+&#9;&#9;if chargeSound and time() - lastPlayTime &gt;= 1 then
+&#9;&#9;&#9;local chargeSoundClone = chargeSound:Clone()
+&#9;&#9;&#9;chargeSoundClone.Parent = ToolHandle
+&#9;&#9;&#9;chargeSoundClone:Play()
+&#9;&#9;&#9;lastPlayTime = time()
+&#9;&#9;&#9;table.insert(SoundTable, chargeSoundClone)
+&#9;&#9;end
+&#9;&#9;wait(1/30)
+&#9;until not Holding
+
+&#9;-- Play fire sound
+&#9;local fireSound = ToolHandle:FindFirstChild(&apos;Fire&apos;)
+&#9;if fireSound then
+&#9;&#9;fireSound:Play()
+&#9;end
+
+&#9;-- Stop all charge sounds
+&#9;for _, sound in pairs(SoundTable) do
+&#9;&#9;sound:Stop()
+&#9;&#9;sound:Destroy()
+&#9;end
+&#9;SoundTable = {}
+end
+
+local function OnButton1Down()
+&#9;local myModel = MyPlayer.Character
+&#9;if Tool.Enabled and myModel and myModel:FindFirstChild(&apos;Humanoid&apos;) and myModel.Humanoid.Health &gt; 0 then
+&#9;&#9;ClickTime = time()
+&#9;&#9;Holding = true
+&#9;&#9;StartInfiniteChargeSound()
+&#9;end
+end
+
+local function OnButton1Up()
+&#9;Holding = false
+&#9;local myModel = MyPlayer.Character
+&#9;if Tool.Enabled and myModel and myModel:FindFirstChild(&apos;Humanoid&apos;) and myModel.Humanoid.Health &gt; 0 then
+&#9;&#9;Tool.Enabled = false
+&#9;&#9;Mouse.Icon = RELOADING_ICON
+
+&#9;&#9;-- Determine launch speed (based on how long click is held)
+&#9;&#9;local launchSpeed = LAUNCH_SPEED_MIN
+&#9;&#9;do
+&#9;&#9;&#9;local timeHeldDown = time() - ClickTime
+&#9;&#9;&#9;if timeHeldDown &gt; LAUNCH_TIME_MIN then
+&#9;&#9;&#9;&#9;local speedRange = LAUNCH_SPEED_MAX - LAUNCH_SPEED_MIN
+&#9;&#9;&#9;&#9;local timeRatio = timeHeldDown / (LAUNCH_TIME_MAX - LAUNCH_TIME_MIN)
+&#9;&#9;&#9;&#9;launchSpeed = launchSpeed + (speedRange * math.min(timeRatio, 1))
+&#9;&#9;&#9;end
+&#9;&#9;end
+
+&#9;&#9;-- Give all the NPC&apos;s BaseParts a velocity, and make any Humanoids sit
+&#9;&#9;local velocity = (Mouse.Hit.p - ToolHandle.CFrame.p).unit * launchSpeed
+&#9;&#9;for _, child in pairs(NpcClone:GetChildren()) do
+&#9;&#9;&#9;if child:IsA(&apos;BasePart&apos;) then
+&#9;&#9;&#9;&#9;child.Velocity = velocity
+&#9;&#9;&#9;elseif child:IsA(&apos;Humanoid&apos;) then
+&#9;&#9;&#9;&#9;child.Sit = true --NOTE: Turns off the gyro until NPC jumps
+&#9;&#9;&#9;end
+&#9;&#9;end
+
+&#9;&#9;-- Add the explode script if we get lucky
+&#9;&#9;if math.random(CHANCE_TO_EXPLODE) == 1 then
+&#9;&#9;&#9;local explodeScript = script:FindFirstChild(&apos;Explode&apos;)
+&#9;&#9;&#9;if explodeScript then
+&#9;&#9;&#9;&#9;local explodeScriptClone = explodeScript:Clone()
+&#9;&#9;&#9;&#9;explodeScriptClone.Parent = NpcClone
+&#9;&#9;&#9;&#9;explodeScriptClone.Disabled = false
+&#9;&#9;&#9;end
+&#9;&#9;end
+
+&#9;&#9;-- Add the NPC to the world
+&#9;&#9;DebrisService:AddItem(NpcClone, TIME_TO_LIVE)
+&#9;&#9;NpcClone.Parent = Workspace
+&#9;&#9;NpcClone:MoveTo(ToolHandle.Position) --NOTE: Must already be in Workspace
+
+&#9;&#9;-- Clone the next NPC
+&#9;&#9;NpcClone = Npc:Clone()
+
+&#9;&#9;wait(COOLDOWN)
+
+&#9;&#9;Mouse.Icon = MOUSE_ICON
+&#9;&#9;Tool.Enabled = true
+&#9;end
+end
+
+local function OnEquipped(mouse)
+&#9;Mouse = mouse
+&#9;if Tool.Enabled then
+&#9;&#9;Mouse.Icon = MOUSE_ICON
+&#9;else
+&#9;&#9;Mouse.Icon = RELOADING_ICON
+&#9;end
+&#9;Mouse.Button1Down:connect(OnButton1Down)
+&#9;Mouse.Button1Up:connect(OnButton1Up)
+end
+
+--------------------
+--| Script Logic |--
+--------------------
+
+Tool.Equipped:connect(OnEquipped)
+</ProtectedString>
+			</Properties>
+			<Item class="Script" referent="RBX2">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">Explode</string>
+					<ProtectedString name="Source">local Model = script.Parent
+
+local BodyColors = Model:FindFirstChild(&apos;Body Colors&apos;)
+if BodyColors then -- Make BodyColors red
+&#9;local red = BrickColor.new(&apos;Bright red&apos;)
+&#9;BodyColors.HeadColor = red
+&#9;BodyColors.LeftArmColor = red
+&#9;BodyColors.LeftLegColor = red
+&#9;BodyColors.RightArmColor = red
+&#9;BodyColors.RightLegColor = red
+&#9;BodyColors.TorsoColor = red
+end
+
+local HeadMesh = nil
+do -- Find HeadMesh
+&#9;local head = Model:FindFirstChild(&apos;Head&apos;)
+&#9;if head then
+&#9;&#9;HeadMesh = head:FindFirstChild(&apos;Mesh&apos;)
+&#9;end
+end
+
+-- Head flashy
+if HeadMesh then
+&#9;local color = HeadMesh.VertexColor
+&#9;local red = Vector3.new(2, 0, 0)
+&#9;local function flashy(howLong)
+&#9;&#9;HeadMesh.VertexColor = red
+&#9;&#9;wait(howLong)
+&#9;&#9;HeadMesh.VertexColor = color
+&#9;&#9;wait(howLong)
+&#9;end
+&#9;local flashTime = 1
+&#9;while flashTime &gt; 0.025 do
+&#9;&#9;flashy(flashTime)
+&#9;&#9;flashTime = flashTime * 0.75
+&#9;end
+else
+&#9;wait(3)
+end
+
+Instance.new(&apos;Explosion&apos;, Workspace).Position = Model:GetModelCFrame().p
+
+local BoomSound = script:FindFirstChild(&apos;Boom&apos;)
+if BoomSound then
+&#9;local torso = Model:FindFirstChild(&apos;Torso&apos;)
+&#9;if torso then
+&#9;&#9;BoomSound.Parent = torso
+&#9;end
+&#9;BoomSound:Play()
+end
+</ProtectedString>
+				</Properties>
+				<Item class="Sound" referent="RBX3">
+					<Properties>
+						<bool name="Looped">false</bool>
+						<string name="Name">Boom</string>
+						<float name="Pitch">1</float>
+						<bool name="PlayOnRemove">false</bool>
+						<Content name="SoundId"><url>rbxasset://sounds/collide.wav</url></Content>
+						<float name="Volume">0.5</float>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Part" referent="RBX4">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.400000006</X>
+					<Y>0.899999976</Y>
+					<Z>0.400000006</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.820000172</X>
+					<Y>1.75</Y>
+					<Z>3.20000076</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX5">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=93632264</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.75</X>
+						<Y>0.75</Y>
+						<Z>0.75</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=93632365</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX6">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Charge</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset?id=93724183</url></Content>
+					<float name="Volume">0.200000003</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX7">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Fire</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset?id=93725061</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX8">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-2.52184629</X>
+					<Y>1.69477439</Y>
+					<Z>-1.85966229</Z>
+					<R00>-0.728987634</R00>
+					<R01>0.170014113</R01>
+					<R02>-0.663077831</R02>
+					<R10>-0</R10>
+					<R11>0.968665838</R11>
+					<R12>0.248367339</R12>
+					<R20>0.684526861</R20>
+					<R21>0.181056723</R21>
+					<R22>-0.706145465</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-0.399999976</X>
+					<Y>0.899999976</Y>
+					<Z>0.400000036</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,0 +1,1941 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>1</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">TicTacToe</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=16923382</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="ObjectValue" referent="RBX1">
+			<Properties>
+				<string name="Name">Opponent</string>
+				<Ref name="Value">null</Ref>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX2">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">TicTac_LocalMain</string>
+				<ProtectedString name="Source">local clicks = 0
+local con = nil
+
+script.Parent.Equipped:connect(function(mouse)
+&#9;script.Name = &quot;TicTac_LocalMain_Selected&quot;
+&#9;--when clicked look for an opponent
+&#9;con = mouse.Button1Down:connect(function()
+&#9;&#9;--check for a humanoid
+&#9;&#9;--OR hack for quick elimination of possible &quot;no mouse.Target&quot; condition
+&#9;&#9;local humanoid = mouse.Target and mouse.Target.Parent:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;local torso = humanoid and humanoid.Parent:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;if torso and (torso.Position - script.Parent.Handle.Position).magnitude &lt; 16 then
+&#9;&#9;&#9;if humanoid then
+&#9;&#9;&#9;&#9;--check if the humanoid belongs to a player
+&#9;&#9;&#9;&#9;local player = game.Players:playerFromCharacter(humanoid.Parent)
+&#9;&#9;&#9;&#9;if player then
+&#9;&#9;&#9;&#9;&#9;--replicate the opponent value to the server sided script
+&#9;&#9;&#9;&#9;&#9;script.Parent.Opponent.Value = player
+&#9;&#9;&#9;&#9;&#9;--
+&#9;&#9;&#9;&#9;&#9;clicks = clicks + 1
+&#9;&#9;&#9;&#9;&#9;script.Name = tostring(clicks)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end)
+end)
+
+script.Parent.Unequipped:connect(function()
+&#9;if con then
+&#9;&#9;con:disconnect()
+&#9;&#9;con = nil
+&#9;end
+&#9;script.Name = &quot;TicTac_LocalMain_NotSelected&quot;
+end)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX3">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">38</int>
+				<CoordinateFrame name="CFrame">
+					<X>6</X>
+					<Y>15</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">512</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">2</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>2</X>
+					<Y>0.400000006</Y>
+					<Z>2</Z>
+				</Vector3>
+			</Properties>
+			<Item class="Decal" referent="RBX4">
+				<Properties>
+					<token name="Face">1</token>
+					<string name="Name">Decal</string>
+					<float name="Shiny">20</float>
+					<float name="Specular">0</float>
+					<Content name="Texture"><url>http://www.roblox.com/asset/?id=16922886</url></Content>
+					<float name="Transparency">0</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">TicTac_OpponentCleanup</string>
+				<ProtectedString name="Source">----------------------------------------------------------------------------
+-------- cleans up the opponent&apos;s stuff if the player leaves
+
+game.Players.ChildRemoved:connect(function(p)
+&#9;if p == script.Challenger.Value then
+&#9;&#9;script.Cleanup.Value:remove()
+&#9;&#9;script:remove()
+&#9;end
+end)
+&#9;&#9;</ProtectedString>
+			</Properties>
+			<Item class="ObjectValue" referent="RBX6">
+				<Properties>
+					<string name="Name">Challenger</string>
+					<Ref name="Value">null</Ref>
+				</Properties>
+			</Item>
+			<Item class="ObjectValue" referent="RBX7">
+				<Properties>
+					<string name="Name">Cleanup</string>
+					<Ref name="Value">null</Ref>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBX8">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">TicTac_ToolMain</string>
+				<ProtectedString name="Source">local gameState = 0 --[[
+0 = no game
+1 = waiting for opponent to accept or decline
+2 = game running
+3 = game over message pending
+]]
+
+local gameTurn = true --[[
+true = your turn
+false = opponents turn
+
+acts as a spinlock for the main loop
+]]
+
+local resourceGui = script.Parent.TicTacGui
+resourceGui.Parent = nil
+local opponentGui = nil
+local playerGui = nil --[[
+the guis for your and the opponent
+]]
+
+local opponentCleanupScript = nil --[[
+script to clean up the opponent&apos;s gui if I leave
+]]
+
+local gameBoard = {{},{},{}} --[[
+the gameboard, values := [0 = empty, 1 = player, 2 = opponent] 
+]]
+
+local player = nil
+local opponent = nil --[[
+me and the opponent, (and possibly other players / viewers in other games)
+]]
+
+local opponentChangedSignal = nil --[[
+signal must be connected when the tool is deselected, unlike mouse ones which expire automatically
+]]
+
+function hasWon(num)
+&#9;---- debugging ----
+&#9;print(&quot;--- Checking for win of&quot;, num, &quot;---&quot;)
+&#9;for x = 1, 3 do
+&#9;&#9;local str = &quot;&quot;
+&#9;&#9;for y = 1, 3 do&#9;
+&#9;&#9;&#9;str = str..gameBoard[x][y]..&quot;  &quot;
+&#9;&#9;end
+&#9;&#9;print(str)
+&#9;end
+&#9;print(&quot;--------------------------------------&quot;)
+&#9;-----------------------
+&#9;--cols
+&#9;for x = 1, 3 do
+&#9;&#9;local col = true
+&#9;&#9;for y = 1, 3 do
+&#9;&#9;&#9;if gameBoard[x][y] ~= num then 
+&#9;&#9;&#9;&#9;col = false
+&#9;&#9;&#9;&#9;break
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;if col then return true end
+&#9;end
+&#9;--rows
+&#9;for y = 1, 3 do
+&#9;&#9;local row = true
+&#9;&#9;for x = 1, 3 do
+&#9;&#9;&#9;if gameBoard[x][y] ~= num then
+&#9;&#9;&#9;&#9;row = false
+&#9;&#9;&#9;&#9;break;
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;if row then return true end
+&#9;end
+&#9;--diagonal x = y
+&#9;local diag = true
+&#9;for i = 1, 3 do
+&#9;&#9;if gameBoard[i][i] ~= num then
+&#9;&#9;&#9;diag = false
+&#9;&#9;&#9;break
+&#9;&#9;end
+&#9;end
+&#9;if diag then return true end
+&#9;--diagonal x = -y
+&#9;diag = true
+&#9;for i = 1, 3 do
+&#9;&#9;if gameBoard[i][4-i] ~= num then
+&#9;&#9;&#9;diag = false
+&#9;&#9;&#9;break
+&#9;&#9;end
+&#9;end
+&#9;if diag then return true end
+end
+
+function boardFull()
+&#9;for x = 1, 3 do
+&#9;for y = 1, 3 do
+&#9;&#9;if gameBoard[x][y] == 0 then
+&#9;&#9;&#9;return false
+&#9;&#9;end
+&#9;end
+&#9;end
+&#9;return true
+end
+
+function setupPlayerBoard()
+&#9;for x = 1, 3 do
+&#9;for y = 1, 3 do
+&#9;&#9;local coordStr = x..y
+&#9;&#9;playerGui.MainFrame.BoardFrame[coordStr].MouseButton1Down:connect(function()
+&#9;&#9;&#9;if gameTurn and gameBoard[x][y] == 0 then
+&#9;&#9;&#9;&#9;gameBoard[x][y] = 1
+&#9;&#9;&#9;&#9;playerGui.MainFrame.BoardFrame[coordStr].Image = &quot;http://www.roblox.com/asset/?id=16417305&quot;
+&#9;&#9;&#9;&#9;opponentGui.MainFrame.BoardFrame[coordStr].Image = &quot;http://www.roblox.com/asset/?id=16417305&quot;
+&#9;&#9;&#9;end
+&#9;&#9;&#9;gameTurn = false
+&#9;&#9;end)
+&#9;end
+&#9;end
+end
+
+function setupOpponentBoard()
+&#9;for x = 1, 3 do
+&#9;for y = 1, 3 do
+&#9;&#9;local coordStr = x..y
+&#9;&#9;opponentGui.MainFrame.BoardFrame[coordStr].MouseButton1Down:connect(function()
+&#9;&#9;&#9;if not gameTurn and gameBoard[x][y] == 0 then
+&#9;&#9;&#9;&#9;gameBoard[x][y] = 2
+&#9;&#9;&#9;&#9;playerGui.MainFrame.BoardFrame[coordStr].Image = &quot;http://www.roblox.com/asset/?id=16417300&quot;
+&#9;&#9;&#9;&#9;opponentGui.MainFrame.BoardFrame[coordStr].Image = &quot;http://www.roblox.com/asset/?id=16417300&quot;
+&#9;&#9;&#9;end
+&#9;&#9;&#9;gameTurn = true
+&#9;&#9;end)
+&#9;end
+&#9;end
+end
+
+function createPlayerGui()
+&#9;--remove the old gui
+&#9;if playerGui then
+&#9;&#9;playerGui:remove()
+&#9;end
+&#9;--set up the player&apos;s GUI
+&#9;playerGui = resourceGui:clone()
+&#9;playerGui.Parent = player.PlayerGui
+&#9;playerGui.SideFrame.Visible = true
+&#9;setupPlayerBoard()
+&#9;--make the popupframe hide on ok pressed
+&#9;playerGui.PopupFrame.Accept.MouseButton1Down:connect(function()
+&#9;&#9;--hack, this must be the gameover message if gameState is 3, reset game state
+&#9;&#9;if gameState == 3 then
+&#9;&#9;&#9;playerGui.MainFrame.Visible = false
+&#9;&#9;&#9;playerGui.SideFrame.TXT1.Text = &quot;Click on a player to&quot;
+&#9;&#9;&#9;playerGui.SideFrame.TXT2.Text = &quot;challenge them&quot;
+&#9;&#9;&#9;playerGui.SideFrame.Visible = true
+&#9;&#9;&#9;Spawn(function()
+&#9;&#9;&#9;&#9;for i = -128, 0, 4 do
+&#9;&#9;&#9;&#9;&#9;playerGui.SideFrame.Position = UDim2.new(0, i, 0.5, -16)
+&#9;&#9;&#9;&#9;&#9;wait()
+&#9;&#9;&#9;&#9;end&#9;
+&#9;&#9;&#9;end)&#9;&#9;&#9;
+&#9;&#9;&#9;gameState = 0
+&#9;&#9;end
+&#9;&#9;--hide me
+&#9;&#9;playerGui.PopupFrame.Visible = false
+&#9;end)
+end
+
+function playGame()
+&#9;--== create a new board for the player (reusing old one causes some rendering bugs with the x and o images)
+&#9;createPlayerGui()
+&#9;--==set up the opponent&apos;s gui connections (the player&apos;s are setup on tool selection)
+&#9;setupOpponentBoard()
+&#9;--==hide the player&apos;s sideframe
+&#9;Spawn(function()
+&#9;&#9;for i = 0, -128, -4 do
+&#9;&#9;&#9;playerGui.SideFrame.Position = UDim2.new(0, i, 0.5, -16)
+&#9;&#9;&#9;wait()
+&#9;&#9;end&#9;
+&#9;end)
+&#9;--==set turn and gamestate
+&#9;local gameRunning = true
+&#9;gameTurn = true
+&#9;gameState = 2
+&#9;--reset the board, and the player&apos;s board gui
+&#9;for x = 1, 3 do
+&#9;for y = 1, 3 do
+&#9;&#9;gameBoard[x][y] = 0
+&#9;&#9;playerGui.MainFrame.BoardFrame[x..y].Image = &quot;&quot;
+&#9;end
+&#9;end
+&#9;--==connection for if the opponent leaves
+&#9;local opponentLeftSignal = game.Players.ChildRemoved:connect(function(p)
+&#9;&#9;if p == opponent then
+&#9;&#9;&#9;gameState = 3
+&#9;&#9;&#9;playerGui.MainFrame.Visible = false
+&#9;&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;Opponent has left&quot;
+&#9;&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;end
+&#9;end)
+&#9;--==connection to put back the gui if the opponent dies
+&#9;local opponentDiedSignal = opponent.Changed:connect(function(property)
+&#9;&#9;if property == &quot;Character&quot; then
+&#9;&#9;&#9;opponentGui.Parent = opponent.PlayerGui
+&#9;&#9;end
+&#9;end)
+&#9;--==player died, panic and trash the game
+&#9;local playerDiedSignal = player.Character.Humanoid.Died:connect(function()
+&#9;&#9;--clean up connections to opponent
+&#9;&#9;opponentLeftSignal:disconnect()
+&#9;&#9;opponentDiedSignal:disconnect()
+&#9;&#9;--clean up opponentcleanup
+&#9;&#9;opponentCleanupScript:remove()
+&#9;&#9;--clean up guis
+&#9;&#9;opponentGui:remove()
+&#9;&#9;opponentGui = nil
+&#9;&#9;--player&apos;s is going to get cleaned up right anyways, TODO : maybe show a popup message
+&#9;&#9;--playerGui:remove()
+&#9;&#9;--playerGui = nil
+&#9;end)
+&#9;--==&quot;quit&quot; button pressed connections
+&#9;local playerQuitSignal = playerGui.MainFrame.InfoFrame.BN_Quit.MouseButton1Down:connect(function()
+&#9;&#9;playerGui.MainFrame.Visible = false
+&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;You have quit the game&quot;
+&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;--
+&#9;&#9;opponentGui.MainFrame.Visible = false
+&#9;&#9;opponentGui.PopupFrame.TXT.Text = player.Name..&quot; has quit, you win!&quot;
+&#9;&#9;opponentGui.PopupFrame.Visible = true&#9;&#9;
+&#9;&#9;--
+&#9;&#9;gameRunning = false
+&#9;&#9;gameTurn = not gameTurn
+&#9;end)
+&#9;local opponentQuitSignal = opponentGui.MainFrame.InfoFrame.BN_Quit.MouseButton1Down:connect(function()
+&#9;&#9;playerGui.MainFrame.Visible = false
+&#9;&#9;playerGui.PopupFrame.TXT.Text = opponent.Name..&quot; has quit, you win!&quot;
+&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;--
+&#9;&#9;opponentGui:remove()
+&#9;&#9;opponentGui = nil
+&#9;&#9;--
+&#9;&#9;gameRunning = false
+&#9;&#9;gameTurn = not gameTurn
+&#9;end)
+&#9;--
+&#9;local piframe = playerGui.MainFrame.InfoFrame
+&#9;playerGui.MainFrame.Visible = true
+&#9;piframe.Opponent.TXT.Text = opponent.Name
+&#9;piframe.Turn.TXT.Text = &quot;Your turn&quot;
+&#9;piframe.PlayAs.IMG.Image = &quot;http://www.roblox.com/asset/?id=16417305&quot;
+&#9;local oiframe = opponentGui.MainFrame.InfoFrame
+&#9;opponentGui.MainFrame.Visible = true
+&#9;oiframe.Opponent.TXT.Text = player.Name
+&#9;oiframe.Turn.TXT.Text = &quot;Opponent&apos;s turn&quot;
+&#9;oiframe.PlayAs.IMG.Image = &quot;http://www.roblox.com/asset/?id=16417300&quot;
+&#9;--==enter the main gameloop
+&#9;while gameRunning do
+&#9;&#9;--wait for the spinlock, for a player to make a move
+&#9;&#9;local tmp = gameTurn
+&#9;&#9;while gameTurn == tmp do
+&#9;&#9;&#9;wait()
+&#9;&#9;end
+&#9;&#9;if not gameRunning then
+&#9;&#9;&#9;break
+&#9;&#9;end
+&#9;&#9;--change turn displays
+&#9;&#9;if gameTurn then
+&#9;&#9;&#9;piframe.Turn.TXT.Text = &quot;Your turn&quot;
+&#9;&#9;&#9;oiframe.Turn.TXT.Text = &quot;Opponent&apos;s turn&quot;
+&#9;&#9;else
+&#9;&#9;&#9;piframe.Turn.TXT.Text = &quot;Opponent&apos;s turn&quot;
+&#9;&#9;&#9;oiframe.Turn.TXT.Text = &quot;Your turn&quot;
+&#9;&#9;end
+&#9;&#9;--check for a win
+&#9;&#9;if hasWon(1) then
+&#9;&#9;&#9;playerGui.MainFrame.Visible = false
+&#9;&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;You have won!&quot;
+&#9;&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;&#9;--
+&#9;&#9;&#9;opponentGui.MainFrame.Visible = false
+&#9;&#9;&#9;opponentGui.PopupFrame.TXT.Text = &quot;You have lost =(&quot;
+&#9;&#9;&#9;opponentGui.PopupFrame.Visible = true
+&#9;&#9;&#9;--
+&#9;&#9;&#9;break
+&#9;&#9;elseif hasWon(2) then
+&#9;&#9;&#9;playerGui.MainFrame.Visible = false
+&#9;&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;You have lost =(&quot;
+&#9;&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;&#9;--
+&#9;&#9;&#9;opponentGui.MainFrame.Visible = false
+&#9;&#9;&#9;opponentGui.PopupFrame.TXT.Text = &quot;You have won!&quot;
+&#9;&#9;&#9;opponentGui.PopupFrame.Visible = true&#9;
+&#9;&#9;&#9;--
+&#9;&#9;&#9;break
+&#9;&#9;elseif boardFull() then
+&#9;&#9;&#9;playerGui.MainFrame.Visible = false
+&#9;&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;It&apos;s a tie!&quot;
+&#9;&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;&#9;--
+&#9;&#9;&#9;opponentGui.MainFrame.Visible = false
+&#9;&#9;&#9;opponentGui.PopupFrame.TXT.Text = &quot;It&apos;s a tie!&quot;
+&#9;&#9;&#9;opponentGui.PopupFrame.Visible = true&#9;
+&#9;&#9;&#9;--
+&#9;&#9;&#9;break&#9;&#9;&#9;
+&#9;&#9;end
+&#9;end
+&#9;--==disconnect the signals made
+&#9;opponentDiedSignal:disconnect()
+&#9;opponentLeftSignal:disconnect()
+&#9;playerQuitSignal:disconnect()
+&#9;opponentQuitSignal:disconnect()
+&#9;--==set the gamestate to gameover message pending
+&#9;gameState = 3
+end
+
+script.Parent.Equipped:connect(function()
+&#9;print(&quot;TicTacTool Equipped&quot;)
+&#9;gameState = 0
+&#9;gameTurn = true
+&#9;player = game.Players:playerFromCharacter(script.Parent.Parent)
+&#9;--listen for a player clicked notification sent from the localscript
+&#9;opponentChangedSignal = script.Parent.Opponent.Changed:connect(function()
+&#9;&#9;--was set to nil, ignore change
+&#9;&#9;if not script.Parent.Opponent.Value then 
+&#9;&#9;&#9;print(&quot;Opponent value set back to nil&quot;) 
+&#9;&#9;&#9;return 
+&#9;&#9;end
+&#9;&#9;print(&quot;Clicked an opponent&quot;)
+&#9;&#9;--if there&apos;s no game, challenge this player
+&#9;&#9;if gameState == 0 then
+&#9;&#9;&#9;print(&quot;Starting game&quot;)
+&#9;&#9;&#9;--if they&apos;re allready playing tictactoe then return
+&#9;&#9;&#9;if script.Parent.Opponent.Value.PlayerGui:FindFirstChild(&quot;TicTacGui&quot;) then 
+&#9;&#9;&#9;&#9;print(&quot;Opponent is allready playing a game&quot;)
+&#9;&#9;&#9;&#9;if script.Parent.Opponent.Value.Character:FindFirstChild(script.Parent.Name) then
+&#9;&#9;&#9;&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;Can&apos;t play a player with TicTacToe equipped&quot;
+&#9;&#9;&#9;&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;Player is allready playing a game&quot;
+&#9;&#9;&#9;&#9;&#9;playerGui.PopupFrame.Visible = true
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;wait(0.1)
+&#9;&#9;&#9;&#9;script.Parent.Opponent.Value = nil
+&#9;&#9;&#9;&#9;return 
+&#9;&#9;&#9;end
+&#9;&#9;&#9;--set the gamestate
+&#9;&#9;&#9;gameState = 1
+&#9;&#9;&#9;opponent = script.Parent.Opponent.Value
+&#9;&#9;&#9;wait(0.1)
+&#9;&#9;&#9;script.Parent.Opponent.Value = nil
+&#9;&#9;&#9;--set up the opponent&apos;s GUI
+&#9;&#9;&#9;opponentGui = resourceGui:clone()
+&#9;&#9;&#9;opponentGui.SideFrame.Visible = false
+&#9;&#9;&#9;opponentGui.AcceptFrame.Visible = true
+&#9;&#9;&#9;opponentGui.AcceptFrame.TXT.Text = player.Name..&quot; wants to play TicTacToe with you!&quot;
+&#9;&#9;&#9;--==set up the opponent&apos;s cleanup if this player leaves
+&#9;&#9;&#9;opponentCleanupScript = script.Parent.TicTac_OpponentCleanup:clone()
+&#9;&#9;&#9;opponentCleanupScript.Challenger.Value = player
+&#9;&#9;&#9;opponentCleanupScript.Cleanup.Value = opponentGui
+&#9;&#9;&#9;opponentCleanupScript.Disabled = false
+&#9;&#9;&#9;--should I put it straight in workspace or is that considered namespace pollution? that will work for now at least
+&#9;&#9;&#9;opponentCleanupScript.Parent = game.Workspace
+&#9;&#9;&#9;--on accept
+&#9;&#9;&#9;opponentGui.AcceptFrame.Accept.MouseButton1Down:connect(function()
+&#9;&#9;&#9;&#9;opponentGui.AcceptFrame.Visible = false
+&#9;&#9;&#9;&#9;playGame()
+&#9;&#9;&#9;end)
+&#9;&#9;&#9;--on decline
+&#9;&#9;&#9;opponentGui.AcceptFrame.Decline.MouseButton1Down:connect(function()
+&#9;&#9;&#9;&#9;--reset player&apos;s sideframes&apos; text
+&#9;&#9;&#9;&#9;playerGui.SideFrame.TXT1.Text = &quot;Click on a player to&quot;
+&#9;&#9;&#9;&#9;playerGui.SideFrame.TXT2.Text = &quot;challenge them&quot;
+&#9;&#9;&#9;&#9;--show me a popup stating player declined
+&#9;&#9;&#9;&#9;playerGui.PopupFrame.TXT.Text = &quot;Opponent Declined =(&quot;
+&#9;&#9;&#9;&#9;playerGui.PopupFrame.Visible = true&#9;
+&#9;&#9;&#9;&#9;--reset the game state
+&#9;&#9;&#9;&#9;gameState = 0
+&#9;&#9;&#9;&#9;--remove opponent gui
+&#9;&#9;&#9;&#9;opponentGui:remove()
+&#9;&#9;&#9;&#9;opponentGui = nil
+&#9;&#9;&#9;&#9;--remove opponent cleanup script
+&#9;&#9;&#9;&#9;opponentCleanupScript:remove()
+&#9;&#9;&#9;&#9;opponentCleanupScript = nil
+&#9;&#9;&#9;end)
+&#9;&#9;&#9;--hide popup on OK pressed
+&#9;&#9;&#9;opponentGui.PopupFrame.Accept.MouseButton1Down:connect(function()
+&#9;&#9;&#9;&#9;--only called on game waiting for over, delete this gui and &quot;this player left&quot; script if it exists
+&#9;&#9;&#9;&#9;if opponentCleanupScript then
+&#9;&#9;&#9;&#9;&#9;opponentCleanupScript:remove()
+&#9;&#9;&#9;&#9;&#9;opponentCleanupScript = nil
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;opponentGui:remove()
+&#9;&#9;&#9;&#9;opponentGui = nil
+&#9;&#9;&#9;end)
+&#9;&#9;&#9;--gui set up, add it
+&#9;&#9;&#9;opponentGui.Parent = opponent.PlayerGui
+&#9;&#9;&#9;--set the player&apos;s GUI
+&#9;&#9;&#9;playerGui.SideFrame.TXT1.Text = &quot;Sending Challenge&quot;
+&#9;&#9;&#9;playerGui.SideFrame.TXT2.Text = &quot;Please wait...&quot;
+&#9;&#9;else
+&#9;&#9;&#9;print(&quot;Game allready started&quot;)
+&#9;&#9;&#9;wait(0.1)
+&#9;&#9;&#9;script.Parent.Opponent.Value = nil
+&#9;&#9;end
+&#9;end)
+&#9;--create the player&apos;s gui
+&#9;createPlayerGui()
+&#9;--pretty effects, scroll out the side frame
+&#9;for i = -128, 0, 4 do
+&#9;&#9;playerGui.SideFrame.Position = UDim2.new(0, i, 0.5, -16)
+&#9;&#9;wait()
+&#9;end
+&#9;print(&quot;TicTacTool finished setup&quot;)
+end)
+
+function doCleanUp()
+&#9;--clean up the guis if they exist
+&#9;if opponentGui then
+&#9;&#9;opponentGui:remove()
+&#9;&#9;opponentGui = nil
+&#9;end
+&#9;if playerGui then
+&#9;&#9;playerGui:remove()
+&#9;&#9;playerGui = nil
+&#9;end&#9;
+&#9;--remove the connection to opponentchanged
+&#9;opponentChangedSignal:disconnect()
+end
+
+script.Parent.Unequipped:connect(function()
+&#9;print(&quot;Tool unequipped, clean up...&quot;)
+&#9;doCleanUp()
+&#9;--TODO: send some friendly notification to a possible
+&#9;--opponent that the player exited the map or deselected
+&#9;--the tool. As the player will have exited a separate
+&#9;--script is required for this
+end)
+
+
+
+
+
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="GuiMain" referent="RBX9">
+			<Properties>
+				<string name="Name">TicTacGui</string>
+			</Properties>
+			<Item class="Frame" referent="RBX10">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Color3 name="BackgroundColor3">4292791457</Color3>
+					<float name="BackgroundTransparency">0.5</float>
+					<Color3 name="BorderColor3">4279308561</Color3>
+					<int name="BorderSizePixel">1</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<string name="Name">MainFrame</string>
+					<UDim2 name="Position">
+						<XS>0.5</XS>
+						<XO>-207</XO>
+						<YS>0.5</YS>
+						<YO>-167</YO>
+					</UDim2>
+					<UDim2 name="Size">
+						<XS>0</XS>
+						<XO>414</XO>
+						<YS>0</YS>
+						<YO>336</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<token name="Style">0</token>
+					<bool name="Visible">false</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+				<Item class="Frame" referent="RBX11">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4279308561</Color3>
+						<float name="BackgroundTransparency">0.699999988</float>
+						<Color3 name="BorderColor3">4279308561</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<string name="Name">BoardFrame</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>2</XO>
+							<YS>0</YS>
+							<YO>26</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>0</XS>
+							<XO>308</XO>
+							<YS>0</YS>
+							<YO>308</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">0</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+					<Item class="ImageButton" referent="RBX12">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">11</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>2</XO>
+								<YS>0</YS>
+								<YO>2</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX13">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">12</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>104</XO>
+								<YS>0</YS>
+								<YO>2</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX14">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">13</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>206</XO>
+								<YS>0</YS>
+								<YO>2</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX15">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">21</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>2</XO>
+								<YS>0</YS>
+								<YO>104</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX16">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">23</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>206</XO>
+								<YS>0</YS>
+								<YO>104</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX17">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">22</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>104</XO>
+								<YS>0</YS>
+								<YO>104</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX18">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">31</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>2</XO>
+								<YS>0</YS>
+								<YO>206</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX19">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">33</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>206</XO>
+								<YS>0</YS>
+								<YO>206</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX20">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4294955936</Color3>
+							<float name="BackgroundTransparency">0.699999988</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">32</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>104</XO>
+								<YS>0</YS>
+								<YO>206</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>100</XO>
+								<YS>0</YS>
+								<YO>100</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="TextLabel" referent="RBX21">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279308561</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">0</token>
+						<string name="Name">TitleBar</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>24</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">TicTacToe</string>
+						<Color3 name="TextColor3">4279970357</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+				</Item>
+				<Item class="Frame" referent="RBX22">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4292791457</Color3>
+						<float name="BackgroundTransparency">0.5</float>
+						<Color3 name="BorderColor3">4279308561</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<string name="Name">InfoFrame</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>312</XO>
+							<YS>0</YS>
+							<YO>26</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>0</XS>
+							<XO>100</XO>
+							<YS>0</YS>
+							<YO>308</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">0</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+					<Item class="Frame" referent="RBX23">
+						<Properties>
+							<bool name="Active">false</bool>
+							<Color3 name="BackgroundColor3">4289374636</Color3>
+							<float name="BackgroundTransparency">1</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<string name="Name">Opponent</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>3</XO>
+								<YS>0</YS>
+								<YO>3</YO>
+							</UDim2>
+							<UDim2 name="Size">
+								<XS>1</XS>
+								<XO>-6</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+						<Item class="TextLabel" referent="RBX24">
+							<Properties>
+								<bool name="Active">false</bool>
+								<Color3 name="BackgroundColor3">4294955936</Color3>
+								<float name="BackgroundTransparency">0</float>
+								<Color3 name="BorderColor3">4279308561</Color3>
+								<int name="BorderSizePixel">1</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<token name="Font">0</token>
+								<token name="FontSize">0</token>
+								<string name="Name">Header</string>
+								<UDim2 name="Position">
+									<XS>0</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>0</YO>
+								</UDim2>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<string name="Text">Opponent :</string>
+								<Color3 name="TextColor3">4279970357</Color3>
+								<bool name="TextScaled">false</bool>
+								<Color3 name="TextStrokeColor3">4278190080</Color3>
+								<float name="TextStrokeTransparency">1</float>
+								<float name="TextTransparency">0</float>
+								<bool name="TextWrapped">false</bool>
+								<token name="TextXAlignment">2</token>
+								<token name="TextYAlignment">1</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+							</Properties>
+						</Item>
+						<Item class="TextLabel" referent="RBX25">
+							<Properties>
+								<bool name="Active">false</bool>
+								<Color3 name="BackgroundColor3">4292791457</Color3>
+								<float name="BackgroundTransparency">0</float>
+								<Color3 name="BorderColor3">4279308561</Color3>
+								<int name="BorderSizePixel">1</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<token name="Font">0</token>
+								<token name="FontSize">0</token>
+								<string name="Name">TXT</string>
+								<UDim2 name="Position">
+									<XS>0</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<string name="Text">None</string>
+								<Color3 name="TextColor3">4279970357</Color3>
+								<bool name="TextScaled">false</bool>
+								<Color3 name="TextStrokeColor3">4278190080</Color3>
+								<float name="TextStrokeTransparency">1</float>
+								<float name="TextTransparency">0</float>
+								<bool name="TextWrapped">false</bool>
+								<token name="TextXAlignment">2</token>
+								<token name="TextYAlignment">1</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="Frame" referent="RBX26">
+						<Properties>
+							<bool name="Active">false</bool>
+							<Color3 name="BackgroundColor3">4289374636</Color3>
+							<float name="BackgroundTransparency">1</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<string name="Name">Turn</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>3</XO>
+								<YS>0</YS>
+								<YO>38</YO>
+							</UDim2>
+							<UDim2 name="Size">
+								<XS>1</XS>
+								<XO>-6</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+						<Item class="TextLabel" referent="RBX27">
+							<Properties>
+								<bool name="Active">false</bool>
+								<Color3 name="BackgroundColor3">4294955936</Color3>
+								<float name="BackgroundTransparency">0</float>
+								<Color3 name="BorderColor3">4279308561</Color3>
+								<int name="BorderSizePixel">1</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<token name="Font">0</token>
+								<token name="FontSize">0</token>
+								<string name="Name">Header</string>
+								<UDim2 name="Position">
+									<XS>0</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>0</YO>
+								</UDim2>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<string name="Text">Turn :</string>
+								<Color3 name="TextColor3">4279970357</Color3>
+								<bool name="TextScaled">false</bool>
+								<Color3 name="TextStrokeColor3">4278190080</Color3>
+								<float name="TextStrokeTransparency">1</float>
+								<float name="TextTransparency">0</float>
+								<bool name="TextWrapped">false</bool>
+								<token name="TextXAlignment">2</token>
+								<token name="TextYAlignment">1</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+							</Properties>
+						</Item>
+						<Item class="TextLabel" referent="RBX28">
+							<Properties>
+								<bool name="Active">false</bool>
+								<Color3 name="BackgroundColor3">4292791457</Color3>
+								<float name="BackgroundTransparency">0</float>
+								<Color3 name="BorderColor3">4279308561</Color3>
+								<int name="BorderSizePixel">1</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<token name="Font">0</token>
+								<token name="FontSize">0</token>
+								<string name="Name">TXT</string>
+								<UDim2 name="Position">
+									<XS>0</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<string name="Text">Yours</string>
+								<Color3 name="TextColor3">4279970357</Color3>
+								<bool name="TextScaled">false</bool>
+								<Color3 name="TextStrokeColor3">4278190080</Color3>
+								<float name="TextStrokeTransparency">1</float>
+								<float name="TextTransparency">0</float>
+								<bool name="TextWrapped">false</bool>
+								<token name="TextXAlignment">2</token>
+								<token name="TextYAlignment">1</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="ImageButton" referent="RBX29">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">false</bool>
+							<Color3 name="BackgroundColor3">4294963604</Color3>
+							<float name="BackgroundTransparency">0</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><null></null></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">BN_Quit</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>3</XO>
+								<YS>1</YS>
+								<YO>-27</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>1</XS>
+								<XO>-6</XO>
+								<YS>0</YS>
+								<YO>24</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+						<Item class="TextLabel" referent="RBX30">
+							<Properties>
+								<bool name="Active">false</bool>
+								<Color3 name="BackgroundColor3">4289374636</Color3>
+								<float name="BackgroundTransparency">1</float>
+								<Color3 name="BorderColor3">4279970357</Color3>
+								<int name="BorderSizePixel">1</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<token name="Font">0</token>
+								<token name="FontSize">0</token>
+								<string name="Name">Text</string>
+								<UDim2 name="Position">
+									<XS>0</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>0</YO>
+								</UDim2>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>1</YS>
+									<YO>0</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<string name="Text">Quit Game</string>
+								<Color3 name="TextColor3">4279970357</Color3>
+								<bool name="TextScaled">false</bool>
+								<Color3 name="TextStrokeColor3">4278190080</Color3>
+								<float name="TextStrokeTransparency">1</float>
+								<float name="TextTransparency">0</float>
+								<bool name="TextWrapped">false</bool>
+								<token name="TextXAlignment">2</token>
+								<token name="TextYAlignment">1</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="Frame" referent="RBX31">
+						<Properties>
+							<bool name="Active">false</bool>
+							<Color3 name="BackgroundColor3">4289374636</Color3>
+							<float name="BackgroundTransparency">1</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<string name="Name">PlayAs</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>3</XO>
+								<YS>0</YS>
+								<YO>73</YO>
+							</UDim2>
+							<UDim2 name="Size">
+								<XS>1</XS>
+								<XO>-6</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+						<Item class="TextLabel" referent="RBX32">
+							<Properties>
+								<bool name="Active">false</bool>
+								<Color3 name="BackgroundColor3">4294955936</Color3>
+								<float name="BackgroundTransparency">0</float>
+								<Color3 name="BorderColor3">4279308561</Color3>
+								<int name="BorderSizePixel">1</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<token name="Font">0</token>
+								<token name="FontSize">0</token>
+								<string name="Name">Header</string>
+								<UDim2 name="Position">
+									<XS>0</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>0</YO>
+								</UDim2>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<string name="Text">Playing as :</string>
+								<Color3 name="TextColor3">4279970357</Color3>
+								<bool name="TextScaled">false</bool>
+								<Color3 name="TextStrokeColor3">4278190080</Color3>
+								<float name="TextStrokeTransparency">1</float>
+								<float name="TextTransparency">0</float>
+								<bool name="TextWrapped">false</bool>
+								<token name="TextXAlignment">2</token>
+								<token name="TextYAlignment">1</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+							</Properties>
+						</Item>
+						<Item class="ImageLabel" referent="RBX33">
+							<Properties>
+								<bool name="Active">false</bool>
+								<Color3 name="BackgroundColor3">4292791457</Color3>
+								<float name="BackgroundTransparency">0</float>
+								<Color3 name="BorderColor3">4279308561</Color3>
+								<int name="BorderSizePixel">1</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<Content name="Image"><null></null></Content>
+								<string name="Name">IMG</string>
+								<UDim2 name="Position">
+									<XS>0</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>16</YO>
+								</UDim2>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>0</YS>
+									<YO>94</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+							</Properties>
+						</Item>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="Frame" referent="RBX34">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Color3 name="BackgroundColor3">4292791457</Color3>
+					<float name="BackgroundTransparency">0.300000012</float>
+					<Color3 name="BorderColor3">4279970357</Color3>
+					<int name="BorderSizePixel">1</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<string name="Name">AcceptFrame</string>
+					<UDim2 name="Position">
+						<XS>0.5</XS>
+						<XO>-128</XO>
+						<YS>0.5</YS>
+						<YO>-50</YO>
+					</UDim2>
+					<UDim2 name="Size">
+						<XS>0</XS>
+						<XO>256</XO>
+						<YS>0</YS>
+						<YO>100</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<token name="Style">0</token>
+					<bool name="Visible">false</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+				<Item class="TextLabel" referent="RBX35">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279308561</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">0</token>
+						<string name="Name">TitleBar</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>24</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">TicTacToe Challenge</string>
+						<Color3 name="TextColor3">4279970357</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+				</Item>
+				<Item class="TextLabel" referent="RBX36">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">1</float>
+						<Color3 name="BorderColor3">4279308561</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">0</token>
+						<string name="Name">TXT</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>24</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>16</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">[player] wants to play TicTacToe with you!</string>
+						<Color3 name="TextColor3">4279970357</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+				</Item>
+				<Item class="ImageButton" referent="RBX37">
+					<Properties>
+						<bool name="Active">true</bool>
+						<bool name="AutoButtonColor">true</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<Content name="Image"><null></null></Content>
+						<bool name="Modal">false</bool>
+						<string name="Name">Accept</string>
+						<UDim2 name="Position">
+							<XS>0.100000001</XS>
+							<XO>0</XO>
+							<YS>1</YS>
+							<YO>-24</YO>
+						</UDim2>
+						<bool name="Selected">false</bool>
+						<UDim2 name="Size">
+							<XS>0.300000012</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>16</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">0</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+					<Item class="TextLabel" referent="RBX38">
+						<Properties>
+							<bool name="Active">false</bool>
+							<Color3 name="BackgroundColor3">4294963604</Color3>
+							<float name="BackgroundTransparency">1</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<token name="Font">0</token>
+							<token name="FontSize">0</token>
+							<string name="Name">TXT</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<UDim2 name="Size">
+								<XS>1</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>16</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<string name="Text">Accept</string>
+							<Color3 name="TextColor3">4279970357</Color3>
+							<bool name="TextScaled">false</bool>
+							<Color3 name="TextStrokeColor3">4278190080</Color3>
+							<float name="TextStrokeTransparency">1</float>
+							<float name="TextTransparency">0</float>
+							<bool name="TextWrapped">false</bool>
+							<token name="TextXAlignment">2</token>
+							<token name="TextYAlignment">1</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="ImageButton" referent="RBX39">
+					<Properties>
+						<bool name="Active">true</bool>
+						<bool name="AutoButtonColor">true</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<Content name="Image"><null></null></Content>
+						<bool name="Modal">false</bool>
+						<string name="Name">Decline</string>
+						<UDim2 name="Position">
+							<XS>0.600000024</XS>
+							<XO>0</XO>
+							<YS>1</YS>
+							<YO>-24</YO>
+						</UDim2>
+						<bool name="Selected">false</bool>
+						<UDim2 name="Size">
+							<XS>0.300000012</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>16</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">0</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+					<Item class="TextLabel" referent="RBX40">
+						<Properties>
+							<bool name="Active">false</bool>
+							<Color3 name="BackgroundColor3">4294963604</Color3>
+							<float name="BackgroundTransparency">1</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<token name="Font">0</token>
+							<token name="FontSize">0</token>
+							<string name="Name">TXT</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<UDim2 name="Size">
+								<XS>1</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>16</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<string name="Text">Decline</string>
+							<Color3 name="TextColor3">4279970357</Color3>
+							<bool name="TextScaled">false</bool>
+							<Color3 name="TextStrokeColor3">4278190080</Color3>
+							<float name="TextStrokeTransparency">1</float>
+							<float name="TextTransparency">0</float>
+							<bool name="TextWrapped">false</bool>
+							<token name="TextXAlignment">2</token>
+							<token name="TextYAlignment">1</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="Frame" referent="RBX41">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Color3 name="BackgroundColor3">4292791457</Color3>
+					<float name="BackgroundTransparency">0.300000012</float>
+					<Color3 name="BorderColor3">4279970357</Color3>
+					<int name="BorderSizePixel">1</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<string name="Name">PopupFrame</string>
+					<UDim2 name="Position">
+						<XS>0.5</XS>
+						<XO>-128</XO>
+						<YS>0.5</YS>
+						<YO>-50</YO>
+					</UDim2>
+					<UDim2 name="Size">
+						<XS>0</XS>
+						<XO>256</XO>
+						<YS>0</YS>
+						<YO>100</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<token name="Style">0</token>
+					<bool name="Visible">false</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+				<Item class="TextLabel" referent="RBX42">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279308561</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">0</token>
+						<string name="Name">TitleBar</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>24</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">TicTacToe</string>
+						<Color3 name="TextColor3">4279970357</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+				</Item>
+				<Item class="TextLabel" referent="RBX43">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">1</float>
+						<Color3 name="BorderColor3">4279308561</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">0</token>
+						<string name="Name">TXT</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>24</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>16</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">[message]</string>
+						<Color3 name="TextColor3">4279970357</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+				</Item>
+				<Item class="ImageButton" referent="RBX44">
+					<Properties>
+						<bool name="Active">true</bool>
+						<bool name="AutoButtonColor">true</bool>
+						<Color3 name="BackgroundColor3">4294963604</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<Content name="Image"><null></null></Content>
+						<bool name="Modal">false</bool>
+						<string name="Name">Accept</string>
+						<UDim2 name="Position">
+							<XS>0.300000012</XS>
+							<XO>0</XO>
+							<YS>1</YS>
+							<YO>-24</YO>
+						</UDim2>
+						<bool name="Selected">false</bool>
+						<UDim2 name="Size">
+							<XS>0.400000006</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>16</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">0</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+					<Item class="TextLabel" referent="RBX45">
+						<Properties>
+							<bool name="Active">false</bool>
+							<Color3 name="BackgroundColor3">4294963604</Color3>
+							<float name="BackgroundTransparency">1</float>
+							<Color3 name="BorderColor3">4279308561</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<token name="Font">0</token>
+							<token name="FontSize">0</token>
+							<string name="Name">TXT</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<UDim2 name="Size">
+								<XS>1</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>16</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<string name="Text">OK</string>
+							<Color3 name="TextColor3">4279970357</Color3>
+							<bool name="TextScaled">false</bool>
+							<Color3 name="TextStrokeColor3">4278190080</Color3>
+							<float name="TextStrokeTransparency">1</float>
+							<float name="TextTransparency">0</float>
+							<bool name="TextWrapped">false</bool>
+							<token name="TextXAlignment">2</token>
+							<token name="TextYAlignment">1</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="Frame" referent="RBX46">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Color3 name="BackgroundColor3">4294963090</Color3>
+					<float name="BackgroundTransparency">0</float>
+					<Color3 name="BorderColor3">4279308561</Color3>
+					<int name="BorderSizePixel">1</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<string name="Name">SideFrame</string>
+					<UDim2 name="Position">
+						<XS>0</XS>
+						<XO>0</XO>
+						<YS>0.5</YS>
+						<YO>-16</YO>
+					</UDim2>
+					<UDim2 name="Size">
+						<XS>0</XS>
+						<XO>128</XO>
+						<YS>0</YS>
+						<YO>32</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<token name="Style">0</token>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+				<Item class="TextLabel" referent="RBX47">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4289243050</Color3>
+						<float name="BackgroundTransparency">1</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">0</token>
+						<string name="Name">TXT1</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>0.5</YS>
+							<YO>0</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">Click on a player to</string>
+						<Color3 name="TextColor3">4279970357</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+				</Item>
+				<Item class="TextLabel" referent="RBX48">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4289308843</Color3>
+						<float name="BackgroundTransparency">1</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<token name="Font">0</token>
+						<token name="FontSize">0</token>
+						<string name="Name">TXT2</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>12</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>0.5</YS>
+							<YO>0</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<string name="Text">challenge them</string>
+						<Color3 name="TextColor3">4279970357</Color3>
+						<bool name="TextScaled">false</bool>
+						<Color3 name="TextStrokeColor3">4278190080</Color3>
+						<float name="TextStrokeTransparency">1</float>
+						<float name="TextTransparency">0</float>
+						<bool name="TextWrapped">false</bool>
+						<token name="TextXAlignment">2</token>
+						<token name="TextYAlignment">1</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+	</Item>
+</roblox>

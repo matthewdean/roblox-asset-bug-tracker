@@ -1,0 +1,460 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX9C2C77ADFB4F4E189920CA8C61B003DB">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.400000006</Y>
+				<Z>0.850000024</Z>
+				<R00>0</R00>
+				<R01>-1</R01>
+				<R02>0</R02>
+				<R10>1</R10>
+				<R11>0</R11>
+				<R12>-0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<bool name="ManualActivationOnly">false</bool>
+			<string name="Name">BillyClubRiotShield</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=82265194</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Animation" referent="RBX8D3372EA3C824BF5A910465592C293AD">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=51158666</url></Content>
+				<string name="Name">QuickSlash</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBXCB1CA65AD6784431BB068E3EBBC571A1">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=49907410</url></Content>
+				<string name="Name">ShieldBash</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBXF854CE899EE04EEF83A377DD5ACB66F5">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=49763871</url></Content>
+				<string name="Name">ShieldWalk</string>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX7CDE849BDA5D4637AA28B81D415B1548">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>17</Y>
+					<Z>22</Z>
+					<R00>-1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>-1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.200000003</X>
+					<Y>0.800000012</Y>
+					<Z>4</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX24BB3D21316C4B84B5508E55334BC918">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=82265009</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.5</X>
+						<Y>1.5</Y>
+						<Z>1.5</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=82265116</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBX5022F366BBFC4D6F9EC095E243102F77">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Server</string>
+				<ProtectedString name="Source">local Tool = script.Parent
+local Handle = Tool:WaitForChild(&quot;Handle&quot;)
+local Remote = Tool:WaitForChild(&quot;Remote&quot;)
+
+local ClubMeshData = &quot;http://www.roblox.com/asset/?id=82264918&quot;
+local ClubTextureData = &quot;http://www.roblox.com/asset/?id=82265067&quot;
+
+local ShieldMeshData = Handle:WaitForChild(&quot;Mesh&quot;).MeshId
+local ShieldTextureData = Handle:WaitForChild(&quot;Mesh&quot;).TextureId
+
+local AttackAble = true
+local AttackReload = 1.25
+local AttackWindow = 0.5
+local AttackDamaging = false
+local AttackDamage = 15
+local AttackSlowing = false
+local AttackSlow = 0.5
+local AttackSlowDuration = 1
+
+local SlowScript = Tool:WaitForChild(&quot;SlowScript&quot;)
+
+local Shield
+local ShieldEquipping = false
+
+function toggleShield(on)
+&#9;if on then
+&#9;&#9;ShieldEquipping = true
+&#9;&#9;
+&#9;&#9;Shield = Instance.new(&quot;Part&quot;)
+&#9;&#9;Shield.CanCollide = false
+&#9;&#9;Shield.FormFactor = &quot;Symmetric&quot;
+&#9;&#9;Shield.Size = Vector3.new(3, 5, 2)
+&#9;&#9;
+&#9;&#9;local mesh = Instance.new(&quot;SpecialMesh&quot;)
+&#9;&#9;mesh.MeshType = &quot;FileMesh&quot;
+&#9;&#9;mesh.MeshId = ShieldMeshData
+&#9;&#9;mesh.TextureId = ShieldTextureData
+&#9;&#9;mesh.Parent = Shield
+&#9;&#9;
+&#9;&#9;Shield.Parent = Tool.Parent
+&#9;&#9;
+&#9;&#9;local larm = Tool.Parent:FindFirstChild(&quot;Left Arm&quot;)
+&#9;&#9;if larm then
+&#9;&#9;&#9;local weld = Instance.new(&quot;Weld&quot;)
+&#9;&#9;&#9;weld.Part0 = larm
+&#9;&#9;&#9;weld.Part1 = Shield
+&#9;&#9;&#9;weld.C0 = CFrame.new(0, -1, 0) * CFrame.Angles(-0.4, 0.2, -0.6)
+&#9;&#9;&#9;weld.Parent = weld.Part0
+&#9;&#9;end
+&#9;&#9;
+&#9;&#9;Shield.Touched:connect(onShieldTouched)
+&#9;&#9;
+&#9;&#9;ShieldEquipping = false
+&#9;else
+&#9;&#9;if Shield then
+&#9;&#9;&#9;Shield:Destroy()
+&#9;&#9;end
+&#9;end
+end
+
+function onEquipped()
+&#9;if ShieldEquipping then return end
+&#9;
+&#9;onUnequipped()
+&#9;
+&#9;--make a shield
+&#9;toggleShield(true)
+&#9;
+&#9;--change the mesh
+&#9;local mesh = Handle:WaitForChild(&quot;Mesh&quot;)
+&#9;mesh.MeshId = ClubMeshData
+&#9;mesh.TextureId = ClubTextureData
+end
+
+function onUnequipped()
+&#9;--change the mesh back
+&#9;local mesh = Handle:WaitForChild(&quot;Mesh&quot;)
+&#9;mesh.MeshId = ShieldMeshData
+&#9;mesh.TextureId = ShieldTextureData
+&#9;
+&#9;--remove the shield
+&#9;toggleShield(false)
+end
+
+function getPlayer()
+&#9;local char = Tool.Parent
+&#9;local player = game:GetService(&quot;Players&quot;):GetPlayerFromCharacter(char)
+&#9;return player
+end
+
+function tagHuman(human)
+&#9;local val = Instance.new(&quot;ObjectValue&quot;)
+&#9;val.Name = &quot;creator&quot;
+&#9;val.Value = getPlayer()
+&#9;val.Parent = human
+&#9;game:GetService(&quot;Debris&quot;):AddItem(val, 1)
+end
+
+function onShieldTouched(part)
+&#9;if not AttackSlowing then return end
+&#9;if part:IsDescendantOf(Tool.Parent) then return end
+&#9;
+&#9;if part.Parent and part.Parent:FindFirstChild(&quot;Humanoid&quot;) then
+&#9;&#9;local human = part.Parent.Humanoid
+&#9;&#9;
+&#9;&#9;local slow = SlowScript:Clone()
+&#9;&#9;slow.Percentage.Value = AttackSlow
+&#9;&#9;slow.Duration.Value = AttackSlowDuration
+&#9;&#9;slow.Parent = human
+&#9;&#9;slow.Disabled = false
+&#9;&#9;
+&#9;&#9;AttackSlowing = false
+&#9;end
+end
+
+function onTouched(part)
+&#9;if not AttackDamaging then return end
+&#9;if part:IsDescendantOf(Tool.Parent) then return end
+&#9;
+&#9;if part.Parent and part.Parent:FindFirstChild(&quot;Humanoid&quot;) then
+&#9;&#9;local human = part.Parent.Humanoid
+&#9;&#9;tagHuman(human)
+&#9;&#9;human:TakeDamage(AttackDamage)
+&#9;&#9;AttackDamaging = false
+&#9;end
+end
+
+function onAttack()
+&#9;if not AttackAble then return end
+&#9;
+&#9;--rest
+&#9;AttackAble = false
+&#9;delay(AttackReload, function()
+&#9;&#9;AttackAble = true
+&#9;end)
+&#9;
+&#9;--open damage window
+&#9;AttackDamaging = true
+&#9;AttackSlowing = true
+&#9;delay(AttackWindow, function()
+&#9;&#9;AttackDamaging = false
+&#9;&#9;AttackSlowing = false
+&#9;end)
+&#9;
+&#9;--animate
+&#9;Remote:FireClient(getPlayer(), &quot;PlayAnimation&quot;, &quot;ShieldBash&quot;)
+end
+
+function onRemote(player, func, ...)
+&#9;if not player == getPlayer() then return end
+&#9;
+&#9;if func == &quot;Attack&quot; then
+&#9;&#9;onAttack()
+&#9;end
+end
+
+Remote.OnServerEvent:connect(onRemote)
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+Handle.Touched:connect(onTouched)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX203B2661B8084A91AC3A8C81BAB03694">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Client</string>
+				<ProtectedString name="Source">local Player = game:GetService(&quot;Players&quot;).LocalPlayer
+local Mouse = Player:GetMouse()
+
+local Tool = script.Parent
+local Remote = Tool:WaitForChild(&quot;Remote&quot;)
+
+local CAS = game:GetService(&quot;ContextActionService&quot;)
+local ActionName = &quot;RiotShield&quot;
+
+local WalkTrack
+
+function playAnimation(animationName, fadeTime, weight, speed)
+&#9;local anim = Tool:FindFirstChild(animationName)
+&#9;if anim ~= nil then
+&#9;&#9;local char = Player.Character
+&#9;&#9;if char and char:FindFirstChild(&quot;Humanoid&quot;) then
+&#9;&#9;&#9;local human = char.Humanoid
+&#9;&#9;&#9;local track = human:LoadAnimation(anim)
+&#9;&#9;&#9;
+&#9;&#9;&#9;track:Play(fadeTime, weight, speed)
+&#9;&#9;end
+&#9;end
+end
+
+function onAction(actionName, inputState, inputObject)
+&#9;if inputState == Enum.UserInputState.Begin then
+&#9;&#9;Remote:FireServer(&quot;Attack&quot;)
+&#9;end
+end
+
+function toggleWalkTrack(on)
+&#9;if on then
+&#9;&#9;local anim = Tool:WaitForChild(&quot;ShieldWalk&quot;)
+&#9;&#9;local char = Player.Character
+&#9;&#9;if char and char:FindFirstChild(&quot;Humanoid&quot;) then
+&#9;&#9;&#9;local human = char.Humanoid
+&#9;&#9;&#9;WalkTrack = human:LoadAnimation(anim)
+&#9;&#9;&#9;WalkTrack:Play(1)
+&#9;&#9;end
+&#9;else
+&#9;&#9;if WalkTrack then
+&#9;&#9;&#9;WalkTrack:Stop()
+&#9;&#9;end
+&#9;end
+end
+
+function onEquipped()
+&#9;onUnequipped()
+&#9;
+&#9;CAS:BindActionToInputTypes(
+&#9;&#9;ActionName,
+&#9;&#9;onAction,
+&#9;&#9;false,
+&#9;&#9;Enum.UserInputType.MouseButton1,
+&#9;&#9;Enum.UserInputType.Touch
+&#9;)
+&#9;
+&#9;toggleWalkTrack(true)
+end
+
+function onUnequipped()
+&#9;CAS:UnbindAction(ActionName)
+&#9;
+&#9;toggleWalkTrack(false)
+end
+
+function onRemote(func, ...)
+&#9;if func == &quot;PlayAnimation&quot; then
+&#9;&#9;playAnimation(...)
+&#9;end
+end
+
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+Remote.OnClientEvent:connect(onRemote)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="RemoteEvent" referent="RBX9C55F30D688741428526AEE1C846DB4B">
+			<Properties>
+				<string name="Name">Remote</string>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBXDF29AA5C45C24C2F9CFA29EFE6045E93">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SlowScript</string>
+				<ProtectedString name="Source">local Human = script.Parent
+local Percent = script:WaitForChild(&quot;Percentage&quot;)
+local Duration = script:WaitForChild(&quot;Duration&quot;)
+local Delta = Human.WalkSpeed * Percent.Value
+
+Human.WalkSpeed = Human.WalkSpeed - Delta
+wait(Duration.Value)
+Human.WalkSpeed = Human.WalkSpeed + Delta
+
+game:GetService(&quot;Debris&quot;):AddItem(script, 0)
+</ProtectedString>
+			</Properties>
+			<Item class="NumberValue" referent="RBX6443914078C54CB7A8E46D9EF83C45E8">
+				<Properties>
+					<string name="Name">Percentage</string>
+					<double name="Value">0</double>
+				</Properties>
+			</Item>
+			<Item class="NumberValue" referent="RBX86258C79695F400DAD5C74A21EFBEE3F">
+				<Properties>
+					<string name="Name">Duration</string>
+					<double name="Value">0</double>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBXFEC7F09D6632423AA84C652EEB143779">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>3.71655917</X>
+					<Y>18.8131332</Y>
+					<Z>26.0430889</Z>
+					<R00>0.747615457</R00>
+					<R01>-0.22078228</R01>
+					<R02>0.626359582</R02>
+					<R10>-0</R10>
+					<R11>0.943125367</R11>
+					<R12>0.332437396</R12>
+					<R20>-0.66413188</R20>
+					<R21>-0.248535335</R21>
+					<R22>0.705095053</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>2.46383953</X>
+					<Y>18.1482582</Y>
+					<Z>24.6328983</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

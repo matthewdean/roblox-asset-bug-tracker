@@ -1,0 +1,307 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0.125</X>
+				<Y>-0.5</Y>
+				<Z>0.150000006</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">ROBLOXSummerSparkler</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset?id=162879331</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>18.4939194</X>
+					<Y>3.9514904</Y>
+					<Z>32.0803032</Z>
+					<R00>0.0435174182</R00>
+					<R01>0.0225002356</R01>
+					<R02>-0.998799145</R02>
+					<R10>-1.56339446e-014</R10>
+					<R11>0.999746382</R11>
+					<R12>0.0225215741</R12>
+					<R20>0.999052525</R20>
+					<R21>-0.000980080804</R21>
+					<R22>0.0435063802</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>3.5</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset?id=162879218</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset?id=162879315</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Sound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=12555589</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalScript</string>
+				<ProtectedString name="Source">--Made by Luckymaxer
+
+Tool = script.Parent
+Handle = Tool:WaitForChild(&quot;Handle&quot;)
+
+Sound = Handle:WaitForChild(&quot;Sound&quot;)
+
+Debris = game:GetService(&quot;Debris&quot;)
+
+Equipped = false
+Debounce = false
+
+ReloadTime = 0.5
+
+BasePart = Instance.new(&quot;Part&quot;)
+BasePart.Material = Enum.Material.Plastic
+BasePart.Shape = Enum.PartType.Block
+BasePart.TopSurface = Enum.SurfaceType.Smooth
+BasePart.BottomSurface = Enum.SurfaceType.Smooth
+BasePart.FormFactor = Enum.FormFactor.Custom
+BasePart.Size = Vector3.new(0.2, 0.2, 0.2)
+
+function Activated()
+&#9;if not Debounce and Tool.Enabled then
+&#9;&#9;Tool.Enabled = false
+&#9;&#9;Sound:Play()
+&#9;&#9;local SparkleTable = {}
+&#9;&#9;local LightTable = {}
+&#9;&#9;for i = 1, math.random(5, 10) do
+&#9;&#9;&#9;local Sparkle = BasePart:Clone()
+&#9;&#9;&#9;Sparkle.Transparency = 1
+&#9;&#9;&#9;Sparkle.CanCollide = false
+&#9;&#9;&#9;local Light = Instance.new(&quot;PointLight&quot;)
+&#9;&#9;&#9;Light.Brightness = 1
+&#9;&#9;&#9;Light.Range = 15
+&#9;&#9;&#9;Light.Shadows = false
+&#9;&#9;&#9;Light.Enabled = true
+&#9;&#9;&#9;table.insert(LightTable, Light)
+&#9;&#9;&#9;Light.Parent = Sparkle
+&#9;&#9;&#9;local Sparkles = Instance.new(&quot;Sparkles&quot;)
+&#9;&#9;&#9;table.insert(SparkleTable, Sparkles)
+&#9;&#9;&#9;Sparkles.Parent = Sparkle
+&#9;&#9;&#9;local VelocityForce = (196.20 * Sparkle:GetMass())
+&#9;&#9;&#9;local BodyForce = Instance.new(&quot;BodyForce&quot;)
+&#9;&#9;&#9;BodyForce.force = Vector3.new(0, VelocityForce, 0)
+&#9;&#9;&#9;Debris:AddItem(BodyForce, 3)
+&#9;&#9;&#9;BodyForce.Parent = Sparkle
+&#9;&#9;&#9;Debris:AddItem(Sparkle, 5)
+&#9;&#9;&#9;Sparkle.Parent = game:GetService(&quot;Workspace&quot;)
+&#9;&#9;&#9;Sparkle.CFrame = CFrame.new(Handle.Position)
+&#9;&#9;&#9;Sparkle.CFrame = Sparkle.CFrame * CFrame.Angles(math.random(-math.pi, math.pi), math.random(-math.pi, math.pi), math.random(-math.pi, math.pi))
+&#9;&#9;&#9;local StartingPosition = (Sparkle.CFrame + Sparkle.CFrame.lookVector * Sparkle.Size.Z)
+&#9;&#9;&#9;local TargetPoint = (StartingPosition + StartingPosition.lookVector * 2)
+&#9;&#9;&#9;Sparkle.CFrame = StartingPosition
+&#9;&#9;&#9;Sparkle.CFrame = CFrame.new(Sparkle.Position, TargetPoint.p)
+&#9;&#9;&#9;Sparkle.Velocity = CFrame.new(StartingPosition.p, TargetPoint.p).lookVector * 5
+&#9;&#9;&#9;Sparkle.Velocity = Vector3.new(Sparkle.Velocity.x, 5, Sparkle.Velocity.z)
+&#9;&#9;end
+&#9;&#9;Spawn(function()
+&#9;&#9;&#9;local ChangeTick = tick()
+&#9;&#9;&#9;while (tick() - ChangeTick) &lt;= 5 do
+&#9;&#9;&#9;&#9;local RandomColor = Color3.new(math.random(), math.random(), math.random())
+&#9;&#9;&#9;&#9;for i, v in pairs(SparkleTable) do
+&#9;&#9;&#9;&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;&#9;&#9;&#9;v.SparkleColor = RandomColor
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;for i, v in pairs(LightTable) do
+&#9;&#9;&#9;&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;&#9;&#9;&#9;v.Color = RandomColor
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;wait(1)
+&#9;&#9;&#9;end
+&#9;&#9;end)
+&#9;&#9;Debounce = true
+&#9;&#9;Debounce = false
+&#9;&#9;wait(ReloadTime)
+&#9;&#9;Tool.Enabled = true
+&#9;end
+end
+
+function Equipped(Mouse)
+&#9;Equipped = true
+&#9;if not Tool.Enabled then
+&#9;&#9;wait(ReloadTime)
+&#9;&#9;Tool.Enabled = true
+&#9;end
+end
+
+function Unequipped()
+&#9;Equipped = false
+end
+
+Tool.Activated:connect(Activated)
+Tool.Equipped:connect(Equipped)
+Tool.Unequipped:connect(Unequipped)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">MouseIcon</string>
+				<ProtectedString name="Source">--Made by Luckymaxer
+
+Mouse_Icon = &quot;rbxasset://textures/GunCursor.png&quot;
+Reloading_Icon = &quot;rbxasset://textures/GunWaitCursor.png&quot;
+
+Tool = script.Parent
+
+Mouse = nil
+
+function UpdateIcon()
+&#9;if Mouse then
+&#9;&#9;Mouse.Icon = Tool.Enabled and Mouse_Icon or Reloading_Icon
+&#9;end
+end
+
+function OnEquipped(ToolMouse)
+&#9;Mouse = ToolMouse
+&#9;UpdateIcon()
+end
+
+function OnChanged(Property)
+&#9;if Property == &quot;Enabled&quot; then
+&#9;&#9;UpdateIcon()
+&#9;end
+end
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Changed:connect(OnChanged)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX6">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>20.8988743</X>
+					<Y>4.86308527</Y>
+					<Z>30.887743</Z>
+					<R00>-0.421060503</R00>
+					<R01>-0.177286312</R01>
+					<R02>0.889537811</R02>
+					<R10>-0</R10>
+					<R11>0.980712116</R11>
+					<R12>0.195457503</R12>
+					<R20>-0.907032549</R20>
+					<R21>0.0822994336</R21>
+					<R22>-0.412939131</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>19.5645657</X>
+					<Y>4.56989861</Y>
+					<Z>31.5071526</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

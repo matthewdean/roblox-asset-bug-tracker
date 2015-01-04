@@ -1,0 +1,523 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>-0.5</X>
+				<Y>0</Y>
+				<Z>0</Z>
+				<R00>0</R00>
+				<R01>0</R01>
+				<R02>-1</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>1</R20>
+				<R21>0</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<string name="Name">NinjaPotion</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=86282324</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>12.8081903</X>
+					<Y>3.43186522</Y>
+					<Z>13.8529291</Z>
+					<R00>0.719250321</R00>
+					<R01>0.0119547816</R01>
+					<R02>-0.694647968</R02>
+					<R10>-0.0166188739</R10>
+					<R11>0.999861896</R11>
+					<R12>-1.57025526e-014</R12>
+					<R20>0.694552064</R20>
+					<R21>0.0115442667</R21>
+					<R22>0.719349682</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.550000906</X>
+					<Y>0.770000339</Y>
+					<Z>1.39999938</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=86277908</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.600000024</X>
+						<Y>0.600000024</Y>
+						<Z>0.600000024</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=86280187</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">JumpSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset?id=86161935</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">Tool = script.Parent
+
+local stillEquipped = false
+
+function onEquippedLocal(mouse)
+&#9;stillEquipped = true
+&#9;if mouse == nil then 
+&#9;&#9;print(&quot;Mouse not found&quot;)
+&#9;&#9;return
+&#9;end
+&#9;while stillEquipped do 
+&#9;&#9;print(&quot;Setting Mouse to go&quot;)
+&#9;&#9;mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;&#9;while Tool.Enabled and stillEquipped do 
+&#9;&#9;&#9;wait(0.01)
+&#9;&#9;end
+&#9;&#9;print(&quot;Setting Mouse to wait&quot;)
+&#9;&#9;mouse.Icon = &quot;rbxasset://textures\\GunWaitCursor.png&quot;
+&#9;&#9;while not Tool.Enabled and stillEquipped do 
+&#9;&#9;&#9;wait(0.01)
+&#9;&#9;end&#9;
+&#9;end
+end
+
+
+function onUnequippedLocal()
+&#9;stillEquipped = false
+end
+
+Tool.Equipped:connect(onEquippedLocal)
+Tool.Unequipped:connect(onUnequippedLocal)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalNinjaScript</string>
+				<ProtectedString name="Source">--Rescripted by Luckymaxer
+
+Tool = script.Parent
+Handle = Tool:WaitForChild(&quot;Handle&quot;)
+
+DoubleJump = Tool:WaitForChild(&quot;DoubleJump&quot;)
+
+JumpSound = Handle:WaitForChild(&quot;JumpSound&quot;)
+
+Players = game:GetService(&quot;Players&quot;)
+Debris = game:GetService(&quot;Debris&quot;)
+InsertService = game:GetService(&quot;InsertService&quot;)
+
+BodyParts = {
+&#9;{Name = &quot;Head&quot;, Color = &quot;Black&quot;},
+&#9;{Name = &quot;Torso&quot;, Color = &quot;Black&quot;},
+&#9;{Name = &quot;Left Arm&quot;, Color = &quot;Medium stone grey&quot;},
+&#9;{Name = &quot;Right Arm&quot;, Color = &quot;Medium stone grey&quot;},
+&#9;{Name = &quot;Left Leg&quot;, Color = &quot;Black&quot;},
+&#9;{Name = &quot;Right Leg&quot;, Color = &quot;Black&quot;}
+}
+
+HatId = 81724957
+
+PackageParts = {
+&#9;HeadMesh = {BodyPart = Enum.BodyPart.Head, MeshId = 6340213, BaseTextureId = 0, OverlayTextureId = 0},
+&#9;TorsoMesh = {BodyPart = Enum.BodyPart.Torso, MeshId = 71440868, BaseTextureId = 0, OverlayTextureId = 71440926},
+&#9;LeftArmMesh = {BodyPart = Enum.BodyPart.LeftArm, MeshId = 71440752, BaseTextureId = 0, OverlayTextureId = 71440926},
+&#9;RightArmMesh = {BodyPart = Enum.BodyPart.RightArm, MeshId = 71440800, BaseTextureId = 0, OverlayTextureId = 71440926},
+&#9;LeftLegMesh = {BodyPart = Enum.BodyPart.LeftLeg, MeshId = 71440777, BaseTextureId = 0, OverlayTextureId = 71440926},
+&#9;RightLegMesh = {BodyPart = Enum.BodyPart.RightLeg, MeshId = 71440824, BaseTextureId = 0, OverlayTextureId = 71440926}
+}
+
+OriginalBrickColors = {}
+OriginalAssets = {}
+TransparentObjects = {}
+TemporaryAssets = {}
+
+DoubleJumpEnabled = false
+SpaceBar = false
+CanDoubleJump = false
+TimeLeftGround = 0
+TimeOnGround = 0
+
+Duration = 45
+ReloadTime = 15
+
+Active = false
+
+function GetTransparentObjects(Table)
+&#9;local Objects = {}
+&#9;for i, v in pairs(Table) do
+&#9;&#9;local CheckTransparency = pcall(function()
+&#9;&#9;&#9;return ((v[&quot;Transparency&quot;] and true) or false)
+&#9;&#9;end)
+&#9;&#9;if CheckTransparency then
+&#9;&#9;&#9;table.insert(Objects, v)
+&#9;&#9;end
+&#9;end
+&#9;return Objects
+end
+
+function TransformCharacter()
+&#9;for i, v in pairs(BodyParts) do
+&#9;&#9;local BodyPart = Character:FindFirstChild(v.Name)
+&#9;&#9;if BodyPart then
+&#9;&#9;&#9;table.insert(OriginalBrickColors, {Object = BodyPart, BrickColor = BodyPart.BrickColor})
+&#9;&#9;&#9;BodyPart.BrickColor = BrickColor.new(v.Name)
+&#9;&#9;end
+&#9;end
+&#9;local Parts = GetAllTransparentObjects(Character)
+&#9;TransparentObjects =  GetTransparentObjects(Parts)
+&#9;for i, v in pairs(Parts) do
+&#9;&#9;if CheckTransparency then
+&#9;&#9;&#9;table.insert(TransparentObjects, v)
+&#9;&#9;end
+&#9;&#9;if v:IsA(&quot;CharacterMesh&quot;) or v:IsA(&quot;Hat&quot;) or v:IsA(&quot;Clothing&quot;) then
+&#9;&#9;&#9;table.insert(OriginalAssets, {Object = v:Clone(), Parent = v.Parent})
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+&#9;local HatModel = InsertService:LoadAsset(HatId)
+&#9;local Hat = HatModel:GetChildren()[1]:Clone()
+&#9;HatModel:Destroy()
+&#9;table.insert(TemporaryAssets, Hat)
+&#9;Hat.Parent = Character
+&#9;table.insert(TransparentObjects, Hat:FindFirstChild(&quot;Handle&quot;))
+&#9;for i, v in pairs(PackageParts) do
+&#9;&#9;local CharacterMesh = Instance.new(&quot;CharacterMesh&quot;)
+&#9;&#9;CharacterMesh.Name = i
+&#9;&#9;CharacterMesh.BodyPart = v.BodyPart
+&#9;&#9;CharacterMesh.MeshId = v.MeshId
+&#9;&#9;CharacterMesh.BaseTextureId = v.BaseTextureId
+&#9;&#9;CharacterMesh.OverlayTextureId = v.OverlayTextureId
+&#9;&#9;table.insert(TemporaryAssets, CharacterMesh)
+&#9;&#9;CharacterMesh.Parent = Character
+&#9;end
+&#9;AntiGravityForce = Instance.new(&quot;BodyForce&quot;)
+&#9;AntiGravityForce.Name = &quot;LowGravity&quot;
+&#9;AntiGravityForce.force = Vector3.new(0, 2000, 0)
+&#9;AntiGravityForce.Parent = Torso
+end
+
+function GetAllTransparentObjects(Parent)
+&#9;local Parts = {}
+&#9;local function GetTransparentObjects(Parent)
+&#9;&#9;for i, v in pairs(Parent:GetChildren()) do
+&#9;&#9;&#9;if v ~= Tool and v ~= Handle and v.Name ~= &quot;HumanoidRootPart&quot; then
+&#9;&#9;&#9;&#9;table.insert(Parts, v)
+&#9;&#9;&#9;end
+&#9;&#9;&#9;GetTransparentObjects(v)
+&#9;&#9;end
+&#9;end
+&#9;GetTransparentObjects(Parent)
+&#9;return Parts
+end
+
+function FadeTo(Parent, a, b, c)
+&#9;Spawn(function()
+&#9;&#9;for transparency = a, b, c do
+&#9;&#9;&#9;if not Active then
+&#9;&#9;&#9;&#9;break
+&#9;&#9;&#9;end
+&#9;&#9;&#9;for i, v in pairs(Parent) do
+&#9;&#9;&#9;&#9;if v.Name ~= &quot;HumanoidRootPart&quot; then
+&#9;&#9;&#9;&#9;&#9;v.Transparency = transparency
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;wait(0.1)
+&#9;&#9;end
+&#9;end)
+end
+
+function TagHumanoid(humanoid, player)
+&#9;local creator = Instance.new(&quot;ObjectValue&quot;)
+&#9;creator.Parent = humanoid
+&#9;creator.Value = player
+&#9;creator.Name = &quot;creator&quot;
+&#9;Debris:AddItem(creator, 1)
+end
+
+function UntagHumanoid(humanoid)
+&#9;for i, v in pairs(humanoid:GetChildren()) do
+&#9;&#9;if v:IsA(&quot;ObjectValue&quot;) and v.Name == &quot;creator&quot; then
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+end
+
+function InitializeDoubleJump()
+&#9;if TimeLeftGround ~= 0 and CanDoubleJump and TimeOnGround &gt; 0.1 then
+&#9;&#9;local Smoke = {}
+&#9;&#9;for i = 1, 6 do
+&#9;&#9;&#9;local smoke = Instance.new(&quot;Smoke&quot;,workspace)
+&#9;&#9;&#9;smoke.Parent = Torso
+&#9;&#9;&#9;smoke.Size = 25
+&#9;&#9;&#9;smoke.Color = Color3.new(0.3, 0.3, 0.3)
+&#9;&#9;&#9;table.insert(Smoke, smoke)
+&#9;&#9;&#9;Debris:AddItem(smoke, 4)
+&#9;&#9;end
+&#9;&#9;
+&#9;&#9;Humanoid.WalkSpeed = 0
+&#9;&#9;Humanoid.Sit = true
+&#9;&#9;
+&#9;&#9;wait()
+&#9;&#9;
+&#9;&#9;CanDoubleJump = false
+&#9;&#9;TimeLeftGround = 0
+&#9;&#9;Anim = Humanoid:LoadAnimation(DoubleJump)
+&#9;&#9;Anim:Play()
+&#9;&#9;wait(0.35)
+&#9;&#9;
+&#9;&#9;wait()
+&#9;&#9;
+&#9;&#9;local JumpForce = Instance.new(&quot;BodyVelocity&quot;)
+&#9;&#9;JumpForce.P = 50000
+&#9;&#9;JumpForce.maxForce = Vector3.new(JumpForce.P, JumpForce.P, JumpForce.P) 
+&#9;&#9;JumpSound:play()
+&#9;&#9;JumpForce.Parent = Torso
+&#9;&#9;wait(0.5)
+&#9;&#9;JumpForce:Destroy() 
+&#9;&#9;Humanoid.WalkSpeed = 16
+&#9;&#9;wait(1)
+&#9;&#9;for i, v in pairs(Smoke) do
+&#9;&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;&#9;v:Destroy()
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+function FreeFall(Falling)
+&#9;if Active then
+&#9;&#9;if Falling then
+&#9;&#9;&#9;TimeLeftGround = tick()
+&#9;&#9;&#9;TimeOnGround = (tick() - TimeOnGround)
+&#9;&#9;&#9;CanDoubleJump = true
+&#9;&#9;else
+&#9;&#9;&#9;TimeLeftGround = 0
+&#9;&#9;&#9;TimeOnGround = tick()
+&#9;&#9;&#9;CanDoubleJump = false
+&#9;&#9;end
+&#9;end
+end
+
+function CleanUp()
+&#9;if AntiGravityForce and AntiGravityForce.Parent then 
+&#9;&#9;AntiGravityForce:Destroy()
+&#9;end
+&#9;DoubleJumpEnabled = false
+&#9;for i, v in pairs(TemporaryAssets) do
+&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+&#9;for i, v in pairs(OriginalAssets) do
+&#9;&#9;if v.Parent and v.Parent.Parent then
+&#9;&#9;&#9;v.Object.Parent = v.Parent
+&#9;&#9;end
+&#9;&#9;for i, v in pairs(OriginalBrickColors) do
+&#9;&#9;&#9;if v.Object and v.Object.Parent then
+&#9;&#9;&#9;&#9;v.Object.BrickColor = v.BrickColor
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;for i, v in pairs(TransparentObjects) do
+&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;v.Transparency = 0
+&#9;&#9;end
+&#9;end
+&#9;OriginalBrickColors = {}
+&#9;OriginalAssets = {}
+&#9;TemporaryAssets = {}
+&#9;TransparentObjects = {}
+end
+
+function Activated()
+&#9;if Tool.Enabled and not Active then
+&#9;&#9;Active = true
+&#9;&#9;Tool.Enabled = false
+&#9;&#9;DoubleJumpEnabled = true
+&#9;&#9;Handle.Transparency = 1
+&#9;&#9;TransformCharacter()
+&#9;&#9;FadeTo(TransparentObjects, 0.0,0.8,0.05)
+&#9;&#9;local StartTime = tick()
+&#9;&#9;while Active and (tick() - StartTime) &lt; Duration do
+&#9;&#9;&#9;wait(0.1)
+&#9;&#9;end
+&#9;&#9;if Active then
+&#9;&#9;&#9;CleanUp()
+&#9;&#9;&#9;wait(ReloadTime)
+&#9;&#9;&#9;Tool.Enabled = true
+&#9;&#9;&#9;Active = false
+&#9;&#9;end
+&#9;end
+end
+
+function KeyDown(Key)&#9;
+&#9;local Key = Key:lower()
+&#9;if Key == string.char(32) then
+&#9;&#9;if not SpaceBar and CanDoubleJump then 
+&#9;&#9;&#9;SpaceBar = true
+&#9;&#9;&#9;InitializeDoubleJump()
+&#9;&#9;end
+&#9;end
+end
+
+function KeyUp(Key)&#9;
+&#9;local Key = Key:lower()
+&#9;if Key == string.char(32) then 
+&#9;&#9;SpaceBar = false
+&#9;end 
+end
+
+function Equipped(Mouse)
+&#9;Character = Tool.Parent
+&#9;Player = Players:GetPlayerFromCharacter(Character)
+&#9;Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+&#9;Torso = Character:FindFirstChild(&quot;Torso&quot;)
+&#9;if not Player or not Humanoid or Humanoid.Health == 0 or not Torso then
+&#9;&#9;return
+&#9;end
+&#9;if not Tool.Enabled then
+&#9;&#9;wait(ReloadTime)
+&#9;&#9;Tool.Enabled = true
+&#9;end
+&#9;FreeFallingConnection = Humanoid.FreeFalling:connect(FreeFall)
+&#9;Mouse.Button1Down:connect(Activated)
+&#9;Mouse.KeyDown:connect(KeyDown)
+&#9;Mouse.KeyUp:connect(KeyUp)
+end
+
+function Unequipped()
+&#9;Active = false
+&#9;Handle.Transparency = 0
+&#9;if FreeFallingConnection then
+&#9;&#9;FreeFallingConnection:disconnect()
+&#9;end
+&#9;SpaceBar = false
+&#9;CleanUp()
+end
+
+Tool.Equipped:connect(Equipped)
+Tool.Unequipped:connect(Unequipped)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX6">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=85837259</url></Content>
+				<string name="Name">DoubleJump</string>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX7">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>13.7191277</X>
+					<Y>3.80901885</Y>
+					<Z>13.0341616</Z>
+					<R00>-0.679440856</R00>
+					<R01>-0.163804531</R01>
+					<R02>0.715212047</R02>
+					<R10>-0</R10>
+					<R11>0.974761486</R11>
+					<R12>0.223248959</R12>
+					<R20>-0.733730316</R20>
+					<R21>0.151684463</R21>
+					<R22>-0.662292719</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>13.5760851</X>
+					<Y>3.76436901</Y>
+					<Z>13.1666203</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,0 +1,698 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.097352989</Y>
+				<Z>0.0896650553</Z>
+				<R00>-5.96046448e-008</R00>
+				<R01>-0.99999994</R01>
+				<R02>0</R02>
+				<R10>0.99999994</R10>
+				<R11>-5.96046448e-008</R11>
+				<R12>-4.37113883e-008</R12>
+				<R20>4.37113883e-008</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">Jump Jets</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=97146034</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalScript</string>
+				<ProtectedString name="Source">--Made by Stickmasterluke
+
+
+sp=script.Parent
+plr=game.Players.LocalPlayer
+
+
+speed=40
+maxjettime=2.5
+rate=1/30
+
+check=true
+down=false
+equipped=false
+turningoff=false
+on=false
+
+
+function waitfor(parent,name)
+&#9;while true do
+&#9;&#9;local child=parent:FindFirstChild(name)
+&#9;&#9;if child~=nil then
+&#9;&#9;&#9;return child
+&#9;&#9;end
+&#9;&#9;wait()
+&#9;end
+end
+
+handle=waitfor(sp,&quot;Handle&quot;)
+fire1=waitfor(handle,&quot;Fire&quot;)
+flyjets=waitfor(sp,&quot;FlyJets&quot;)
+gui=waitfor(sp,&quot;JumpJetGui&quot;)
+guibar=waitfor(gui,&quot;Bar&quot;)
+guifill=waitfor(guibar,&quot;Fill&quot;)
+sounda=waitfor(handle,&quot;SoundAccelerate&quot;)
+soundt=waitfor(handle,&quot;SoundThrust&quot;)
+soundp=waitfor(handle,&quot;SoundPowerdown&quot;)
+
+function off()
+&#9;if not turningoff then
+&#9;&#9;turningoff=true
+&#9;&#9;if not check then
+&#9;&#9;&#9;if readyforturnoff then
+&#9;&#9;&#9;&#9;local chr=plr.Character
+&#9;&#9;&#9;&#9;if chr~=nil then
+&#9;&#9;&#9;&#9;&#9;local h=chr:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;&#9;&#9;&#9;local t=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;&#9;&#9;local landjets=sp:FindFirstChild(&quot;LandingJets&quot;)
+&#9;&#9;&#9;&#9;&#9;if landjets and t and h then
+&#9;&#9;&#9;&#9;&#9;&#9;landjets2=h:LoadAnimation(landjets)
+&#9;&#9;&#9;&#9;&#9;&#9;if landjets2 and h.Health&gt;0 then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;landjets2:Play()
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;if soundt~=nil then
+&#9;&#9;&#9;&#9;&#9;soundt:Stop()
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;if soundp~=nil then
+&#9;&#9;&#9;&#9;&#9;soundp:Play()
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;if flyjets2~=nil then
+&#9;&#9;&#9;&#9;&#9;flyjets2:Stop()
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;wait(.5)
+&#9;&#9;&#9;&#9;guibar.Visible=false
+&#9;&#9;&#9;&#9;if fire1~=nil then
+&#9;&#9;&#9;&#9;&#9;fire1.Enabled=false
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;if fire2~=nil then
+&#9;&#9;&#9;&#9;&#9;fire2.Enabled=false
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;if force~=nil then
+&#9;&#9;&#9;&#9;&#9;force.maxForce=Vector3.new(0,0,0)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;on=false
+&#9;&#9;&#9;&#9;wait(.5)
+&#9;&#9;&#9;&#9;check=true
+&#9;&#9;&#9;&#9;readyforturnoff=false
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;turningoff=false
+&#9;end
+end
+
+function onEquipped(mouse)
+&#9;equipped=true
+&#9;if mouse==nil then
+&#9;&#9;print(&quot;Mouse not found&quot;)
+&#9;&#9;return 
+&#9;end
+&#9;mouse.Icon=&quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;mouse.Button1Down:connect(function()
+&#9;&#9;down=true
+&#9;&#9;if check and on==false then
+&#9;&#9;&#9;check=false
+&#9;&#9;&#9;readyforturnoff=false
+&#9;&#9;&#9;if sounda~=nil then
+&#9;&#9;&#9;&#9;sounda:Play()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;local chr=plr.Character
+&#9;&#9;&#9;if chr~=nil then
+&#9;&#9;&#9;&#9;local h=chr:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;&#9;&#9;local t=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;&#9;if t and h then
+&#9;&#9;&#9;&#9;&#9;local jumpjets=sp:FindFirstChild(&quot;JumpJets&quot;)
+&#9;&#9;&#9;&#9;&#9;if jumpjets~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;jumpjets2=h:LoadAnimation(jumpjets)
+&#9;&#9;&#9;&#9;&#9;&#9;if jumpjets2 and h.Health&gt;0 then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;jumpjets2:Play(nil,nil,2)
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;if flyjets2~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;flyjets2:Stop()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;flyjets2=h:LoadAnimation(flyjets)
+&#9;&#9;&#9;&#9;&#9;if flyjets2 and h.Health&gt;0 then
+&#9;&#9;&#9;&#9;&#9;&#9;flyjets2:Play()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;h.Jump=true
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;wait(.4)
+&#9;&#9;&#9;fuel=1
+&#9;&#9;&#9;guifill.Size=UDim2.new(fuel,0,1,0)
+&#9;&#9;&#9;guibar.Visible=true
+&#9;&#9;&#9;on=true
+&#9;&#9;&#9;if soundt~=nil then
+&#9;&#9;&#9;&#9;soundt:Stop()
+&#9;&#9;&#9;&#9;soundt:Play()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;if fire1~=nil then
+&#9;&#9;&#9;&#9;fire1.Enabled=true
+&#9;&#9;&#9;end
+&#9;&#9;&#9;if fire2~=nil then
+&#9;&#9;&#9;&#9;fire2.Enabled=true
+&#9;&#9;&#9;end
+&#9;&#9;&#9;delay(0,function()
+&#9;&#9;&#9;&#9;while on and equipped do
+&#9;&#9;&#9;&#9;&#9;if force~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;force.maxForce=Vector3.new(1,1,1)*(10^6)
+&#9;&#9;&#9;&#9;&#9;&#9;local chr=plr.Character
+&#9;&#9;&#9;&#9;&#9;&#9;if chr~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;local torso=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if torso~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;force.velocity=(torso.CFrame.lookVector*speed)+Vector3.new(0,3,0)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;fuel=math.max(0,fuel-(rate/maxjettime))
+&#9;&#9;&#9;&#9;&#9;guifill.Size=UDim2.new(fuel,0,1,0)
+&#9;&#9;&#9;&#9;&#9;if fuel&lt;=0 then
+&#9;&#9;&#9;&#9;&#9;&#9;delay(0,off)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(rate)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end)
+&#9;&#9;&#9;wait(.5) --boost for one second atleast
+&#9;&#9;&#9;readyforturnoff=true
+&#9;&#9;&#9;if not down then
+&#9;&#9;&#9;&#9;off()
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end)
+&#9;mouse.Button1Up:connect(function()
+&#9;&#9;down=false
+&#9;&#9;off()
+&#9;end)
+&#9;delay(0,function()
+&#9;&#9;if lefthand~=nil then
+&#9;&#9;&#9;lefthand:remove()
+&#9;&#9;&#9;lefthand=nil
+&#9;&#9;end
+&#9;&#9;if force~=nil then
+&#9;&#9;&#9;force:remove()
+&#9;&#9;&#9;force=nil
+&#9;&#9;end
+&#9;&#9;local plrgui=plr:FindFirstChild(&quot;PlayerGui&quot;)
+&#9;&#9;if plrgui~=nil and gui~=nil then
+&#9;&#9;&#9;guibar.Visible=false
+&#9;&#9;&#9;gui.Parent=plrgui
+&#9;&#9;end
+&#9;&#9;for i,v in ipairs(sp:GetChildren()) do
+&#9;&#9;&#9;if v~=nil and v.Name==&quot;Effect&quot; and v~=leftarm then
+&#9;&#9;&#9;&#9;v:remove()
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;local chr=plr.Character
+&#9;&#9;if chr~=nil then
+&#9;&#9;&#9;local leftarm=chr:FindFirstChild(&quot;Left Arm&quot;)
+&#9;&#9;&#9;if leftarm~=nil then
+&#9;&#9;&#9;&#9;lefthand=handle:clone()
+&#9;&#9;&#9;&#9;local mesh=lefthand:FindFirstChild(&quot;Mesh&quot;)
+&#9;&#9;&#9;&#9;for i,v in ipairs(lefthand:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;if v.className~=&quot;Fire&quot; and v.className~=&quot;SpecialMesh&quot; then
+&#9;&#9;&#9;&#9;&#9;&#9;v:remove()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;mesh.MeshId=&quot;http://www.roblox.com/Asset?ID=97158239&quot;
+&#9;&#9;&#9;&#9;lefthand.Name=&quot;Effect&quot;
+&#9;&#9;&#9;&#9;lefthand.CanCollide=false
+&#9;&#9;&#9;&#9;local w=Instance.new(&quot;Weld&quot;)
+&#9;&#9;&#9;&#9;w.Part0=leftarm
+&#9;&#9;&#9;&#9;w.Part1=lefthand
+&#9;&#9;&#9;&#9;w.C0=CFrame.new(0,-1,0)*CFrame.Angles(-math.pi/2,0,math.pi/2)
+&#9;&#9;&#9;&#9;w.Parent=lefthand
+&#9;&#9;&#9;&#9;fire2=lefthand:FindFirstChild(&quot;Fire&quot;)
+&#9;&#9;&#9;&#9;lefthand.Parent=sp
+&#9;&#9;&#9;end
+&#9;&#9;&#9;local torso=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;if torso~=nil then
+&#9;&#9;&#9;&#9;force=Instance.new(&quot;BodyVelocity&quot;)
+&#9;&#9;&#9;&#9;force.Name=&quot;FlightVelocity&quot;
+&#9;&#9;&#9;&#9;force.velocity=Vector3.new(0,0,0)
+&#9;&#9;&#9;&#9;force.P=10^4
+&#9;&#9;&#9;&#9;force.maxForce=Vector3.new(0,0,0)
+&#9;&#9;&#9;&#9;force.Parent=handle
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end)
+end
+
+function onUnequipped(mouse)
+&#9;equipped=false
+&#9;off()
+&#9;if flyjets2~=nil then
+&#9;&#9;flyjets2:Stop()
+&#9;end
+&#9;delay(0,function()
+&#9;&#9;if gui~=nil then
+&#9;&#9;&#9;gui.Parent=sp
+&#9;&#9;end
+&#9;&#9;if lefthand~=nil then
+&#9;&#9;&#9;lefthand:remove()
+&#9;&#9;&#9;lefthand=nil
+&#9;&#9;end
+&#9;&#9;if force~=nil then
+&#9;&#9;&#9;force:remove()
+&#9;&#9;&#9;force=nil
+&#9;&#9;end
+&#9;end)
+&#9;soundt:Stop()
+end
+
+sp.Equipped:connect(onEquipped)
+sp.Unequipped:connect(onUnequipped)
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX2">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">21</int>
+				<CoordinateFrame name="CFrame">
+					<X>-20.0173359</X>
+					<Y>4.0972724</Y>
+					<Z>-0.5928092</Z>
+					<R00>0.000702673569</R00>
+					<R01>0.470337391</R01>
+					<R02>0.882486343</R02>
+					<R10>-0.999999583</R10>
+					<R11>-5.97900538e-008</R11>
+					<R12>0.000796276145</R12>
+					<R20>0.000374570023</R20>
+					<R21>-0.882486403</R21>
+					<R22>0.470337331</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>-4.59860722e-023</X>
+					<Y>6.423736e-023</Y>
+					<Z>-5.72701405e-023</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>3.63290196e-020</X>
+					<Y>0.0110861817</Y>
+					<Z>3.6529808e-020</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1.29999995</X>
+					<Y>1.29999995</Y>
+					<Z>2</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX3">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/Asset?ID=97146225</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.899999976</X>
+						<Y>0.949999988</Y>
+						<Z>0.949999988</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/Asset?ID=97146097</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Fire" referent="RBX4">
+				<Properties>
+					<Color3 name="Color">4294934528</Color3>
+					<bool name="Enabled">false</bool>
+					<string name="Name">Fire</string>
+					<Color3 name="SecondaryColor">4294901760</Color3>
+					<float name="heat_xml">0</float>
+					<float name="size_xml">3</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SoundAccelerate</string>
+					<float name="Pitch">0.75</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=97179776</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX6">
+				<Properties>
+					<bool name="Looped">true</bool>
+					<string name="Name">SoundThrust</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=97179624</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX7">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SoundPowerdown</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=97179386</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Animation" referent="RBX8">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=97170520</url></Content>
+				<string name="Name">JumpJets</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX9">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=97171309</url></Content>
+				<string name="Name">LandingJets</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX10">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=97172005</url></Content>
+				<string name="Name">FlyJets</string>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX11">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">21</int>
+				<CoordinateFrame name="CFrame">
+					<X>-20.0569458</X>
+					<Y>2.59862638</Y>
+					<Z>2.89588165</Z>
+					<R00>-0.882434905</R00>
+					<R01>-0.47033748</R01>
+					<R02>-0.00955611933</R02>
+					<R10>-0.0108286282</R10>
+					<R11>4.73334372e-010</R11>
+					<R12>0.999941349</R12>
+					<R20>-0.470309883</R20>
+					<R21>0.882486641</R21>
+					<R22>-0.00509310979</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Effect</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>-4.59860722e-023</X>
+					<Y>6.423736e-023</Y>
+					<Z>-5.72701405e-023</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>3.64672977e-020</X>
+					<Y>0.0110861817</Y>
+					<Z>3.66012687e-020</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.200000003</X>
+					<Y>0.200000003</Y>
+					<Z>0.200000003</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX12">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/Asset?ID=97158239</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.899999976</X>
+						<Y>0.949999988</Y>
+						<Z>0.949999988</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/Asset?ID=97146097</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Fire" referent="RBX13">
+				<Properties>
+					<Color3 name="Color">4294934528</Color3>
+					<bool name="Enabled">false</bool>
+					<string name="Name">Fire</string>
+					<Color3 name="SecondaryColor">4294901760</Color3>
+					<float name="heat_xml">0</float>
+					<float name="size_xml">3</float>
+				</Properties>
+			</Item>
+			<Item class="Weld" referent="RBX14">
+				<Properties>
+					<CoordinateFrame name="C0">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<CoordinateFrame name="C1">
+						<X>1.58958435</X>
+						<Y>-3.09735298</Y>
+						<Z>1.51594806</Z>
+						<R00>0.0100323958</R00>
+						<R01>-2.91565083e-008</R01>
+						<R02>-0.999949694</R02>
+						<R10>5.91604135e-008</R10>
+						<R11>-0.999999762</R11>
+						<R12>3.76903993e-013</R12>
+						<R20>-0.999949574</R20>
+						<R21>-5.96359371e-008</R21>
+						<R22>-0.0100323958</R22>
+					</CoordinateFrame>
+					<string name="Name">Weld</string>
+					<Ref name="Part0">RBX2</Ref>
+					<Ref name="Part1">RBX11</Ref>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="ScreenGui" referent="RBX15">
+			<Properties>
+				<string name="Name">JumpJetGui</string>
+			</Properties>
+			<Item class="Frame" referent="RBX16">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Color3 name="BackgroundColor3">4288914085</Color3>
+					<float name="BackgroundTransparency">0</float>
+					<Color3 name="BorderColor3">4279970357</Color3>
+					<int name="BorderSizePixel">1</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<string name="Name">Bar</string>
+					<UDim2 name="Position">
+						<XS>0.5</XS>
+						<XO>-81</XO>
+						<YS>1</YS>
+						<YO>-150</YO>
+					</UDim2>
+					<UDim2 name="Size">
+						<XS>0</XS>
+						<XO>162</XO>
+						<YS>0</YS>
+						<YO>36</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<token name="Style">3</token>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">2</int>
+				</Properties>
+				<Item class="Frame" referent="RBX17">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4294940928</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">0</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<string name="Name">Fill</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>0.5</XS>
+							<XO>0</XO>
+							<YS>1</YS>
+							<YO>0</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">0</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">3</int>
+					</Properties>
+				</Item>
+				<Item class="Frame" referent="RBX18">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4283256141</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">0</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<string name="Name">Backing</string>
+						<UDim2 name="Position">
+							<XS>0</XS>
+							<XO>0</XO>
+							<YS>0</YS>
+							<YO>0</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>1</XS>
+							<XO>0</XO>
+							<YS>1</YS>
+							<YO>0</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">0</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">2</int>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX19">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-19.9844475</X>
+					<Y>4.85264778</Y>
+					<Z>-2.84669042</Z>
+					<R00>-0.999893606</R00>
+					<R01>-0.00463597104</R01>
+					<R02>0.0138342343</R02>
+					<R10>-0</R10>
+					<R11>0.948177159</R11>
+					<R12>0.317742318</R12>
+					<R20>-0.0145903481</R20>
+					<R21>0.317708522</R21>
+					<R22>-0.948076189</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-20.0173359</X>
+					<Y>4.0972724</Y>
+					<Z>-0.5928092</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

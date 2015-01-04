@@ -1,0 +1,512 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.300000012</Y>
+				<Z>-0.100000001</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">ZombieSyringe</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=93722870</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.5</X>
+					<Y>0.900000036</Y>
+					<Z>0.100000001</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1.79999971</Y>
+					<Z>3.79999995</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=93722700</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=93588852</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Rage</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=93647326</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX4">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Absorb</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=93647485</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Swoosh</string>
+					<float name="Pitch">1.20000005</float>
+					<bool name="PlayOnRemove">true</bool>
+					<Content name="SoundId"><url>rbxasset://sounds/swoosh.wav</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX6">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SyringeScript</string>
+				<ProtectedString name="Source">-- Made By SolarCrane
+
+-- Waits for the child of the specified parent
+local function WaitForChild(parent, childName)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+-- This may be less typing if we made this a table index by their part names
+local TORSO_MESH_ID = &quot;http://www.roblox.com/asset/?id=37683263&quot;
+local LEFT_ARM_MESH_ID = &quot;http://www.roblox.com/asset/?id=37683097&quot;
+local RIGHT_ARM_MESH_ID = &quot;http://www.roblox.com/asset/?id=37683174&quot;
+local LEFT_LEG_MESH_ID = &quot;http://www.roblox.com/asset/?id=37683150&quot;
+local RIGHT_LEG_MESH_ID = &quot;http://www.roblox.com/asset/?id=37683227&quot;
+
+local MESHES = {[&quot;Torso&quot;] = 64084303, [&quot;Left Arm&quot;] = 63252751, [&quot;Right Arm&quot;] = 63252810, [&quot;Left Leg&quot;] = 63252779, [&quot;Right Leg&quot;] = 63252837}
+local TEXTURES = {[&quot;Torso&quot;] = 63253121, [&quot;Left Arm&quot;] = 63253121, [&quot;Right Arm&quot;] = 63253121, [&quot;Left Leg&quot;] = 63253121, [&quot;Right Leg&quot;] = 63253121}
+
+local INJECT_DAMAGE = 15
+
+local Tool = script.Parent
+local Handle = WaitForChild(Tool, &quot;Handle&quot;)
+
+local MyHumanoid
+local MyCharacter 
+
+local PlayersService = Game:GetService(&apos;Players&apos;)
+
+local InjectTrack
+local EnrageTrack
+
+local InjectSound
+local EnrageSound
+local SwooshSound
+
+local Hammer
+
+local HammerC = Game:GetService(&apos;InsertService&apos;):LoadAsset(93652837):GetChildren()[1]
+
+local function DeleteExistingMeshes(part)
+&#9;for _, v in pairs(part:GetChildren()) do
+&#9;&#9;if v:IsA(&apos;FileMesh&apos;) or v:IsA(&apos;CylinderMesh&apos;) or v:IsA(&apos;BlockMesh&apos;) or v:IsA(&apos;CharacterMesh&apos;) then
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+end
+
+local function ParseBodyPartEnum(bodyPartName)
+&#9;local result = Enum.BodyPart.Head
+&#9;if bodyPartName == &quot;Left Arm&quot; then
+&#9;&#9;result = Enum.BodyPart.LeftArm
+&#9;elseif bodyPartName == &quot;Right Arm&quot; then
+&#9;&#9;result = Enum.BodyPart.RightArm
+&#9;elseif bodyPartName == &quot;Left Leg&quot; then
+&#9;&#9;result = Enum.BodyPart.LeftLeg
+&#9;elseif bodyPartName == &quot;Right Leg&quot; then
+&#9;&#9;result = Enum.BodyPart.RightLeg
+&#9;elseif bodyPartName == &quot;Torso&quot; then
+&#9;&#9;result = Enum.BodyPart.Torso
+&#9;end
+&#9;return result
+end
+
+local function CreateCharacterMesh(meshId, textureId, bodyPartName)
+&#9;local mesh = Instance.new(&apos;CharacterMesh&apos;)
+&#9;mesh.MeshId = meshId
+&#9;mesh.OverlayTextureId = textureId
+&#9;mesh.BodyPart = ParseBodyPartEnum(bodyPartName)
+&#9;return mesh
+end
+
+local function CreateSpecialMesh(meshId, textureId)
+&#9;if not meshId then return end
+&#9;local mesh = Instance.new(&apos;SpecialMesh&apos;)
+&#9;mesh.MeshId = &quot;http://www.roblox.com/asset/?id=&quot; .. meshId
+&#9;mesh.TextureId = &quot;http://www.roblox.com/asset/?id=&quot; .. textureId
+&#9;return mesh
+end
+
+local function DressCharacter(character)
+&#9;if not character then return end
+&#9;if character:FindFirstChild(&apos;WasDressedZombieHealer&apos;) then print(&apos;Already dressed up.&apos;) return end
+&#9;local wasDressed = Instance.new(&apos;BoolValue&apos;)
+&#9;wasDressed.Value = true
+&#9;wasDressed.Name = &apos;WasDressedZombieHealer&apos;
+&#9;wasDressed.Parent = character
+&#9;DeleteExistingMeshes(character)
+&#9;for partName, meshId in pairs(MESHES) do
+&#9;&#9;if character:FindFirstChild(partName) and TEXTURES[partName] then
+&#9;&#9;&#9;DeleteExistingMeshes(character:FindFirstChild(partName))
+&#9;&#9;&#9;CreateSpecialMesh(meshId, TEXTURES[partName]).Parent = character:FindFirstChild(partName)
+&#9;&#9;&#9;CreateCharacterMesh(meshId, TEXTURES[partName], partName).Parent = character
+&#9;&#9;end
+&#9;end
+end
+
+
+-------------------------------- AWESOME CODE EXCEPT FROM HOTTHOTH COMMANDS; MORE TO COME -------------------------
+
+local foundObjectList = {}
+local foundObjectIndex = 1
+local function findObjectHelper(model, objectName, className, listOfFoundObjects)
+&#9;if not model then return end
+&#9;local findStart, findEnd = string.find(model.Name, objectName)
+&#9;if findStart == 1 and findEnd == #(model.Name) then  -- must match entire name
+&#9;&#9;if not className or model.className == className or (pcall(model.IsA, model, className) and model:IsA(className)) then
+&#9;&#9;&#9;table.insert(listOfFoundObjects, model)
+&#9;&#9;end
+&#9;end
+&#9;if pcall(model.GetChildren, model) then
+&#9;&#9;local modelChildren = model:GetChildren()
+&#9;&#9;for i = 1, #modelChildren do
+&#9;&#9;&#9;-- make sure not to resize tools, things tend to get complicated if we do
+&#9;&#9;&#9;if not (pcall(modelChildren[i].IsA, modelChildren[i], &apos;Tool&apos;) and modelChildren[i]:IsA(&apos;Tool&apos;)) then
+&#9;&#9;&#9;&#9;findObjectHelper(modelChildren[i], objectName, className, listOfFoundObjects)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+local function resizeModelInternal(model, resizeFactor)
+&#9;local modelCFrame = model:GetModelCFrame()
+&#9;local modelSize = model:GetModelSize()
+&#9;local baseParts = {}
+&#9;local basePartCFrames = {}
+&#9;local joints = {}
+&#9;local jointParents = {}
+&#9;local meshes = {}
+
+&#9;findObjectHelper(model, &quot;.*&quot;, &quot;BasePart&quot;, baseParts)
+&#9;findObjectHelper(model, &quot;.*&quot;, &quot;JointInstance&quot;, joints)
+
+&#9;-- meshes don&apos;t inherit from anything accessible?
+&#9;findObjectHelper(model, &quot;.*&quot;, &quot;FileMesh&quot;, meshes)                    -- base class for SpecialMesh and FileMesh
+&#9;findObjectHelper(model, &quot;.*&quot;, &quot;CylinderMesh&quot;, meshes)
+&#9;findObjectHelper(model, &quot;.*&quot;, &quot;BlockMesh&quot;, meshes)
+
+&#9;-- store the CFrames, so our other changes don&apos;t rearrange stuff
+&#9;for _, basePart in pairs(baseParts) do
+&#9;&#9;basePartCFrames[basePart] = basePart.CFrame
+&#9;end
+
+&#9;-- scale meshes
+&#9;for _,mesh in pairs(meshes) do
+&#9;&#9;-- This is a nasty hack because head meshes scale relative to the part&apos;s size
+&#9;&#9;-- thus scaling the mesh and the head gives u 2x the size
+&#9;&#9;if mesh.Parent.Name ~= &quot;Head&quot; then
+&#9;&#9;&#9;mesh.Scale = mesh.Scale * resizeFactor
+&#9;&#9;end
+&#9;end
+
+&#9;-- scale joints
+&#9;for _, joint in pairs(joints) do
+&#9;&#9;joint.C0 = joint.C0 + (joint.C0.p) * (resizeFactor - 1)
+&#9;&#9;joint.C1 = joint.C1 + (joint.C1.p) * (resizeFactor - 1)
+&#9;&#9;jointParents[joint] = joint.Parent
+&#9;end
+
+&#9;-- scale parts and reposition them within the model
+&#9;for _, basePart in pairs(baseParts) do
+&#9;&#9;if pcall(function() basePart.FormFactor = &quot;Custom&quot; end) then basePart.FormFactor = &quot;Custom&quot; end
+&#9;&#9;basePart.Size = basePart.Size * resizeFactor
+&#9;&#9;local oldCFrame = basePartCFrames[basePart]
+&#9;&#9;local oldPositionInModel = modelCFrame:pointToObjectSpace(oldCFrame.p)
+&#9;&#9;local distanceFromCorner = oldPositionInModel + modelSize/2
+&#9;&#9;distanceFromCorner = distanceFromCorner * resizeFactor
+
+&#9;&#9;local newPositionInSpace = modelCFrame:pointToWorldSpace(distanceFromCorner - modelSize/2)
+&#9;&#9;basePart.CFrame = oldCFrame - oldCFrame.p + newPositionInSpace
+&#9;end
+
+&#9;-- pop the joints back, because they prolly got borked
+&#9;for _, joint in pairs(joints) do
+&#9;&#9;joint.Parent = jointParents[joint]
+&#9;end
+
+&#9;return model
+end
+
+local function resizeImplementation(modelList, resizeFactor)
+&#9;if type(modelList) ~= &quot;table&quot; then modelList = {modelList} end
+
+&#9;for _, model in pairs(modelList) do
+&#9;&#9;--if model.Name ~= &quot;BackPack&quot; then
+&#9;&#9;&#9;resizeModelInternal(model, resizeFactor)
+&#9;&#9;--end
+&#9;end
+&#9;return modelList
+end
+
+------------------------------------------------------------------------------------------------------------------
+local attacking = false
+local HitCharacters = {}
+
+function Blow(hit)
+&#9;if not attacking then return end
+&#9;if hit and hit.Parent and hit.Parent:FindFirstChild(&apos;Humanoid&apos;) and hit.Parent ~= MyCharacter then
+&#9;&#9;if HitCharacters[hit.Parent] then return end
+&#9;&#9;HitCharacters[hit.Parent] = true
+&#9;&#9;hit.Parent.Humanoid:TakeDamage(INJECT_DAMAGE)
+&#9;&#9;if InjectSound then
+&#9;&#9;&#9;InjectSound:Play()
+&#9;&#9;end
+&#9;&#9;wait(0.2)
+&#9;&#9;if EnrageTrack then
+&#9;&#9;&#9;EnrageTrack:Play()
+&#9;&#9;end
+&#9;&#9;Delay(0.2, (function() if EnrageSound then EnrageSound:Play() end end))
+&#9;&#9;
+&#9;&#9;local character = PlayersService.localPlayer.Character
+&#9;&#9;if character:FindFirstChild(&apos;WasDressedZombieHealer&apos;) then
+&#9;&#9;&#9;print(&apos;Already dressed up.&apos;)
+&#9;&#9;&#9;wait(0.1)
+&#9;&#9;else
+&#9;&#9;&#9;DressCharacter(character)
+&#9;&#9;&#9;--for i = 1, 10 do
+&#9;&#9;&#9;&#9;resizeImplementation(character, 1.42)
+&#9;&#9;&#9;&#9;wait(0.03)
+&#9;&#9;&#9;--&#9;end
+&#9;&#9;end
+&#9;&#9;if not character:FindFirstChild(&apos;Hammer&apos;) and not PlayersService:GetPlayerFromCharacter(character).Backpack:FindFirstChild(&apos;Hammer&apos;) then
+&#9;&#9;&#9;MyHumanoid:UnequipTools() 
+&#9;&#9;&#9;HammerC:Clone().Parent = character
+&#9;&#9;end
+&#9;end
+end
+
+
+function OnActivate()
+&#9;if (MyHumanoid and MyHumanoid.Health &lt;= 0) or attacking then return end
+&#9;attacking = true
+&#9;HitCharacters = {}
+&#9;if InjectTrack then
+&#9;&#9;InjectTrack:Play()
+&#9;end
+&#9;wait(0.5)
+&#9;if SwooshSound then
+&#9;&#9;SwooshSound:Play()
+&#9;end
+&#9;wait(0.2)
+&#9;attacking = false
+end
+
+local Equipping = false
+
+function OnEquipped( mouse )
+&#9;if Equipping then return end
+&#9;Equipping = true
+&#9;MyCharacter = Tool.Parent
+&#9;MyHumanoid = WaitForChild(Tool.Parent, &apos;Humanoid&apos;)
+&#9;InjectTrack = MyHumanoid:LoadAnimation(WaitForChild(Tool, &apos;Inject&apos;))
+&#9;EnrageTrack = MyHumanoid:LoadAnimation(WaitForChild(Tool, &apos;Enrage&apos;))
+&#9;InjectSound = WaitForChild(Handle, &apos;Absorb&apos;)
+&#9;EnrageSound = WaitForChild(Handle, &apos;Rage&apos;)
+&#9;SwooshSound = WaitForChild(Handle, &apos;Swoosh&apos;)
+&#9;Handle.Touched:connect(Blow)
+&#9;if not Hammer then
+&#9;&#9;wait(0.1)
+&#9;&#9;Hammer = Game:GetService(&apos;InsertService&apos;):LoadAsset(93652837):GetChildren()[1]
+&#9;end
+&#9;print(&apos;Equip done&apos;)
+&#9;Equipping = false
+end
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Activated:connect(OnActivate)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX7">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=93642075</url></Content>
+				<string name="Name">Inject</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX8">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com//Asset?ID=93648331</url></Content>
+				<string name="Name">Enrage</string>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX9">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">Tool = script.Parent 
+
+local stillEquipped = false 
+
+function onEquippedLocal(mouse) 
+     stillEquipped = true 
+     if mouse == nil then 
+          print(&quot;Mouse not found&quot;) 
+          return 
+     end 
+     while stillEquipped do 
+          print(&quot;Setting Mouse to go&quot;) 
+          mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot; 
+          while Tool.Enabled and stillEquipped do 
+               wait(0.01) 
+          end 
+          print(&quot;Setting Mouse to wait&quot;) 
+          mouse.Icon = &quot;rbxasset://textures\\GunWaitCursor.png&quot; 
+          while not Tool.Enabled and stillEquipped do 
+               wait(0.01) 
+          end      
+     end 
+end 
+
+
+function onUnequippedLocal() 
+     stillEquipped = false 
+end 
+
+Tool.Equipped:connect(onEquippedLocal) 
+Tool.Unequipped:connect(onUnequippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX10">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-2.51263428</X>
+					<Y>1.86427712</Y>
+					<Z>-2.97561646</Z>
+					<R00>-0.836763442</R00>
+					<R01>0.138948679</R01>
+					<R02>-0.529641628</R02>
+					<R10>-0</R10>
+					<R11>0.967267871</R11>
+					<R12>0.253757596</R12>
+					<R20>0.547564626</R20>
+					<R21>0.21233508</R21>
+					<R22>-0.809374332</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-0.5</X>
+					<Y>0.900000095</Y>
+					<Z>0.100000024</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

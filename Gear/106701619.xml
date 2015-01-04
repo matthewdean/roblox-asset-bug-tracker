@@ -1,0 +1,493 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-1.10000002</Y>
+				<Z>0.0500000007</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">FrogWand</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=106762265</url></Content>
+			<string name="ToolTip">Wand of Buforia</string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-0.799999952</X>
+					<Y>0</Y>
+					<Z>-0.5</Z>
+					<R00>-1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>-0</R10>
+					<R11>0</R11>
+					<R12>1</R12>
+					<R20>-0</R20>
+					<R21>1</R21>
+					<R22>0</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.319999963</X>
+					<Y>3.04999995</Y>
+					<Z>0.280000001</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=106761941</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>2</X>
+						<Y>2</Y>
+						<Z>2</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=106762187</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Script" referent="RBX3">
+				<Properties>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">FrogWandScript</string>
+					<ProtectedString name="Source">function WaitForChild(parent, child)
+&#9;while not parent:FindFirstChild(child) do parent.ChildAdded:wait() end
+&#9;return parent[child]
+end
+
+local FROG_ASSET_ID = 106808835
+
+local Handle = script.Parent
+local Tool = Handle.Parent
+local Character
+local Humanoid
+local SludgeMesh = WaitForChild(Tool, &quot;SludgeMesh&quot;)
+local FrogScript = WaitForChild(Handle, &quot;FrogScript&quot;)
+
+local SludgeSound = WaitForChild(Handle, &apos;Sludge&apos;)
+local MagicSound = WaitForChild(Handle, &apos;Magic&apos;)
+
+local charWelds = {}
+
+function saveWelds(model, weldTable)
+&#9;if model:IsA(&quot;JointInstance&quot;) then
+&#9;&#9;weldTable[model] = model.Parent
+&#9;end
+&#9;for _, v in pairs(model:GetChildren()) do
+&#9;&#9;saveWelds(v, weldTable)
+&#9;end
+end
+
+function storeWelds(char)
+&#9;charWelds[char] = {}
+&#9;saveWelds(char, charWelds[char])
+end
+
+function returnWelds(char)
+&#9;for weld, weldParent in pairs(charWelds[char]) do
+&#9;&#9;weld.Parent = weldParent
+&#9;end
+end
+
+function removeToolsFromChar(char)
+&#9;local charParts = char:GetChildren()
+&#9;for i = 1, #charParts do
+&#9;&#9;if charParts[i]:IsA(&quot;Tool&quot;) then
+&#9;&#9;&#9;charParts[i]:Remove() 
+&#9;&#9;end
+&#9;end
+end
+
+local InsertedFrog = game:GetService(&quot;InsertService&quot;):LoadAsset(FROG_ASSET_ID)
+local Froggy
+if InsertedFrog then
+&#9;Froggy = InsertedFrog:GetChildren()[1]
+end
+
+--local Froggy = workspace.Froggy
+
+function transformPlayer(player)
+&#9;local newFroggy = Froggy:Clone()
+&#9;local newFrogScript = FrogScript:Clone()
+&#9;local oldCharacter = player.Character
+
+&#9;newFroggy:TranslateBy(oldCharacter:GetModelCFrame().p - newFroggy:GetModelCFrame().p)
+&#9;storeWelds(oldCharacter)
+&#9;oldCharacter.Parent = nil
+&#9;newFroggy.Parent = workspace
+&#9;player.Character = newFroggy
+&#9;newFrogScript.Parent = newFroggy
+&#9;newFrogScript.Disabled = false
+&#9;
+&#9;wait(20)
+&#9;newFroggy.Parent = nil
+&#9;returnWelds(oldCharacter)
+&#9;removeToolsFromChar(oldCharacter)
+&#9;oldCharacter.Parent = workspace
+&#9;player.Character = oldCharacter
+end
+
+local playersToTransform = {}
+function checkForEnemy(foundParts)
+&#9;local currTime = tick()
+&#9;for i = 1, #foundParts do
+&#9;&#9;local char = foundParts[i].Parent
+&#9;&#9;if char and char ~= Character and char.Name ~= &quot;Froggy&quot; then
+&#9;&#9;&#9;local player = game.Players:GetPlayerFromCharacter(char)
+&#9;&#9;&#9;if player and (not playersToTransform[player] or currTime - playersToTransform[player] &gt; 10) then
+&#9;&#9;&#9;&#9;playersToTransform[player] = tick()
+&#9;&#9;&#9;&#9;delay(0, function() transformPlayer(player) end)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+function doSludge(sludge, sludgeMesh)
+&#9;local timeWaited = 0
+&#9;while timeWaited &lt; 1 do
+&#9;&#9;timeWaited = timeWaited + wait()
+&#9;&#9;sludge.CFrame = sludge.CFrame * CFrame.Angles(0, math.pi/15, 0)
+&#9;end
+&#9;local foundParts = workspace:FindPartsInRegion3(Region3.new(sludge.CFrame.p - Vector3.new(1.5, .1, 1.5), sludge.CFrame.p + Vector3.new(1.5, 3, 1.5)), nil, 30)
+&#9;
+&#9;
+&#9;SludgeSound:Play()
+&#9;checkForEnemy(foundParts)
+&#9;
+&#9;local startCFrame = sludge.CFrame&#9;
+&#9;timeWaited = 0
+&#9;while timeWaited &lt; .5 do
+&#9;&#9;timeWaited = timeWaited + 3*wait()
+&#9;&#9;sludge.CFrame = startCFrame + Vector3.new(0, timeWaited*10, 0)
+&#9;&#9;sludgeMesh.Scale = Vector3.new(3, timeWaited*20, -3)
+&#9;end
+&#9;
+&#9;foundParts = workspace:FindPartsInRegion3(Region3.new(sludge.CFrame.p - Vector3.new(1.5, 5, 1.5), sludge.CFrame.p + Vector3.new(1.5, 5, 1.5)), nil, 30)
+&#9;
+&#9;checkForEnemy(foundParts)
+&#9;
+&#9;while timeWaited &gt; 0 do
+&#9;&#9;timeWaited = timeWaited - 2*wait()
+&#9;&#9;sludge.CFrame = startCFrame + Vector3.new(0, timeWaited*10, 0)
+&#9;&#9;sludgeMesh.Scale = Vector3.new(3, timeWaited*20, -3)
+&#9;end
+&#9;
+&#9;sludge:Remove()
+end
+
+
+Tool.Enabled = false
+function onActivated()
+&#9;if not Humanoid or Tool.Enabled then return end
+&#9;Tool.Enabled = true
+&#9;MagicSound:Play()
+&#9;local newSludge = Instance.new(&quot;Part&quot;)
+&#9;newSludge.formFactor = &quot;Custom&quot;
+&#9;newSludge.Size = Vector3.new(1, 1, 1)
+&#9;newSludge.Reflectance = .01
+&#9;newSludge.Material = &quot;Ice&quot;
+&#9;newSludge.TopSurface = &quot;Smooth&quot;
+&#9;newSludge.BottomSurface = &quot;Smooth&quot;
+&#9;newSludge.BrickColor = BrickColor.new(&quot;Br. yellowish green&quot;)
+&#9;newSludge.CanCollide = false
+&#9;newSludge.Anchored = true
+&#9;newSludge.CFrame = CFrame.new(Humanoid.TargetPoint + Vector3.new(0, .25, 0))
+&#9;
+&#9;local newSludgeMesh = SludgeMesh:Clone()
+&#9;newSludgeMesh.Parent = newSludge
+
+&#9;newSludge.Parent = workspace
+&#9;delay(0, function() doSludge(newSludge, newSludgeMesh) end)&#9;
+&#9;
+&#9;wait(.5)
+&#9;Tool.Enabled = false
+end
+
+function onEquipped()
+&#9;Character = Tool.Parent
+&#9;Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+end
+
+Tool.Activated:connect(onActivated)
+Tool.Equipped:connect(onEquipped)
+</ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="LocalScript" referent="RBX4">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">FrogScript</string>
+					<ProtectedString name="Source">function WaitForChild(parent, child)
+&#9;while not parent:FindFirstChild(child) do parent.ChildAdded:wait() end
+&#9;return parent[child]
+end
+
+local Character = script.Parent
+local Player = game.Players:GetPlayerFromCharacter(Character)
+local Mouse = Player:GetMouse()
+
+local Torso = WaitForChild(Character, &quot;Torso&quot;)
+local Neck = WaitForChild(Torso, &quot;Neck&quot;)
+local Humanoid = WaitForChild(Character, &quot;Humanoid&quot;)
+
+local NeckAngle = 0
+
+local CroakSound = WaitForChild(Torso, &apos;Croak&apos;)
+local JumpHumanoid = false
+local keysDown = {}
+
+
+local lastSpace = 0
+function onKeyDown(key)
+&#9;key = key:lower()
+&#9;if key == &quot; &quot; then
+&#9;&#9;local currTime = tick()
+&#9;&#9;if currTime - lastSpace &gt; 2 then
+&#9;&#9;&#9;lastSpace = currTime
+&#9;&#9;&#9;NeckAngle = NeckAngle + math.pi*2
+&#9;&#9;&#9;Neck.DesiredAngle = NeckAngle
+&#9;&#9;end
+&#9;elseif key == &quot;w&quot; or key == &quot;a&quot; or key == &quot;s&quot; or key == &quot;d&quot; or (string.byte(key) == 17 and string.byte(key) == 18) then
+&#9;&#9;lastSpace = tick()
+&#9;&#9;keysDown[key] = true
+&#9;&#9;JumpHumanoid = true
+&#9;end
+end
+
+function onKeyUp(key)
+&#9;key = key:lower()
+&#9;if key == &quot;w&quot; or key == &quot;a&quot; or key == &quot;s&quot; or key == &quot;d&quot; or (string.byte(key) == 17 and string.byte(key) == 18) then
+&#9;&#9;keysDown[key] = nil
+&#9;&#9;local stopJumping = true
+&#9;&#9;for _, __ in pairs(keysDown) do
+&#9;&#9;&#9;stopJumping = false
+&#9;&#9;end
+&#9;&#9;if stopJumping then
+&#9;&#9;&#9;JumpHumanoid = false
+&#9;&#9;end
+&#9;end
+end
+
+Mouse.KeyDown:connect(onKeyDown)
+Mouse.KeyUp:connect(onKeyUp)
+
+local soundDebounce = false
+while true do
+&#9;if JumpHumanoid then
+&#9;&#9;if not soundDebounce then
+&#9;&#9;&#9;soundDebounce = true
+&#9;&#9;&#9;CroakSound:Play()
+&#9;&#9;&#9;delay(1, function() soundDebounce = false end)
+&#9;&#9;end
+&#9;&#9;Humanoid.Jump = true
+&#9;end
+&#9;wait()
+end
+</ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Sludge</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=106805362</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX6">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Magic</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=106805906</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+			<Item class="LocalScript" referent="RBX7">
+				<Properties>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">AnimateScript</string>
+					<ProtectedString name="Source">function WaitForChild(parent, child)
+&#9;while not parent:FindFirstChild(child) do parent.ChildAdded:wait() end
+&#9;return parent[child]
+end
+
+local Handle = script.Parent
+local Tool = Handle.Parent
+local Humanoid
+local Animation
+
+local animation = WaitForChild(Tool, &quot;wandcast&quot;)
+
+function onEquipped()
+&#9;Character = Tool.Parent
+&#9;Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+&#9;Animation = Humanoid:LoadAnimation(animation)
+end
+
+local wasEnabled = false
+function onChanged()
+&#9;if Tool.Enabled and not wasEnabled then
+&#9;&#9;wasEnabled = true
+&#9;&#9;Animation:Play()
+&#9;elseif not Tool.Enabled and wasEnabled then
+&#9;&#9;wasEnabled = false
+&#9;end
+end
+
+function onUnequipped()
+&#9;if Animation then Animation:Stop() end
+end
+
+Tool.Equipped:connect(onEquipped)
+Tool.Changed:connect(onChanged)
+Tool.Unequipped:connect(onUnequipped)
+</ProtectedString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="SpecialMesh" referent="RBX8">
+			<Properties>
+				<token name="LODX">2</token>
+				<token name="LODY">2</token>
+				<Content name="MeshId"><null></null></Content>
+				<token name="MeshType">0</token>
+				<string name="Name">SludgeMesh</string>
+				<Vector3 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<Vector3 name="Scale">
+					<X>3</X>
+					<Y>0</Y>
+					<Z>-3</Z>
+				</Vector3>
+				<Content name="TextureId"><null></null></Content>
+				<Vector3 name="VertexColor">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX9">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=31665427</url></Content>
+				<string name="Name">wandcast</string>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX10">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-1.04693282</X>
+					<Y>2.12075305</Y>
+					<Z>-0.751606941</Z>
+					<R00>-0.704633772</R00>
+					<R01>0.700244486</R01>
+					<R02>-0.114669308</R02>
+					<R10>-7.4505806e-009</R10>
+					<R11>0.161603659</R11>
+					<R12>0.986855745</R12>
+					<R20>0.709571242</R20>
+					<R21>0.695371866</R21>
+					<R22>-0.113871381</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-0.817594171</X>
+					<Y>0.147041321</Y>
+					<Z>-0.52386415</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,0 +1,462 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Part" referent="RBX0">
+		<Properties>
+			<bool name="Anchored">false</bool>
+			<float name="BackParamA">-0.5</float>
+			<float name="BackParamB">0.5</float>
+			<token name="BackSurface">0</token>
+			<token name="BackSurfaceInput">0</token>
+			<float name="BottomParamA">-0.5</float>
+			<float name="BottomParamB">0.5</float>
+			<token name="BottomSurface">0</token>
+			<token name="BottomSurfaceInput">0</token>
+			<int name="BrickColor">194</int>
+			<CoordinateFrame name="CFrame">
+				<X>-41.5</X>
+				<Y>25.0000019</Y>
+				<Z>169.5</Z>
+				<R00>1</R00>
+				<R01>3.25260652e-019</R01>
+				<R02>-2.01165676e-007</R02>
+				<R10>1.08420217e-019</R10>
+				<R11>1</R11>
+				<R12>-5.37764278e-017</R12>
+				<R20>2.01165676e-007</R20>
+				<R21>5.20417043e-017</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<bool name="CanCollide">true</bool>
+			<bool name="DraggingV1">false</bool>
+			<float name="Elasticity">0.5</float>
+			<token name="FormFactor">1</token>
+			<float name="Friction">0.300000012</float>
+			<float name="FrontParamA">-0.5</float>
+			<float name="FrontParamB">0.5</float>
+			<token name="FrontSurface">0</token>
+			<token name="FrontSurfaceInput">0</token>
+			<float name="LeftParamA">-0.5</float>
+			<float name="LeftParamB">0.5</float>
+			<token name="LeftSurface">0</token>
+			<token name="LeftSurfaceInput">0</token>
+			<bool name="Locked">true</bool>
+			<token name="Material">256</token>
+			<string name="Name">Handle</string>
+			<float name="Reflectance">0</float>
+			<float name="RightParamA">-0.5</float>
+			<float name="RightParamB">0.5</float>
+			<token name="RightSurface">0</token>
+			<token name="RightSurfaceInput">0</token>
+			<Vector3 name="RotVelocity">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+			</Vector3>
+			<float name="TopParamA">-0.5</float>
+			<float name="TopParamB">0.5</float>
+			<token name="TopSurface">0</token>
+			<token name="TopSurfaceInput">0</token>
+			<float name="Transparency">0</float>
+			<Vector3 name="Velocity">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+			</Vector3>
+			<bool name="archivable">true</bool>
+			<token name="shape">1</token>
+			<Vector3 name="size">
+				<X>1</X>
+				<Y>1.20000005</Y>
+				<Z>1</Z>
+			</Vector3>
+		</Properties>
+		<Item class="SpecialMesh" referent="RBX1">
+			<Properties>
+				<token name="LODX">2</token>
+				<token name="LODY">2</token>
+				<Content name="MeshId"><url>http://www.roblox.com/asset/?id=29873142</url></Content>
+				<token name="MeshType">5</token>
+				<string name="Name">Mesh</string>
+				<Vector3 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<Vector3 name="Scale">
+					<X>0.449999988</X>
+					<Y>0.449999988</Y>
+					<Z>0.449999988</Z>
+				</Vector3>
+				<Content name="TextureId"><url>http://www.roblox.com/asset/?id=31082268</url></Content>
+				<Vector3 name="VertexColor">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+	</Item>
+	<Item class="Tool" referent="RBX2">
+		<Properties>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>-0.400000006</X>
+				<Y>-0.0500000007</Y>
+				<Z>0.109999999</Z>
+				<R00>0</R00>
+				<R01>0</R01>
+				<R02>-1</R02>
+				<R10>-0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>1</R20>
+				<R21>0</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<string name="Name">ThrowingBarrel</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=29874079</url></Content>
+			<bool name="archivable">true</bool>
+		</Properties>
+		<Item class="Part" referent="RBX0">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-41.5</X>
+					<Y>25.0000019</Y>
+					<Z>169.5</Z>
+					<R00>1</R00>
+					<R01>3.25260652e-019</R01>
+					<R02>-2.01165676e-007</R02>
+					<R10>1.08420217e-019</R10>
+					<R11>1</R11>
+					<R12>-5.37764278e-017</R12>
+					<R20>2.01165676e-007</R20>
+					<R21>5.20417043e-017</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="DraggingV1">false</bool>
+				<float name="Elasticity">0.5</float>
+				<token name="FormFactor">1</token>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<bool name="archivable">true</bool>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1.20000005</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX1">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=29873142</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.449999988</X>
+						<Y>0.449999988</Y>
+						<Z>0.449999988</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=31082268</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<bool name="archivable">true</bool>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX3">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">local Tool = script.Parent;
+local anim = nil
+
+enabled = true
+function onButton1Down(mouse)
+	if not enabled then
+		return
+	end
+
+	enabled = false
+	mouse.Icon = &quot;rbxasset://textures\\ArrowFarCursor.png&quot;
+	anim:Play()
+	wait(1)
+	mouse.Icon = &quot;rbxasset://textures\\ArrowCursor.png&quot;
+	enabled = true
+
+end
+
+function onEquippedLocal(mouse)
+
+	if mouse == nil then
+		print(&quot;Mouse not found&quot;)
+		return 
+	end
+
+	anim = Tool.Parent:FindFirstChild(&quot;Humanoid&quot;):LoadAnimation(Tool.barrelthrow)
+
+	mouse.Icon = &quot;rbxasset://textures\\ArrowCursor.png&quot;
+	mouse.Button1Down:connect(function() onButton1Down(mouse) end)
+end
+
+Tool.Equipped:connect(onEquippedLocal)
+</ProtectedString>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Script</string>
+				<ProtectedString name="Source">local Tool = script.Parent
+local humanoid = nil
+local enabled = false
+
+function onActivated()
+
+	if enabled then
+		return
+	end
+
+	enabled = true
+
+	humanoid = Tool.Parent:FindFirstChild(&quot;Humanoid&quot;)
+
+	Tool.GripForward = Vector3.new(1,0,0)
+	Tool.GripRight = Vector3.new(0,-1,0)
+	Tool.GripUp = Vector3.new(0,0,1)
+	Tool.GripPos = Vector3.new(-1,-1.5,0)
+
+	Tool.Handle.Mesh.Scale = Vector3.new(1,1,1)
+
+	local amountInFront = 15
+	local lookVector = humanoid.Parent.Torso.CFrame.lookVector
+	local denom = math.abs(lookVector.x) + math.abs(lookVector.z)
+	local xFactor =  (lookVector.x/denom)
+	local zFactor = (lookVector.z/denom)
+	local posX = amountInFront * xFactor
+	local posZ = amountInFront * zFactor
+
+	local barrel = Tool.Handle:Clone()
+	barrel.CanCollide = true
+	barrel.Name = &quot;Barrel&quot;
+	barrel.Shape = 1
+	barrel.formFactor = 1
+	barrel.Size = Vector3.new(2,3.6,2)
+	barrel.Position = Vector3.new(posX + barrel.Position.x,humanoid.Parent.Torso.Position.y,posZ + barrel.Position.z)
+	barrel.CFrame = CFrame.new(barrel.Position,Vector3.new(humanoid.Torso.Position.x,barrel.Position.y + 10, humanoid.Torso.Position.z))
+	barrel.CFrame = barrel.CFrame * CFrame.Angles(0,0,math.pi/2)
+
+	local sound = Instance.new(&quot;Sound&quot;)
+	sound.SoundId = &quot;http://www.roblox.com/asset/?id=31033396&quot;
+	sound.Name = &quot;GameOver&quot;
+	sound.Parent = barrel
+
+	local roll = Instance.new(&quot;Sound&quot;)
+	roll.SoundId = &quot;http://www.roblox.com/asset/?id=31036019&quot;
+	roll.Name = &quot;Roll&quot;
+	roll.Looped = true
+	roll.Parent = barrel
+	roll:Play()
+
+	wait(0.6)
+	Tool.Handle.Transparency = 1
+	barrel.Parent = game.Workspace
+	barrel.Velocity = Tool.Parent.Torso.CFrame.lookVector * 80
+
+	local force = Instance.new(&quot;BodyForce&quot;)
+	force.force = Vector3.new(0,2600,0)
+	force.Parent = barrel
+
+	local script = Tool.BarrelScript:clone()
+	script.Parent = barrel
+	script.Disabled = false
+
+	wait(0.4)
+
+	Tool.Handle.Transparency = 0
+	Tool.Handle.Mesh.Scale = Vector3.new(0.45,0.45,0.45)
+	Tool.GripPos = Vector3.new(-0.4, -0.05, 0.11)
+
+	Tool.GripUp = Vector3.new(0,1,0)
+	Tool.GripRight = Vector3.new(0,0,1)
+	Tool.GripForward = Vector3.new(1,0,0)
+
+	Tool.GripRight = Vector3.new(0,0,1)
+	Tool.GripUp = Vector3.new(0,1,0)
+	Tool.GripForward = Vector3.new(1,0,0)
+
+	enabled = false
+
+end
+
+
+function onEquipped()
+	humanoid = Tool.Parent:FindFirstChild(&quot;Humanoid&quot;)
+end
+
+function onUnequipped()
+	humanoid = nil
+end
+
+Tool.Activated:connect(onActivated)
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+</ProtectedString>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">BarrelScript</string>
+				<ProtectedString name="Source">local Barrel = script.Parent
+local force = Barrel:FindFirstChild(&quot;BodyForce&quot;)
+local touching = false
+local con = nil
+local particles = 8
+
+function killBarrel()
+
+	Barrel.Roll.Looped = false
+	Barrel.Roll:Stop()
+	Barrel:remove()
+
+end
+
+local debris = game:GetService(&quot;Debris&quot;)
+Delay(15,killBarrel)
+
+local plank = Instance.new(&quot;Part&quot;)
+plank.Name = &quot;Plank&quot;
+plank.Material = 512 -- wood
+plank.BrickColor = BrickColor.new(&quot;Reddish brown&quot;)
+plank.Shape = 1
+plank.formFactor = 2
+plank.Size = Vector3.new(1,0.4,4)
+plank.BottomSurface = 0
+plank.TopSurface = 0
+
+function onTouched(part)
+
+	if touching then
+		return
+	end
+	
+	touching = true
+
+	local human = part.Parent:FindFirstChild(&quot;Humanoid&quot;)
+	if human ~= nil and Barrel.Velocity.magnitude &gt; 20 then
+
+		human:TakeDamage(25)
+		human.Jump = true
+
+		local angularVelo = Instance.new(&quot;BodyAngularVelocity&quot;)
+		angularVelo.P = 500000
+		angularVelo.angularvelocity = Vector3.new(math.random(-5,5),22,math.random(-5,5))
+		angularVelo.maxTorque = Vector3.new(angularVelo.P,angularVelo.P,angularVelo.P)
+		angularVelo.Parent = human.Parent.Torso
+		debris:AddItem(angularVelo, 1)
+
+		local force = Instance.new(&quot;BodyForce&quot;)
+		force.force = Barrel.Velocity * 50
+		force.Parent = human.Parent.Torso
+		debris:AddItem(force, 0.5)
+		Barrel.GameOver:Play()
+		con:disconnect()
+
+		for i = 1, particles do
+		
+			local clone = plank:Clone()
+			clone.Position = Barrel.Position
+			clone.Parent = game.Workspace
+			debris:AddItem(clone, 5)
+
+		end
+		killBarrel()
+
+	end
+
+	touching = false
+
+end
+
+con = Barrel.Touched:connect(onTouched)
+
+wait(1)
+while true do
+	if force.Parent ~= nil then
+		force.force = force.force * 0.5
+	end
+	wait(1)
+	force.force = force.force * 2
+	wait(3)
+end
+</ProtectedString>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX6">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=31020869</url></Content>
+				<string name="Name">barrelthrow</string>
+				<bool name="archivable">true</bool>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

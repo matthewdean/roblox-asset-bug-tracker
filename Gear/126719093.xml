@@ -1,0 +1,475 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">FloatingHead</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=126601604</url></Content>
+			<string name="ToolTip">Looks innocent enough... maybe.</string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">FloatingHeadScript</string>
+				<ProtectedString name="Source">local HEAD_IDENTIFIER = &quot;FloatingHeadGear&quot;
+
+--
+local Tool = script.Parent
+local Handle = Tool:WaitForChild(&apos;Handle&apos;)
+local Player, Character, Humanoid, Torso, Head;
+
+--
+local function ConstructHead()
+&#9;local head = Handle:Clone()
+&#9;--
+&#9;local force = Instance.new(&apos;BodyPosition&apos;)
+&#9;force.Name = &apos;Mover&apos;
+&#9;force.Parent = head
+&#9;force.P = 20000
+&#9;force.maxForce = Vector3.new(10000, 10000, 10000)
+&#9;local gyro = Instance.new(&apos;BodyGyro&apos;)
+&#9;gyro.Name = &apos;Gyro&apos;
+&#9;gyro.Parent = head
+&#9;gyro.P = 20000
+&#9;gyro.maxTorque = Vector3.new(400000, 400000, 400000)
+&#9;--
+&#9;head.Name = HEAD_IDENTIFIER
+&#9;head.CanCollide = false
+&#9;--
+&#9;head.HeadScript.Disabled = false
+&#9;head.Parent = Character
+&#9;--
+&#9;return head
+end
+
+--
+Tool.Equipped:connect(function(mouse)
+&#9;-- Get basic vars
+&#9;Character = Tool.Parent
+&#9;Player = game.Players:GetPlayerFromCharacter(Character)
+&#9;Humanoid = Character:WaitForChild(&apos;Humanoid&apos;)
+&#9;Torso = Character:WaitForChild(&apos;Torso&apos;)
+&#9;Head = Character:WaitForChild(&apos;Head&apos;)
+&#9;
+&#9;-- Usage
+&#9;mouse.Button1Down:connect(function()
+&#9;&#9;-- Do we already have a head
+&#9;&#9;if Character:FindFirstChild(HEAD_IDENTIFIER) then return end
+&#9;&#9;
+&#9;&#9;-- No? Make the head
+&#9;&#9;local floatingHead = ConstructHead()
+&#9;&#9;floatingHead.CFrame = Head.CFrame
+&#9;end)
+end)
+
+Tool.Unequipped:connect(function()
+&#9;-- Nothing to do.
+end)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX2">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>13.5</X>
+					<Y>97.5</Y>
+					<Z>96.5</Z>
+					<R00>-1</R00>
+					<R01>0</R01>
+					<R02>-0</R02>
+					<R10>-0</R10>
+					<R11>1</R11>
+					<R12>-0</R12>
+					<R20>-0</R20>
+					<R21>0</R21>
+					<R22>-1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0.300000012</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX3">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=126601774</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=126602032</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="LocalScript" referent="RBX4">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">HeadScript</string>
+					<ProtectedString name="Source">local ATTACK_RANGE = 40
+local TURN_RATE = 3*math.pi/1 -- (half turn per second)
+local MOVE_RATE = 50/1
+local DIVE_RANGE = 10
+local DAMAGE_RANGE = 4
+local DURATION = 35
+local RELOAD_TIME = 2
+
+local PlacedAt = tick()
+
+--
+local Head = script.Parent
+local Mesh = Head:WaitForChild(&apos;Mesh&apos;)
+Head:WaitForChild(&apos;Light&apos;).Enabled = true
+local Sound = Head:WaitForChild(&apos;SOUND_Laugh&apos;)
+local Character = Head.Parent
+local CharacterHead = Character:WaitForChild(&apos;Head&apos;)
+local CharacterTorso = Character:WaitForChild(&apos;Torso&apos;)
+local CharacterHumanoid = Character:WaitForChild(&apos;Humanoid&apos;)
+local Mover = Head:WaitForChild(&apos;Mover&apos;)
+local Gyro = Head:WaitForChild(&apos;Gyro&apos;)
+
+--
+local CurrentState = &apos;Idle&apos; -- Idle | Dive | Recover
+local CurrentHeading = Character.Head.CFrame.lookVector
+local CurrentPos = CharacterHead.Position
+local CurrentTargetCharacter = nil
+local DiveStarted = nil
+local RecoverStarted = nil
+local LastDamager;
+local DiveDamaged = false
+local LastAttack = 0
+local LastTime = tick()
+local ThisTime = tick()
+local dt = 0
+
+--
+local Mouse = game.Players:GetPlayerFromCharacter(Character):GetMouse()
+
+-- Returns a character ancestor and its Humanoid, or nil
+local function FindCharacterAncestor(subject)
+&#9;if subject and subject ~= Workspace then
+&#9;&#9;local humanoid = subject:FindFirstChild(&apos;Humanoid&apos;)
+&#9;&#9;if humanoid then
+&#9;&#9;&#9;return subject, humanoid
+&#9;&#9;else
+&#9;&#9;&#9;return FindCharacterAncestor(subject.Parent)
+&#9;&#9;end
+&#9;end
+&#9;return nil
+end
+
+-- 
+local function Targetable(target)
+&#9;if not target then return false end
+&#9;local torso = target:FindFirstChild(&apos;Torso&apos;)
+&#9;local hum   = target:FindFirstChild(&apos;Humanoid&apos;)
+&#9;return torso and hum and target ~= Character and target.Humanoid.Health &gt; 0 and (torso.Position-CharacterTorso.Position).magnitude &lt; ATTACK_RANGE
+end
+
+-- When our character is damaged, attack the damager
+CharacterHumanoid.ChildAdded:connect(function(ch)
+&#9;if ch.Name == &apos;creator&apos; then
+&#9;&#9;local damager = ch.Value
+&#9;&#9;if damager and damager.Character then
+&#9;&#9;&#9;LastDamager = damager.Character
+&#9;&#9;end
+&#9;end
+end)
+
+--
+local function SwitchTarget(target)
+&#9;CurrentTargetCharacter = target
+&#9;CurrentState = &apos;Idle&apos;
+&#9;Mesh.Scale = Vector3.new(1,1,1)
+end
+
+--
+local function Slerp(t, a, b)
+&#9;local om = math.acos(math.min(1, a:Dot(b)))
+&#9;if om &lt; 0.01 then
+&#9;&#9;return (1-t)*a +
+&#9;&#9;          t *b
+&#9;else
+&#9;&#9;return (math.sin((1-t)*om)/math.sin(om))*a +
+&#9;&#9;       (math.sin(   t *om)/math.sin(om))*b
+&#9;end
+end
+
+--
+local function MoveTowards(pos)
+&#9;if CurrentPos ~= pos then
+&#9;&#9;local vecTo = (pos - CurrentPos)
+&#9;&#9;local dirTo = vecTo.unit
+&#9;&#9;local thetaBetween = math.acos(math.min(1, dirTo:Dot(CurrentHeading)))
+&#9;&#9;local maxTurn = dt*TURN_RATE
+&#9;&#9;if thetaBetween &gt; maxTurn then
+&#9;&#9;&#9;CurrentHeading = Slerp(maxTurn / thetaBetween, CurrentHeading, dirTo)
+&#9;&#9;else
+&#9;&#9;&#9;CurrentHeading = dirTo
+&#9;&#9;end
+&#9;&#9;CurrentPos = CurrentPos + CurrentHeading*MOVE_RATE*dt
+&#9;end
+end
+
+--
+while tick()-PlacedAt &lt; DURATION do
+&#9;LastTime = ThisTime
+&#9;ThisTime = tick()
+&#9;dt = ThisTime - LastTime
+&#9;
+&#9;-- Do targeting
+&#9;local desiredTarget;
+&#9;
+&#9;-- Mouse targeting
+&#9;local mouseRay = Ray.new(Mouse.UnitRay.Origin, Mouse.UnitRay.Direction*999)
+&#9;local hit, at = game.Workspace:FindPartOnRay(mouseRay, Character)
+&#9;local overrideTarget;
+&#9;if hit then
+&#9;&#9;local ch, hum = FindCharacterAncestor(hit)
+&#9;&#9;if Targetable(ch) then
+&#9;&#9;&#9;-- Target this character
+&#9;&#9;&#9;overrideTarget = ch
+&#9;&#9;end
+&#9;end
+&#9;
+&#9;-- Apply target
+&#9;if overrideTarget then
+&#9;&#9;-- Target the override first
+&#9;&#9;if overrideTarget ~= CurrentTargetCharacter then
+&#9;&#9;&#9;SwitchTarget(overrideTarget)
+&#9;&#9;end
+&#9;&#9;
+&#9;elseif not Targetable(CurrentTargetCharacter) then
+&#9;&#9;if Targetable(LastDamager) then
+&#9;&#9;&#9;-- Target last damager
+&#9;&#9;&#9;SwitchTarget(LastDamager)
+&#9;&#9;else&#9;&#9;&#9;
+&#9;&#9;&#9;-- Target nearby humanoids
+&#9;&#9;&#9;local hsz = Vector3.new(ATTACK_RANGE, 3, ATTACK_RANGE)
+&#9;&#9;&#9;local region = Region3.new(CharacterTorso.Position - hsz, CharacterTorso.Position + hsz)
+&#9;&#9;&#9;local parts = Workspace:FindPartsInRegion3(region, Character)
+&#9;&#9;&#9;--
+&#9;&#9;&#9;local found = false
+&#9;&#9;&#9;for _, part in pairs(parts) do
+&#9;&#9;&#9;&#9;local ch, hum = FindCharacterAncestor(part)
+&#9;&#9;&#9;&#9;if ch and ch ~= Character then
+&#9;&#9;&#9;&#9;&#9;SwitchTarget(ch)
+&#9;&#9;&#9;&#9;&#9;found = true
+&#9;&#9;&#9;&#9;&#9;break
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;-- Target other players
+&#9;&#9;&#9;if not found then
+&#9;&#9;&#9;&#9;for _, player in pairs(game.Players:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;if Targetable(player.Character) then
+&#9;&#9;&#9;&#9;&#9;&#9;SwitchTarget(player.Character)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;
+&#9;-- Do we have a target?
+&#9;local byCharacterPos = (CharacterHead.CFrame*CFrame.Angles(0, (ThisTime%(2*math.pi))*10, 0)*CFrame.new(0, 0, -2-2*math.sin(ThisTime%(2*math.pi)))).p
+&#9;if Targetable(CurrentTargetCharacter) then
+&#9;&#9;local targetLoc = (CurrentTargetCharacter.Torso.CFrame*CFrame.new(0,2,0)).p
+&#9;&#9;if CurrentState == &apos;Idle&apos; then
+&#9;&#9;&#9;-- Move towards target, and see if we can begin dive
+&#9;&#9;&#9;MoveTowards(targetLoc)
+&#9;&#9;&#9;if (CurrentPos - targetLoc).magnitude &lt; DIVE_RANGE and (tick()-LastAttack) &gt; RELOAD_TIME then
+&#9;&#9;&#9;&#9;CurrentState = &apos;Dive&apos;
+&#9;&#9;&#9;&#9;DiveStarted = tick()
+&#9;&#9;&#9;&#9;DiveDamaged = false
+&#9;&#9;&#9;&#9;--
+&#9;&#9;&#9;&#9;CurrentHeading = (targetLoc - CurrentPos).unit
+&#9;&#9;&#9;&#9;Sound:Play()
+&#9;&#9;&#9;end
+&#9;&#9;elseif CurrentState == &apos;Dive&apos; then
+&#9;&#9;&#9;local timeIntoDive = tick()-DiveStarted
+&#9;&#9;&#9;local frac = math.sin(timeIntoDive*math.pi)^2
+&#9;&#9;&#9;local mfrac = 1-frac
+&#9;&#9;&#9;local tickMod = tick()%(2*math.pi)
+&#9;&#9;&#9;local xMess = (math.sin(tickMod*10+1)+math.sin(tickMod*15+8))*4 + 1
+&#9;&#9;&#9;local yMess = (math.cos(tickMod*6 +6)+math.sin(tickMod*13+3))*4 + 1
+&#9;&#9;&#9;local zMess = (math.sin(tickMod*9 +4)+math.cos(tickMod*4 +7))*4 + 1
+&#9;&#9;&#9;Mesh.Scale = Vector3.new(mfrac+frac*xMess, mfrac+frac*yMess, mfrac+frac*zMess)
+&#9;&#9;&#9;if (CurrentPos - targetLoc).magnitude &lt; DAMAGE_RANGE and not DiveDamaged then
+&#9;&#9;&#9;&#9;LastAttack = tick()
+&#9;&#9;&#9;&#9;DiveDamaged = true
+&#9;&#9;&#9;&#9;CurrentTargetCharacter.Humanoid:TakeDamage(40)
+&#9;&#9;&#9;end
+&#9;&#9;&#9;if timeIntoDive &gt; 1 then
+&#9;&#9;&#9;&#9;CurrentState = &apos;Recover&apos;
+&#9;&#9;&#9;&#9;RecoverStarted = tick()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;MoveTowards(targetLoc + CurrentHeading*4)
+&#9;&#9;elseif CurrentState == &apos;Recover&apos; then
+&#9;&#9;&#9;local timeIntoRecover = tick()-RecoverStarted
+&#9;&#9;&#9;if timeIntoRecover &gt; 3 then
+&#9;&#9;&#9;&#9;CurrentState = &apos;Idle&apos;
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;local frac = timeIntoRecover/3
+&#9;&#9;&#9;&#9;frac = math.sqrt(frac)
+&#9;&#9;&#9;&#9;local mfrac = 1-frac
+&#9;&#9;&#9;&#9;MoveTowards(mfrac*targetLoc + frac*byCharacterPos)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;else&#9;
+&#9;&#9;MoveTowards(byCharacterPos)
+&#9;end
+&#9;--
+&#9;Mover.position = CurrentPos
+&#9;if Head.Position ~= CurrentPos then
+&#9;&#9;Gyro.cframe = CFrame.new(Vector3.new(), CurrentHeading)
+&#9;end
+&#9;wait()
+end
+
+-- fade
+local speed = MOVE_RATE
+for i = 0, 1, 0.02 do
+&#9;wait()
+&#9;i = i*i
+&#9;local m = 1-i
+&#9;--
+&#9;CurrentPos = CurrentPos + CurrentHeading*MOVE_RATE*(i*i)*0.03
+&#9;Mesh.Scale = Vector3.new(m, 1+(i*i)*200*m^3, m)
+end
+
+Head:Destroy()</ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="PointLight" referent="RBX5">
+				<Properties>
+					<float name="Brightness">2</float>
+					<Color3 name="Color">4278230527</Color3>
+					<bool name="Enabled">false</bool>
+					<string name="Name">Light</string>
+					<float name="Range">8</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX6">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SOUND_Laugh</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=126741401</url></Content>
+					<float name="Volume">0.600000024</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX7">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>12.4354115</X>
+					<Y>97.8255615</Y>
+					<Z>98.6261597</Z>
+					<R00>0.894173265</R00>
+					<R01>0.0607342124</R01>
+					<R02>-0.443582654</R02>
+					<R10>3.7252903e-009</R10>
+					<R11>0.990756571</R11>
+					<R12>0.135651886</R12>
+					<R20>0.447721124</R20>
+					<R21>-0.121296287</R21>
+					<R22>0.885908008</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>13.5</X>
+					<Y>97.5</Y>
+					<Z>96.5</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

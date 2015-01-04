@@ -1,0 +1,468 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0.25</X>
+				<Y>-0.200000003</Y>
+				<Z>0.200000003</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">Tom&apos;s Beans</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=103838856</url></Content>
+			<string name="ToolTip">Beans</string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalScript</string>
+				<ProtectedString name="Source">--Made by Stickmasterluke ;D
+
+
+sp=script.Parent
+
+theface=&quot;http://www.roblox.com/asset?id=103838612&quot;
+health=80
+textureclosed=&quot;http://www.roblox.com/asset?id=103920391&quot;
+textureopen=&quot;http://www.roblox.com/asset?id=103920471&quot;
+
+
+storedface=&quot;&quot;
+local debris=game:GetService(&quot;Debris&quot;)
+check=true
+
+sp.Equipped:connect(function(mouse)
+&#9;equipped=true
+&#9;if mouse~=nil then 
+&#9;&#9;mouse.Icon=&quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;&#9;mouse.Button1Down:connect(function()
+&#9;&#9;&#9;local chr=sp.Parent
+&#9;&#9;&#9;if chr and check then
+&#9;&#9;&#9;&#9;local t=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;&#9;local h=chr:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;&#9;&#9;local anim=sp:FindFirstChild(&quot;Eat&quot;)
+&#9;&#9;&#9;&#9;if anim and t and h and h.Health&gt;0 and equipped and check then
+&#9;&#9;&#9;&#9;&#9;mouse.Icon=&quot;rbxasset://textures\\GunWaitCursor.png&quot;
+&#9;&#9;&#9;&#9;&#9;check=false
+&#9;&#9;&#9;&#9;&#9;anim2=h:LoadAnimation(anim)
+&#9;&#9;&#9;&#9;&#9;anim2:Play()
+&#9;&#9;&#9;&#9;&#9;local handle=sp:FindFirstChild(&quot;Handle&quot;)
+&#9;&#9;&#9;&#9;&#9;if handle~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;local mesh=handle:FindFirstChild(&quot;Mesh&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;if mesh~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;mesh.TextureId=textureopen
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(2)
+&#9;&#9;&#9;&#9;&#9;local s=sp.Handle:FindFirstChild(&quot;Sound&quot;)
+&#9;&#9;&#9;&#9;&#9;if s~=nil and equipped and w~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(-.3,0,math.pi/4)
+&#9;&#9;&#9;&#9;&#9;&#9;s:Play()
+&#9;&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;&#9;check=true
+&#9;&#9;&#9;&#9;&#9;&#9;return
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(2)
+&#9;&#9;&#9;&#9;&#9;if h~=nil and h.Health&gt;0 and equipped and w~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;h:TakeDamage(-math.min(health*.5,h.MaxHealth-h.Health))
+&#9;&#9;&#9;&#9;&#9;&#9;head=nil
+&#9;&#9;&#9;&#9;&#9;&#9;face=nil
+&#9;&#9;&#9;&#9;&#9;&#9;local head=h.Parent:FindFirstChild(&quot;Head&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;if head~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;face=head:FindFirstChild(&quot;face&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if face~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;storedface=face.Texture
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;face.Texture=theface
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(.3,0,math.pi/4)
+&#9;&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;&#9;check=true
+&#9;&#9;&#9;&#9;&#9;&#9;return
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(2)
+&#9;&#9;&#9;&#9;&#9;local s=sp.Handle:FindFirstChild(&quot;Sound&quot;)
+&#9;&#9;&#9;&#9;&#9;if s~=nil and equipped and w~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(-.3,0,math.pi/4)
+&#9;&#9;&#9;&#9;&#9;&#9;s:Play()
+&#9;&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;&#9;check=true
+&#9;&#9;&#9;&#9;&#9;&#9;return
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(2)
+&#9;&#9;&#9;&#9;&#9;if h~=nil and h.Health&gt;0 and equipped and w~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;h:TakeDamage(-math.min(health*.5,h.MaxHealth-h.Health))
+&#9;&#9;&#9;&#9;&#9;&#9;w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(0,0,math.pi/4)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(3)
+&#9;&#9;&#9;&#9;&#9;if mouse~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;mouse.Icon=&quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;if face~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;face.Texture=storedface
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;local handle=sp:FindFirstChild(&quot;Handle&quot;)
+&#9;&#9;&#9;&#9;&#9;if handle~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;local mesh=handle:FindFirstChild(&quot;Mesh&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;if mesh~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;mesh.TextureId=textureclosed
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;check=true
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end)
+&#9;end
+&#9;delay(0,function()
+&#9;&#9;local la=sp.Parent:FindFirstChild(&quot;Left Arm&quot;)
+&#9;&#9;if la~=nil then
+&#9;&#9;&#9;if spoon then
+&#9;&#9;&#9;&#9;spoon:remove()
+&#9;&#9;&#9;end
+&#9;&#9;&#9;spoon=Instance.new(&quot;Part&quot;)
+&#9;&#9;&#9;spoon.FormFactor=&quot;Custom&quot;
+&#9;&#9;&#9;spoon.Name=&quot;Handle&quot;
+&#9;&#9;&#9;spoon.Size=Vector3.new(.2,.2,1.3)
+&#9;&#9;&#9;spoon.TopSurface=&quot;Smooth&quot;
+&#9;&#9;&#9;spoon.BottomSurface=&quot;Smooth&quot;
+&#9;&#9;&#9;spoon.CanCollide=false
+&#9;&#9;&#9;local m=Instance.new(&quot;SpecialMesh&quot;)
+&#9;&#9;&#9;m.MeshId=&quot;http://www.roblox.com/asset?id=103919885&quot;
+&#9;&#9;&#9;m.TextureId=textureopen
+&#9;&#9;&#9;m.Parent=spoon
+&#9;&#9;&#9;w=Instance.new(&quot;Motor&quot;)
+&#9;&#9;&#9;w.Part0=la
+&#9;&#9;&#9;w.Part1=spoon
+&#9;&#9;&#9;w.C0=CFrame.new(0,-1,-.3)*CFrame.Angles(0,0,math.pi/4)
+&#9;&#9;&#9;w.Parent=spoon
+&#9;&#9;&#9;debris:AddItem(spoon,600)
+&#9;&#9;&#9;spoon.Parent=game.Workspace
+&#9;&#9;end
+&#9;end)
+end)
+
+sp.Unequipped:connect(function()
+&#9;equipped=false
+&#9;if anim2 then
+&#9;&#9;anim2:Stop()
+&#9;end
+&#9;if face~=nil then
+&#9;&#9;face.Texture=storedface
+&#9;end
+&#9;local handle=sp:FindFirstChild(&quot;Handle&quot;)
+&#9;if handle~=nil then
+&#9;&#9;local mesh=handle:FindFirstChild(&quot;Mesh&quot;)
+&#9;&#9;if mesh~=nil then
+&#9;&#9;&#9;mesh.TextureId=textureclosed
+&#9;&#9;end
+&#9;end
+&#9;if spoon then
+&#9;&#9;spoon:remove()
+&#9;end
+end)
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX2">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=103822775</url></Content>
+				<string name="Name">Eat</string>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX3">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-11.3823795</X>
+					<Y>4.69780111</Y>
+					<Z>21.0104237</Z>
+					<R00>-0.679259837</R00>
+					<R01>-0.000584383961</R01>
+					<R02>0.733897567</R02>
+					<R10>8.07765168e-023</R10>
+					<R11>0.999999642</R11>
+					<R12>0.000796274282</R12>
+					<R20>-0.733897746</R20>
+					<R21>0.000540877169</R21>
+					<R22>-0.679259658</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>2.55262767e-025</X>
+					<Y>8.25298454e-023</Y>
+					<Z>2.36683515e-025</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>3.64964268e-020</X>
+					<Y>-0.00525396224</Y>
+					<Z>3.66482112e-020</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.800000012</X>
+					<Y>1.10000002</Y>
+					<Z>0.800000012</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX4">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=103919751</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset?id=103920391</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Sound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=103842566</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Part" referent="RBX6">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-8.565485</X>
+					<Y>3.02463198</Y>
+					<Z>22.1503601</Z>
+					<R00>-0.442967534</R00>
+					<R01>0.517650902</R01>
+					<R02>0.731995344</R02>
+					<R10>0.705273688</R10>
+					<R11>0.705273688</R11>
+					<R12>-0.0719570667</R12>
+					<R20>-0.553505659</R20>
+					<R21>0.484382391</R21>
+					<R22>-0.677499056</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">HandleSpoon</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>2.55262767e-025</X>
+					<Y>8.25298454e-023</Y>
+					<Z>2.36683515e-025</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>3.65909031e-020</X>
+					<Y>-0.00525396224</Y>
+					<Z>3.64153049e-020</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.400000006</X>
+					<Y>0.200000003</Y>
+					<Z>1.29999995</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX7">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset?id=103919885</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset?id=103920471</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Script" referent="RBX8">
+				<Properties>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">Script</string>
+					<ProtectedString name="Source">script.Parent:remove()
+
+
+</ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="ManualWeld" referent="RBX9">
+				<Properties>
+					<CoordinateFrame name="C0">
+						<X>3.05879784</X>
+						<Y>-0.830291748</Y>
+						<Z>-1.41004372</Z>
+						<R00>0.707106709</R00>
+						<R01>0.705232978</R01>
+						<R02>0.0514428578</R02>
+						<R10>-0.707106709</R10>
+						<R11>0.705232978</R11>
+						<R12>0.0514429174</R12>
+						<R20>-5.81244114e-024</R20>
+						<R21>-0.0727512538</R21>
+						<R22>0.997350156</R22>
+					</CoordinateFrame>
+					<CoordinateFrame name="C1">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<string name="Name">ManualWeld</string>
+					<Ref name="Part0">RBX6</Ref>
+					<Ref name="Part1">RBX3</Ref>
+					<int name="Surface0">-1</int>
+					<int name="Surface1">-1</int>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX10">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-12.2105789</X>
+					<Y>5.36812067</Y>
+					<Z>22.4912148</Z>
+					<R00>0.872768104</R00>
+					<R01>0.179362327</R01>
+					<R02>-0.453987867</R02>
+					<R10>-0</R10>
+					<R11>0.930045605</R11>
+					<R12>0.367444068</R12>
+					<R20>0.48813504</R20>
+					<R21>-0.320693463</R21>
+					<R22>0.811714172</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-11.3823795</X>
+					<Y>4.69780111</Y>
+					<Z>21.0104237</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

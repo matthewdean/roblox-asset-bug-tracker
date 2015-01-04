@@ -1,0 +1,931 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBXF1DCC4B978164856AFDA43D236A18F6E">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>-2</Z>
+				<R00>0</R00>
+				<R01>0</R01>
+				<R02>1</R02>
+				<R10>1</R10>
+				<R11>0</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>1</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<bool name="ManualActivationOnly">false</bool>
+			<string name="Name">DualVenomshanks</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset?id= 158070595 </url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="LocalScript" referent="RBXBEA7F1C0A6C24C03A1409EB26DA8D832">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalScript</string>
+				<ProtectedString name="Source">--Made by Luckymaxer
+
+Tool = script.Parent
+Handle = Tool:WaitForChild(&quot;Handle&quot;)
+
+Players = game:GetService(&quot;Players&quot;)
+Debris = game:GetService(&quot;Debris&quot;)
+RunService = game:GetService(&quot;RunService&quot;)
+
+AssetLink = &quot;http://www.roblox.com/asset?id=&quot;
+
+SkeletonAssets = {
+&#9;[&quot;Head&quot;] = {MeshId = 36869983, TextureId = 36869975, Scale = Vector3.new(0.95, 0.9, 0.95)},
+&#9;[&quot;Torso&quot;] = {MeshId = 36780113, TextureId = 36780292, Scale = Vector3.new(1, 1, 1)},
+&#9;[&quot;Left Arm&quot;] = {MeshId = 36780032, TextureId = 36780292, Scale = Vector3.new(1, 1, 1)},
+&#9;[&quot;Right Arm&quot;] = {MeshId = 36780156, TextureId = 36780292, Scale = Vector3.new(1, 1, 1)},
+&#9;[&quot;Left Leg&quot;] = {MeshId = 36780079, TextureId = 36780292, Scale = Vector3.new(1, 1, 1)},
+&#9;[&quot;Right Leg&quot;] = {MeshId = 36780195, TextureId = 36780292, Scale = Vector3.new(1, 1, 1)}
+}
+
+PoisonScript = script:WaitForChild(&quot;PoisonScript&quot;)
+
+DualEquip = Tool:WaitForChild(&quot;DualEquip&quot;) --Animations and very negligable stat fixes by EC2
+DualSlash = Tool:WaitForChild(&quot;DualSlash&quot;)
+DualLunge = Tool:WaitForChild(&quot;DualLunge&quot;)
+SpinAnimation = Tool:WaitForChild(&quot;Spin&quot;)
+
+SlashSound = Handle:WaitForChild(&quot;SlashSound&quot;)
+LungeSound = Handle:WaitForChild(&quot;LungeSound&quot;)
+UnsheathSound = Handle:WaitForChild(&quot;UnsheathSound&quot;)
+
+Base_Damage = 5
+Slash_Damage = 10
+Lunge_Damage = 20
+
+Damage = Base_Damage
+
+PoisonDamage = 2.5
+
+Debounce = false
+MiniDebounce = false
+SpinDebounce = false
+
+PoisonPuddles = {}
+Projectiles = {}
+
+SpinReload = 30
+SpinCount = 0
+Last_Attack = 0
+
+SpinForce = Instance.new(&quot;BodyAngularVelocity&quot;)
+SpinForce.P = 1000000
+SpinForce.angularvelocity = Vector3.new(0, 20, 0)
+SpinForce.maxTorque = Vector3.new(SpinForce.P, SpinForce.P, SpinForce.P)
+
+StayUpright = Instance.new(&quot;BodyGyro&quot;)
+StayUpright.P = 1000000
+StayUpright.maxTorque = Vector3.new(1, 0, 1) * StayUpright.P
+StayUpright.cframe = CFrame.new(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+Force = Instance.new(&quot;BodyVelocity&quot;)
+Force.velocity = Vector3.new(0, 10, 0)
+Force.maxForce = Vector3.new(0, 4000, 0)
+
+BasePart = Instance.new(&quot;Part&quot;)
+BasePart.Name = &quot;Part&quot;
+BasePart.Material = Enum.Material.Plastic
+BasePart.Shape = Enum.PartType.Block
+BasePart.FormFactor = Enum.FormFactor.Custom
+BasePart.TopSurface = Enum.SurfaceType.Smooth
+BasePart.BottomSurface = Enum.SurfaceType.Smooth
+BasePart.Size = Vector3.new(0.2, 0.2, 0.2)
+BasePart.Anchored = true
+BasePart.CanCollide = false
+BasePart.Locked = true
+BasePart.BrickColor = BrickColor.new(&quot;Medium stone grey&quot;)
+
+function FindCharacterAncestor(Parent)
+&#9;if Parent and Parent ~= game:GetService(&quot;Workspace&quot;) then
+&#9;&#9;local humanoid = Parent:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;if humanoid then
+&#9;&#9;&#9;return Parent, humanoid
+&#9;&#9;else
+&#9;&#9;&#9;return FindCharacterAncestor(Parent.Parent)
+&#9;&#9;end
+&#9;end
+&#9;return nil
+end
+
+function RayCast(Position, Direction, MaxDistance, IgnoreList)
+&#9;return game:GetService(&quot;Workspace&quot;):FindPartOnRayWithIgnoreList(Ray.new(Position, Direction.unit * (MaxDistance or 999.999)), IgnoreList) 
+end
+
+function TagHumanoid(humanoid, player)
+&#9;local Creator_Tag = Instance.new(&quot;ObjectValue&quot;)
+&#9;Creator_Tag.Name = &quot;creator&quot;
+&#9;Creator_Tag.Value = player
+&#9;Debris:AddItem(Creator_Tag, 2)
+&#9;Creator_Tag.Parent = humanoid
+end
+
+function UntagHumanoid(humanoid)
+&#9;for i, v in pairs(humanoid:GetChildren()) do
+&#9;&#9;if v:IsA(&quot;ObjectValue&quot;) and v.Name == &quot;creator&quot; then
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+end
+
+function CheckForForceField(Parent)
+&#9;for i, v in pairs(Parent:GetChildren()) do
+&#9;&#9;if v:IsA(&quot;ForceField&quot;) then
+&#9;&#9;&#9;return true
+&#9;&#9;end
+&#9;end
+&#9;return false
+end
+
+function Blow(Hit)
+&#9;if Hit and Hit.Parent then
+&#9;&#9;local character = Hit.Parent
+&#9;&#9;local humanoid = character:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;if Humanoid and Humanoid ~= humanoid and humanoid and Humanoid.Health &gt; 0 and humanoid.Health &gt; 0 then
+&#9;&#9;&#9;local Right_Arm = Character:FindFirstChild(&quot;Right Arm&quot;)
+&#9;&#9;&#9;if Right_Arm then
+&#9;&#9;&#9;&#9;local Joint = Right_Arm:FindFirstChild(&quot;RightGrip&quot;)
+&#9;&#9;&#9;&#9;if (Joint and (Joint.Part0 == Handle or Joint.Part1 == Handle)) then
+&#9;&#9;&#9;&#9;&#9;UntagHumanoid(humanoid)
+&#9;&#9;&#9;&#9;&#9;TagHumanoid(humanoid, Player)
+&#9;&#9;&#9;&#9;&#9;humanoid:TakeDamage(Damage)
+&#9;&#9;&#9;&#9;&#9;if humanoid.Health &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;&#9;if not character:FindFirstChild(PoisonScript.Name) and not CheckForForceField(character) then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;local PoisonScriptClone = PoisonScript:Clone()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;local Creator = Instance.new(&quot;ObjectValue&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;Creator.Name = &quot;Creator&quot;
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;Creator.Value = Player
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;Creator.Parent = PoisonScriptClone
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;PoisonScriptClone.Disabled = false
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;PoisonScriptClone.Parent = character
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+function CreateFakeHandle()
+&#9;LeftSword = Handle:Clone()
+&#9;LeftSword.Name = &quot;FakeHandle&quot;
+&#9;LeftSword.CanCollide = false
+&#9;
+&#9;LeftSwordWeld = Instance.new(&quot;ManualWeld&quot;)
+&#9;LeftSwordWeld.Part1 = LeftSword
+&#9;LeftSwordWeld.C0 = CFrame.new(0, -1, 0, 1, 0, -0, 0, 0, 1, 0, -1, -0)
+&#9;LeftSwordWeld.C1 = CFrame.new(0, 0, -2, 0, 0, 1, 1, 0, 0, 0, 1, 0)
+&#9;
+&#9;LeftSwordC0Origin = LeftSwordWeld.C0
+&#9;LeftSwordC1Origin = LeftSwordWeld.C1
+&#9;
+&#9;local LeftArm = Character:FindFirstChild(&quot;Left Arm&quot;)
+&#9;LeftSwordWeld.Part0 = LeftArm
+&#9;LeftSword.Parent = Tool
+&#9;LeftSwordWeld.Parent = LeftSword
+&#9;
+&#9;LeftSword.Touched:connect(Blow)&#9;
+end
+
+function PlaySpin()
+&#9;SpinForce.Parent = Torso
+&#9;StayUpright.Parent = Torso
+&#9;Force.Parent = nil
+&#9;SwordOut()
+&#9;if SpinTrack then
+&#9;&#9;SpinTrack:Play()
+&#9;end
+end
+
+function StopSpin()
+&#9;SpinForce.Parent = nil
+&#9;StayUpright.Parent = nil
+&#9;SpinDebounce = false
+&#9;SwordUp()
+&#9;if SpinTrack then
+&#9;&#9;SpinTrack:Stop()
+&#9;end
+&#9;if PoisonPuddlesModel and PoisonPuddlesModel.Parent then
+&#9;&#9;PoisonPuddlesModel:Destroy()
+&#9;end
+&#9;for i, v in pairs(PoisonPuddles) do
+&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+&#9;for i, v in pairs(Projectiles) do
+&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+&#9;PoisonPuddles = {}
+&#9;Projectiles = {}
+end
+
+function CheckTable(Table, Instance)
+&#9;for i, v in pairs(Table) do
+&#9;&#9;if v == Instance then
+&#9;&#9;&#9;return true
+&#9;&#9;end
+&#9;end
+&#9;return false
+end
+
+function CreatePoison()
+&#9;Debounce = true
+&#9;
+&#9;local PuddleDuration = 30
+&#9;local PuddleRadius = 30
+&#9;local PuddleSpawnRadius = 50
+&#9;
+&#9;local PoisonPuddles = {}
+&#9;local Projectiles = {}
+&#9;local IgnoreObjects = {Character}
+&#9;local PoisonTick = tick()&#9;
+&#9;
+&#9;PoisonPuddlesModel = Instance.new(&quot;Model&quot;)
+&#9;PoisonPuddlesModel.Name = &quot;PoisonPuddles&quot;
+&#9;Spawn(function()
+&#9;&#9;PoisonPuddlesModel:WaitForChild(&quot;PoisonPuddle&quot;)
+&#9;&#9;while PoisonPuddlesModel and PoisonPuddlesModel.Parent do
+&#9;&#9;&#9;local Humanoids = {}
+&#9;&#9;&#9;for i, v in pairs(PoisonPuddles) do
+&#9;&#9;&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;&#9;&#9;local NegativePartRadius = Vector3.new((v.Size.X / 2), 0, (v.Size.Z / 2))
+&#9;&#9;&#9;&#9;&#9;local PositivePartRadius = Vector3.new((v.Size.X / 2), 0, (v.Size.Z / 2))
+&#9;&#9;&#9;&#9;&#9;local Parts = game:GetService(&quot;Workspace&quot;):FindPartsInRegion3WithIgnoreList(Region3.new(v.Position - NegativePartRadius, v.Position + PositivePartRadius), IgnoreObjects, 100)
+&#9;&#9;&#9;&#9;&#9;for i, v in pairs(Parts) do
+&#9;&#9;&#9;&#9;&#9;&#9;if v and v.Parent then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;local humanoid = v.Parent:FindFirstChild(&quot;Humanoid&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;if not CheckTable(Humanoids, humanoid) then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;table.insert(Humanoids, humanoid)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;for i, v in pairs(Humanoids) do
+&#9;&#9;&#9;&#9;if v and v.Parent and v.Health &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;UntagHumanoid(v)
+&#9;&#9;&#9;&#9;&#9;TagHumanoid(v, Player)
+&#9;&#9;&#9;&#9;&#9;v:TakeDamage(PoisonDamage)
+&#9;&#9;&#9;&#9;&#9;if v.Health == 0 then
+&#9;&#9;&#9;&#9;&#9;&#9;if v.Parent and v.Parent.Parent then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;for i, v in pairs(v.Parent:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;if v:IsA(&quot;BasePart&quot;) and SkeletonAssets[v.Name] then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;local SkeletonPart = SkeletonAssets[v.Name]
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;local Part = v:Clone()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Part.CanCollide = true
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;for ii, vv in pairs(Part:GetChildren()) do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;vv:Destroy()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;local Mesh = Instance.new(&quot;SpecialMesh&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Mesh.MeshType = Enum.MeshType.FileMesh
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Mesh.Scale = SkeletonPart.Scale
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Mesh.TextureId = AssetLink .. tostring(SkeletonPart.TextureId)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Mesh.MeshId = AssetLink .. tostring(SkeletonPart.MeshId)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Mesh.Parent = Part
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;v:Destroy()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Debris:AddItem(Part, 10)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Part.Parent = game:GetService(&quot;Workspace&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;wait()
+&#9;&#9;end
+&#9;end)
+&#9;Debris:AddItem(PoisonPuddlesModel, 60)
+&#9;PoisonPuddlesModel.Parent = game:GetService(&quot;Workspace&quot;)
+&#9;
+&#9;local BasePoisonPuddle = BasePart:Clone()
+&#9;BasePoisonPuddle.Name = &quot;PoisonPuddle&quot;
+&#9;BasePoisonPuddle.BrickColor = BrickColor.new(&quot;Grime&quot;)
+&#9;local CylinderMesh = Instance.new(&quot;CylinderMesh&quot;)
+&#9;CylinderMesh.Parent = BasePoisonPuddle
+&#9;
+&#9;local StartingPoisonPuddle = BasePoisonPuddle:Clone()
+&#9;StartingPoisonPuddle.Size = Vector3.new(PuddleRadius, 0.2, PuddleRadius)
+&#9;
+&#9;local Hit, EndPosition = RayCast(Torso.Position, Vector3.new(0, -1, 0), (Torso.Size.Y * 2), IgnoreObjects)
+&#9;if Hit then
+&#9;&#9;table.insert(PoisonPuddles, StartingPoisonPuddle)
+&#9;&#9;table.insert(IgnoreObjects, StartingPoisonPuddle)
+&#9;&#9;StartingPoisonPuddle.Parent = PoisonPuddlesModel
+&#9;&#9;StartingPoisonPuddle.CFrame = CFrame.new(EndPosition)
+&#9;end
+&#9;
+&#9;while (tick() - PoisonTick) &lt; PuddleDuration and Equipped do
+&#9;&#9;local PoisonChance = math.random(1, 5)
+&#9;&#9;if PoisonChance == 1 then
+&#9;&#9;&#9;local Projectile = BasePart:Clone()
+&#9;&#9;&#9;Projectile.Name = &quot;PoisonProjectile&quot;
+&#9;&#9;&#9;Projectile.BrickColor = BrickColor.new(&quot;Grime&quot;)
+&#9;&#9;&#9;Projectile.CanCollide = true
+&#9;&#9;&#9;Projectile.Anchored = false
+&#9;&#9;&#9;local Mesh = Instance.new(&quot;SpecialMesh&quot;)
+&#9;&#9;&#9;Mesh.MeshType = Enum.MeshType.Head
+&#9;&#9;&#9;Mesh.Parent = Projectile
+&#9;&#9;&#9;Projectile.Size = Vector3.new(1, 1.5, 1)
+&#9;&#9;&#9;table.insert(Projectiles, Projectile)
+&#9;&#9;&#9;table.insert(IgnoreObjects, Projectile)
+&#9;&#9;&#9;Debris:AddItem(Projectile, 5)
+&#9;&#9;&#9;Projectile.Parent = game:GetService(&quot;Workspace&quot;)
+&#9;&#9;&#9;Projectile.CFrame = Torso.CFrame + Vector3.new(math.random(-PuddleSpawnRadius, PuddleSpawnRadius), math.random((PuddleSpawnRadius - 5), PuddleSpawnRadius), math.random(-PuddleSpawnRadius, PuddleSpawnRadius))
+&#9;&#9;&#9;Projectile.Touched:connect(function(Hit)
+&#9;&#9;&#9;&#9;if Hit and Hit.Parent and Hit.Name ~= &quot;PoisonPuddle&quot; then
+&#9;&#9;&#9;&#9;&#9;local character, humanoid = FindCharacterAncestor(Hit.Parent)
+&#9;&#9;&#9;&#9;&#9;if ((character and character ~= Character) or not character) then
+&#9;&#9;&#9;&#9;&#9;&#9;local HitPosition = Projectile.Position
+&#9;&#9;&#9;&#9;&#9;&#9;local Hit, EndPosition = RayCast(HitPosition, Vector3.new(0, -1, 0), 6, IgnoreObjects)
+&#9;&#9;&#9;&#9;&#9;&#9;if Hit then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;local NewPoisonPuddle = BasePoisonPuddle:Clone()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;local NewPuddleRadius = math.random(3, (PuddleRadius / 1.25))
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;NewPoisonPuddle.Size = Vector3.new(NewPuddleRadius, StartingPoisonPuddle.Size.Y, NewPuddleRadius)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;table.insert(PoisonPuddles, NewPoisonPuddle)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;table.insert(IgnoreObjects, NewPoisonPuddle)
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;NewPoisonPuddle.Parent = PoisonPuddlesModel
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;NewPoisonPuddle.CFrame = CFrame.new(EndPosition)
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;Projectile:Destroy()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end)
+&#9;&#9;end
+&#9;&#9;wait(0.1)
+&#9;end
+&#9;wait(SpinReload)
+&#9;Debounce = false
+end
+
+function Spin()
+&#9;if not Debounce and not SpinDebounce then
+&#9;&#9;SpinDebounce = true
+&#9;&#9;if SpinCount &lt; 4 then
+&#9;&#9;&#9;SpinCount = SpinCount + 1
+&#9;&#9;&#9;if SpinCount &gt; 3 then
+&#9;&#9;&#9;&#9;PlaySpin()
+&#9;&#9;&#9;&#9;CreatePoison()
+&#9;&#9;&#9;&#9;StopSpin()
+&#9;&#9;&#9;&#9;SpinCount = 0
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;delay(3, function()
+&#9;&#9;&#9;&#9;&#9;if SpinCount &gt; 0 then
+&#9;&#9;&#9;&#9;&#9;&#9;SpinCount = SpinCount - 1
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end)
+&#9;&#9;&#9;&#9;PlaySpin()
+&#9;&#9;&#9;&#9;wait(0.5)
+&#9;&#9;&#9;&#9;if not Debounce then
+&#9;&#9;&#9;&#9;&#9;StopSpin()
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;&#9;SpinDebounce = false
+&#9;&#9;end
+&#9;end
+end
+
+function SwordUp()
+&#9;Tool.GripForward = Vector3.new(-1,0,0)
+&#9;Tool.GripRight = Vector3.new(0,1,0)
+&#9;Tool.GripUp = Vector3.new(0,0,1)
+
+&#9;LeftSwordWeld.C0 = LeftSwordC0Origin
+&#9;LeftSwordWeld.C1 = LeftSwordC1Origin
+&#9;
+end
+
+function SwordOut()
+&#9;Tool.GripForward = Vector3.new(0, 0, 1)
+&#9;Tool.GripRight = Vector3.new(0, -1, 0)
+&#9;Tool.GripUp = Vector3.new(-1,0,0)
+&#9;
+&#9;LeftSwordWeld.C0 = CFrame.new(0, -1, 0, 1, 0, -0, 0, 0, 1, 0, -1, -0)
+&#9;LeftSwordWeld.C1 = CFrame.new(0, 0, -2, 0, -1, -0, -1, 0, -0, 0, 0, -1)
+&#9;
+end
+
+function Attack()
+&#9;if not SpinDebounce then
+&#9;&#9;Damage = Slash_Damage
+&#9;&#9;SlashSound:Play()
+&#9;&#9;slashA:Play()
+&#9;&#9;
+&#9;&#9;--[[local Anim = Instance.new(&quot;StringValue&quot;)
+&#9;&#9;Anim.Name = &quot;toolanim&quot;
+&#9;&#9;Anim.Value = &quot;Slash&quot;
+&#9;&#9;Anim.Parent = Tool]]
+&#9;&#9;
+&#9;&#9;delay(1, function()
+&#9;&#9;&#9;Damage = Base_Damage
+&#9;&#9;end)
+&#9;end
+end
+
+function Lunge()
+&#9;if not MiniDebounce and not SpinDebounce then
+&#9;&#9;MiniDebounce = true
+&#9;&#9;LungeSound:Play()
+&#9;&#9;Damage = Lunge_Damage
+&#9;&#9;lungeA:Play()
+&#9;&#9;
+&#9;&#9;--[[local NewAttack = Instance.new(&quot;StringValue&quot;)
+&#9;&#9;NewAttack.Name = &quot;toolanim&quot;
+&#9;&#9;NewAttack.Value = &quot;Lunge&quot;
+&#9;&#9;NewAttack.Parent = Tool
+&#9;&#9;Force.Parent = Torso]]
+&#9;&#9;
+&#9;&#9;wait(0.25)
+&#9;&#9;if not SpinDebounce then
+&#9;&#9;&#9;SwordOut()
+&#9;&#9;&#9;wait(0.25)
+&#9;&#9;&#9;Force.Parent = nil
+&#9;&#9;&#9;lungeA:Stop()
+&#9;&#9;&#9;wait(0.5)
+&#9;&#9;&#9;if not SpinDebounce then
+&#9;&#9;&#9;&#9;SwordUp()
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;Damage = Base_Damage
+&#9;&#9;MiniDebounce = false
+&#9;end
+end
+
+function KeyDown(Key)
+&#9;Key = string.lower(Key)
+&#9;if Key == &quot;e&quot; or Key == &quot;q&quot; or Key == &quot;z&quot; or Key == &quot;x&quot; then
+&#9;&#9;if MiniDebounce then
+&#9;&#9;&#9;Spin()
+&#9;&#9;end
+&#9;end
+end
+
+function Activated()
+&#9;if Tool.Enabled then
+&#9;&#9;Tool.Enabled = false
+&#9;&#9;local Time = RunService.Stepped:wait()
+&#9;&#9;if (Time - Last_Attack) &lt; 1 then
+&#9;&#9;&#9;Lunge()
+&#9;&#9;else
+&#9;&#9;&#9;Attack()
+&#9;&#9;end
+&#9;&#9;Last_Attack = Time
+&#9;&#9;Tool.Enabled = true
+&#9;end
+end
+
+function Equipped(Mouse)
+&#9;Character = Tool.Parent
+&#9;Player = Players:GetPlayerFromCharacter(Character)
+&#9;Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+&#9;Torso = Character:FindFirstChild(&quot;Torso&quot;)
+&#9;if not Humanoid or Humanoid.Health == 0 or not Torso then
+&#9;&#9;return &#9;
+&#9;end
+&#9;
+&#9;wait()
+&#9;
+&#9;local FakeHandle = Tool:FindFirstChild(&quot;FakeHandle&quot;)
+&#9;if FakeHandle then
+&#9;&#9;FakeHandle:Destroy()
+&#9;end
+
+&#9;CreateFakeHandle()
+&#9;
+&#9;Equipped = true
+&#9;
+&#9;Mouse.KeyDown:connect(KeyDown)&#9;
+&#9;
+&#9;idleA = Humanoid:LoadAnimation(DualEquip)
+&#9;slashA = Humanoid:LoadAnimation(DualSlash)
+&#9;lungeA = Humanoid:LoadAnimation(DualLunge)
+&#9;SpinTrack = Humanoid:LoadAnimation(SpinAnimation)
+
+&#9;UnsheathSound:Play()
+&#9;
+&#9;idleA:Play(0)
+end
+
+function Unequipped()
+&#9;Equipped = false
+&#9;LeftSword:Destroy()
+&#9;
+&#9;idleA:Stop()
+&#9;slashA:Stop()
+&#9;lungeA:Stop()
+&#9;StopSpin()
+end
+
+Handle.Touched:connect(Blow)
+
+Tool.Activated:connect(Activated)
+Tool.Equipped:connect(Equipped)
+Tool.Unequipped:connect(Unequipped)
+</ProtectedString>
+			</Properties>
+			<Item class="Script" referent="RBXBFA2926D11FD45E6A454A98D0ABA09F5">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">PoisonScript</string>
+					<ProtectedString name="Source">--Made by Luckymaxer
+
+Character = script.Parent
+Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+
+Creator = script:WaitForChild(&quot;Creator&quot;)
+
+Debris = game:GetService(&quot;Debris&quot;)
+
+BrickColor = BrickColor.new(&quot;Br. yellowish green&quot;)
+
+function TagHumanoid(humanoid, player)
+&#9;local Creator_Tag = Instance.new(&quot;ObjectValue&quot;)
+&#9;Creator_Tag.Name = &quot;creator&quot;
+&#9;Creator_Tag.Value = player
+&#9;Debris:AddItem(Creator_Tag, 2)
+&#9;Creator_Tag.Parent = humanoid
+end
+
+function UntagHumanoid(humanoid)
+&#9;for i, v in pairs(humanoid:GetChildren()) do
+&#9;&#9;if v:IsA(&quot;ObjectValue&quot;) and v.Name == &quot;creator&quot; then
+&#9;&#9;&#9;v:Destroy()
+&#9;&#9;end
+&#9;end
+end
+
+function Poison()
+
+&#9;local Parts = {}
+&#9;
+&#9;for i, v in pairs(Character:GetChildren()) do
+&#9;&#9;if v:IsA(&quot;BasePart&quot;) then
+&#9;&#9;&#9;table.insert(Parts, {Part = v, Color = v.BrickColor})
+&#9;&#9;&#9;v.BrickColor = BrickColor
+&#9;&#9;end
+&#9;end
+&#9;
+&#9;wait(1)
+&#9;
+&#9;for i, v in pairs(Parts) do
+&#9;&#9;if v.Part and v.Part.Parent then
+&#9;&#9;&#9;v.Part.BrickColor = v.Color
+&#9;&#9;end
+&#9;end
+
+&#9;UntagHumanoid(Humanoid)
+&#9;TagHumanoid(Humanoid, Creator.Value)
+&#9;Humanoid.Health = Humanoid.Health - (Humanoid.MaxHealth / 8) -- ForceField is useless against poison damage
+
+end
+
+for i = 1, 5 do
+&#9;Poison()
+&#9;wait(0.1)
+end
+
+script:Destroy()</ProtectedString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBX47A268857D73417DA0E15B5BFC2E53E2">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">KillFakeHandle</string>
+				<ProtectedString name="Source">--Made by Luckymaxer
+
+Tool = script.Parent
+FakeHandle = Tool:WaitForChild(&quot;FakeHandleDisplay&quot;)
+
+FakeHandle:Destroy()</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX58951D49F4534EA99D0B19E5F735017C">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-13.9306068</X>
+					<Y>3.39776611</Y>
+					<Z>45.9922562</Z>
+					<R00>-0.722167075</R00>
+					<R01>-2.56704915e-008</R01>
+					<R02>0.691718102</R02>
+					<R10>-0.684714258</R10>
+					<R11>-0.141936719</R11>
+					<R12>-0.714855969</R12>
+					<R20>0.0981802195</R20>
+					<R21>-0.98987484</R21>
+					<R22>0.10250254</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>0.800000012</Y>
+					<Z>6</Z>
+				</Vector3>
+			</Properties>
+			<Item class="Sound" referent="RBXCFE68BD6940D4EB496126EF18EE5ECB6">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">UnsheathSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>rbxasset://sounds//unsheath.wav</url></Content>
+					<float name="Volume">0.600000024</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX21FEBA12310440B2BF0385431265EF32">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">LungeSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>rbxasset://sounds//swordlunge.wav</url></Content>
+					<float name="Volume">0.600000024</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBXE493AD0956C44345906E5157881182F1">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SlashSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>rbxasset://sounds//swordslash.wav</url></Content>
+					<float name="Volume">0.699999988</float>
+				</Properties>
+			</Item>
+			<Item class="SpecialMesh" referent="RBX762BCF8609284BEDA3C3063D3C655360">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>rbxasset://fonts/sword.mesh</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.5</X>
+						<Y>1.5</Y>
+						<Z>1.5</Z>
+					</Vector3>
+					<Content name="TextureId"><url>rbxasset://textures/SwordTexture.png</url></Content>
+					<Vector3 name="VertexColor">
+						<X>0.300000012</X>
+						<Y>1</Y>
+						<Z>0.300000012</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Animation" referent="RBX8D8D3FCD81FF4986A29D637E71E0AF1B">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=157568994</url></Content>
+				<string name="Name">Spin</string>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBXA22693B90A6649609E56821FAD9BC09F">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-15.9885693</X>
+					<Y>6.6676116</Y>
+					<Z>48.5540771</Z>
+					<R00>0.691142857</R00>
+					<R01>-1.49011612e-008</R01>
+					<R02>0.722717702</R02>
+					<R10>-0.715400994</R10>
+					<R11>-0.141936719</R11>
+					<R12>0.684144914</R12>
+					<R20>0.102580689</R20>
+					<R21>-0.989874959</R21>
+					<R22>-0.0980985761</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">FakeHandleDisplay</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>0.800000012</Y>
+					<Z>6</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBXB1916FFD7A5F4758A3AE7ABF2B390999">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>rbxasset://fonts/sword.mesh</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.5</X>
+						<Y>1.5</Y>
+						<Z>1.5</Z>
+					</Vector3>
+					<Content name="TextureId"><url>rbxasset://textures/SwordTexture.png</url></Content>
+					<Vector3 name="VertexColor">
+						<X>0.300000012</X>
+						<Y>1</Y>
+						<Z>0.300000012</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Weld" referent="RBX64A08B992B2642F3BADEB46E7C008503">
+				<Properties>
+					<CoordinateFrame name="C0">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>0.987231314</R00>
+						<R01>0.000796274282</R01>
+						<R02>0.15929091</R02>
+						<R10>0.159290954</R10>
+						<R11>1.61289882e-022</R11>
+						<R12>-0.987231553</R12>
+						<R20>-0.000786107208</R20>
+						<R21>0.999999642</R21>
+						<R22>-0.000126839295</R22>
+					</CoordinateFrame>
+					<CoordinateFrame name="C1">
+						<X>3.49880505</X>
+						<Y>3</Y>
+						<Z>-0.498413086</Z>
+						<R00>-3.06367146e-022</R00>
+						<R01>1</R01>
+						<R02>1.13943258e-022</R02>
+						<R10>0.159290969</R10>
+						<R11>1.61289907e-022</R11>
+						<R12>-0.987231672</R12>
+						<R20>-0.987231672</R20>
+						<R21>-2.84305395e-022</R21>
+						<R22>-0.159290969</R22>
+					</CoordinateFrame>
+					<string name="Name">DisplayWeld</string>
+					<Ref name="Part0">RBX58951D49F4534EA99D0B19E5F735017C</Ref>
+					<Ref name="Part1">RBXA22693B90A6649609E56821FAD9BC09F</Ref>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBXE43AACFE154F4166A1A7854FE69073DD">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-18.4890137</X>
+					<Y>9.92533588</Y>
+					<Z>51.4541283</Z>
+					<R00>0.757358313</R00>
+					<R01>0.423135102</R01>
+					<R02>-0.497358203</R02>
+					<R10>-0</R10>
+					<R11>0.761651635</R11>
+					<R12>0.64798671</R12>
+					<R20>0.65299964</R20>
+					<R21>-0.490758121</R21>
+					<R22>0.576843143</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-17.494297</X>
+					<Y>8.62936211</Y>
+					<Z>50.3004417</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX211F940AA13C460BA63F0A9EA2436550">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/asset/?id=185824714</url></Content>
+				<string name="Name">DualEquip</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBXE24C468C99594BE2869177B18DCB8500">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/asset/?id=186002834</url></Content>
+				<string name="Name">DualLunge</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX0E7F609B308A4187B08FA635825B498E">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/asset/?id=186001341</url></Content>
+				<string name="Name">DualSlash</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

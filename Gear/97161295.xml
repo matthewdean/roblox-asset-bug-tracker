@@ -1,0 +1,419 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0.364873707</X>
+				<Y>-0.576264262</Y>
+				<Z>-1.88946724e-005</Z>
+				<R00>0.67372787</R00>
+				<R01>-0.0450512692</R01>
+				<R02>0.737605095</R02>
+				<R10>0.0999610648</R10>
+				<R11>0.994521916</R11>
+				<R12>-0.0305611696</R12>
+				<R20>-0.732187629</R20>
+				<R21>0.094321698</R21>
+				<R22>0.67454046</R22>
+			</CoordinateFrame>
+			<string name="Name">Tool Cloner</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=97241460</url></Content>
+			<string name="ToolTip">Clone a tool from your backpack.</string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>64.9866409</X>
+					<Y>4.98727942</Y>
+					<Z>1.73115933</Z>
+					<R00>0.457933843</R00>
+					<R01>0.0937354192</R01>
+					<R02>-0.88403064</R02>
+					<R10>-0.0206027329</R10>
+					<R11>0.995277941</R11>
+					<R12>0.0948587805</R12>
+					<R20>0.888747811</R20>
+					<R21>-0.0252254996</R21>
+					<R22>0.457702547</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0.349999994</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.699999988</X>
+					<Y>1.20000005</Y>
+					<Z>0.300000012</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=97241865</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.20000005</X>
+						<Y>1.20000005</Y>
+						<Z>1.20000005</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=97241539</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Sound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=88858815</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX4">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Sound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=97272128</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">LocalScript</string>
+				<ProtectedString name="Source">--Made by Stickmasterluke
+
+
+sp=script.Parent
+plr=game.Players.LocalPlayer
+
+rate=1/30
+debris=game:GetService(&quot;Debris&quot;)
+canclone=true
+
+function waitfor(parent,name)
+&#9;while parent:FindFirstChild(name)==nil do
+&#9;&#9;wait()
+&#9;end
+&#9;return parent:FindFirstChild(name)
+end
+
+moveint=22
+scrollspeed=.1
+
+function creategui()
+&#9;tool=nil
+&#9;if plr:FindFirstChild(&quot;PlayerGui&quot;)~=nil and plr:FindFirstChild(&quot;Backpack&quot;)~=nil then
+&#9;&#9;if gui~=nil then
+&#9;&#9;&#9;gui:remove()
+&#9;&#9;end
+&#9;&#9;gui=Instance.new(&quot;ScreenGui&quot;)
+&#9;&#9;gui.Name=&quot;ToolCloneGui&quot;
+&#9;&#9;gui.Parent=plr.PlayerGui
+
+&#9;&#9;showframe=Instance.new(&quot;Frame&quot;)
+&#9;&#9;showframe.Style=&quot;RobloxRound&quot;
+&#9;&#9;showframe.Position = UDim2.new(1,-480,1,-410)
+&#9;&#9;showframe.Size = UDim2.new(0,160,0,200)
+&#9;&#9;showframe.ClipsDescendants=true
+&#9;&#9;showframe.Visible=false
+&#9;&#9;showframe.Parent = gui
+
+&#9;&#9;showimage=Instance.new(&quot;ImageLabel&quot;)
+&#9;&#9;showimage.Size=UDim2.new(1,0,0,150)
+&#9;&#9;showimage.BackgroundTransparency=1
+&#9;&#9;showimage.Parent=showframe
+
+&#9;&#9;closebutton=Instance.new(&quot;TextButton&quot;)
+&#9;&#9;closebutton.Text=&quot;X&quot;
+&#9;&#9;closebutton.TextScaled=true
+&#9;&#9;closebutton.Style=&quot;RobloxButtonDefault&quot;
+&#9;&#9;closebutton.Size=UDim2.new(0,30,0,30)
+&#9;&#9;closebutton.TextColor3=Color3.new(1,0,0)
+&#9;&#9;closebutton.Font=&quot;Arial&quot;
+&#9;&#9;closebutton.FontSize=&quot;Size14&quot;
+&#9;&#9;closebutton.Position=UDim2.new(1,-20,0,-10)
+&#9;&#9;closebutton.Parent=showframe
+&#9;&#9;closebutton.MouseButton1Down:connect(function()
+&#9;&#9;&#9;showframe.Visible=false
+&#9;&#9;end)
+
+&#9;&#9;clonebutton=Instance.new(&quot;TextButton&quot;)
+&#9;&#9;clonebutton.Text=&quot;Clone&quot;
+&#9;&#9;clonebutton.Style=&quot;RobloxButton&quot;
+&#9;&#9;clonebutton.Size=UDim2.new(0,80,0,30)
+&#9;&#9;clonebutton.TextColor3=Color3.new(1,1,1)
+&#9;&#9;clonebutton.Font=&quot;ArialBold&quot;
+&#9;&#9;clonebutton.FontSize=&quot;Size14&quot;
+&#9;&#9;clonebutton.Position=UDim2.new(.5,-40,1,-35)
+&#9;&#9;clonebutton.Parent=showframe
+&#9;&#9;clonebutton.MouseButton1Down:connect(function()
+&#9;&#9;&#9;local chr=plr.Character
+&#9;&#9;&#9;if tool~=nil and chr~=nil then
+&#9;&#9;&#9;&#9;local ctool=tool:clone()
+&#9;&#9;&#9;&#9;--ctool.CanBeDropped=true
+&#9;&#9;&#9;&#9;local t=chr:FindFirstChild(&quot;Torso&quot;)
+&#9;&#9;&#9;&#9;local hndl=ctool:FindFirstChild(&quot;Handle&quot;)
+&#9;&#9;&#9;&#9;if hndl~=nil and t~=nil and canclone then
+&#9;&#9;&#9;&#9;&#9;canclone=false
+&#9;&#9;&#9;&#9;&#9;gui:remove()
+&#9;&#9;&#9;&#9;&#9;hndl.CFrame=t.CFrame+(t.CFrame.lookVector*10)+Vector3.new(0,5,0)
+&#9;&#9;&#9;&#9;&#9;ctool.Parent=game.Workspace
+&#9;&#9;&#9;&#9;&#9;local s=Instance.new(&quot;Sound&quot;)
+&#9;&#9;&#9;&#9;&#9;s.Name=&quot;PhaseInSoundEffect&quot;
+&#9;&#9;&#9;&#9;&#9;s.SoundId=&quot;http://www.roblox.com/asset/?id=97272128&quot;
+&#9;&#9;&#9;&#9;&#9;debris:AddItem(s,5)
+&#9;&#9;&#9;&#9;&#9;s.Parent=hndl
+&#9;&#9;&#9;&#9;&#9;delay(.05,function()
+&#9;&#9;&#9;&#9;&#9;&#9;if s~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;s:Play()
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end)
+&#9;&#9;&#9;&#9;&#9;delay(0,function()
+&#9;&#9;&#9;&#9;&#9;&#9;p=Instance.new(&quot;Part&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;p.BrickColor=BrickColor.new(&quot;Cyan&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;p.FormFactor=&quot;Custom&quot;
+&#9;&#9;&#9;&#9;&#9;&#9;p.Size=Vector3.new(0,0,0)
+&#9;&#9;&#9;&#9;&#9;&#9;p.Anchored=true
+&#9;&#9;&#9;&#9;&#9;&#9;p.CanCollide=false
+&#9;&#9;&#9;&#9;&#9;&#9;p.TopSurface=&quot;Smooth&quot;
+&#9;&#9;&#9;&#9;&#9;&#9;p.BottomSurface=&quot;Smooth&quot;
+&#9;&#9;&#9;&#9;&#9;&#9;p.Name=&quot;Effect&quot;
+&#9;&#9;&#9;&#9;&#9;&#9;local m=Instance.new(&quot;SpecialMesh&quot;)
+&#9;&#9;&#9;&#9;&#9;&#9;m.MeshType=&quot;Sphere&quot;
+&#9;&#9;&#9;&#9;&#9;&#9;m.Parent=p
+&#9;&#9;&#9;&#9;&#9;&#9;debris:AddItem(p,5)
+&#9;&#9;&#9;&#9;&#9;&#9;p.CFrame=hndl.CFrame+Vector3.new(0,-3,0)
+&#9;&#9;&#9;&#9;&#9;&#9;p.Parent=game.Workspace
+&#9;&#9;&#9;&#9;&#9;&#9;frames=.5/rate
+&#9;&#9;&#9;&#9;&#9;&#9;for frame=1,frames do
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;local percent=frame/frames
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;m.Scale=Vector3.new(5,5,5)*(1-percent)*8
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;p.Transparency=percent
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;wait(rate)
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;sp:remove()
+&#9;&#9;&#9;&#9;&#9;end)
+&#9;&#9;&#9;&#9;&#9;wait(2)
+&#9;&#9;&#9;&#9;&#9;sp:remove()
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end)
+
+&#9;&#9;frame=Instance.new(&quot;Frame&quot;)
+&#9;&#9;frame.Style=&quot;RobloxRound&quot;
+&#9;&#9;frame.Position = UDim2.new(1,-300,1,-410)
+&#9;&#9;frame.Size = UDim2.new(0,200,0,323)
+&#9;&#9;frame.ClipsDescendants=true
+&#9;&#9;frame.Parent = gui
+
+&#9;&#9;window=Instance.new(&quot;Frame&quot;)
+&#9;&#9;window.BackgroundTransparency=1
+&#9;&#9;window.ClipsDescendants=true
+&#9;&#9;window.Parent=frame
+
+&#9;&#9;scroller=Instance.new(&quot;Frame&quot;)
+&#9;&#9;scroller.BackgroundTransparency=.5
+&#9;&#9;scroller.BorderSizePixel=0
+&#9;&#9;scroller.Position = UDim2.new(1,-25,0,0)
+&#9;&#9;scroller.Size = UDim2.new(0,25,1,0)
+&#9;&#9;scroller.Parent = frame
+
+&#9;&#9;local buttonup=Instance.new(&quot;ImageButton&quot;)
+&#9;&#9;buttonup.Size=UDim2.new(0,25,0,25)
+&#9;&#9;buttonup.Position=UDim2.new(0,0,0,0)
+&#9;&#9;buttonup.Image=&quot;rbxasset://textures/ui/scrollbuttonUp.png&quot;
+&#9;&#9;buttonup.BackgroundTransparency=1
+&#9;&#9;buttonup.MouseButton1Down:connect(function()
+&#9;&#9;&#9;upbuttondown=true
+&#9;&#9;&#9;while upbuttondown do
+&#9;&#9;&#9;&#9;if window.Position.Y.Offset+moveint&gt;=0 then
+&#9;&#9;&#9;&#9;&#9;window.Position=UDim2.new(0,0,0,0)
+&#9;&#9;&#9;&#9;&#9;upbuttondown=false
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;window.Position=window.Position+UDim2.new(0,0,0,moveint)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;wait(scrollspeed)
+&#9;&#9;&#9;end
+&#9;&#9;end)
+&#9;&#9;buttonup.MouseButton1Up:connect(function()
+&#9;&#9;&#9;upbuttondown=false
+&#9;&#9;end)
+&#9;&#9;buttonup.MouseLeave:connect(function()
+&#9;&#9;&#9;upbuttondown=false
+&#9;&#9;end)
+&#9;&#9;buttonup.Parent=scroller
+
+&#9;&#9;local buttondown=Instance.new(&quot;ImageButton&quot;)
+&#9;&#9;buttondown.Size=UDim2.new(0,25,0,25)
+&#9;&#9;buttondown.Position=UDim2.new(0,0,1,-25)
+&#9;&#9;buttondown.BackgroundTransparency=1
+&#9;&#9;buttondown.Image=&quot;rbxasset://textures/ui/scrollbuttonDown.png&quot;
+&#9;&#9;buttondown.MouseButton1Down:connect(function()
+&#9;&#9;&#9;downbuttondown=true
+&#9;&#9;&#9;while downbuttondown do
+&#9;&#9;&#9;&#9;if (window.Position.Y.Offset+window.Size.Y.Offset)-moveint&lt;=frame.Size.Y.Offset then
+&#9;&#9;&#9;&#9;&#9;window.Position=UDim2.new(0,0,0,frame.Size.Y.Offset-window.Size.Y.Offset)
+&#9;&#9;&#9;&#9;&#9;downbuttondown=false
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;window.Position=window.Position+UDim2.new(0,0,0,-moveint)
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;wait(scrollspeed)
+&#9;&#9;&#9;end
+&#9;&#9;end)
+&#9;&#9;buttondown.MouseButton1Up:connect(function()
+&#9;&#9;&#9;downbuttondown=false
+&#9;&#9;end)
+&#9;&#9;buttondown.MouseLeave:connect(function()
+&#9;&#9;&#9;downbuttondown=false
+&#9;&#9;end)
+&#9;&#9;buttondown.Parent=scroller
+
+&#9;&#9;i=0
+&#9;&#9;for _,v in ipairs(plr.Backpack:GetChildren()) do
+&#9;&#9;&#9;if v.className==&quot;Tool&quot; then
+&#9;&#9;&#9;&#9;local button=Instance.new(&quot;TextButton&quot;)
+&#9;&#9;&#9;&#9;button.Size=UDim2.new(1,0,0,20)
+&#9;&#9;&#9;&#9;button.Position=UDim2.new(0,0,0,i*22)
+&#9;&#9;&#9;&#9;button.TextColor3=Color3.new(1,1,1)
+&#9;&#9;&#9;&#9;button.Style=&quot;RobloxButton&quot;
+&#9;&#9;&#9;&#9;button.Text=v.Name
+&#9;&#9;&#9;&#9;button.Visible=true
+&#9;&#9;&#9;&#9;button.Parent=window
+&#9;&#9;&#9;&#9;button.MouseButton1Down:connect(function()
+&#9;&#9;&#9;&#9;&#9;if v~=nil then
+&#9;&#9;&#9;&#9;&#9;&#9;tool=v
+&#9;&#9;&#9;&#9;&#9;&#9;showimage.Image=v.TextureId
+&#9;&#9;&#9;&#9;&#9;&#9;showframe.Visible=true
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end)
+&#9;&#9;&#9;&#9;i=i+1
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;window.Size=UDim2.new(1,-30,0,(i+1)*22)
+&#9;end
+end
+
+
+
+function onEquipped(mouse)
+&#9;equipped=true
+&#9;plr=game.Players.LocalPlayer
+&#9;if mouse~=nil and plr~=nil then
+&#9;&#9;creategui()
+&#9;end
+end
+
+function onUnequipped()
+&#9;equipped=false
+&#9;if gui~=nil then
+&#9;&#9;gui:remove()
+&#9;end
+end
+
+sp.Equipped:connect(onEquipped)
+sp.Unequipped:connect(onUnequipped)
+
+
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX6">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>64.0617523</X>
+					<Y>5.11073256</Y>
+					<Z>2.54358149</Z>
+					<R00>0.659950137</R00>
+					<R01>0.074968271</R01>
+					<R02>-0.747559726</R02>
+					<R10>-3.72529074e-009</R10>
+					<R11>0.995009184</R11>
+					<R12>0.0997834727</R12>
+					<R20>0.751309514</R20>
+					<R21>-0.0658521131</R21>
+					<R22>0.656656384</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>64.9866409</X>
+					<Y>4.98727942</Y>
+					<Z>1.73115945</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

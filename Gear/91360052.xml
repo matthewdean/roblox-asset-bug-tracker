@@ -1,0 +1,602 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.300000012</Y>
+				<Z>1.20000005</Z>
+				<R00>1</R00>
+				<R01>-1.31134158e-07</R01>
+				<R02>1.71961681e-14</R02>
+				<R10>1.31134158e-07</R10>
+				<R11>1</R11>
+				<R12>-1.31134158e-07</R12>
+				<R20>0</R20>
+				<R21>1.31134158e-07</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">OutfitController</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=91517307</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">199</int>
+				<CoordinateFrame name="CFrame">
+					<X>0.339950562</X>
+					<Y>0.503519773</Y>
+					<Z>0</Z>
+					<R00>0</R00>
+					<R01>0</R01>
+					<R02>-1</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>1</R20>
+					<R21>0</R21>
+					<R22>0</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0.400000006</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.899999976</X>
+					<Y>1</Y>
+					<Z>2.70000005</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=91515434</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=91515505</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX3">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">ControllerScript</string>
+				<ProtectedString name="Source">--By QuantumSama
+
+function WaitForChild(parent, child)
+&#9;local result = parent:FindFirstChild(child)
+&#9;delay(3,function() if not result then print(&quot;Warning: Long wait for&quot;, child) end end)
+&#9;while not result do
+&#9;&#9;parent.ChildAdded:wait()
+&#9;&#9;result = parent:FindFirstChild(child)
+&#9;end
+&#9;return result
+end
+
+function WaitForChildren(parent, childTable)
+&#9;for i = 1, #childTable do
+&#9;&#9;WaitForChild(parent, childTable[i])
+&#9;end
+end
+
+local Tool = script.Parent
+local Equipped = false
+
+function onActivated()
+&#9;if Tool.Enabled and Equipped then
+&#9;&#9;Tool.Enabled = false
+&#9;&#9;Tool.Enabled = true
+&#9;end
+end
+
+local InitialGrip = Tool.Grip
+
+function onEquipped(mouse)
+&#9;Equipped = true
+
+&#9;local outfitSelectorGui = WaitForChild(script,&quot;OutfitSelectorGui&quot;)
+&#9;WaitForChild(outfitSelectorGui,&quot;GuiSelector&quot;) 
+&#9;WaitForChildren(outfitSelectorGui.GuiSelector, {&quot;CharRef&quot;, &quot;SelectorScript&quot;, &quot;OutfitScript&quot;, &quot;Close&quot;, &quot;Outfit1&quot;, &quot;Outfit2&quot;, &quot;Outfit3&quot;, &quot;Outfit4&quot;})
+&#9;WaitForChild(outfitSelectorGui.GuiSelector.OutfitScript, &quot;OutfitNumber&quot;)
+
+&#9;mouse.Button1Down:connect(function()
+&#9;&#9;if mouse then
+&#9;&#9;&#9;local target = mouse.Target
+&#9;&#9;&#9;if target and target.Parent and target.Parent:FindFirstChild(&quot;Humanoid&quot;) then
+&#9;&#9;&#9;&#9;if target.Parent:FindFirstChild(&quot;OutfitScript&quot;) then return end
+&#9;&#9;&#9;&#9;local playerGui = game.Players.LocalPlayer.PlayerGui
+&#9;&#9;&#9;&#9;local currentSelector = playerGui:FindFirstChild(&quot;OutfitSelectorGui&quot;)
+&#9;&#9;&#9;&#9;if currentSelector then
+&#9;&#9;&#9;&#9;&#9;currentSelector.GuiSelector.CharRef.Value = target.Parent
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;local guiCopy = outfitSelectorGui:Clone()
+&#9;&#9;&#9;&#9;&#9;guiCopy.Parent = playerGui
+&#9;&#9;&#9;&#9;&#9;guiCopy.GuiSelector.CharRef.Value = target.Parent
+&#9;&#9;&#9;&#9;&#9;guiCopy.GuiSelector.SelectorScript.Disabled = false
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;--Tool.Grip = InitialGrip * CFrame.Angles(math.pi/2,0,0)
+&#9;&#9;&#9;&#9;--wait(.5)
+&#9;&#9;&#9;&#9;--Tool.Grip = InitialGrip
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end)
+end
+
+function onUnequipped()
+&#9;Equipped = false
+end
+
+Tool.Equipped:connect(onEquipped)
+Tool.Unequipped:connect(onUnequipped)
+Tool.Activated:connect(onActivated)
+</ProtectedString>
+			</Properties>
+			<Item class="ScreenGui" referent="RBX4">
+				<Properties>
+					<string name="Name">OutfitSelectorGui</string>
+				</Properties>
+				<Item class="Frame" referent="RBX5">
+					<Properties>
+						<bool name="Active">false</bool>
+						<Color3 name="BackgroundColor3">4288914085</Color3>
+						<float name="BackgroundTransparency">0</float>
+						<Color3 name="BorderColor3">4279970357</Color3>
+						<int name="BorderSizePixel">1</int>
+						<bool name="ClipsDescendants">false</bool>
+						<bool name="Draggable">false</bool>
+						<string name="Name">GuiSelector</string>
+						<UDim2 name="Position">
+							<XS>1</XS>
+							<XO>-200</XO>
+							<YS>1</YS>
+							<YO>-300</YO>
+						</UDim2>
+						<UDim2 name="Size">
+							<XS>0</XS>
+							<XO>121</XO>
+							<YS>0</YS>
+							<YO>121</YO>
+						</UDim2>
+						<token name="SizeConstraint">0</token>
+						<token name="Style">3</token>
+						<bool name="Visible">true</bool>
+						<int name="ZIndex">1</int>
+					</Properties>
+					<Item class="ImageButton" referent="RBX6">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4288914085</Color3>
+							<float name="BackgroundTransparency">0</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><url>http://www.roblox.com/asset/?id=91495488</url></Content>
+							<bool name="Modal">true</bool>
+							<string name="Name">Outfit1</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>50</XO>
+								<YS>0</YS>
+								<YO>50</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX7">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4288914085</Color3>
+							<float name="BackgroundTransparency">0</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><url>http://www.roblox.com/asset/?id=91494613</url></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">Outfit2</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>55</XO>
+								<YS>0</YS>
+								<YO>0</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>50</XO>
+								<YS>0</YS>
+								<YO>50</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX8">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4288914085</Color3>
+							<float name="BackgroundTransparency">0</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><url>http://www.roblox.com/asset/?id=91498008</url></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">Outfit3</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>0</XO>
+								<YS>0</YS>
+								<YO>55</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>50</XO>
+								<YS>0</YS>
+								<YO>50</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="ImageButton" referent="RBX9">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4288914085</Color3>
+							<float name="BackgroundTransparency">0</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<Content name="Image"><url>http://www.roblox.com/asset/?id=91496887</url></Content>
+							<bool name="Modal">false</bool>
+							<string name="Name">Outfit4</string>
+							<UDim2 name="Position">
+								<XS>0</XS>
+								<XO>55</XO>
+								<YS>0</YS>
+								<YO>55</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>50</XO>
+								<YS>0</YS>
+								<YO>50</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">0</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+					<Item class="LocalScript" referent="RBX10">
+						<Properties>
+							<bool name="Disabled">true</bool>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">SelectorScript</string>
+							<ProtectedString name="Source">--By QuantumSama
+
+local TargetRef = script.Parent.CharRef
+
+local Gui = script.Parent
+
+local OutfitButtons = {Gui.Outfit1, Gui.Outfit2, Gui.Outfit3, Gui.Outfit4}
+local CloseButton = Gui.Close
+
+function KillGui()
+&#9;Gui.Parent:Destroy()
+end
+
+
+CloseButton.MouseButton1Click:connect(KillGui)
+
+local debounce = false
+for i, button in pairs(OutfitButtons) do
+&#9;button.MouseButton1Click:connect(function()
+&#9;&#9;if debounce then return end
+&#9;&#9;debounce = true
+&#9;&#9;local outfitScript = Gui.OutfitScript:Clone()
+&#9;&#9;outfitScript.OutfitNumber.Value = i
+&#9;&#9;outfitScript.Parent = TargetRef.Value
+&#9;&#9;outfitScript.Disabled = false
+&#9;&#9;KillGui()
+&#9;end)
+end
+while true do
+&#9;if TargetRef.Value == nil or TargetRef.Value.Parent == nil then KillGui() end
+&#9;wait(2)
+end
+
+
+
+
+</ProtectedString>
+						</Properties>
+					</Item>
+					<Item class="ObjectValue" referent="RBX11">
+						<Properties>
+							<string name="Name">CharRef</string>
+							<Ref name="Value">null</Ref>
+						</Properties>
+					</Item>
+					<Item class="Script" referent="RBX12">
+						<Properties>
+							<bool name="Disabled">true</bool>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">OutfitScript</string>
+							<ProtectedString name="Source">--By QuantumSama
+
+local DURATION = 30
+
+function WaitForChild(parent, child)
+&#9;local result = parent:FindFirstChild(child)
+&#9;delay(3,function() if not result then print(&quot;Warning: Long wait for&quot;, child) end end)
+&#9;while not result do
+&#9;&#9;parent.ChildAdded:wait()
+&#9;&#9;result = parent:FindFirstChild(child)
+&#9;end
+&#9;return result
+end
+
+local Outfits = {&#9;
+&#9;&#9;&#9;&#9;&#9;[1] = {&#9;[&quot;Shirt&quot;] = 91454725},
+&#9;&#9;&#9;&#9;&#9;[2] = {&#9;[&quot;Pants&quot;] = 91490599, [&quot;Shirt&quot;] = 91489746}, 
+&#9;&#9;&#9;&#9;&#9;[3] = {&#9;[&quot;Shirt&quot;] = 91488794,
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;Package&quot;] =&#9;{&#9;
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;LeftArm&quot;] = {46345362,46344860,46345222},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;LeftLeg&quot;] = {46345362,46344898,46345222},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;RightArm&quot;] = {46345362,46345037,46345222},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;RightLeg&quot;] = {46345362,46344972,46345222},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;Torso&quot;] = {46345362,46345096,46345222}
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;}
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;},
+&#9;&#9;&#9;&#9;&#9;[4] = {&#9;[&quot;Package&quot;] =&#9;{&#9;
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;LeftArm&quot;] = {0,50321442,50322018},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;LeftLeg&quot;] = {0,50321575,50322018},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;RightArm&quot;] = {0,50321932,50322018},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;RightLeg&quot;] = {0,50322376,50322018},
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;[&quot;Torso&quot;] = {50322018,50321523,50322018}
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;}
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;}
+&#9;&#9;&#9;&#9;&#9;&#9;}
+
+local Character = script.Parent
+local OutfitNumber = WaitForChild(script,&quot;OutfitNumber&quot;)
+
+local OutfitItems = Outfits[OutfitNumber.Value]
+
+local hum = Character:FindFirstChild(&quot;Humanoid&quot;)
+local torso = Character:FindFirstChild(&quot;Torso&quot;)
+local head = Character:FindFirstChild(&quot;Head&quot;)
+if hum and torso and head then
+&#9;local oldHeadColor = head.BrickColor
+&#9;local curCam = game.Workspace.CurrentCamera
+&#9;local oldShirt = Character:FindFirstChild(&quot;Shirt&quot;)
+&#9;local oldTShirt = Character:FindFirstChild(&quot;TShirt&quot;)
+&#9;local oldPants = Character:FindFirstChild(&quot;Pants&quot;)
+&#9;local oldClothing = {oldShirt, oldTShirt, oldPants}
+
+&#9;local newClothing = {}
+
+&#9;if OutfitItems[&quot;Shirt&quot;] then
+&#9;&#9;if oldShirt then oldShirt.Parent = nil end
+&#9;&#9;local newShirt = Instance.new(&quot;Shirt&quot;)
+&#9;&#9;newShirt.ShirtTemplate = &quot;http://www.roblox.com/asset/?id=&quot; .. OutfitItems[&quot;Shirt&quot;]
+&#9;&#9;newShirt.Parent = Character
+&#9;&#9;table.insert(newClothing, newShirt)
+&#9;end
+&#9;if OutfitItems[&quot;Pants&quot;] then
+&#9;&#9;if oldPants then oldPants.Parent = nil end
+&#9;&#9;local newPants = Instance.new(&quot;Pants&quot;)
+&#9;&#9;newPants.PantsTemplate = &quot;http://www.roblox.com/asset/?id=&quot; .. OutfitItems[&quot;Pants&quot;]
+&#9;&#9;newPants.Parent = Character
+&#9;&#9;table.insert(newClothing, newPants)
+&#9;end
+&#9;if OutfitItems[&quot;Package&quot;] then
+&#9;&#9;for i, v in pairs(Character:GetChildren()) do
+&#9;&#9;&#9;if v:IsA(&quot;CharacterMesh&quot;) then
+&#9;&#9;&#9;&#9;v.Parent = nil
+&#9;&#9;&#9;&#9;table.insert(oldClothing, v)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;for bodyPart, ids in pairs(OutfitItems[&quot;Package&quot;]) do
+&#9;&#9;&#9;local newMesh = Instance.new(&apos;CharacterMesh&apos;)
+&#9;&#9;&#9;newMesh.BodyPart = bodyPart
+&#9;&#9;&#9;newMesh.BaseTextureId = ids[1]
+&#9;&#9;&#9;newMesh.MeshId = ids[2]
+&#9;&#9;&#9;newMesh.OverlayTextureId = ids[3]
+&#9;&#9;&#9;newMesh.Parent = Character
+&#9;&#9;&#9;table.insert(newClothing,newMesh)
+&#9;&#9;end
+&#9;end
+
+&#9;wait(DURATION)
+
+
+&#9;if Character then
+&#9;&#9;for i, item in pairs(oldClothing) do
+&#9;&#9;&#9;if item then item.Parent = Character end
+&#9;&#9;end
+&#9;end
+&#9;for i, v in pairs(newClothing) do
+&#9;&#9;if v then v:Destroy() end
+&#9;end
+
+end
+
+script:Destroy()
+
+</ProtectedString>
+						</Properties>
+						<Item class="IntValue" referent="RBX13">
+							<Properties>
+								<string name="Name">OutfitNumber</string>
+								<int name="Value">0</int>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="TextButton" referent="RBX14">
+						<Properties>
+							<bool name="Active">true</bool>
+							<bool name="AutoButtonColor">true</bool>
+							<Color3 name="BackgroundColor3">4288914085</Color3>
+							<float name="BackgroundTransparency">0</float>
+							<Color3 name="BorderColor3">4279970357</Color3>
+							<int name="BorderSizePixel">1</int>
+							<bool name="ClipsDescendants">false</bool>
+							<bool name="Draggable">false</bool>
+							<token name="Font">2</token>
+							<token name="FontSize">6</token>
+							<bool name="Modal">false</bool>
+							<string name="Name">Close</string>
+							<UDim2 name="Position">
+								<XS>1</XS>
+								<XO>-7</XO>
+								<YS>0</YS>
+								<YO>-14</YO>
+							</UDim2>
+							<bool name="Selected">false</bool>
+							<UDim2 name="Size">
+								<XS>0</XS>
+								<XO>20</XO>
+								<YS>0</YS>
+								<YO>20</YO>
+							</UDim2>
+							<token name="SizeConstraint">0</token>
+							<token name="Style">2</token>
+							<string name="Text">X</string>
+							<Color3 name="TextColor3">4294901760</Color3>
+							<bool name="TextScaled">false</bool>
+							<Color3 name="TextStrokeColor3">4294967295</Color3>
+							<float name="TextStrokeTransparency">1</float>
+							<float name="TextTransparency">0</float>
+							<bool name="TextWrapped">false</bool>
+							<token name="TextXAlignment">2</token>
+							<token name="TextYAlignment">1</token>
+							<bool name="Visible">true</bool>
+							<int name="ZIndex">1</int>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX15">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>0.397892475</X>
+					<Y>0.998829484</Y>
+					<Z>-1.96635032</Z>
+					<R00>-0.999999046</R00>
+					<R01>0.000377485674</R01>
+					<R02>-0.00138787809</R02>
+					<R10>-0</R10>
+					<R11>0.964944899</R11>
+					<R12>0.262453049</R12>
+					<R20>0.00143829791</R20>
+					<R21>0.262452811</R21>
+					<R22>-0.964943826</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>0.400001526</X>
+					<Y>0.599999905</Y>
+					<Z>-0.5</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

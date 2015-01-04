@@ -1,0 +1,654 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.100000001</Y>
+				<Z>0</Z>
+				<R00>-1</R00>
+				<R01>0</R01>
+				<R02>-8.74227766e-008</R02>
+				<R10>8.74227766e-008</R10>
+				<R11>-4.37113883e-008</R11>
+				<R12>-1</R12>
+				<R20>-3.82137093e-015</R20>
+				<R21>-1</R21>
+				<R22>4.37113883e-008</R22>
+			</CoordinateFrame>
+			<string name="Name">HeadJets</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset?id=113216950</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Script" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">HeadJetsScript</string>
+				<ProtectedString name="Source">-----------------
+--| Constants |--
+-----------------
+
+local DAMAGE = 30
+local COOLDOWN = 3
+
+local ATTACK_RADIUS = 30
+local ATTACK_SPEED = 100
+local ATTACK_TIME_MAX = 3
+
+local ORBIT_RADIUS = 5
+local ORBIT_VERTICAL_OFFSET = 3
+local ORBIT_SPEED_FACTOR = 2
+local ORBIT_GYRO_TORQUE = Vector3.new(400, 400, 400)
+
+local MAX_JETS = 3
+local JET_LAUNCH_DELAY = 1
+
+local TIME_TO_LIVE = 30
+local ONE_STEP = 1 / 30
+
+-----------------
+--| Variables |--
+-----------------
+
+local PlayersService = Game:GetService(&apos;Players&apos;)
+local DebrisService = Game:GetService(&apos;Debris&apos;)
+
+local Tool = script.Parent
+local ToolHandle = Tool:WaitForChild(&apos;Handle&apos;)
+
+local MyModel = nil
+local MyPlayer = nil
+local MyHumanoid = nil
+local MyTorso = nil
+
+local NumberOfOrbitingJets = 0
+
+-------------------------
+--| Utility Functions |--
+-------------------------
+
+-- Returns a character ancestor and its Humanoid, or nil
+local function FindCharacterAncestor(subject)
+&#9;if subject and subject ~= Workspace then
+&#9;&#9;local humanoid = subject:FindFirstChild(&apos;Humanoid&apos;)
+&#9;&#9;if humanoid then
+&#9;&#9;&#9;return subject, humanoid
+&#9;&#9;else
+&#9;&#9;&#9;return FindCharacterAncestor(subject.Parent)
+&#9;&#9;end
+&#9;end
+&#9;return nil
+end
+
+-- Removes any old creator tags and applies new ones to the specified target
+local function ApplyTags(target)
+&#9;while target:FindFirstChild(&apos;creator&apos;) do
+&#9;&#9;target.creator:Destroy()
+&#9;end
+
+&#9;local creatorTag = Instance.new(&apos;ObjectValue&apos;)
+&#9;creatorTag.Value = MyPlayer
+&#9;creatorTag.Name = &apos;creator&apos; --NOTE: Must be called &apos;creator&apos; for website stats
+
+&#9;local iconTag = Instance.new(&apos;StringValue&apos;)
+&#9;iconTag.Value = Tool.TextureId
+&#9;iconTag.Name = &apos;icon&apos;
+
+&#9;iconTag.Parent = creatorTag
+&#9;creatorTag.Parent = target
+&#9;DebrisService:AddItem(creatorTag, 4)
+end
+
+-- Returns the closest living Humanoid to position who isn&apos;t in excludeList
+local function FindClosestHumanoid(position, excludeList) -- (Vector3, table)
+&#9;if not position then print(&quot;Need a Vector3 position&quot;) return nil end
+
+&#9;-- Change list values to keys so we can use indexing
+&#9;local excludeSet = {}
+&#9;if excludeList and type(excludeList) == &quot;table&quot; then
+&#9;&#9;for _, l in ipairs(excludeList) do
+&#9;&#9;&#9;excludeSet[l] = true
+&#9;&#9;end
+&#9;end
+
+&#9;-- Search through Workspace children
+&#9;local closestHumanoid = nil
+&#9;for _, child in pairs(Game.Workspace:GetChildren()) do
+&#9;&#9;if (child and child:FindFirstChild(&quot;Humanoid&quot;) and child.Humanoid.Health &gt; 0 and not excludeSet[child.Humanoid])
+&#9;&#9;and (not closestHumanoid or (child.Humanoid.Torso.Position - position).magnitude &lt; (closestHumanoid.Torso.Position - position).magnitude) then
+&#9;&#9;&#9;closestHumanoid = child.Humanoid
+&#9;&#9;end
+&#9;end
+&#9;return closestHumanoid --NOTE: Can be nil
+end
+
+------------------------
+--| Helper Functions |--
+------------------------
+
+local function OnJetTouched(jet, otherPart)
+&#9;if otherPart then
+&#9;&#9;local character, humanoid = FindCharacterAncestor(otherPart)
+&#9;&#9;if character and character ~= MyModel then
+&#9;&#9;&#9;ApplyTags(humanoid)
+&#9;&#9;&#9;humanoid:TakeDamage(DAMAGE)
+&#9;&#9;&#9;jet:Destroy()
+&#9;&#9;end
+&#9;end
+end
+
+local function OnJetChanged(jet, property)
+&#9;if property == &apos;Parent&apos; and jet.Parent == nil then
+&#9;&#9;NumberOfOrbitingJets = NumberOfOrbitingJets - 1
+&#9;end
+end
+
+local function JetLogic(jet, bodyPosition, bodyGyro, jetNumber)
+&#9;jet.Touched:connect(function(otherPart)
+&#9;&#9;OnJetTouched(jet, otherPart)
+&#9;end)
+
+&#9;-- Orbit and attack closest player
+&#9;while jet and jet.Parent == Workspace and MyHumanoid and MyHumanoid.Health &gt; 0 and MyTorso and MyTorso.Parent ~= nil do
+&#9;&#9;-- Update orbit
+&#9;&#9;local thetaLol = (tick() * ORBIT_SPEED_FACTOR) + (jetNumber * (2 * math.pi / MAX_JETS))
+&#9;&#9;local offset = Vector3.new(ORBIT_RADIUS * math.cos(thetaLol), ORBIT_VERTICAL_OFFSET, ORBIT_RADIUS * math.sin(thetaLol))
+&#9;&#9;bodyPosition.position = MyTorso.Position + offset
+&#9;&#9;bodyGyro.cframe = CFrame.new(jet.Position, bodyPosition.position)
+
+&#9;&#9;-- Check for targets
+&#9;&#9;local targetHumanoid = FindClosestHumanoid(jet.Position, {MyHumanoid})
+&#9;&#9;if targetHumanoid and targetHumanoid.Health &gt; 0 and targetHumanoid.Torso then -- Attack
+&#9;&#9;&#9;local targetTorso = targetHumanoid.Torso
+&#9;&#9;&#9;local distance = (targetTorso.Position - MyTorso.Position).magnitude
+&#9;&#9;&#9;if distance &lt; ATTACK_RADIUS then
+&#9;&#9;&#9;&#9;DebrisService:AddItem(jet, ATTACK_TIME_MAX)
+&#9;&#9;&#9;&#9;bodyPosition:Destroy()
+&#9;&#9;&#9;&#9;bodyGyro:Destroy()
+&#9;&#9;&#9;&#9;Instance.new(&apos;BodyForce&apos;, jet).force = Vector3.new(0, jet:GetMass() * 196.2, 0) -- Antigravity
+&#9;&#9;&#9;&#9;jet.CFrame = CFrame.new(jet.Position, targetTorso.Position)
+&#9;&#9;&#9;&#9;jet.Velocity = jet.CFrame.lookVector * ATTACK_SPEED
+&#9;&#9;&#9;&#9;return
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;wait(ONE_STEP)
+&#9;end
+
+&#9;-- If we get here, player has died or been deleted
+&#9;if jet then
+&#9;&#9;jet:Destroy()
+&#9;end
+end
+
+local function AddNewJet(jetNumber)
+&#9;local jet = ToolHandle:Clone()
+&#9;jet.Name = &apos;HeadJet&apos;
+&#9;jet.CFrame = ToolHandle.CFrame
+
+&#9;local bodyPosition = Instance.new(&apos;BodyPosition&apos;)
+&#9;bodyPosition.position = ToolHandle.Position
+&#9;bodyPosition.Parent = jet
+
+&#9;local bodyGyro = Instance.new(&apos;BodyGyro&apos;)
+&#9;bodyGyro.maxTorque = ORBIT_GYRO_TORQUE
+&#9;bodyGyro.Parent = jet
+
+&#9;jet.Changed:connect(function(property)
+&#9;&#9;OnJetChanged(jet, property)
+&#9;end)
+
+&#9;DebrisService:AddItem(jet, TIME_TO_LIVE)
+&#9;jet.Parent = Workspace
+&#9;Spawn(function()
+&#9;&#9;JetLogic(jet, bodyPosition, bodyGyro, jetNumber)
+&#9;end)
+end
+
+----------------------
+--| Tool Functions |--
+----------------------
+
+local function OnEquipped()
+&#9;MyModel = Tool.Parent
+&#9;MyPlayer = PlayersService:GetPlayerFromCharacter(MyModel)
+&#9;MyHumanoid = MyModel:WaitForChild(&apos;Humanoid&apos;)
+&#9;MyTorso = MyModel:WaitForChild(&apos;Torso&apos;)
+end
+
+local function OnActivated()
+&#9;if Tool.Enabled and MyHumanoid and MyHumanoid.Health &gt; 0 then
+&#9;&#9;Tool.Enabled = false
+
+&#9;&#9;while NumberOfOrbitingJets &lt; MAX_JETS do
+&#9;&#9;&#9;AddNewJet(NumberOfOrbitingJets)
+&#9;&#9;&#9;NumberOfOrbitingJets = NumberOfOrbitingJets + 1
+&#9;&#9;&#9;wait(JET_LAUNCH_DELAY)
+&#9;&#9;end
+
+&#9;&#9;wait(COOLDOWN)
+&#9;&#9;Tool.Enabled = true
+&#9;end
+end
+
+--------------------
+--| Script Logic |--
+--------------------
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Activated:connect(OnActivated)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX2">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">ThumbnailScript</string>
+				<ProtectedString name="Source">local Tool = script.Parent
+local ToolHandle = Tool:WaitForChild(&apos;Handle&apos;)
+local ToolScript = Tool:WaitForChild(&apos;HeadJetsScript&apos;)
+
+ToolHandle.Transparency = 0
+for _, child in pairs(script:GetChildren()) do
+&#9;child:Destroy()
+end
+
+ToolScript.Disabled = false
+script:Destroy()
+</ProtectedString>
+			</Properties>
+			<Item class="Part" referent="RBX3">
+				<Properties>
+					<bool name="Anchored">false</bool>
+					<float name="BackParamA">-0.5</float>
+					<float name="BackParamB">0.5</float>
+					<token name="BackSurface">0</token>
+					<token name="BackSurfaceInput">0</token>
+					<float name="BottomParamA">-0.5</float>
+					<float name="BottomParamB">0.5</float>
+					<token name="BottomSurface">0</token>
+					<token name="BottomSurfaceInput">0</token>
+					<int name="BrickColor">194</int>
+					<CoordinateFrame name="CFrame">
+						<X>-21.2120037</X>
+						<Y>5.75799465</Y>
+						<Z>9.5180006</Z>
+						<R00>-0.673977256</R00>
+						<R01>-0.16314736</R01>
+						<R02>0.720511258</R02>
+						<R10>-0.0348081626</R10>
+						<R11>0.981238604</R11>
+						<R12>0.189624906</R12>
+						<R20>-0.737931371</R20>
+						<R21>0.102723189</R21>
+						<R22>-0.667011261</R22>
+					</CoordinateFrame>
+					<bool name="CanCollide">false</bool>
+					<float name="Elasticity">0.5</float>
+					<float name="Friction">0.300000012</float>
+					<float name="FrontParamA">-0.5</float>
+					<float name="FrontParamB">0.5</float>
+					<token name="FrontSurface">0</token>
+					<token name="FrontSurfaceInput">0</token>
+					<float name="LeftParamA">-0.5</float>
+					<float name="LeftParamB">0.5</float>
+					<token name="LeftSurface">0</token>
+					<token name="LeftSurfaceInput">0</token>
+					<bool name="Locked">false</bool>
+					<token name="Material">256</token>
+					<string name="Name">ShoulderJet</string>
+					<float name="Reflectance">0</float>
+					<float name="RightParamA">-0.5</float>
+					<float name="RightParamB">0.5</float>
+					<token name="RightSurface">0</token>
+					<token name="RightSurfaceInput">0</token>
+					<Vector3 name="RotVelocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<float name="TopParamA">-0.5</float>
+					<float name="TopParamB">0.5</float>
+					<token name="TopSurface">0</token>
+					<token name="TopSurfaceInput">0</token>
+					<float name="Transparency">0</float>
+					<Vector3 name="Velocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<token name="formFactorRaw">3</token>
+					<token name="shape">1</token>
+					<Vector3 name="size">
+						<X>0.44999972</X>
+						<Y>0.200000003</Y>
+						<Z>0.670000136</Z>
+					</Vector3>
+				</Properties>
+				<Item class="SpecialMesh" referent="RBX4">
+					<Properties>
+						<token name="LODX">2</token>
+						<token name="LODY">2</token>
+						<Content name="MeshId"><url>http://www.roblox.com/asset?id=113216991</url></Content>
+						<token name="MeshType">5</token>
+						<string name="Name">Mesh</string>
+						<Vector3 name="Offset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="Scale">
+							<X>0.25</X>
+							<Y>0.25</Y>
+							<Z>0.25</Z>
+						</Vector3>
+						<Content name="TextureId"><url>http://www.roblox.com/asset?id=113216977</url></Content>
+						<Vector3 name="VertexColor">
+							<X>1</X>
+							<Y>1</Y>
+							<Z>1</Z>
+						</Vector3>
+					</Properties>
+				</Item>
+				<Item class="Weld" referent="RBX5">
+					<Properties>
+						<CoordinateFrame name="C0">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>0.427393883</R00>
+							<R01>-6.96125102e-011</R01>
+							<R02>0.904065251</R02>
+							<R10>-0.904065073</R10>
+							<R11>-0.000796317996</R11>
+							<R12>0.427393794</R12>
+							<R20>0.000719923468</R20>
+							<R21>-0.999999642</R21>
+							<R22>-0.000340341561</R22>
+						</CoordinateFrame>
+						<CoordinateFrame name="C1">
+							<X>0.55107975</X>
+							<Y>-0.888215065</Y>
+							<Z>-1.42053604</Z>
+							<R00>-0.673977494</R00>
+							<R01>-0.0348081626</R01>
+							<R02>-0.737931728</R02>
+							<R10>-0.163147405</R10>
+							<R11>0.981238723</R11>
+							<R12>0.102723226</R12>
+							<R20>0.720511377</R20>
+							<R21>0.189624935</R21>
+							<R22>-0.66701144</R22>
+						</CoordinateFrame>
+						<string name="Name">Weld</string>
+						<Ref name="Part0">RBX6</Ref>
+						<Ref name="Part1">RBX3</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Part" referent="RBX7">
+				<Properties>
+					<bool name="Anchored">false</bool>
+					<float name="BackParamA">-0.5</float>
+					<float name="BackParamB">0.5</float>
+					<token name="BackSurface">0</token>
+					<token name="BackSurfaceInput">0</token>
+					<float name="BottomParamA">-0.5</float>
+					<float name="BottomParamB">0.5</float>
+					<token name="BottomSurface">0</token>
+					<token name="BottomSurfaceInput">0</token>
+					<int name="BrickColor">194</int>
+					<CoordinateFrame name="CFrame">
+						<X>-19.982008</X>
+						<Y>5.67800236</Y>
+						<Z>12.1380053</Z>
+						<R00>-0.130147293</R00>
+						<R01>-0.139221534</R01>
+						<R02>0.981670082</R02>
+						<R10>-0.0247741938</R10>
+						<R11>0.990239859</R11>
+						<R12>0.137152657</R12>
+						<R20>-0.991185009</R20>
+						<R21>-0.00646994635</R21>
+						<R22>-0.132326141</R22>
+					</CoordinateFrame>
+					<bool name="CanCollide">false</bool>
+					<float name="Elasticity">0.5</float>
+					<float name="Friction">0.300000012</float>
+					<float name="FrontParamA">-0.5</float>
+					<float name="FrontParamB">0.5</float>
+					<token name="FrontSurface">0</token>
+					<token name="FrontSurfaceInput">0</token>
+					<float name="LeftParamA">-0.5</float>
+					<float name="LeftParamB">0.5</float>
+					<token name="LeftSurface">0</token>
+					<token name="LeftSurfaceInput">0</token>
+					<bool name="Locked">false</bool>
+					<token name="Material">256</token>
+					<string name="Name">ShoulderJet</string>
+					<float name="Reflectance">0</float>
+					<float name="RightParamA">-0.5</float>
+					<float name="RightParamB">0.5</float>
+					<token name="RightSurface">0</token>
+					<token name="RightSurfaceInput">0</token>
+					<Vector3 name="RotVelocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<float name="TopParamA">-0.5</float>
+					<float name="TopParamB">0.5</float>
+					<token name="TopSurface">0</token>
+					<token name="TopSurfaceInput">0</token>
+					<float name="Transparency">0</float>
+					<Vector3 name="Velocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<token name="formFactorRaw">3</token>
+					<token name="shape">1</token>
+					<Vector3 name="size">
+						<X>0.44999972</X>
+						<Y>0.200000003</Y>
+						<Z>0.670000136</Z>
+					</Vector3>
+				</Properties>
+				<Item class="SpecialMesh" referent="RBX8">
+					<Properties>
+						<token name="LODX">2</token>
+						<token name="LODY">2</token>
+						<Content name="MeshId"><url>http://www.roblox.com/asset?id=113216991</url></Content>
+						<token name="MeshType">5</token>
+						<string name="Name">Mesh</string>
+						<Vector3 name="Offset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="Scale">
+							<X>0.25</X>
+							<Y>0.25</Y>
+							<Z>0.25</Z>
+						</Vector3>
+						<Content name="TextureId"><url>http://www.roblox.com/asset?id=113216977</url></Content>
+						<Vector3 name="VertexColor">
+							<X>1</X>
+							<Y>1</Y>
+							<Z>1</Z>
+						</Vector3>
+					</Properties>
+				</Item>
+				<Item class="Weld" referent="RBX9">
+					<Properties>
+						<CoordinateFrame name="C0">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>0.427393883</R00>
+							<R01>-6.96125102e-011</R01>
+							<R02>0.904065251</R02>
+							<R10>-0.904065073</R10>
+							<R11>-0.000796317996</R11>
+							<R12>0.427393794</R12>
+							<R20>0.000719923468</R20>
+							<R21>-0.999999642</R21>
+							<R22>-0.000340341561</R22>
+						</CoordinateFrame>
+						<CoordinateFrame name="C1">
+							<X>2.50078487</X>
+							<Y>-0.710252762</Y>
+							<Z>-2.29550171</Z>
+							<R00>-0.130147427</R00>
+							<R01>-0.0247741975</R01>
+							<R02>-0.991185486</R02>
+							<R10>-0.139221579</R10>
+							<R11>0.990239918</R11>
+							<R12>-0.00646996172</R12>
+							<R20>0.98167032</R20>
+							<R21>0.137152657</R21>
+							<R22>-0.132326111</R22>
+						</CoordinateFrame>
+						<string name="Name">Weld</string>
+						<Ref name="Part0">RBX6</Ref>
+						<Ref name="Part1">RBX7</Ref>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Part" referent="RBX6">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>-22.4620209</X>
+					<Y>4.59789276</Y>
+					<Z>9.96761513</Z>
+					<R00>0.427393883</R00>
+					<R01>-0.904065073</R01>
+					<R02>0.000719923468</R02>
+					<R10>-6.96125102e-011</R10>
+					<R11>-0.000796317996</R11>
+					<R12>-0.999999642</R12>
+					<R20>0.904065251</R20>
+					<R21>0.427393794</R21>
+					<R22>-0.000340341561</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">false</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">1</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.44999972</X>
+					<Y>0.200000003</Y>
+					<Z>0.670000136</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX10">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset?id=113216991</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.25</X>
+						<Y>0.25</Y>
+						<Z>0.25</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset?id=113216977</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX11">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>-21.2031918</X>
+					<Y>5.85343933</Y>
+					<Z>12.6714973</Z>
+					<R00>0.400330126</R00>
+					<R01>0.119605631</R01>
+					<R02>-0.908531904</R02>
+					<R10>3.7252903e-009</R10>
+					<R11>0.991445482</R11>
+					<R12>0.13052097</R12>
+					<R20>0.916370988</R20>
+					<R21>-0.0522514805</R21>
+					<R22>0.396905541</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>-19.982008</X>
+					<Y>5.67800236</Y>
+					<Z>12.1380053</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

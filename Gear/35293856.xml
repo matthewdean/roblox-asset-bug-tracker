@@ -1,0 +1,464 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX96A85DEF954142E6BD3C55BEC3AA64AD">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.300000012</Y>
+				<Z>-0.699999988</Z>
+				<R00>1</R00>
+				<R01>-9.79685083e-016</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>0</R11>
+				<R12>-1</R12>
+				<R20>9.79685083e-016</R20>
+				<R21>1</R21>
+				<R22>0</R22>
+			</CoordinateFrame>
+			<string name="Name">Atomizer</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=35231550</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX92A0B43EBE3C45669B33A6EED58CB1DB">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>145.399994</X>
+					<Y>11.3000002</Y>
+					<Z>214.5</Z>
+					<R00>0</R00>
+					<R01>1</R01>
+					<R02>-0</R02>
+					<R10>1</R10>
+					<R11>0</R11>
+					<R12>-0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>-1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">2</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>1</X>
+					<Y>0.800000012</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX90FAD8962021411ABF6F1A57CD036F3C">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?versionid=87054449</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=35231521</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX71242432AA73476F867030B1EFD84EFE">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">AtomoSound</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=35275769</url></Content>
+					<float name="Volume">0.899999976</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBXF9DDDF987DA34F2DBA6FC98575ECF333">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Atomizer</string>
+				<ProtectedString name="Source">--Fixed by Luckymaxer
+
+Tool = script.Parent
+Handle = Tool:WaitForChild(&quot;Handle&quot;)
+
+Players = game:GetService(&quot;Players&quot;)
+
+AtomoSound = Handle:WaitForChild(&quot;AtomoSound&quot;)
+
+ToolGrip = CFrame.new(0, -0.300000012, -0.699999988, 1, -9.79685083e-016, 0, 0, 0, -1, 9.79685083e-016, 1, 0)
+
+Tool.Grip = ToolGrip
+Tool.Enabled = true
+
+function CheckTableForString(Table, String)
+&#9;for i, v in pairs(Table) do
+&#9;&#9;if string.lower(v) == string.lower(String) then
+&#9;&#9;&#9;return true
+&#9;&#9;end
+&#9;end
+&#9;return false
+end
+
+function SpinParts()
+
+&#9;
+&#9;--local vParts = {Character:FindFirstChild(&quot;Torso&quot;), Character:FindFirstChild(&quot;Left Arm&quot;), Character:FindFirstChild(&quot;Right Arm&quot;), Character:FindFirstChild(&quot;Left Leg&quot;), Character:FindFirstChild(&quot;Right Leg&quot;)}
+&#9;--local startPos = {vParts[1].Position, vParts[2].Position, vParts[3].Position, vParts[4].Position, vParts[5].Position}
+&#9;--local startFrames = {vParts[1].CFrame, vParts[2].CFrame, vParts[3].CFrame, vParts[4].CFrame, vParts[5].CFram
+&#9;local vParts = {Torso, Head, Character:FindFirstChild(&quot;Left Arm&quot;), Character:FindFirstChild(&quot;Right Arm&quot;), Character:FindFirstChild(&quot;Left Leg&quot;), Character:FindFirstChild(&quot;Right Leg&quot;)}
+
+&#9;for i = 2,#vParts do
+&#9;&#9;myPart = vParts[i]
+&#9;&#9;if myPart ~= nil then
+&#9;&#9;&#9;myPart.Transparency = 1
+&#9;&#9;&#9;myPart.CanCollide = false
+&#9;&#9;end
+&#9;end
+
+&#9;local clonedParts = {}
+
+&#9;--just need to add hats to dummy head&#9;
+&#9;newHats = {}
+&#9;newHatTransforms = {}
+&#9;oldHats = {}
+&#9;charParts = Character:GetChildren()
+&#9;numHatsSoFar = 1
+&#9;for i = 1,#charParts do
+&#9;&#9;if charParts[i].className == &quot;Hat&quot; then
+&#9;&#9;&#9;myHat = charParts[i]
+&#9;&#9;&#9;newHandle = myHat.Handle:Clone()
+&#9;&#9;&#9;newHandle.Name = &quot;Part&quot;
+&#9;&#9;&#9;newHandle.Parent = Character
+&#9;&#9;&#9;newHats[numHatsSoFar] = newHandle
+&#9;&#9;&#9;oldHats[numHatsSoFar] = myHat.Handle
+
+&#9;&#9;&#9;--newHatTransforms[numHatsSoFar] = myHat.Handle.CFrame:inverse()*vParts[2].CFrame
+&#9;&#9;&#9;--newHatTransforms[numHatsSoFar] = myHat.Handle.CFrame*(vParts[2].CFrame:inverse())
+&#9;&#9;&#9;newHatTransforms[numHatsSoFar] = vParts[2].CFrame:inverse()*myHat.Handle.CFrame
+&#9;&#9;&#9;newHats[numHatsSoFar].Anchored = true
+
+&#9;&#9;&#9;myHat.Handle.Transparency = 1
+&#9;&#9;&#9;numHatsSoFar = numHatsSoFar + 1
+&#9;&#9;end
+&#9;end
+
+--&#9;for i = 1,#vParts do
+&#9;randAng = math.random()*2*math.pi
+&#9;for i = 2,#vParts do
+&#9;&#9;myPart = vParts[i]
+&#9;&#9;if myPart ~= nil then
+&#9;&#9;&#9;clonedParts[i] = myPart:Clone()
+&#9;&#9;&#9;clonedParts[i].Name = &quot;Part&quot;
+&#9;&#9;&#9;clonedParts[i].CanCollide = true
+&#9;&#9;&#9;clonedParts[i].Transparency = 0
+&#9;&#9;&#9;clonedParts[i].Parent = Character
+&#9;&#9;&#9;newBP = Instance.new(&quot;BodyPosition&quot;)
+&#9;&#9;&#9;newBP.Parent = clonedParts[i]
+&#9;&#9;&#9;newBP.position = vParts[1].Position+(i-1)*Vector3.new(0,1,0)+i*2*Vector3.new(math.sin(randAng+i/2), 0, math.cos(randAng+i/2))
+&#9;&#9;end
+&#9;end
+
+&#9;-- and one more for the Torso
+&#9;newBP = Instance.new(&quot;BodyPosition&quot;)
+&#9;newBP.Parent = vParts[1]
+&#9;newBP.position = vParts[1].Position+Vector3.new(0,6,0) -- was 6
+&#9;newBP.maxForce = Vector3.new(0,10000,0)
+
+&#9;myFace = Character.Head.face
+&#9;myFace.Parent = nil
+&#9;--oldFace = Character.Head.face
+&#9;--Character.Head.face.Texture = &quot;http://www.roblox.com/asset/?id=0&quot;
+
+&#9;--vParts[1].Name = &quot;A&quot;
+&#9;--vParts[2].Name = &quot;B&quot;
+&#9;vParts[3].Name = &quot;C&quot;
+&#9;vParts[4].Name = &quot;D&quot;
+&#9;vParts[5].Name = &quot;E&quot;
+&#9;vParts[6].Name = &quot;F&quot;
+&#9;--vParts[1].CFrame = vParts[1].CFrame + Vector3.new(0,10,0)
+&#9;
+&#9;-- float the limbs to the workspace
+&#9;vParts[3].Parent = Character.Parent
+&#9;vParts[4].Parent = Character.Parent
+&#9;vParts[5].Parent = Character.Parent
+&#9;vParts[6].Parent = Character.Parent
+
+&#9;
+&#9;for j = 1,20 do --1 to 20
+
+&#9;&#9;--below function will put hats on top of dummy head
+&#9;&#9;--do hat calcs first, for less lag there
+&#9;&#9;&#9;--if j &lt;= 10 then clonedParts[2].BodyPosition.position = vParts[1].Position+Vector3.new(0,1,0)+4*Vector3.new(math.sin(randAng+1), 0, math.cos(randAng+1)) end
+&#9;&#9;&#9;--if j == 15 then vParts[1].BodyPosition.Parent = nil end
+&#9;&#9;&#9;--if j &gt; 15 then clonedParts[2].BodyPosition.position = vParts[2].Position
+&#9;&#9;&#9;--elseif j &gt; 10 then clonedParts[2].BodyPosition.position = vParts[1].Position+Vector3.new(0,2-j/10,0)+4*(2-j/10)*Vector3.new(math.sin(randAng+1), 0, math.cos(randAng+1)) end
+
+&#9;&#9;cloneHead = clonedParts[2]
+&#9;&#9;for i = 1,#newHats do
+&#9;&#9;&#9;--newHats[i].CFrame = CFrame.new(cloneHeadPos)*CFrame.Angles(0,0,0)
+&#9;&#9;&#9;--newHats[i].CFrame = newHatTransforms[i]*cloneHead.CFrame
+&#9;&#9;&#9;newHats[i].CFrame = cloneHead.CFrame*newHatTransforms[i]
+&#9;&#9;end
+
+&#9;&#9;randAng = randAng + .5
+&#9;&#9;for i = 2,#vParts do
+&#9;&#9;&#9;--randArg was here, and i went from 2 to #vParts
+&#9;&#9;&#9;if j &lt;= 10 then clonedParts[i].BodyPosition.position = vParts[1].Position+(i-1)*Vector3.new(0,1,0)+i*2*Vector3.new(math.sin(randAng+i/2), 0, math.cos(randAng+i/2)) end
+&#9;&#9;&#9;if j == 15 and i == 2 then vParts[1].BodyPosition.Parent = nil end
+&#9;&#9;&#9;if j &gt; 15 then clonedParts[i].BodyPosition.position = vParts[i].Position
+&#9;&#9;&#9;elseif j &gt; 10 then clonedParts[i].BodyPosition.position = vParts[1].Position+(i-1)*Vector3.new(0,2-j/10,0)+i*2*(2-j/10)*Vector3.new(math.sin(randAng+i/2), 0, math.cos(randAng+i/2)) end
+&#9;&#9;end
+
+&#9;&#9;angle = 2*j*math.pi/5
+&#9;&#9;--Tool.GripRight = Vector3.new(math.cos(angle),math.sin(angle),0)
+&#9;&#9;--Tool.GripForward = Vector3.new(-math.sin(angle),math.cos(angle),0)
+&#9;&#9;Tool.GripRight = Vector3.new(math.cos(angle),0,-math.sin(angle))
+&#9;&#9;Tool.GripUp = Vector3.new(math.sin(angle),0,math.cos(angle))
+&#9;&#9;--if j &lt;= 10 then Tool.GripPos = Vector3.new(0, 0.7, -.3+j/5+2) end
+&#9;&#9;if j &lt;= 10 then Tool.GripPos = Vector3.new(0, 0.7, -.3+j/5+.6) end
+&#9;&#9;--if j &gt; 10 then Tool.GripPos = Vector3.new(0,0.7-.1*(j-10),3.7-.3*(j-10)) end
+&#9;&#9;if j &gt; 10 then Tool.GripPos = Vector3.new(0,0.7-.1*(j-10),2.3-.3*(j-10)) end
+
+&#9;wait(.05)
+
+&#9;end
+
+&#9;&#9;--if charParts[i].className == &quot;CharacterMesh&quot; then
+&#9;&#9;&#9;--for j = 1,#vParts do
+&#9;&#9;&#9;&#9;--if vParts[j].Name == tostring(charParts[i].BodyPart) then
+&#9;&#9;&#9;&#9;&#9;--charParts[i].BodyPart = clonedParts[j]
+&#9;&#9;&#9;&#9;--end
+&#9;&#9;&#9;--end
+&#9;&#9;--end
+&#9;--end
+
+&#9;--for i = 1, #charParts do
+&#9;--&#9;if charParts[i].className == &quot;CharacterMesh&quot; then
+&#9;--&#9;&#9;for j = 1, #vParts do
+&#9;--&#9;&#9;&#9;if vParts[j].Name == tostring(charParts[i].BodyPart) then
+&#9;--&#9;&#9;&#9;&#9;charParts[i].BodyPart = vParts[j]
+&#9;--&#9;&#9;&#9;end
+&#9;--&#9;&#9;end
+&#9;--&#9;end
+&#9;--end
+
+&#9;--vParts[1].Name = &quot;Head&quot;
+&#9;--vParts[2].Name = &quot;Torso&quot;
+&#9;vParts[3].Name = &quot;Left Arm&quot;
+&#9;vParts[4].Name = &quot;Right Arm&quot;
+&#9;vParts[5].Name = &quot;Left Leg&quot;
+&#9;vParts[6].Name = &quot;Right Leg&quot;
+
+&#9;-- bring back mah limbs
+&#9;vParts[3].Parent = Character
+&#9;vParts[4].Parent = Character
+&#9;vParts[5].Parent = Character
+&#9;vParts[6].Parent = Character
+
+&#9;-- if right hand clone has stuff, transfer over to true right hand
+&#9;--[[grabbedStuff = clonedParts[4]:GetChildren()
+&#9;for i = 1,#grabbedStuff do
+&#9;&#9;if (grabbedStuff[i].Name == &quot;RightGrip&quot;) then 
+&#9;&#9;&#9;grabbedStuff[i].Part0 = vParts[4]
+&#9;&#9;&#9;grabbedStuff[i].Parent = vParts[4]
+&#9;&#9;end
+&#9;end]]
+
+&#9;for i = 2,#vParts do
+&#9;&#9;clonedParts[i].Parent = nil
+&#9;end
+
+&#9;for i = 1,#vParts do
+&#9;&#9;vParts[i].Transparency = 0
+&#9;&#9;vParts[i].CanCollide = true
+&#9;end
+&#9;myFace.Parent = Character.Head -- put back face
+&#9;for i = 1,#newHats do
+&#9;&#9;newHats[i].Parent = nil
+&#9;end
+&#9;for i = 1,#oldHats do
+&#9;&#9;oldHats[i].Transparency = 0
+&#9;end
+end
+
+
+function AtomSpin()
+&#9;for i = 1, 20 do
+&#9;&#9;local Angle = (i * math.pi / 5)
+&#9;&#9;Tool.GripRight = Vector3.new(math.cos(Angle), math.sin(Angle), 0)
+&#9;&#9;Tool.GripForward = Vector3.new(-math.sin(Angle), math.cos(Angle), 0)
+&#9;&#9;Tool.GripPos = Vector3.new(0, (-0.3 + i / 10), -0.7)
+&#9;&#9;wait(0.02)
+&#9;end
+end
+
+function Activated()
+&#9;if not Tool.Enabled then
+&#9;&#9;return
+&#9;end
+
+&#9;Tool.Enabled = false
+&#9;
+&#9;local TargetPos = Humanoid.TargetPoint
+&#9;local LookAt = (TargetPos - Head.Position).unit
+
+&#9;local reload = 3
+&#9;
+&#9;AtomoSound:Play()
+
+&#9;AtomSpin()
+&#9;SpinParts()
+&#9;
+&#9;Tool.Grip = ToolGrip
+&#9;
+&#9;wait(ReloadTime)
+
+&#9;Tool.Enabled = true
+
+end
+
+function Equipped()
+&#9;Character = Tool.Parent
+&#9;Player = Players:GetPlayerFromCharacter(Character)
+&#9;Humanoid = Character:FindFirstChild(&quot;Humanoid&quot;)
+&#9;Head = Character:FindFirstChild(&quot;Head&quot;)
+&#9;Torso = Character:FindFirstChild(&quot;Torso&quot;)
+&#9;if not Player or not Humanoid or Humanoid.Health == 0 or not Head or not Torso then
+&#9;&#9;return
+&#9;end
+end
+
+Tool.Activated:connect(Activated)
+Tool.Equipped:connect(Equipped)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX0282B55015504E4B95A64F83B307E73A">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">MouseIcon</string>
+				<ProtectedString name="Source">--Made by Luckymaxer
+
+Mouse_Icon = &quot;rbxasset://textures/GunCursor.png&quot;
+Reloading_Icon = &quot;rbxasset://textures/GunWaitCursor.png&quot;
+
+Tool = script.Parent
+
+Mouse = nil
+
+function UpdateIcon()
+&#9;if Mouse then
+&#9;&#9;Mouse.Icon = Tool.Enabled and Mouse_Icon or Reloading_Icon
+&#9;end
+end
+
+function OnEquipped(ToolMouse)
+&#9;Mouse = ToolMouse
+&#9;UpdateIcon()
+end
+
+function OnChanged(Property)
+&#9;if Property == &quot;Enabled&quot; then
+&#9;&#9;UpdateIcon()
+&#9;end
+end
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Changed:connect(OnChanged)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBXDD3809EE3704492EA23E6CBEE0A252F2">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>144.570908</X>
+					<Y>11.9599609</Y>
+					<Z>214.975327</Z>
+					<R00>0.46941936</R00>
+					<R01>0.443783849</R01>
+					<R02>-0.763348818</R02>
+					<R10>-0</R10>
+					<R11>0.864518881</R11>
+					<R12>0.502600431</R12>
+					<R20>0.882975459</R20>
+					<R21>-0.235930368</R21>
+					<R22>0.40582186</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>146.09758</X>
+					<Y>10.9547768</Y>
+					<Z>214.163696</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

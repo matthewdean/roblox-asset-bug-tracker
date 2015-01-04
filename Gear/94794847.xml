@@ -1,0 +1,733 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-1.70000005</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">CoffinSwordShield</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=94751561</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>12.4999962</X>
+					<Y>10.8999977</Y>
+					<Z>-16.7000008</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.200000033</X>
+					<Y>4.20000076</Y>
+					<Z>0.600000024</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=94759962</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>0.550000012</X>
+						<Y>0.550000012</Y>
+						<Z>0.550000012</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=94751912</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX3">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Slash</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/Asset?ID=92597369</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX4">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">Sprint</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/Asset?ID=92628581</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX5">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SwordHit</string>
+					<float name="Pitch">1</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>rbxasset://sounds/unsheath.wav</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX6">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">AnimationScript</string>
+				<ProtectedString name="Source">-- Waits for the child of the specified parent
+local function WaitForChild(parent, childName)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+local Tool = script.Parent
+
+local Animations = {}
+local MyHumanoid
+local MyCharacter
+
+
+local function PlayAnimation(animationName)
+&#9;if Animations[animationName] then
+&#9;&#9;Animations[animationName]:Play()
+&#9;else
+&#9;&#9;print(&quot;Can&apos;t find animation:&quot; , animationName)
+&#9;end
+end
+
+local function StopAnimation(animationName)
+&#9;if Animations[animationName] then
+&#9;&#9;Animations[animationName]:Stop()
+&#9;end
+end
+
+local function ConnectAnimationToValueChange(valueName, animationName)
+&#9;return WaitForChild(Tool, valueName).Changed:connect(
+&#9;&#9;function (value)
+&#9;&#9;&#9;--if value then
+&#9;&#9;&#9;&#9;PlayAnimation(animationName)
+&#9;&#9;&#9;--else
+&#9;&#9;&#9;--&#9;StopAnimation(&apos;SlashAnim&apos;)
+&#9;&#9;&#9;--end
+&#9;&#9;end)
+end
+
+function OnEquipped(mouse)
+&#9;MyCharacter = Tool.Parent
+&#9;MyHumanoid = WaitForChild(MyCharacter, &apos;Humanoid&apos;)
+&#9;if MyHumanoid then
+&#9;&#9;Animations[&apos;EquipAnim&apos;] = MyHumanoid:LoadAnimation(WaitForChild(Tool, &apos;EquipAnim&apos;))
+&#9;&#9;Animations[&apos;IdleAnim&apos;] = MyHumanoid:LoadAnimation(WaitForChild(Tool, &apos;IdleAnim&apos;))
+&#9;&#9;Animations[&apos;SwingAnim&apos;] = MyHumanoid:LoadAnimation(WaitForChild(Tool, &apos;SwingAnim&apos;))
+&#9;&#9;Animations[&apos;ExecuteAnim&apos;] = MyHumanoid:LoadAnimation(WaitForChild(Tool, &apos;ExecuteAnim&apos;))
+&#9;end
+&#9;PlayAnimation(&apos;EquipAnim&apos;)
+&#9;PlayAnimation(&apos;IdleAnim&apos;)
+end
+
+function OnUnequipped()
+&#9;StopAnimation(&apos;EquipAnim&apos;)
+&#9;StopAnimation(&apos;IdleAnim&apos;)
+end
+
+
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Unequipped:connect(OnUnequipped)
+
+ConnectAnimationToValueChange(&apos;PlayExecute&apos;, &apos;ExecuteAnim&apos;)
+
+ConnectAnimationToValueChange(&apos;PlaySwing&apos;, &apos;SwingAnim&apos;)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX7">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">local Tool = script.Parent;
+
+enabled = true
+function onButton1Down(mouse)
+&#9;if not enabled then
+&#9;&#9;return
+&#9;end
+
+&#9;enabled = false
+&#9;mouse.Icon = &quot;rbxasset://textures\\GunWaitCursor.png&quot;
+&#9;while not Tool.Enabled do
+&#9;&#9;wait(0.05)
+&#9;end
+&#9;
+&#9;mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;enabled = true
+end
+
+function onEquippedLocal(mouse)
+
+&#9;if mouse == nil then
+&#9;&#9;print(&quot;Mouse not found&quot;)
+&#9;&#9;return 
+&#9;end
+
+&#9;mouse.Icon = &quot;rbxasset://textures\\GunCursor.png&quot;
+&#9;mouse.Button1Down:connect(function() onButton1Down(mouse) end)
+end
+
+
+Tool.Equipped:connect(onEquippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="BoolValue" referent="RBX8">
+			<Properties>
+				<string name="Name">PlayExecute</string>
+				<bool name="Value">false</bool>
+			</Properties>
+		</Item>
+		<Item class="BoolValue" referent="RBX9">
+			<Properties>
+				<string name="Name">PlaySwing</string>
+				<bool name="Value">false</bool>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX10">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">CoffinSwordScript</string>
+				<ProtectedString name="Source">-- SolarCrane
+
+-- Waits for the child of the specified parent
+local function WaitForChild(parent, childName)
+&#9;while not parent:FindFirstChild(childName) do parent.ChildAdded:wait() end
+&#9;return parent[childName]
+end
+
+local SWORD_DAMAGE = 40
+local EXECUTE_DAMAGE = 70
+
+local PlayersService = Game:GetService(&apos;Players&apos;)
+local DebrisService = Game:GetService(&apos;Debris&apos;)
+
+local ShieldConnection
+local ArmShieldWeld
+
+local Tool = script.Parent
+local Handle = WaitForChild(Tool, &apos;Handle&apos;)
+local Shield
+
+local AnimationTable
+
+local SlashSound
+local SprintSound
+local SwordHitSound
+
+local Attacking = false
+
+local MyCharacter = Tool.Parent
+local MyPlayer
+local MyHumanoid
+local MyTorso
+
+----------- CLONEABLE COFFIN INFO -------------
+local Coffin = Instance.new(&apos;Part&apos;)
+Coffin.Size = Vector3.new(6, 2.4, 7)
+
+--[[
+local WorldToCellFunction = Workspace.Terrain.WorldToCellPreferSolid
+local GetCellFunction = Workspace.Terrain.GetCell
+--]]
+-----------------------------------------------
+
+
+function RayIgnoreCheck(hit, pos)
+&#9;if hit then
+&#9;&#9;if hit.Transparency &gt;= 1 or string.lower(hit.Name) == &quot;water&quot; or
+&#9;&#9;&#9;&#9;hit.Name == &quot;Effect&quot; or hit.Name == &quot;Rocket&quot; or hit.Name == &quot;Bullet&quot; or
+&#9;&#9;&#9;&#9;hit.Name == &quot;Handle&quot; or hit:IsDescendantOf(MyCharacter) then
+&#9;&#9;&#9;return true
+&#9;&#9;--[[
+&#9;&#9;elseif hit:IsA(&apos;Terrain&apos;) and pos then
+&#9;&#9;&#9;local cellPos = WorldToCellFunction(Workspace.Terrain, pos)
+&#9;&#9;&#9;if cellPos then
+&#9;&#9;&#9;&#9;local cellMat = GetCellFunction(Workspace.Terrain, cellPos.x, cellPos.y, cellPos.z)
+&#9;&#9;&#9;&#9;if cellMat and cellMat == Enum.CellMaterial.Water then
+&#9;&#9;&#9;&#9;&#9;return true
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;--]]
+&#9;&#9;end
+&#9;end
+&#9;return false
+end
+
+-- @preconditions: vec should be a unit vector, and 0 &lt; rayLength &lt;= 1000
+function RayCast(startPos, vec, rayLength)
+&#9;local hitObject, hitPos = game.Workspace:FindPartOnRay(Ray.new(startPos + (vec * .01), vec * rayLength), Handle)
+&#9;if hitObject and hitPos then
+&#9;&#9;local distance = rayLength - (hitPos - startPos).magnitude
+&#9;&#9;if RayIgnoreCheck(hitObject, hitPos) and distance &gt; 0 then
+&#9;&#9;&#9;-- there is a chance here for potential infinite recursion
+&#9;&#9;&#9;return RayCast(hitPos, vec, distance)
+&#9;&#9;end
+&#9;end
+&#9;return hitObject, hitPos
+end
+
+local function FindHumanoidRecursive(hit)
+&#9;if (hit.className == Workspace) then return nil end
+&#9;local humanoid = hit:FindFirstChild(&quot;Humanoid&quot;)
+&#9;if (humanoid ~= nil) then return humanoid end
+&#9;if (hit.Parent ~= nil) then return FindHumanoidRecursive(hit.Parent) end
+&#9;return nil
+end
+
+local function FindMassRecursive(object)
+&#9;if not object then return 0 end
+&#9;local subMass = 0
+&#9;if object:IsA(&apos;BasePart&apos;) then
+&#9;&#9;subMass = object:GetMass()
+&#9;end
+&#9;for _, child in pairs(object:GetChildren()) do
+&#9;&#9;subMass = subMass + FindMassRecursive(child)
+&#9;end
+&#9;return subMass
+end
+
+function TagHumanoid(humanoid, player)
+&#9;-- Add more tags here to customize what tags are available.
+&#9;while humanoid:FindFirstChild(&apos;creator&apos;) do
+&#9;&#9;humanoid:FindFirstChild(&apos;creator&apos;):Destroy()
+&#9;end 
+&#9;local creatorTag = Instance.new(&quot;ObjectValue&quot;)
+&#9;creatorTag.Value = player
+&#9;creatorTag.Name = &quot;creator&quot;
+&#9;creatorTag.Parent = humanoid
+&#9;DebrisService:AddItem(creatorTag, 1.5)
+
+&#9;local weaponIconTag = Instance.new(&quot;StringValue&quot;)
+&#9;weaponIconTag.Value = IconURL
+&#9;weaponIconTag.Name = &quot;icon&quot;
+&#9;weaponIconTag.Parent = creatorTag
+end
+
+local function CreateArmWeld()
+&#9;if ArmShieldWeld then return end
+&#9;if MyCharacter and MyCharacter:FindFirstChild(&apos;Left Arm&apos;) then
+&#9;&#9;if not ShieldConnection then
+&#9;&#9;&#9;ShieldConnection = MyCharacter:FindFirstChild(&apos;Left Arm&apos;).ChildRemoved:connect(function(child) if child.Name == &apos;ArmWeld&apos; then CreateArmWeld() end end)
+&#9;&#9;end
+&#9;&#9;ArmShieldWeld = Instance.new(&apos;Weld&apos;)
+&#9;&#9;ArmShieldWeld.Name = &quot;ArmWeld&quot;
+&#9;&#9;ArmShieldWeld.Part0 = MyCharacter:FindFirstChild(&apos;Left Arm&apos;)
+&#9;&#9;ArmShieldWeld.Part1 = Shield
+&#9;&#9;ArmShieldWeld.C0 = CFrame.new() * CFrame.Angles(math.rad(-90), math.rad(90), 0)
+&#9;&#9;ArmShieldWeld.C1 = CFrame.new() + Vector3.new(0, 0, 0.6)
+&#9;&#9;ArmShieldWeld.Parent = MyCharacter:FindFirstChild(&apos;Left Arm&apos;)
+&#9;&#9;Shield.Parent = Tool
+&#9;else
+&#9;&#9;print(&apos;CreateArmWeld: you have no character or no left arm.&apos;)
+&#9;end
+end
+
+local function DestroyArmWeld()
+&#9;if ArmShieldWeld then
+&#9;&#9;ArmShieldWeld:Destroy()
+&#9;&#9;ArmShieldWeld = nil
+&#9;end
+&#9;if ShieldConnection then
+&#9;&#9;ShieldConnection:disconnect()
+&#9;&#9;ShieldConnection = nil
+&#9;end
+end
+
+local function SwordUp()
+&#9;if Tool then
+&#9;&#9;Tool.GripForward = Vector3.new(0, 0, -1)
+&#9;&#9;Tool.GripRight = Vector3.new(1, 0, 0)
+&#9;&#9;Tool.GripUp = Vector3.new(0, 1, 0)
+&#9;end
+end
+
+local function SwordDown()
+&#9;if Tool then
+&#9;&#9;Tool.GripForward = Vector3.new(0, 0, -1)
+&#9;&#9;Tool.GripRight = Vector3.new(1, 0, 0)
+&#9;&#9;Tool.GripUp = Vector3.new(0, -1, 0)
+&#9;end
+end
+
+local function CreateFloatForce(objectToFloat)
+&#9;local floatForce = Instance.new(&apos;BodyForce&apos;)
+&#9;floatForce.force = (Vector3.new(0, 196.2, 0)) * FindMassRecursive(objectToFloat)
+&#9;return floatForce
+end 
+
+local function CreateKickGyro(target)
+&#9;if MyCharacter and MyTorso then
+&#9;&#9;local mass = FindMassRecursive(MyCharacter)
+&#9;&#9;
+
+&#9;&#9;local lookVector = MyTorso.CFrame.lookVector
+&#9;&#9;local bodyGyro = Instance.new(&apos;BodyGyro&apos;)
+&#9;&#9;--bodyGyro.cframe = CFrame.new(Vector3.new(), lookVector) * CFrame.Angles(0, -math.pi/2, -math.pi/2)
+&#9;&#9;-- Gets you in that sideways kick pose
+&#9;&#9;bodyGyro.cframe = CFrame.new(Vector3.new(), (target.CFrame.p - MyTorso.CFrame.p).unit:Cross(Vector3.new(0, 1, 0))) * CFrame.Angles(0,0,-math.pi/2)
+&#9;&#9;bodyGyro.maxTorque = Vector3.new(100000, 100000, 100000)
+&#9;&#9;DebrisService:AddItem(bodyGyro, 2)
+&#9;&#9;bodyGyro.Parent = MyTorso
+
+
+&#9;&#9;local origVel = (target.CFrame.p - MyTorso.CFrame.p).unit * 60 --MyTorso.CFrame:vectorToWorldSpace(Vector3.new(0, 0, -60))
+&#9;&#9;if SprintSound then
+&#9;&#9;&#9;SprintSound:Play()
+&#9;&#9;end
+&#9;&#9;local bf = CreateFloatForce(MyCharacter)
+&#9;&#9;DebrisService:AddItem(bf, 2)
+&#9;&#9;bf.Parent = MyTorso
+&#9;
+&#9;&#9;local myLeftLeg = MyCharacter:FindFirstChild(&apos;Left Leg&apos;)
+&#9;&#9;local myRightLeg = MyCharacter:FindFirstChild(&apos;Right Leg&apos;)
+&#9;&#9;local leftLegConn
+&#9;&#9;if myLeftLeg then
+&#9;&#9;&#9;leftLegConn = myLeftLeg.Touched:connect( function (hit)
+&#9;&#9;&#9;&#9;if myLeftLeg and hit.Name == &apos;Torso&apos; and hit ~= MyTorso then
+&#9;&#9;&#9;&#9;&#9;if Shield then
+&#9;&#9;&#9;&#9;&#9;&#9;local shieldWeld = Instance.new(&apos;ManualWeld&apos;)
+&#9;&#9;&#9;&#9;&#9;&#9;local ShieldClone = Shield:Clone()
+&#9;&#9;&#9;&#9;&#9;&#9;Shield.Transparency = 1
+&#9;&#9;&#9;&#9;&#9;&#9;shieldWeld.Part0 = hit
+&#9;&#9;&#9;&#9;&#9;&#9;shieldWeld.Part1 = ShieldClone
+&#9;&#9;&#9;&#9;&#9;&#9;shieldWeld.Parent = ShieldClone
+&#9;&#9;&#9;&#9;&#9;&#9;shieldWeld.C1 = CFrame.new(0, 0, 1) * CFrame.Angles(0, math.pi, 0)
+&#9;&#9;&#9;&#9;&#9;&#9;DebrisService:AddItem(ShieldClone, 3)
+&#9;&#9;&#9;&#9;&#9;&#9;ShieldClone.Parent = hit
+&#9;&#9;&#9;&#9;&#9;&#9;if ShieldClone:FindFirstChild(&apos;Mesh&apos;) then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;ShieldClone.Mesh.Scale = Vector3.new(3.5, 3.5, 3.5)
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;Delay(2, function() if Shield then Shield.Transparency = 0 end end)
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;local weld = Instance.new(&apos;ManualWeld&apos;)
+&#9;&#9;&#9;&#9;&#9;weld.Part0 = myLeftLeg
+&#9;&#9;&#9;&#9;&#9;weld.Part1 = hit
+&#9;&#9;&#9;&#9;&#9;weld.C1 = CFrame.new(Vector3.new(0.3, -1.2, -1.2)) * CFrame.Angles(-math.pi/2, math.pi ,0)-- math.pi/2, 0)
+&#9;&#9;&#9;&#9;&#9;DebrisService:AddItem(weld, 3)
+&#9;&#9;&#9;&#9;&#9;weld.Parent = myLeftLeg
+&#9;&#9;&#9;&#9;&#9;leftLegConn:disconnect()
+&#9;&#9;&#9;&#9;&#9;leftLegConn = nil
+&#9;&#9;&#9;&#9;&#9;if bodyGyro then
+&#9;&#9;&#9;&#9;&#9;&#9;print(&apos;Deleting old gyro&apos;)
+&#9;&#9;&#9;&#9;&#9;&#9;bodyGyro:Destroy()
+&#9;&#9;&#9;&#9;&#9;&#9;bodyGyro = nil
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;print(&apos;Creating up gyro&apos;)
+&#9;&#9;&#9;&#9;&#9;local upBodyGyro = Instance.new(&apos;BodyGyro&apos;)
+&#9;&#9;&#9;&#9;&#9;upBodyGyro.Name = &apos;UpBodyGyro&apos;
+&#9;&#9;&#9;&#9;&#9;upBodyGyro.maxTorque = Vector3.new(1000000, 1000, 1000000)
+&#9;&#9;&#9;&#9;&#9;upBodyGyro.P = 30000
+&#9;&#9;&#9;&#9;&#9;upBodyGyro.D = 50
+&#9;&#9;&#9;&#9;&#9;DebrisService:AddItem(upBodyGyro, 3)
+&#9;&#9;&#9;&#9;&#9;upBodyGyro.Parent = MyTorso
+&#9;&#9;&#9;&#9;&#9;bf.force = bf.force + origVel * (FindMassRecursive(MyCharacter) + FindMassRecursive(hit.Parent))
+&#9;&#9;
+&#9;&#9;&#9;&#9;&#9;if AnimationTable then
+&#9;&#9;&#9;&#9;&#9;&#9;AnimationTable.Execute.Value = not AnimationTable.Execute.Value
+&#9;&#9;&#9;&#9;&#9;end
+
+&#9;&#9;&#9;&#9;&#9;wait(0.65)
+&#9;&#9;&#9;&#9;&#9;SwordDown()
+&#9;&#9;&#9;&#9;&#9;if SlashSound then
+&#9;&#9;&#9;&#9;&#9;&#9;SlashSound:Play()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(0.35)
+&#9;&#9;&#9;&#9;&#9;if bf then
+&#9;&#9;&#9;&#9;&#9;&#9;bf:Destroy()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(0.7)
+&#9;&#9;&#9;&#9;&#9;SwordUp()
+&#9;&#9;&#9;&#9;&#9;--wait(2.5)
+&#9;&#9;&#9;&#9;&#9;if weld then
+&#9;&#9;&#9;&#9;&#9;&#9;weld:Destroy()
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;wait(0.1)
+&#9;&#9;&#9;&#9;&#9;if hit then
+&#9;&#9;&#9;&#9;&#9;&#9;local humanoid = FindHumanoidRecursive(hit)
+&#9;&#9;&#9;&#9;&#9;&#9;if humanoid then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;if SwordHitSound then
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;SwordHitSound:Play()
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;humanoid:TakeDamage(EXECUTE_DAMAGE)
+&#9;&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end)
+&#9;&#9;&#9;Delay(3, function()
+&#9;&#9;&#9;&#9;if leftLegConn then
+&#9;&#9;&#9;&#9;&#9;leftLegConn:disconnect()
+&#9;&#9;&#9;&#9;&#9;leftLegConn = nil
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end)
+&#9;&#9;end
+&#9;&#9;local bv = Instance.new(&apos;BodyVelocity&apos;)
+&#9;&#9;bv.maxForce = Vector3.new(30000, 30000, 30000)
+&#9;&#9;DebrisService:AddItem(bv, 3)
+&#9;&#9;bv.Parent = MyTorso
+&#9;&#9;-- this may be better as a rocket propulsion (rocket feet)
+&#9;&#9;for i = 1, 30 do
+&#9;&#9;&#9;if leftLegConn and bv then
+&#9;&#9;&#9;&#9;print(&apos;Setting Velocity&apos;)
+&#9;&#9;&#9;&#9;bv.velocity = (target.CFrame.p - MyTorso.CFrame.p).unit * 32  --MyTorso.Velocity * Vector3.new(1, 0, 1)
+&#9;&#9;&#9;&#9;
+&#9;&#9;&#9;&#9;wait(0.1)
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+end
+
+local function CoffinAttack(character)
+&#9;--Handle
+&#9;if character:FindFirstChild(&apos;Torso&apos;) then
+&#9;&#9;CreateKickGyro(character.Torso)
+&#9;end
+end
+
+function OnBlow(hit)
+&#9;if not Attacking then return end
+&#9;local humanoid = FindHumanoidRecursive(hit)
+&#9;if humanoid then
+&#9;&#9;Attacking = false
+&#9;&#9;if SwordHitSound then
+&#9;&#9;&#9;SwordHitSound:Play()
+&#9;&#9;end
+&#9;&#9;humanoid:TakeDamage(SWORD_DAMAGE)
+&#9;end
+end
+
+function Swing()
+&#9;if AnimationTable then
+&#9;&#9;AnimationTable.Swing.Value = not AnimationTable.Swing.Value
+&#9;end
+&#9;if SlashSound then
+&#9;&#9;SlashSound:Play()
+&#9;end
+end
+
+function OnActivated()
+&#9;if not Tool.Enabled then return end
+&#9;Tool.Enabled = false
+&#9;wait(0.1)
+&#9;local kicking = false
+&#9;local targetPart = RayCast(MyTorso.CFrame.p, (MyHumanoid.TargetPoint - MyTorso.CFrame.p).unit, 50)
+&#9;if targetPart then
+&#9;&#9;local humanoid = FindHumanoidRecursive(targetPart)
+&#9;&#9;if humanoid then
+&#9;&#9;&#9;local torso = humanoid.Parent:FindFirstChild(&apos;Torso&apos;)
+&#9;&#9;&#9;if torso and MyTorso and torso ~= MyTorso and
+&#9;&#9;&#9;&#9;&#9;(MyTorso.CFrame.p - torso.CFrame.p).magnitude &gt; 8 and
+&#9;&#9;&#9;&#9;&#9;(MyTorso.CFrame.p - torso.CFrame.p).magnitude &lt; 50 then
+&#9;&#9;&#9;&#9;CoffinAttack(humanoid.Parent)
+&#9;&#9;&#9;&#9;wait(2)
+&#9;&#9;&#9;&#9;kicking = true
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;end
+&#9;if not kicking then
+&#9;&#9;Attacking = true
+&#9;&#9;Swing()
+&#9;end
+&#9;wait(1.2)
+&#9;Attacking = false
+&#9;--CreateKickGyro()
+&#9;Tool.Enabled = true
+end
+
+local equipping = false
+function OnEquipped()
+&#9;if equipping then return end
+&#9;equipping = true
+&#9;MyCharacter = Tool.Parent
+&#9;MyPlayer = PlayersService:GetPlayerFromCharacter(MyCharacter)
+&#9;MyHumanoid = MyCharacter:FindFirstChild(&apos;Humanoid&apos;)
+&#9;MyTorso = MyCharacter:FindFirstChild(&apos;Torso&apos;)
+&#9;SprintSound = WaitForChild(Handle, &apos;Sprint&apos;)
+&#9;SlashSound = WaitForChild(Handle, &apos;Slash&apos;)
+&#9;SwordHitSound = WaitForChild(Handle, &apos;SwordHit&apos;)
+&#9;if not AnimationTable then
+&#9;&#9;AnimationTable = {Swing = WaitForChild(Tool, &apos;PlaySwing&apos;),
+&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;  Execute = WaitForChild(Tool, &apos;PlayExecute&apos;)}
+&#9;end
+&#9;wait(0.1)
+&#9;Shield = Instance.new(&apos;Part&apos;)
+&#9;Shield.Size = Vector3.new(2.4, 5.2, 0.8)
+&#9;Shield.FormFactor = Enum.FormFactor.Custom
+&#9;local shieldMesh = Instance.new(&apos;SpecialMesh&apos;)
+&#9;shieldMesh.MeshId = &apos;http://www.roblox.com/asset/?id=94752182&apos;
+&#9;shieldMesh.TextureId = &apos;http://www.roblox.com/asset/?id=94752144&apos;
+&#9;shieldMesh.Scale = Vector3.new(2.3,2.3,2.3)
+&#9;shieldMesh.Parent = Shield
+&#9;Shield.Parent = Tool
+&#9;CreateArmWeld()
+&#9;equipping = false
+end
+
+
+-- Unequip logic here
+function OnUnequipped()
+&#9;MyCharacter = nil
+&#9;MyHumanoid = nil
+&#9;MyTorso = nil
+&#9;MyPlayer = nil
+&#9;Shield:Destroy()
+&#9;Shield = nil
+&#9;DestroyArmWeld()
+end
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Unequipped:connect(OnUnequipped)
+Tool.Activated:connect(OnActivated)
+Handle.Touched:connect(OnBlow)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX11">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=94789762</url></Content>
+				<string name="Name">IdleAnim</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX12">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=94790076</url></Content>
+				<string name="Name">SwingAnim</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX13">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=94790629</url></Content>
+				<string name="Name">ExecuteAnim</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX14">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/Asset?ID=94788942</url></Content>
+				<string name="Name">EquipAnim</string>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX15">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>8.57353115</X>
+					<Y>9.0154171</Y>
+					<Z>-16.8370895</Z>
+					<R00>-0.0348927863</R00>
+					<R01>-0.353257418</R01>
+					<R02>-0.93487519</R02>
+					<R10>-0</R10>
+					<R11>0.935444832</R11>
+					<R12>-0.35347265</R12>
+					<R20>0.999391079</R20>
+					<R21>-0.0123336455</R21>
+					<R22>-0.0326402746</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>12.4999962</X>
+					<Y>10.4999981</Y>
+					<Z>-16.7000008</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,0 +1,522 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-0.75</Y>
+				<Z>0.699999988</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">SharkLauncher</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=118269682</url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>0.700000048</Y>
+					<Z>-0.100000001</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.800000012</X>
+					<Y>1.4000001</Y>
+					<Z>4.5999999</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=118269783</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=118269752</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX3">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">MouseIcon</string>
+				<ProtectedString name="Source">local MOUSE_ICON = &apos;rbxasset://textures/GunCursor.png&apos;
+local RELOADING_ICON = &apos;rbxasset://textures/GunWaitCursor.png&apos;
+
+local Tool = script.Parent
+
+local Mouse = nil
+
+local function UpdateIcon()
+&#9;Mouse.Icon = Tool.Enabled and MOUSE_ICON or RELOADING_ICON
+end
+
+local function OnEquipped(mouse)
+&#9;Mouse = mouse
+&#9;UpdateIcon()
+end
+
+local function OnChanged(property)
+&#9;if property == &apos;Enabled&apos; then
+&#9;&#9;UpdateIcon()
+&#9;end
+end
+
+Tool.Equipped:connect(OnEquipped)
+Tool.Changed:connect(OnChanged)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="LocalScript" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">SharkLauncherScript</string>
+				<ProtectedString name="Source">function New(ty)
+&#9;return function(data)
+&#9;&#9;local obj = Instance.new(ty)
+&#9;&#9;for k, v in pairs(data) do
+&#9;&#9;&#9;if type(k) == &apos;number&apos; then
+&#9;&#9;&#9;&#9;v.Parent = obj
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;if type(v) == &apos;function&apos; then
+&#9;&#9;&#9;&#9;&#9;obj[k]:connect(v)
+&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;obj[k] = v
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;return obj
+&#9;end
+end
+
+local AMMO_MESH = &apos;http://www.roblox.com/asset/?id=118270425&apos;
+local AMMO_TX = &apos;http://www.roblox.com/asset/?id=118270477&apos;
+
+local Tool = script.Parent
+local Handle = Tool:WaitForChild(&apos;Handle&apos;)
+local SharkScript = script:WaitForChild(&apos;SharkController&apos;)
+local MyMouse = nil
+local MyCharacter = nil
+local MyPlayer = nil
+local PlayersService = Game:GetService(&apos;Players&apos;)
+
+
+print(&quot;SharkLauncher: Finished all waits&quot;)
+
+function AddFloatForce(part)
+&#9;local float = Instance.new(&apos;BodyForce&apos;)
+&#9;float.force = Vector3.new(0,part:GetMass() * 196.2, 0)
+&#9;float.Parent = part&#9;
+end
+
+function CreateShark(sharkCFrame, containerPart)
+&#9;return New&apos;Part&apos;
+&#9;{
+&#9;&#9;Name = &apos;Shark&apos;,
+&#9;&#9;FormFactor = &apos;Custom&apos;,
+&#9;&#9;TopSurface = &apos;Smooth&apos;,
+&#9;&#9;BottomSurface = &apos;Smooth&apos;,
+&#9;&#9;Size = Vector3.new(3.4, 2.6, 6.8),
+--&#9;&#9;Size = Vector3.new(.2, .2, .2),
+&#9;&#9;SharkScript:Clone(),
+&#9;&#9;CFrame = sharkCFrame,
+&#9;&#9;CanCollide = false,
+&#9;&#9;--Anchored = true, -- toriaezu
+&#9;&#9;New&apos;ObjectValue&apos;
+&#9;&#9;{
+&#9;&#9;&#9;Name = &apos;ContainerPart&apos;,
+&#9;&#9;&#9;Value = containerPart
+&#9;&#9;},
+&#9;&#9;New&apos;SpecialMesh&apos;
+&#9;&#9;{
+&#9;&#9;&#9;MeshId = AMMO_MESH,
+&#9;&#9;&#9;TextureId = AMMO_TX,
+&#9;&#9;&#9;Scale = Vector3.new(4, 4, 4)
+&#9;&#9;}
+&#9;}&#9;
+end
+
+function LaunchShark(shark)
+&#9;AddFloatForce(shark)
+&#9;local sharkScript = shark:FindFirstChild(&apos;SharkController&apos;)
+&#9;local ownerObj = sharkScript and sharkScript:FindFirstChild(&apos;Owner&apos;)
+&#9;if sharkScript then
+&#9;&#9;if ownerObj then
+&#9;&#9;&#9;ownerObj.Value = MyPlayer
+&#9;&#9;end
+&#9;&#9;sharkScript.Disabled = false
+&#9;&#9;return true
+&#9;end
+&#9;return false
+end
+
+local RotateTable =
+{
+&#9;[Enum.NormalId.Top] = CFrame.new(), --Top
+&#9;[Enum.NormalId.Bottom] = CFrame.Angles(-math.pi,0,0), -- Bottom
+&#9;[Enum.NormalId.Back] = CFrame.Angles(math.pi/2, 0,0), -- Back
+&#9;[Enum.NormalId.Front] = CFrame.Angles(-math.pi/2,0,0), -- Front
+&#9;[Enum.NormalId.Right] = CFrame.Angles(0, 0, -math.pi/2), -- Right
+&#9;[Enum.NormalId.Left] = CFrame.Angles(0,0,math.pi/2) -- Left
+}
+
+function RotateByNormalId(normal, cframe, dir)
+&#9;local c = cframe * RotateTable[normal]
+&#9;return c * CFrame.new(Vector3.new(), Vector3.FromNormalId(normal):Cross(Vector3.FromNormalId(normal):Cross(dir)))
+end
+
+
+function OnActivated()&#9;
+&#9;if not MyMouse.Target then return end
+&#9;if not Tool.Enabled then return end
+&#9;Tool.Enabled = false
+&#9;local targetSurface = MyMouse.TargetSurface&#9;
+&#9;
+&#9;local sharkHit = MyMouse.Hit.p
+&#9;local dir = (sharkHit - Handle.CFrame.p) * Vector3.new(1,0,1)
+&#9;if MyMouse.Target then
+&#9;&#9;sharkHit = (MyMouse.Target.CFrame - MyMouse.Target.CFrame.p) + sharkHit
+&#9;else
+&#9;&#9;sharkHit = CFrame.new(sharkHit)
+&#9;end
+&#9;if targetSurface then
+&#9;&#9;print(&quot;Normal surface:&quot; , targetSurface)
+&#9;&#9;sharkHit = RotateByNormalId(targetSurface, sharkHit, dir)
+&#9;end
+&#9;--[[
+&#9;if targetSurface == Enum.NormalId.Bottom then
+&#9;&#9;sharkHit = sharkHit * CFrame.new(Vector3.new(), -dir):inverse()
+&#9;else
+&#9;&#9;sharkHit = sharkHit * CFrame.new(Vector3.new(), dir)
+&#9;end
+&#9;--]]
+&#9;local Shark = CreateShark(sharkHit, MyMouse.Target)
+&#9;LaunchShark(Shark)
+&#9;Shark.Parent = Workspace
+&#9;
+&#9;wait(6)
+&#9;Tool.Enabled = true
+end
+
+function OnEquipped(mouse)
+&#9;MyMouse = mouse
+&#9;MyCharacter = Tool.Parent
+&#9;MyPlayer = PlayersService:GetPlayerFromCharacter(MyCharacter)
+end
+
+function OnUnequipped()
+&#9;
+end
+
+
+Tool.Activated:connect(OnActivated)
+Tool.Equipped:connect(OnEquipped)
+Tool.Unequipped:connect(OnUnequipped)
+</ProtectedString>
+			</Properties>
+			<Item class="Script" referent="RBX5">
+				<Properties>
+					<bool name="Disabled">true</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">SharkController</string>
+					<ProtectedString name="Source">local DEBUG_SENSORS = false
+local MAX_SHARK_SPEED = 30
+
+local DebrisService = Game:GetService(&apos;Debris&apos;)
+
+local MyShark = script.Parent
+local PlayersService = Game:GetService(&apos;Players&apos;)
+
+function GetRandomFloat(minimum, maximum)
+&#9;local unitRandom = math.random()
+&#9;local interval = maximum - minimum
+&#9;-- there is potential overflow here if the interval is larger than max float
+&#9;if interval &lt;= 0 then
+&#9;&#9;print(&apos;GetRandomFloat: The range beween minimum and maximum is less than zero.&apos;)
+&#9;&#9;return nil
+&#9;end
+&#9;local randomNum = (unitRandom * interval) + minimum
+&#9;return randomNum
+end
+
+function AddFloatForce(part)
+&#9;local float = Instance.new(&apos;BodyForce&apos;)
+&#9;float.force = Vector3.new(0,part:GetMass() * 196.2, 0)
+&#9;float.Parent = part&#9;
+end
+
+local lastThatPart = nil
+
+function OnSensed(thisPart, thatPart)
+&#9;local lastThatPart = thatPart
+&#9;print(tick() , thisPart , &apos;sensed&apos; , thatPart)
+&#9;if DEBUG_SENSORS then
+&#9;&#9;if thisPart:FindFirstChild(&apos;DebugDraw&apos;) then
+&#9;&#9;&#9;thisPart:FindFirstChild(&apos;DebugDraw&apos;).Color = BrickColor.new(&apos;Really red&apos;)
+&#9;&#9;end
+&#9;end
+&#9;MyShark.CFrame = (MyShark.CFrame - MyShark.CFrame.lookVector * 0.5) * CFrame.Angles(0, math.pi, 0)
+&#9;MyShark.Velocity = MyShark.CFrame.lookVector * MAX_SHARK_SPEED
+&#9;wait(0.15)
+&#9;if lastThatPart == thatPart then
+&#9;&#9;MyShark.CFrame = MyShark.CFrame * CFrame.Angles(0, GetRandomFloat(-math.pi/4, math.pi/4), 0)
+&#9;&#9;MyShark.Velocity = MyShark.CFrame.lookVector * MAX_SHARK_SPEED
+&#9;else
+&#9;&#9;print(&apos;Last hit part is diff, not changing values&apos;)
+&#9;end
+end
+
+function AddSenseCB(sensorPart)
+&#9;sensorPart.Touched:connect(function(hit) OnSensed(sensorPart, hit) end)
+end
+
+function GetPartContainingMe()
+&#9;local parts = Workspace:FindPartsInRegion3WithIgnoreList(Region3.new(MyShark.CFrame.p - Vector3.new(1,1,1), MyShark.CFrame.p + Vector3.new(1,1,1)), {MyShark})
+&#9;table.sort(parts, function(p1,p2) return p1.Size.Magnitude &lt; p2.Size.Magnitude end)
+&#9;if #parts &gt; 0 then
+&#9;&#9;return parts[1]
+&#9;end
+end
+
+function FindCharacterAncestory(part)
+&#9;if part == nil then
+&#9;&#9;return nil
+&#9;end
+&#9;if PlayersService:GetPlayerFromCharacter(part) then
+&#9;&#9;return part
+&#9;end
+&#9;return FindCharacterAncestory(part.Parent)
+end
+
+
+function CreateSensors(part)
+&#9;local width = 4
+&#9;local height = 4
+&#9;
+&#9;local sensorTemplate = Instance.new(&apos;Part&apos;)
+&#9;sensorTemplate.TopSurface = &quot;Smooth&quot;
+&#9;sensorTemplate.BottomSurface = &quot;Smooth&quot;
+&#9;sensorTemplate.FormFactor = &quot;Custom&quot;
+&#9;sensorTemplate.CanCollide = false
+&#9;sensorTemplate.Transparency = 1
+&#9;sensorTemplate.CFrame = part.CFrame
+&#9;sensorTemplate.Name = &apos;Sensor&apos;
+&#9;sensorTemplate.Anchored = true
+&#9;if DEBUG_SENSORS then
+&#9;&#9;local selBox = Instance.new(&apos;SelectionBox&apos;)
+&#9;&#9;selBox.Name = &apos;DebugDraw&apos;
+&#9;&#9;selBox.Adornee = sensorTemplate
+&#9;&#9;selBox.Parent = sensorTemplate&#9;&#9;
+&#9;end
+
+&#9;local front = sensorTemplate:Clone()
+&#9;front.Size = Vector3.new(part.Size.X, part.Size.Y + height, width)
+&#9;front.CFrame = front.CFrame + part.CFrame:vectorToWorldSpace(Vector3.new(0, 0, part.Size.Z / 2 + width /2))
+&#9;AddFloatForce(front)
+&#9;AddSenseCB(front)
+&#9;local back = sensorTemplate:Clone()
+&#9;back.Size = Vector3.new(part.Size.X, part.Size.Y + height, width)
+&#9;back.CFrame = back.CFrame + part.CFrame:vectorToWorldSpace(Vector3.new(0, 0, part.Size.Z / -2 - width / 2))
+&#9;AddFloatForce(back)
+&#9;AddSenseCB(back)
+&#9;local left = sensorTemplate:Clone()
+&#9;left.Size = Vector3.new(width, part.Size.Y + height, part.Size.Z)
+&#9;left.CFrame = left.CFrame + part.CFrame:vectorToWorldSpace(Vector3.new(part.Size.X / 2 + width / 2, 0, 0))
+&#9;AddFloatForce(left)
+&#9;AddSenseCB(left)
+&#9;local right = sensorTemplate:Clone()
+&#9;right.Size = Vector3.new(width, part.Size.Y + height, part.Size.Z)
+&#9;right.CFrame = right.CFrame + part.CFrame:vectorToWorldSpace(Vector3.new(part.Size.X / -2 - width / 2, 0, 0))
+&#9;AddFloatForce(right)
+&#9;AddSenseCB(right)
+&#9;local top = sensorTemplate:Clone()
+&#9;top.Size = Vector3.new(part.Size.X, height, part.Size.Z)
+&#9;top.CFrame = top.CFrame + part.CFrame:vectorToWorldSpace(Vector3.new(0, part.Size.Y / 2 + height / 2, 0))
+&#9;AddFloatForce(top)
+&#9;AddSenseCB(top)
+&#9;local bottom = sensorTemplate:Clone()
+&#9;bottom.Size = Vector3.new(part.Size.X, height, part.Size.Z)
+&#9;bottom.CFrame = bottom.CFrame + part.CFrame:vectorToWorldSpace(Vector3.new(0, part.Size.Y / -2 - height / 2, 0))
+&#9;AddFloatForce(bottom)
+&#9;AddSenseCB(bottom)
+&#9;-- Might want to do only the parts tangential to the plane we are in
+
+&#9;front.Parent = part.Parent
+&#9;back.Parent = part.Parent
+&#9;left.Parent = part.Parent
+&#9;right.Parent = part.Parent
+&#9;top.Parent = part.Parent
+&#9;bottom.Parent = part.Parent
+&#9;return {front,back,left,right,top,bottom}
+end
+
+local sensorParts = CreateSensors(MyShark:WaitForChild(&apos;ContainerPart&apos;).Value)
+
+local dir = MyShark.CFrame.lookVector
+
+MyShark.Velocity = dir * MAX_SHARK_SPEED
+
+function TagHumanoid(humanoid, player)
+&#9;-- Add more tags here to customize what tags are available.
+&#9;while humanoid:FindFirstChild(&apos;creator&apos;) do
+&#9;&#9;humanoid:FindFirstChild(&apos;creator&apos;):Destroy()
+&#9;end 
+&#9;local creatorTag = Instance.new(&quot;ObjectValue&quot;)
+&#9;creatorTag.Value = player
+&#9;creatorTag.Name = &quot;creator&quot;
+&#9;DebrisService:AddItem(creatorTag, 1.5)
+&#9;creatorTag.Parent = humanoid
+end
+
+MyShark.Touched:connect(function(part)
+&#9;local hitChar = FindCharacterAncestory(part)
+&#9;if hitChar and hitChar:FindFirstChild(&apos;Humanoid&apos;) and script:WaitForChild(&apos;Owner&apos;) then
+&#9;&#9;if PlayersService:GetPlayerFromCharacter(hitChar) ~= script.Owner.Value then
+&#9;&#9;&#9;-- Make some creator tags
+&#9;&#9;&#9;TagHumanoid(hitChar.Humanoid, script.Owner.Value)
+&#9;&#9;&#9;hitChar.Humanoid:TakeDamage(100)
+&#9;&#9;end
+&#9;end
+end)
+
+
+wait(6)
+
+for _, v in ipairs(sensorParts) do
+&#9;v:Destroy()
+end
+
+MyShark:Destroy()
+
+
+</ProtectedString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX6">
+					<Properties>
+						<string name="Name">Owner</string>
+						<Ref name="Value">null</Ref>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Camera" referent="RBX7">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>4.21632004</X>
+					<Y>1.95182478</Y>
+					<Z>-4.58628988</Z>
+					<R00>-0.669107378</R00>
+					<R01>-0.120110095</R01>
+					<R02>0.733395457</R02>
+					<R10>-0</R10>
+					<R11>0.986853123</R11>
+					<R12>0.161619529</R12>
+					<R20>-0.743165731</R20>
+					<R21>0.108140819</R21>
+					<R22>-0.660310686</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>2.74952841</X>
+					<Y>1.62858558</Y>
+					<Z>-3.26566792</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,0 +1,444 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>-1.5</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<string name="Name">AmericanFireworks</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=116744850 </url></Content>
+			<string name="ToolTip"></string>
+		</Properties>
+		<Item class="Part" referent="RBX1">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>0.322278887</X>
+					<Y>17.817606</Y>
+					<Z>22.1212139</Z>
+					<R00>-0.548098207</R00>
+					<R01>-0.00661147665</R01>
+					<R02>0.836385965</R02>
+					<R10>0.0212186445</R10>
+					<R11>0.99953568</R11>
+					<R12>0.0218059197</R12>
+					<R20>-0.836143434</R20>
+					<R21>0.0296989642</R21>
+					<R22>-0.547705114</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>0.940000176</X>
+					<Y>4.6799984</Y>
+					<Z>1.18000233</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX2">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=116744732 </url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.20000005</X>
+						<Y>1.20000005</Y>
+						<Z>1.20000005</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=116744835 </url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX3">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Local Gui</string>
+				<ProtectedString name="Source">local Tool = script.Parent;
+
+enabled = true
+function onButton1Down(mouse)
+&#9;if not enabled then
+&#9;&#9;return
+&#9;end
+
+&#9;enabled = false
+&#9;mouse.Icon = &quot;rbxasset://textures\\ArrowFarCursor.png&quot;
+
+&#9;wait(3)
+&#9;mouse.Icon = &quot;rbxasset://textures\\ArrowCursor.png&quot;
+&#9;enabled = true
+
+end
+
+function onEquippedLocal(mouse)
+
+&#9;if mouse == nil then
+&#9;&#9;print(&quot;Mouse not found&quot;)
+&#9;&#9;return 
+&#9;end
+
+&#9;mouse.Icon = &quot;rbxasset://textures\\ArrowCursor.png&quot;
+&#9;mouse.Button1Down:connect(function() onButton1Down(mouse) end)
+end
+
+Tool.Equipped:connect(onEquippedLocal)
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX4">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">PlantBomb</string>
+				<ProtectedString name="Source">local Tool = script.Parent
+local Candle = Tool.Handle
+
+local Character
+
+
+Tool.Enabled = true
+
+function plant(pos)&#9;
+   
+&#9;local Character = Tool.Parent
+&#9;local vPlayer = game.Players:playerFromCharacter(Character)
+
+&#9;local spawnPos = Character.PrimaryPart.Position
+&#9;
+
+&#9;local bomb = Tool.Handle:Clone()
+&#9;bomb.CanCollide = true
+&#9;bomb.Transparency = 0
+&#9;bomb.Position = pos
+&#9;bomb.Name = &quot;Shell&quot;
+&#9;bomb.Locked = true
+
+&#9;local bForce = Instance.new(&apos;BodyForce&apos;)
+&#9;bForce.force = Vector3.new(0, bomb:GetMass() * 220, 0)
+&#9;bForce.Parent = bomb 
+
+&#9;local p = Instance.new(&quot;Part&quot;)
+&#9;p.FormFactor = 3
+&#9;p.Size = Vector3.new(1.8, 0.2, 0.2)
+&#9;p.Parent = game.Workspace
+&#9;p.Name = &quot;Fuse&quot;
+
+&#9;fire = Instance.new(&quot;Fire&quot;)
+&#9;fire.Parent = p
+&#9;fire.Heat = 1.0
+&#9;fire.Size = 1.0 
+
+&#9;p.Transparency = 1.0
+
+&#9;pWeld = Instance.new(&quot;Weld&quot;)
+&#9;pWeld.Parent = bomb
+&#9;pWeld.Part0 = bomb
+&#9;pWeld.Part1 = p
+&#9;pWeld.C1 = CFrame.new(0, 0, -1)
+
+&#9;local creator_tag = Instance.new(&quot;ObjectValue&quot;)
+&#9;creator_tag.Value = vPlayer
+&#9;creator_tag.Name = &quot;creator&quot;
+&#9;creator_tag.Parent = bomb
+
+&#9;bomb.Parent = game.Workspace
+&#9;local new_script = Tool.BombScript:clone()&#9;&#9;
+&#9;new_script.Parent = bomb
+
+&#9;wait(1.5)
+&#9;new_script.Disabled = false
+&#9;if p then p:Remove() end
+end
+
+function onActivated()
+&#9;if not Tool.Enabled then
+&#9;&#9;return
+&#9;end
+&#9;Tool.Enabled = false
+
+&#9;local character = Tool.Parent;
+&#9;local humanoid = character.Humanoid
+&#9;if humanoid == nil then
+&#9;&#9;print(&quot;Humanoid not found&quot;)
+&#9;&#9;return 
+&#9;end
+
+&#9;local targetPos = humanoid.TargetPoint
+
+&#9;Tool.Handle.Transparency = 1
+&#9;plant(Tool.Handle.Position)
+&#9;wait(24)
+&#9;Tool.Handle.Transparency = 0
+&#9;Tool.Enabled = true
+end
+
+Tool.Activated:connect(onActivated)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX5">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">BombScript</string>
+				<ProtectedString name="Source">local Candle = script.Parent
+
+local FuseSound = Instance.new(&quot;Sound&quot;)
+FuseSound.SoundId = &quot;http://www.roblox.com/asset/?id=11565378&quot;
+FuseSound.Parent = script.Parent
+FuseSound:Play()
+
+local BodyForce = Instance.new(&quot;BodyForce&quot;)
+BodyForce.Parent = Candle
+
+local InitPos = Candle.Position
+local Debris = game:GetService(&quot;Debris&quot;)
+
+
+local Particles = {}
+
+local Explosion = Instance.new(&quot;Explosion&quot;)
+Explosion.BlastPressure = 5
+Explosion.BlastRadius = 15
+
+local Colors = {
+&#9;&#9;&#9;&#9;Color3.new(1,0,0), 
+&#9;&#9;&#9;&#9;Color3.new(0,1,0), 
+&#9;&#9;&#9;&#9;Color3.new(0,0,1), 
+&#9;&#9;&#9;&#9;Color3.new(1, .5, 0), 
+&#9;&#9;&#9;&#9;Color3.new(0, .5, 1), 
+&#9;&#9;&#9;&#9;Color3.new(1,0,1), 
+&#9;&#9;&#9;&#9;Color3.new(.1, .1, .1), 
+&#9;&#9;&#9;&#9;Color3.new(1,1,0), 
+&#9;&#9;&#9;&#9;Color3.new(0,1,1)
+&#9;&#9;&#9;}
+
+for i = 1, 10 do
+&#9;BodyForce.force = Candle.CFrame.lookVector * Candle:GetMass() * 98 * 3
+&#9;wait(.1)
+end
+
+BodyForce:Destroy()
+
+local RocketSound = Instance.new(&quot;Sound&quot;)
+RocketSound.SoundId = &quot;rbxasset://sounds\\Rocket shot.wav&quot;
+RocketSound.Parent = script.Parent
+RocketSound.Volume = 1
+RocketSound:Play()
+
+local NumParticles = 50
+Particles = {}
+
+local BodyPosition = Instance.new(&quot;BodyPosition&quot;)
+BodyPosition.P = 700
+BodyPosition.D = 750
+BodyPosition.maxForce = Vector3.new(1,1,1) * BodyPosition.P
+
+for j = 1, NumParticles do
+&#9;local part = Instance.new(&quot;Part&quot;)
+&#9;part.Size = Vector3.new(1,1,1)
+&#9;part.Transparency = 1
+&#9;part.CanCollide = false
+&#9;part.Position = Candle.Position
+&#9;part.Velocity =  Candle.Velocity
+&#9;Debris:AddItem(part, 23)&#9;
+
+&#9;local sparkle = Instance.new(&quot;Sparkles&quot;)&#9;
+&#9;sparkle.Color = Colors[math.random(1, #Colors)]
+&#9;sparkle.Parent = part
+&#9;table.insert(Particles, part)
+&#9;
+&#9;
+&#9;if math.random() &lt; 0.25 then 
+
+&#9;&#9;local pLight = Instance.new(&apos;PointLight&apos;)
+&#9;&#9;pLight.Color = Colors[math.random(1, #Colors)]
+&#9;&#9;pLight.Parent = part 
+&#9;&#9;pLight.Range = 60
+&#9;
+&#9;&#9;local sLight = Instance.new(&apos;SpotLight&apos;)
+&#9;&#9;sLight.Color = Colors[math.random(1, #Colors)]
+&#9;&#9;sLight.Parent = part 
+&#9;&#9;sLight.Range = 60
+&#9;end 
+
+
+&#9;local bForce = Instance.new(&quot;BodyForce&quot;)
+&#9;bForce.force = Vector3.new(0, 600, 0)
+&#9;bForce.Parent = part
+
+&#9;Debris:AddItem(bForce, 3)
+
+&#9;local increment = (math.pi *2)/NumParticles
+&#9;local angle = increment * j&#9;
+&#9;local pos = Vector3.new(((part.Position.x - InitPos.x) * math.cos(angle)) - ((part.Position.y - InitPos.y) * math.sin(angle)) +InitPos.x,
+&#9;&#9;((part.Position.x - InitPos.x) * math.sin(angle)) + ((part.Position.y - InitPos.y) * math.cos(angle)) + InitPos.y, part.Position.z)&#9;
+
+&#9;local bodyPosForce = BodyPosition:Clone()&#9;
+&#9;bodyPosForce.position = Vector3.new(pos.x,pos.y + 80, pos.z)
+
+&#9;local bodyAngularVelocity = Instance.new(&quot;BodyAngularVelocity&quot;)
+&#9;bodyAngularVelocity.angularvelocity = Vector3.new(50,50,50)
+&#9;bodyAngularVelocity.P = 500
+&#9;bodyAngularVelocity.maxTorque = Vector3.new(1,1,1) * bodyAngularVelocity.P
+
+&#9;part.Parent = game.Workspace
+&#9;bodyPosForce.Parent = part
+&#9;bodyAngularVelocity.Parent = part
+end
+
+Candle.Transparency = 1
+wait(2)
+Candle:Destroy()
+wait(3)
+
+for i = 1, #Particles do
+&#9;Particles[i].BodyPosition.position = Vector3.new(InitPos.x, InitPos.y + 10, InitPos.z)
+end
+
+wait(3)
+for i =1, #Particles do
+&#9;Particles[i].BodyPosition.position = Vector3.new(Particles[i].Position.x + math.random(-40, 40), InitPos.y + math.random(40, 80), Particles[i].Position.z + math.random(-40, 40))
+end
+
+wait(2.0)
+for i =1, #Particles do
+&#9;for j = 1, 4 do
+&#9;&#9;local newSpark = Particles[i]:clone()
+&#9;&#9;newSpark:WaitForChild(&quot;BodyPosition&quot;).position = Vector3.new(Particles[i].Position.x + math.random(-40, 40), InitPos.y + math.random(0, 60), Particles[i].Position.z + math.random(-40, 40))
+&#9;&#9;newSpark:WaitForChild(&quot;Sparkles&quot;).Color = Colors[math.random(1,#Colors)]
+&#9;&#9;newSpark.Parent = game.Workspace
+&#9;&#9;Debris:AddItem(newSpark, 5)
+&#9;end
+end
+
+wait(4.5)
+
+for i = 1, #Particles do 
+&#9;if Particles[i] and Particles[i]:FindFirstChild(&apos;BodyPosition&apos;) then 
+&#9;&#9;Particles[i].BodyPosition:Destroy()
+&#9;end
+&#9;local upForce = Instance.new(&quot;BodyForce&quot;)
+&#9;upForce.force = Vector3.new(0, 250, 0)
+&#9;upForce.Parent = Particles[i]
+end
+
+wait(1)
+
+for i = 1, #Particles do
+&#9;local exp = Explosion:clone()
+&#9;exp.Position = Particles[i].Position
+&#9;exp.Parent = game.Workspace
+&#9;Particles[i]:remove()
+&#9;if FuseSound then FuseSound:Play() end
+&#9;wait(0.2)
+end
+</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX6">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>2.17689037</X>
+					<Y>17.7057648</Y>
+					<Z>26.4639435</Z>
+					<R00>0.919647098</R00>
+					<R01>0.0092992913</R01>
+					<R02>0.392635554</R02>
+					<R10>-0</R10>
+					<R11>0.99971962</R11>
+					<R12>-0.0236776453</R12>
+					<R20>-0.392745614</R20>
+					<R21>0.021775078</R21>
+					<R22>0.919389367</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>0.322278857</X>
+					<Y>17.817606</Y>
+					<Z>22.1212139</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

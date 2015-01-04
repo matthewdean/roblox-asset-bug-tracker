@@ -1,0 +1,475 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Tool" referent="RBX0">
+		<Properties>
+			<bool name="CanBeDropped">true</bool>
+			<bool name="Enabled">true</bool>
+			<CoordinateFrame name="Grip">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+				<R00>0.194709167</R00>
+				<R01>-0.960530519</R01>
+				<R02>-0.198669329</R02>
+				<R10>-0.0394695438</R10>
+				<R11>0.194709152</R11>
+				<R12>-0.980066597</R12>
+				<R20>0.980066597</R20>
+				<R21>0.198669344</R21>
+				<R22>-4.2840071e-008</R22>
+			</CoordinateFrame>
+			<string name="Name">Dumbell</string>
+			<Content name="TextureId"><url>http://www.roblox.com/asset/?id=122333590</url></Content>
+			<string name="ToolTip">Taste Iron!</string>
+		</Properties>
+		<Item class="LocalScript" referent="RBX1">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">WeightMain</string>
+				<ProtectedString name="Source">local Tool = script.Parent
+local Handle = Tool:WaitForChild(&apos;Handle&apos;)
+local WeightScript = Tool:WaitForChild(&apos;WeightScript&apos;)
+local Player;
+local Character;
+local Humanoid;
+local Torso;
+
+local RELOAD_TIME = 1.5
+
+local Equipped = false
+local LastUse = Tool:WaitForChild(&apos;LastUse&apos;)
+
+local ANIM_Equip;
+local ANIM_Swing;
+
+local SOUND_Swish = Handle:WaitForChild(&apos;SOUND_Swish&apos;)
+
+function CreateWeight()
+&#9;local weightModel = Instance.new(&apos;Model&apos;)
+&#9;weightModel.Name = &apos;ThrownWeight&apos;
+&#9;--
+&#9;local weight = Handle:Clone()
+&#9;local rotVelo = weight.RotVelocity
+&#9;weight:WaitForChild(&apos;creator&apos;).Value = Player
+&#9;weight.CanCollide = false
+&#9;weight.Parent = weightModel
+&#9;weight.CFrame = weight.CFrame + Torso.CFrame.lookVector*3
+&#9;--
+&#9;local force = Instance.new(&apos;BodyVelocity&apos;, weight)
+&#9;force.Name = &apos;Mover&apos;
+&#9;force.maxForce = Vector3.new(100000,100000,100000)
+&#9;force.velocity = Vector3.new(0,0,0)
+&#9;--
+&#9;local endOne = Instance.new(&apos;Part&apos;, weightModel)
+&#9;endOne.Shape = &apos;Ball&apos;
+&#9;endOne.Size = Vector3.new(3,3,3)
+&#9;endOne.Name = &apos;EndOne&apos;
+&#9;endOne.TopSurface = &apos;Smooth&apos;
+&#9;endOne.BottomSurface = &apos;Smooth&apos;
+&#9;endOne.Transparency = 1
+&#9;endOne.CanCollide = false
+&#9;endOne.RotVelocity = rotVelo
+&#9;endOne.CFrame = weight.CFrame*CFrame.new(3,0,0)
+&#9;--
+&#9;local endTwo = endOne:Clone()
+&#9;endTwo.Name = &apos;EndTwo&apos;
+&#9;endTwo.Parent = weightModel
+&#9;endTwo.CFrame = weight.CFrame*CFrame.new(-3,0,0)
+&#9;--
+&#9;local w = Instance.new(&apos;Weld&apos;, weight)
+&#9;w.Part0 = weight
+&#9;w.Part1 = endOne
+&#9;w.C0 = CFrame.new(3,0,0)
+&#9;--
+&#9;local w = Instance.new(&apos;Weld&apos;, weight)
+&#9;w.Part0 = weight
+&#9;w.Part1 = endTwo
+&#9;w.C0 = CFrame.new(-3,0,0)
+&#9;--
+&#9;local sc = WeightScript:Clone()
+&#9;weight.creator.Parent = sc
+&#9;sc.Disabled = false
+&#9;sc.Parent = weightModel
+&#9;--
+&#9;weightModel.Parent = game.Workspace
+&#9;--
+&#9;return weightModel
+end
+
+function ThrowWeight()
+&#9;local weight = CreateWeight()
+&#9;--
+&#9;local handle = weight.Handle
+&#9;handle.Mover.velocity = (Torso.CFrame*CFrame.Angles(0.3,0,0)).lookVector*50 + Handle.Velocity
+end
+
+Tool.Equipped:connect(function(mouse)
+&#9;Equipped = true
+&#9;Character = Tool.Parent
+&#9;Player = game.Players:GetPlayerFromCharacter(Character)
+&#9;Humanoid = Character:WaitForChild(&apos;Humanoid&apos;)
+&#9;Torso = Character:WaitForChild(&apos;Torso&apos;)
+&#9;--
+&#9;ANIM_Equip = Humanoid:LoadAnimation(Tool:WaitForChild(&apos;ANIM_Equip&apos;))
+&#9;ANIM_Swing = Humanoid:LoadAnimation(Tool:WaitForChild(&apos;ANIM_Swing&apos;))
+&#9;--
+&#9;ANIM_Equip:Play(0)
+&#9;--
+&#9;Handle.Transparency = 0
+&#9;--
+&#9;mouse.Button1Down:connect(function()
+&#9;&#9;if (Workspace.DistributedGameTime - LastUse.Value) &lt; RELOAD_TIME then return end
+&#9;&#9;LastUse.Value = Workspace.DistributedGameTime
+&#9;&#9;--
+&#9;&#9;ANIM_Swing:Play(0)
+&#9;&#9;Delay(0.3, function()
+&#9;&#9;&#9;SOUND_Swish:Play(0)
+&#9;&#9;end)
+&#9;&#9;repeat until ANIM_Swing.KeyframeReached:wait() == &apos;Throw&apos;
+&#9;&#9;--
+&#9;&#9;ThrowWeight()
+&#9;&#9;Handle.Transparency = 1
+&#9;&#9;--
+&#9;&#9;wait(0.5)
+&#9;&#9;for i = 1, 0, -0.03 do 
+&#9;&#9;&#9;wait()
+&#9;&#9;&#9;if not Equipped then break end
+&#9;&#9;&#9;Handle.Transparency = i
+&#9;&#9;end
+&#9;&#9;--
+&#9;&#9;Handle.Transparency = 0
+&#9;end)
+&#9;--
+&#9;while Equipped do
+&#9;&#9;if (Workspace.DistributedGameTime - LastUse.Value) &lt; RELOAD_TIME then
+&#9;&#9;&#9;mouse.Icon = &apos;rbxasset://textures\\GunWaitCursor.png&apos;
+&#9;&#9;else
+&#9;&#9;&#9;mouse.Icon = &apos;rbxasset://textures\\GunCursor.png&apos;
+&#9;&#9;end
+&#9;&#9;wait()
+&#9;end
+end)
+
+Tool.Unequipped:connect(function()
+&#9;Equipped = false
+&#9;if ANIM_Equip then ANIM_Equip:Stop() end
+&#9;if ANIM_Swing then ANIM_Swing:Stop() end
+end)</ProtectedString>
+			</Properties>
+			<Item class="Script" referent="RBX2">
+				<Properties>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">MotorizeRightGrip</string>
+					<ProtectedString name="Source">function Create(ty)
+&#9;return function(data)
+&#9;&#9;local obj = Instance.new(ty)
+&#9;&#9;for k, v in pairs(data) do
+&#9;&#9;&#9;if type(k) == &apos;number&apos; then
+&#9;&#9;&#9;&#9;v.Parent = obj
+&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;obj[k] = v
+&#9;&#9;&#9;end
+&#9;&#9;end
+&#9;&#9;return obj
+&#9;end
+end
+
+local Tool = script.Parent.Parent
+
+local armChildRemovedConn = nil
+local Motor6DGrip = nil
+local EquippedNum = 0
+
+Tool.Equipped:connect(function()
+&#9;EquippedNum = EquippedNum + 1
+&#9;local myEquip = EquippedNum
+&#9;--some vars
+&#9;local Player = game.Players:GetPlayerFromCharacter(Tool.Parent)
+&#9;local Character = Player.Character
+
+&#9;local rightarm = Character:FindFirstChild(&apos;Right Arm&apos;)
+&#9;if rightarm and rightarm:FindFirstChild(&apos;RightGrip&apos;) then
+&#9;&#9;local rightGrip = rightarm[&apos;RightGrip&apos;]
+&#9;&#9;local handle = rightGrip.Part1
+
+&#9;&#9;--kill my joint when the normal joint is removed
+&#9;&#9;--this must be done here so that the joint is removed 
+&#9;&#9;--_right away_ after unequipping and the character doesn&apos;t 
+&#9;&#9;--glitch up.
+&#9;&#9;local armChildRemovedConn = rightarm.ChildRemoved:connect(function(ch)
+&#9;&#9;&#9;if ch == rightGrip then
+&#9;&#9;&#9;&#9;Motor6DGrip:Remove()
+&#9;&#9;&#9;&#9;Motor6DGrip = nil
+&#9;&#9;&#9;&#9;--
+&#9;&#9;&#9;&#9;if handle and Character:FindFirstChild(&apos;Torso&apos;) then
+&#9;&#9;&#9;&#9;&#9;if Tool.Parent.Parent:IsA(&apos;Player&apos;) then
+&#9;&#9;&#9;&#9;&#9;&#9;--the sword has been deselected
+&#9;&#9;&#9;&#9;&#9;&#9;--put the sword far away so the user doesn&apos;t notice that the handle doesn&apos;t
+&#9;&#9;&#9;&#9;&#9;&#9;--update for about 0.1 seconds after selecting the tool.
+&#9;&#9;&#9;&#9;&#9;&#9;handle.CFrame = CFrame.new(100000, 100000, 100000)
+&#9;&#9;&#9;&#9;&#9;else
+&#9;&#9;&#9;&#9;&#9;&#9;--if in the workspace, position the handle where it should be dropped
+&#9;&#9;&#9;&#9;&#9;&#9;--use the size of the handle to make sure it&apos;s dropped far enough away
+&#9;&#9;&#9;&#9;&#9;&#9;handle.CFrame = Character.Torso.CFrame * CFrame.new(0, 0, -(handle.Size.magnitude+2))
+&#9;&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;&#9;end
+&#9;&#9;&#9;end
+&#9;&#9;end)
+
+&#9;&#9;--make my new joint
+&#9;&#9;Motor6DGrip = Create&apos;Motor6D&apos;{
+&#9;&#9;&#9;Name = &apos;RightGrip_Motor&apos;,
+&#9;&#9;&#9;Part0 = rightarm,
+&#9;&#9;&#9;Part1 = handle,
+&#9;&#9;&#9;C0 = CFrame.new(0, -1, 0)*CFrame.Angles(0, 2.0, -0.4);
+&#9;&#9;&#9;C1 = CFrame.new(-0.5, 0, 0);
+&#9;&#9;}
+&#9;&#9;--kill the old weld
+&#9;&#9;rightGrip.Part1 = nil
+&#9;&#9;rightGrip.Part0 = nil
+&#9;&#9;Motor6DGrip.Parent = rightGrip.Parent
+&#9;end
+end)
+
+Tool.Unequipped:connect(function()
+&#9;EquippedNum = EquippedNum + 1
+&#9;if armChildRemovedConn then
+&#9;&#9;armChildRemovedConn:disconnect()
+&#9;&#9;armChildRemovedConn = nil
+&#9;end
+end)
+</ProtectedString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Part" referent="RBX3">
+			<Properties>
+				<bool name="Anchored">false</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<int name="BrickColor">194</int>
+				<CoordinateFrame name="CFrame">
+					<X>5.89000034</X>
+					<Y>61.5800018</Y>
+					<Z>98.6200027</Z>
+					<R00>0</R00>
+					<R01>0</R01>
+					<R02>-1</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>-0</R12>
+					<R20>1</R20>
+					<R21>0</R21>
+					<R22>-0</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<float name="Elasticity">0.5</float>
+				<float name="Friction">0.300000012</float>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Handle</string>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">3</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>7.48999357</X>
+					<Y>1</Y>
+					<Z>1</Z>
+				</Vector3>
+			</Properties>
+			<Item class="SpecialMesh" referent="RBX4">
+				<Properties>
+					<token name="LODX">2</token>
+					<token name="LODY">2</token>
+					<Content name="MeshId"><url>http://www.roblox.com/asset/?id=122333663</url></Content>
+					<token name="MeshType">5</token>
+					<string name="Name">Mesh</string>
+					<Vector3 name="Offset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="Scale">
+						<X>1.5</X>
+						<Y>1.5</Y>
+						<Z>1.5</Z>
+					</Vector3>
+					<Content name="TextureId"><url>http://www.roblox.com/asset/?id=122333759</url></Content>
+					<Vector3 name="VertexColor">
+						<X>1</X>
+						<Y>1</Y>
+						<Z>1</Z>
+					</Vector3>
+				</Properties>
+			</Item>
+			<Item class="ObjectValue" referent="RBX5">
+				<Properties>
+					<string name="Name">creator</string>
+					<Ref name="Value">null</Ref>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX6">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SOUND_Swish</string>
+					<float name="Pitch">0.5</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=120766256</url></Content>
+					<float name="Volume">0.5</float>
+				</Properties>
+			</Item>
+			<Item class="Sound" referent="RBX7">
+				<Properties>
+					<bool name="Looped">false</bool>
+					<string name="Name">SOUND_HitGround</string>
+					<float name="Pitch">0.100000001</float>
+					<bool name="PlayOnRemove">false</bool>
+					<Content name="SoundId"><url>http://www.roblox.com/asset/?id=120767420</url></Content>
+					<float name="Volume">1</float>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Animation" referent="RBX8">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/asset/?id=122358185</url></Content>
+				<string name="Name">ANIM_Equip</string>
+			</Properties>
+		</Item>
+		<Item class="Animation" referent="RBX9">
+			<Properties>
+				<Content name="AnimationId"><url>http://www.roblox.com/asset/?id=122358216</url></Content>
+				<string name="Name">ANIM_Swing</string>
+			</Properties>
+		</Item>
+		<Item class="NumberValue" referent="RBX10">
+			<Properties>
+				<string name="Name">LastUse</string>
+				<double name="Value">0</double>
+			</Properties>
+		</Item>
+		<Item class="Script" referent="RBX11">
+			<Properties>
+				<bool name="Disabled">true</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">WeightScript</string>
+				<ProtectedString name="Source">local Model = script.Parent
+
+game.Debris:AddItem(Model, 3)
+
+local CreatorTag = script:WaitForChild(&apos;creator&apos;)
+while not CreatorTag.Value do CreatorTag.Changed:wait() end 
+local Creator = CreatorTag.Value
+local Character = Creator.Character
+
+local Handle = Model:WaitForChild(&apos;Handle&apos;)
+local EndOne = Model:WaitForChild(&apos;EndOne&apos;)
+local EndTwo = Model:WaitForChild(&apos;EndTwo&apos;)
+
+local Mover = Handle:WaitForChild(&apos;Mover&apos;)
+game.Debris:AddItem(Mover, 0.1)
+
+Spawn(function()
+&#9;wait(0.1)
+&#9;EndOne.CanCollide = true
+&#9;EndTwo.CanCollide = true
+&#9;wait(0.1)
+&#9;Handle.CanCollide = true
+end)
+
+local SOUND_HitGround = Handle:WaitForChild(&apos;SOUND_HitGround&apos;)
+
+function TouchedHandler(part)
+&#9;if Character and part:IsDescendantOf(Character) then return end
+&#9;local hum = (part.Parent or game):FindFirstChild(&apos;Humanoid&apos;)
+&#9;if not hum then
+&#9;&#9;hum = ((part.Parent or game).Parent or game):FindFirstChild(&apos;Humanoid&apos;)
+&#9;end
+&#9;if hum then
+&#9;&#9;hum.Sit = true
+&#9;&#9;local tag = CreatorTag:Clone()
+&#9;&#9;game.Debris:AddItem(tag, 0.5)
+&#9;&#9;hum:TakeDamage(16)
+&#9;else
+&#9;&#9;SOUND_HitGround:Play()
+&#9;end
+end
+
+Handle.Touched:connect(TouchedHandler)
+EndOne.Touched:connect(TouchedHandler)
+EndTwo.Touched:connect(TouchedHandler)</ProtectedString>
+			</Properties>
+		</Item>
+		<Item class="Camera" referent="RBX12">
+			<Properties>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<CoordinateFrame name="CoordinateFrame">
+					<X>0.592349052</X>
+					<Y>66.4677811</Y>
+					<Z>91.4259338</Z>
+					<R00>-0.836607277</R00>
+					<R01>0.333497316</R01>
+					<R02>-0.434589356</R02>
+					<R10>-1.49011612e-008</R10>
+					<R11>0.793331206</R11>
+					<R12>0.608790398</R12>
+					<R20>0.547803164</R20>
+					<R21>0.509318471</R21>
+					<R22>-0.663706601</R22>
+				</CoordinateFrame>
+				<float name="FieldOfView">70</float>
+				<CoordinateFrame name="Focus">
+					<X>5.57686043</X>
+					<Y>59.4852753</Y>
+					<Z>99.0382996</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<string name="Name">ThumbnailCamera</string>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>
